@@ -9,10 +9,22 @@ function enableBorough() {
 var auth_token = "8PR5t7I7Cn2KPe9ge0gLmK9bhWErzsibqM5tZ0diknv_7VKvDN-84NmylZQgTavFlP7Fn7iGwgrv_0mE6Eplcb_Pu1-7gGFiM6oCYXZDn0nZRsYW5eLpJug-tEMQvujw6sWVX4rlAeFyr0tuBrRyl9BBBtgFIhbRLAD3VRrtyXUZcDVURMrf0wkUcviVM3aUWsEFMZhdzER9WMLgeGAQ2_QlN1-5xQo1bwFd_inttPdWcgdOJ6VAvPE08DAtnfltZ_djgYIYt-V-Va0j45z2IxpIXxf64Cv4fNIVAiFsRHyS47BFdpm7tB9hXYGjoCFi0fMkZORtIE9fNcAJmBXCKu9qXe1wA7qdItmGkm-T2HFK6W2ftiSWkqF5MsmSB_av3HVQGf3stWrvtCQ0VDX4bVLUObNOaML4ePe_hQMPMfATr9hAMq0L-Dt--mE47zWmeT9UA--OkQ_xLa1oi-rXhg2";
 
 function getDates() {
+
+    var now = moment();
+    var d = new Date();
+    var n = d.getHours();
+
+    if (n >= 12) {
+        now.add(1, 'days');
+    }
+
+    var temp = now.format('YYYY MM DD').toString();
+    var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
+
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-00001&startDate=2016-08-05",
+        "url": "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-00001&startDate=" + date2Pass + "",
         "method": "GET",
         "headers": {
             "authorization": auth_token,
@@ -289,8 +301,10 @@ function fillInfo() {
     var phone = getUrlVars()["phone"];
     var email = getUrlVars()["email"];
 
+    var phone = "(" + phone[3] + phone[4] + phone[5] + ") " + phone[10] + phone[11] + phone[12] + phone[13] + phone[14] + phone[15] + phone[16] + phone[17];
+
     document.getElementById("firstName").innerHTML = fName.toUpperCase();
     document.getElementById("lastName").innerHTML = lName.toUpperCase();
-    document.getElementById("phoneNumber").innerHTML = phone.toUpperCase();
-    document.getElementById("emailAddress").innerHTML = email.toUpperCase();
+    document.getElementById("phoneNumber").innerHTML = phone;
+    document.getElementById("emailAddress").innerHTML = email.replace("%40", "@");
 }

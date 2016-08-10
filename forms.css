@@ -202,14 +202,9 @@ ul.leaders span+ span {
 #submit-button {
     height: 35px;
     width: 150px;
-    color: grey;
-    background-color: ;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-#submit-button:hover {
-    background-color: #15d228;
     color: white;
+    background-color: #15d228;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .receipt-message {
@@ -301,7 +296,7 @@ ul.leaders span+ span {
     font-weight: bolder;
     width: 47.5%;
     display: inline-block;
-    margin-right: 21px
+    margin-right: 21px;
 }
 
 .email {
@@ -468,4 +463,50 @@ ul.leaders span+ span {
 #lname-message,
 #phone-message {
     display: none;
+}
+
+#electronic-message {
+    padding-top: 6px;
+}
+
+#phone-message {
+    padding-bottom: 6px;
+}
+
+#req1 {
+    display: inline-block;
+    width: 21.52%;
+}
+
+#req2 {
+    display: inline-block;
+    width: 17.5%;
+}
+
+#req3 {
+    display: inline-block;
+    width: 57%;
+}
+
+#req4 {
+    display: inline-block;
+    width: 49.7%;
+    padding-bottom: 6px
+}
+
+#req5 {
+    display: inline-block;
+    width: 40%;
+}
+
+#req6 {
+    display: none;
+    width: 49.9%;
+    padding-bottom: 6px;
+}
+
+#req7 {
+    display: none;
+    width: 40%;
+    padding-bottom: 6px;
 }

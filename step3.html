@@ -54,7 +54,7 @@
         <div class="electronic-container-box">
             <ul class="leaders">
                 <li class="list-item" id="tvs2"><span>Televisions (including CRTs)</span>
-                    <span id="numTV">1</span></li>
+                    <span id="numTV">0</span></li>
                 <li class="list-item-shift" id="tv1"><span>TV # 1</span>
                     <span id="tv1size">0</span></li>
                 <li class="list-item-shift" id="tv2"><span>TV # 2</span>
@@ -121,10 +121,10 @@
             </table>
         </div>
         <div class="certification">
-            <label for="certify"><input type="checkbox" id="certify">I certify that this request is not for a commercial business</label>
+            <label for="certify"><input type="checkbox" id="certify" ng-model="checked">I certify that this request is not for a commercial business</label>
             <br><br>
             <a href="#/step2"><button class="pure-button" id="previous-button">Previous</button></a>
-            <a href="#/step4"><button class="pure-button" id="submit-button" onclick="createUpdate()">Submit</button></a>
+            <a href="#/step4"><button class="pure-button" id="submit-button" onclick="createUpdate()" ng-model="button" ng-disabled="!checked">Submit</button></a>
         </div>
         <br>
     </div>

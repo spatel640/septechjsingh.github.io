@@ -36,10 +36,12 @@
                 <option id="date3"></option>
             </select>
         </div>
-        <ul>
-            <li class="requireMe" id="location-message">Pick-up Location is required.</li>
-            <li class="requireMe" id="date-message">Appointment Date is required.</li>
-        </ul>
+        <div id="req4">
+            <span class="requireMe" id="location-message">Required</span>
+        </div>
+        <div id="req5">
+            <span class="requireMe" id="date-message">Required</span>
+        </div>
         <div class="electronics">
             <p>ELECTRONICS CATEGORY<span class="requireMe">*</span></p>
             <div class="multiselect">
@@ -84,9 +86,7 @@
                 </div>
             </div>
         </div>
-        <ul>
-            <li class="requireMe" id="electronic-message">At least one (1) electronic item is required.</li>
-        </ul>
+        <span class="requireMe" id="electronic-message">At least one (1) electronic item is required.</span>
         <div id="thread">
             <table id="thread-table">
                 <th id="thread-items">Items (<span id="numItems">0</span>)</th>
@@ -235,30 +235,30 @@
     <div class="contact-info">
         <div class="first-of-my-name">
             <p>FIRST NAME<span class="requireMe">*</span></p>
-            <input type="text" id="first-name" name="firstName" onchange="hideNamePhoneMessages()">
+            <input type="text" id="first-name" name="firstName" onchange="hideNamePhoneMessages()" placeholder="John">
         </div>
         <div class="last-of-my-name">
             <p>LAST NAME<span class="requireMe">*</span></p>
-            <input type="text" id="last-name" name="lastName" onchange="hideNamePhoneMessages()">
+            <input type="text" id="last-name" name="lastName" placeholder="Doe" onchange="hideNamePhoneMessages()">
         </div>
-        <ul>
-            <li class="requireMe" id="fname-message">First Name is required.</li>
-            <li class="requireMe" id="lname-message">Last Name is required.</li>
-        </ul>
+        <div id="req6">
+            <span class="requireMe" id="fname-message">Required</span>
+        </div>
+        <div id="req7">
+            <span class="requireMe" id="lname-message">Required</span>
+        </div>
         <div class="phone">
             <p>PHONE<span class="requireMe">*</span></p>
-            <input type="text" id="first-name" name="phone" onchange="hideNamePhoneMessages()">
+            <input type="text" id="phone" name="phone" onchange="hideNamePhoneMessages(); phoneMask();" placeholder="(555) 555-5555">
         </div>
         <div class="email">
             <p>EMAIL</p>
-            <input type="text" id="last-name" name="email">
+            <input type="text" id="email" name="email" placeholder="email@email.com">
         </div>
-        <ul>
-            <li class="requireMe" id="phone-message">Phone number is required</li>
-        </ul>
+        <span class="requireMe" id="phone-message">Required</span>
         <div class="confirm-email">
             <p>CONFIRM EMAIL</p>
-            <input type="text" id="last-name" name="confirmedEmail">
+            <input type="text" id="confirm-email" name="confirmedEmail" placeholder="email@email.com">
         </div>
         <div class="buttons-p2">
             <a href="#/"><button class="pure-button" id="previous-button-2">Previous</button></a>

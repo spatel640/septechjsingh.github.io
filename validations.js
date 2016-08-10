@@ -27,7 +27,18 @@ function step1Validate() {
 function step2Validate() {
     var x = part1Val();
     var y = part2Val();
-    return (x && y)
+    var z = emailVal();
+    return (x && y && z)
+}
+
+function emailVal() {
+    var e1 = document.forms["step2"]["email"].value;
+    var e2 = document.forms["step2"]["confirmedEmail"].value;
+
+    if (e1 == e2)
+        return true;
+    alert("Email does not match!");
+    return false;
 }
 
 function hideNamePhoneMessages() {
@@ -54,10 +65,13 @@ function part2Val() {
     var phone = document.forms["step2"]["phone"].value;
 
     if (fname == "") {
+        document.getElementById("req6").style.display = "inline-block";
         document.getElementById("fname-message").style.display = "block";
         returnable = false;
     }
     if (lname == "") {
+        document.getElementById("req6").style.display = "inline-block";
+        document.getElementById("req7").style.display = "inline-block";
         document.getElementById("lname-message").style.display = "block";
         returnable = false;
     }
@@ -161,4 +175,9 @@ function hideElectronicMessage() {
     } else {
         document.getElementById("electronic-message").style.display = "block";
     }
+}
+
+function phoneMask() {
+    var x = document.getElementById("phone").value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+    document.getElementById("phone").value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
 }

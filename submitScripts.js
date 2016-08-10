@@ -24,7 +24,7 @@ function createUpdate() {
             "postman-token": "aab06c5a-bde7-7b59-c426-874beb07ad16"
         },
         "processData": false,
-        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"005020018\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"inspectionDistrict\": \"1\",\r\n            \"city\": \"Staten Island\",\r\n            \"postalCode\": \"10303\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"jsmith@email.com\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
+        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"005020018\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"inspectionDistrict\": \"1\",\r\n            \"city\": \"Staten Island\",\r\n            \"postalCode\": \"10303\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
     }
 
     $.ajax(settings).done(function (response) {
@@ -49,6 +49,220 @@ function createUpdate() {
     portables = Number(document.getElementById("numPD").innerHTML) + 0;
     ipods = Number(document.getElementById("numIpods").innerHTML) + 0;
 
+    var televisions = Number(document.getElementById("numTV").innerHTML) + 0;
+    var tv32 = 0;
+    var tv43 = 0;
+    var tv49 = 0;
+    var tv59 = 0;
+    var tv69 = 0;
+    var tv70 = 0;
+
+    if (televisions == 1) {
+        var size1 = document.getElementById("tv1size").innerHTML;
+        if (size1 == "32 Inches and Under")
+            tv32++;
+        if (size1 == "33 to 43 inches")
+            tv43++;
+        if (size1 == "44 to 49 inches")
+            tv49++;
+        if (size1 == "50 to 59 inches")
+            tv59++;
+        if (size1 == "60 to 69 inches")
+            tv69++;
+        if (size1 == "Larger than 70 inches")
+            tv70++;
+    }
+    if (televisions == 2) {
+        var size1 = document.getElementById("tv1size").innerHTML;
+        if (size1 == "32 Inches and Under")
+            tv32++;
+        if (size1 == "33 to 43 inches")
+            tv43++;
+        if (size1 == "44 to 49 inches")
+            tv49++;
+        if (size1 == "50 to 59 inches")
+            tv59++;
+        if (size1 == "60 to 69 inches")
+            tv69++;
+        if (size1 == "Larger than 70 inches")
+            tv70++;
+        var size2 = document.getElementById("tv2size").innerHTML;
+        if (size2 == "32 Inches and Under")
+            tv32++;
+        if (size2 == "33 to 43 inches")
+            tv43++;
+        if (size2 == "44 to 49 inches")
+            tv49++;
+        if (size2 == "50 to 59 inches")
+            tv59++;
+        if (size2 == "60 to 69 inches")
+            tv69++;
+        if (size3 == "Larger than 70 inches")
+            tv70++;
+    }
+    if (televisions == 3) {
+        var size1 = document.getElementById("tv1size").innerHTML;
+        if (size1 == "32 Inches and Under")
+            tv32++;
+        if (size1 == "33 to 43 inches")
+            tv43++;
+        if (size1 == "44 to 49 inches")
+            tv49++;
+        if (size1 == "50 to 59 inches")
+            tv59++;
+        if (size1 == "60 to 69 inches")
+            tv69++;
+        if (size1 == "Larger than 70 inches")
+            tv70++;
+        var size2 = document.getElementById("tv2size").innerHTML;
+        if (size2 == "32 Inches and Under")
+            tv32++;
+        if (size2 == "33 to 43 inches")
+            tv43++;
+        if (size2 == "44 to 49 inches")
+            tv49++;
+        if (size2 == "50 to 59 inches")
+            tv59++;
+        if (size2 == "60 to 69 inches")
+            tv69++;
+        if (size2 == "Larger than 70 inches")
+            tv70++;
+        var size3 = document.getElementById("tv3size").innerHTML;
+        if (size3 == "32 Inches and Under")
+            tv32++;
+        if (size3 == "33 to 43 inches")
+            tv43++;
+        if (size3 == "44 to 49 inches")
+            tv49++;
+        if (size3 == "50 to 59 inches")
+            tv59++;
+        if (size3 == "60 to 69 inches")
+            tv69++;
+        if (size3 == "Larger than 70 inches")
+            tv70++;
+    }
+    if (televisions == 4) {
+        var size1 = document.getElementById("tv1size").innerHTML;
+        if (size1 == "32 Inches and Under")
+            tv32++;
+        if (size1 == "33 to 43 inches")
+            tv43++;
+        if (size1 == "44 to 49 inches")
+            tv49++;
+        if (size1 == "50 to 59 inches")
+            tv59++;
+        if (size1 == "60 to 69 inches")
+            tv69++;
+        if (size1 == "Larger than 70 inches")
+            tv70++;
+        var size2 = document.getElementById("tv2size").innerHTML;
+        if (size2 == "32 Inches and Under")
+            tv32++;
+        if (size2 == "33 to 43 inches")
+            tv43++;
+        if (size2 == "44 to 49 inches")
+            tv49++;
+        if (size2 == "50 to 59 inches")
+            tv59++;
+        if (size2 == "60 to 69 inches")
+            tv69++;
+        if (size2 == "Larger than 70 inches")
+            tv70++;
+        var size3 = document.getElementById("tv3size").innerHTML;
+        if (size3 == "32 Inches and Under")
+            tv32++;
+        if (size3 == "33 to 43 inches")
+            tv43++;
+        if (size3 == "44 to 49 inches")
+            tv49++;
+        if (size3 == "50 to 59 inches")
+            tv59++;
+        if (size3 == "60 to 69 inches")
+            tv69++;
+        if (size3 == "Larger than 70 inches")
+            tv70++;
+        var size4 = document.getElementById("tv4size").innerHTML;
+        if (size4 == "32 Inches and Under")
+            tv32++;
+        if (size4 == "33 to 43 inches")
+            tv43++;
+        if (size4 == "44 to 49 inches")
+            tv49++;
+        if (size4 == "50 to 59 inches")
+            tv59++;
+        if (size4 == "60 to 69 inches")
+            tv69++;
+        if (size4 == "Larger than 70 inches")
+            tv70++;
+    }
+    if (televisions == 5) {
+        var size1 = document.getElementById("tv1size").innerHTML;
+        if (size1 == "32 Inches and Under")
+            tv32++;
+        if (size1 == "33 to 43 inches")
+            tv43++;
+        if (size1 == "44 to 49 inches")
+            tv49++;
+        if (size1 == "50 to 59 inches")
+            tv59++;
+        if (size1 == "60 to 69 inches")
+            tv69++;
+        if (size1 == "Larger than 70 inches")
+            tv70++;
+        var size2 = document.getElementById("tv2size").innerHTML;
+        if (size2 == "32 Inches and Under")
+            tv32++;
+        if (size2 == "33 to 43 inches")
+            tv43++;
+        if (size2 == "44 to 49 inches")
+            tv49++;
+        if (size2 == "50 to 59 inches")
+            tv59++;
+        if (size2 == "60 to 69 inches")
+            tv69++;
+        if (size2 == "Larger than 70 inches")
+            tv70++;
+        var size3 = document.getElementById("tv3size").innerHTML;
+        if (size3 == "32 Inches and Under")
+            tv32++;
+        if (size3 == "33 to 43 inches")
+            tv43++;
+        if (size3 == "44 to 49 inches")
+            tv49++;
+        if (size3 == "50 to 59 inches")
+            tv59++;
+        if (size3 == "60 to 69 inches")
+            tv69++;
+        if (size3 == "Larger than 70 inches")
+            tv70++;
+        var size4 = document.getElementById("tv4size").innerHTML;
+        if (size4 == "32 Inches and Under")
+            tv32++;
+        if (size4 == "33 to 43 inches")
+            tv43++;
+        if (size4 == "44 to 49 inches")
+            tv49++;
+        if (size4 == "50 to 59 inches")
+            tv59++;
+        if (size4 == "60 to 69 inches")
+            tv69++;
+        if (size4 == "Larger than 70 inches")
+            tv70++;
+        var size5 = document.getElementById("tv5size").innerHTML;
+        if (size5 == "32 Inches and Under")
+            tv32++;
+        if (size5 == "33 to 43 inches")
+            tv43++;
+        if (size5 == "44 to 49 inches")
+            tv49++;
+        if (size5 == "50 to 59 inches")
+            tv59++;
+        if (size5 == "60 to 69 inches")
+            tv69++;
+        if (size5 == "Larger than 70 inches")
+            tv70++;
+    }
+
     // Update with Correct Information
     var settings = {
         "async": false,
@@ -62,7 +276,7 @@ function createUpdate() {
             "postman-token": "8bce7523-f85e-4883-8c09-b9331ab5cc97"
         },
         "processData": false,
-        "data": "[\n    {\n      \"id\": \"DSNY_EW-TELEVISION\",\n      \"44 to 49 Inches\": \"0\",\n      \"32 Inches & Under\": \"1\",\n      \"33 to 43 Inches\": \"0\",\n      \"70 Inches & Up\": \"1\",\n      \"60 to 69 Inches\": \"0\",\n      \"50 to 59 Inches\": \"0\"\n    },\n    {\n      \"Computer peripherals, including any permanently attached cable or wiring\": \"" + computers + "\",\n      \"Portable devices, including any permanently attached cable or wiring\": \"" + portables + "\",\n      \"Digital converter boxes\": \"" + dcb + "\",\n      \"Fax machines, document scanners, and printers that weigh less than 100lbs\": \"" + fax + "\",\n      \"VCRs\": \"" + vcrs + "\",\n      \"Portable digital music players\": \"" + ipods + "\",\n      \"Electronic mice and other pointing devices\": \"" + mice + "\",\n      \"Small scale servers\": \"" + sss + "\",\n      \"Digital video recorders\": \"" + dvrs + "\",\n      \"Electronic or video game consoles\": \"" + xbox + "\",\n      \"id\": \"DSNY_EW-OTHER.cELECTRONICS\",\n      \"Televisions (including cathode ray tubes)\": \"0\",\n      \"Monitors, laptops\": \"" + monitors + "\",\n      \"Electronic keyboards\": \"" + keyboards + "\",\n      \"DVD players\": \"" + dvd + "\",\n      \"Cable or satellite receivers\": \"" + cable + "\",\n      \"TV Peripherals, including any permanently attached cable or wiring\": \"" + peripherals + "\"\n    }\n  ]"
+        "data": "[\n    {\n      \"id\": \"DSNY_EW-TELEVISION\",\n      \"44 to 49 Inches\": \"" + tv49 + "\",\n      \"32 Inches & Under\": \"" + tv32 + "\",\n      \"33 to 43 Inches\": \"" + tv43 + "\",\n      \"70 Inches & Up\": \"" + tv70 + "\",\n      \"60 to 69 Inches\": \"" + tv69 + "\",\n      \"50 to 59 Inches\": \"" + tv59 + "\"\n    },\n    {\n      \"Computer peripherals, including any permanently attached cable or wiring\": \"" + computers + "\",\n      \"Portable devices, including any permanently attached cable or wiring\": \"" + portables + "\",\n      \"Digital converter boxes\": \"" + dcb + "\",\n      \"Fax machines, document scanners, and printers that weigh less than 100lbs\": \"" + fax + "\",\n      \"VCRs\": \"" + vcrs + "\",\n      \"Portable digital music players\": \"" + ipods + "\",\n      \"Electronic mice and other pointing devices\": \"" + mice + "\",\n      \"Small scale servers\": \"" + sss + "\",\n      \"Digital video recorders\": \"" + dvrs + "\",\n      \"Electronic or video game consoles\": \"" + xbox + "\",\n      \"id\": \"DSNY_EW-OTHER.cELECTRONICS\",\n      \"Televisions (including cathode ray tubes)\": \"0\",\n      \"Monitors, laptops\": \"" + monitors + "\",\n      \"Electronic keyboards\": \"" + keyboards + "\",\n      \"DVD players\": \"" + dvd + "\",\n      \"Cable or satellite receivers\": \"" + cable + "\",\n      \"TV Peripherals, including any permanently attached cable or wiring\": \"" + peripherals + "\"\n    }\n  ]"
     }
 
     $.ajax(settings).done(function (response) {
