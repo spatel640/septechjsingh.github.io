@@ -1,0 +1,45 @@
+<br>
+<h2>{{message}}</h2>
+
+<div id="steps">
+    <a id="astep1" class="step1 active1" href="#/"></a>
+    <a id="astep2" class="step2"></a>
+    <a id="astep3" class="step3"></a>
+    <a id="astep4" class="step4"></a>
+</div>
+<p class="rightMe"><span class="requireMe">*</span>Denotes Required Field</p>
+<div class="sectionHeader">
+    <p>Enter Your Address</p>
+</div>
+
+<form name="step1" action="#/step2" method="get" onsubmit="return step1Validate()">
+    <div class="applicant-address">
+        <div class="applicant-borough">
+            <p class="applicant-input-prompt">BOROUGH<span class="requireMe">*</span></p>
+            <input type="text" class="borough-select" disabled value="Staten Island" id="brgh" name="brgh">
+        </div>
+
+        <div class="applicant-bldg">
+            <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
+            <input type="text" id="bldg-input" name="bldg">
+        </div>
+
+        <div class="applicant-street">
+            <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
+            <input type="text" id="street-input" name="street">
+        </div>
+    </div>
+    <ul>
+        <li class="requireMe" id="bldg-message">Please enter in your building number to continue.</li>
+        <li class="requireMe" id="street-message">Please enter your street name to continue.</li>
+    </ul>
+    <div class="separator"></div>
+    <span class="fixMe">Helpful hints on entering your address:</span>
+    <ul>
+        <li><span class="fixMe">Include the street type in the street address. Common street types are Avenue, Street, Road, and Place</span></li>
+        <li><span class="fixMe">Numbered streets should be formatted like '5th Street' instead of 'Fifth Street'</span></li>
+    </ul>
+    <div class="submit-address-container">
+        <button class="pure-button" type="submit" id="submit-address" onclick="enableBorough()">Next</button>
+    </div>
+</form>

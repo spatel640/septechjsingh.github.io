@@ -1,0 +1,471 @@
+.mainContent {
+    max-width: 940px;
+    margin: 0 auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.stepsContainer {
+    text-align: center;
+}
+
+.sectionHeader {
+    color: white;
+    background-color: #686868;
+    height: 30px;
+}
+
+.sectionHeader p {
+    padding: 6px 0 0 9px;
+    font-weight: bold;
+}
+
+.boldMe {
+    font-weight: bolder;
+}
+
+.requireMe {
+    color: red;
+}
+
+.rightMe {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 0 0 0;
+}
+
+.applicant-address {
+    max-width: 905px;
+    margin: 0 auto;
+    padding: 0.5em 0 1em 0;
+}
+
+.applicant-borough {
+    display: inline-block;
+    padding: 0 2em 0 0;
+    font-size: 14px;
+    font-weight: bolder;
+    width: 20%;
+}
+
+.borough-select {
+    width: 100%;
+    height: 53px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.applicant-bldg {
+    display: inline-block;
+    padding: 0 2em 0 0;
+    font-size: 14px;
+    font-weight: bolder;
+    width: 15%;
+}
+
+#bldg-input {
+    width: 120px;
+    height: 30px
+}
+
+.applicant-street {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bolder;
+    width: 57%;
+}
+
+#street-input {
+    width: 100%;
+}
+
+.separator {
+    height: 3px;
+    background-color: #b3b3b3;
+    margin: 28px 0;
+}
+
+.fixMe {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.submit-address-container {
+    text-align: right;
+}
+
+#submit-address {
+    height: 35px;
+    width: 150px;
+    color: white;
+    background-color: #15d228;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.address-validation-message {
+    background-color: #F5F5F5;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.address-validation-message p {
+    padding: 6px 0 6px 7px;
+}
+
+.review-box-container {
+    background-color: #F5F5F5;
+}
+
+.review-box {
+    max-width: 905px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.table-container {
+    padding: 20px 0 0 0;
+}
+
+.review-address-table {
+    margin: 0 auto;
+}
+
+.review-address-table th {
+    text-align: right;
+    width: 300px;
+    padding-right: 2em;
+    padding-left: em;
+}
+
+.review-address-table td {
+    text-align: left;
+    width: 300px;
+}
+
+.whiteMe {
+    color: #f5f5f5;
+}
+
+.electronic-container-box {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.certification {
+    text-align: right;
+    padding-top: 56px;
+}
+
+ul.leaders {
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none
+}
+
+ul.leaders li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . "
+}
+
+ul.leaders span:first-child {
+    padding-right: 0.33em;
+    background: #f5f5f5
+}
+
+ul.leaders span+ span {
+    float: right;
+    padding-left: 0.33em;
+    background: #f5f5f5
+}
+
+.list-item {
+    padding-top: 20px
+}
+
+.list-item-shift {
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+#previous-button {
+    margin-right: 30px;
+    height: 35px;
+    width: 150px;
+    color: white;
+    background-color: #15d228;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#submit-button {
+    height: 35px;
+    width: 150px;
+    color: grey;
+    background-color: ;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#submit-button:hover {
+    background-color: #15d228;
+    color: white;
+}
+
+.receipt-message {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#track-request-button {
+    margin-right: 30px;
+    height: 35px;
+    color: white;
+    background-color: #15d228;
+}
+
+#schedule-another-pickup-button {
+    margin-right: 30px;
+    height: 35px;
+    color: white;
+    background-color: #15d228;
+}
+
+.specific-info {
+    width: 905px;
+    max-width: 905px;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 25px;
+    padding-bottom: 15px;
+}
+
+.pick-up-location-appointment {
+    width: 49%;
+    text-align: left;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bolder;
+}
+
+.appointment-date {
+    width: 49%;
+    text-align: left;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bolder;
+    margin-left: 6px;
+}
+
+.electronics {
+    width: 97%;
+    text-align: left;
+    font-size: 13px;
+    font-weight: bolder;
+}
+
+.select-items {
+    width: 99%;
+}
+
+.contact-info {
+    padding-top: 1.5em;
+    width: 905px;
+    max-width: 905px;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 25px;
+    padding-bottom: 15px;
+}
+
+.first-of-my-name {
+    font-size: 13px;
+    font-weight: bolder;
+    width: 47.5%;
+    display: inline-block;
+    margin-right: 21px;
+}
+
+.last-of-my-name {
+    font-size: 13px;
+    font-weight: bolder;
+    width: 47.5%;
+    display: inline-block;
+}
+
+.phone {
+    font-size: 13px;
+    font-weight: bolder;
+    width: 47.5%;
+    display: inline-block;
+    margin-right: 21px
+}
+
+.email {
+    font-size: 13px;
+    font-weight: bolder;
+    width: 47.5%;
+    display: inline-block;
+}
+
+.confirm-email {
+    font-size: 13px;
+    font-weight: bolder;
+    width: 47.5%;
+    display: inline-block;
+    margin-right: 21px
+}
+
+.buttons-p2 {
+    width: 47.1%;
+    display: inline-block;
+    text-align: right;
+}
+
+#previous-button-2 {
+    height: 35px;
+    width: 150px;
+    color: white;
+    background-color: #15d228;
+}
+
+#next-button-2 {
+    height: 35px;
+    width: 150px;
+    color: white;
+    background-color: #15d228;
+    margin-left: 21px;
+}
+
+.multiselect {
+    width: 100%;
+}
+
+.selectBox {
+    position: relative;
+}
+
+.selectBox select {
+    width: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#step2Hidden {
+    display: none;
+}
+
+.hideMe {
+    display: none;
+}
+
+#thread {
+    margin-top: 12px;
+    width: 97%;
+    display: none;
+}
+
+#thread-table #thread-items {
+    min-width: 100px;
+}
+
+#thread-table #thread-amounts {
+    text-align: right;
+    width: 100%;
+}
+
+.inputNumber {
+    max-height: 14px;
+    width: 40px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.userInputs tr .trashCan {
+    padding-left: 10px;
+    padding-right: 7px;
+    padding-bottom: 10px
+}
+
+.userInputs tr .electronicItem {
+    min-width: 750px;
+    max-width: 750px;
+    padding-bottom: 10px;
+}
+
+.userInputs tr .electronicNumber {
+    min-width: 124px;
+    text-align: right;
+}
+
+.userInputs .tvSizes {
+    width: 100%;
+    padding-left: 701px;
+}
+
+.tvSize {
+    max-height: 30px;
+    max-width: 140px;
+}
+
+#televisions,
+#computers,
+#monitors,
+#keyboards,
+#pointers,
+#printers,
+#tvPeripherals,
+#vcrs,
+#dvrs,
+#dvd,
+#dcb,
+#cable,
+#xbox,
+#sss,
+#portables,
+#ipods {
+    display: none;
+}
+
+#tv1,
+#tv2,
+#tv3,
+#tv4,
+#tv5 {
+    display: none;
+}
+
+#bldg-message,
+#street-message,
+#location-message,
+#date-message,
+#electronic-message,
+#fname-message,
+#lname-message,
+#phone-message {
+    display: none;
+}
