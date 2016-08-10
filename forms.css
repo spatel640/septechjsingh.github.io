@@ -510,3 +510,11 @@ ul.leaders span+ span {
     width: 40%;
     padding-bottom: 6px;
 }
+
+#email {
+    width: 96%;
+}
+
+#confirm-email {
+    width: 96%;
+}

@@ -22,9 +22,8 @@
     <div class="specific-info">
         <div class="pick-up-location-appointment">
             <p>PICK UP LOCATION<span class="requireMe">*</span></p>
-            <select class="spec-info-drop1" id="selectLocation" name="selectLocation" onChange=getDates()>
-                <option selected disabled>Select Location</option>
-                <option value="curb">Curb</option>
+            <select class="spec-info-drop1" id="selectLocation" name="selectLocation">
+                <option value="curb" selected>Curb</option>
             </select>
         </div>
         <div class="appointment-date">
@@ -253,12 +252,12 @@
         </div>
         <div class="email">
             <p>EMAIL</p>
-            <input type="text" id="email" name="email" placeholder="email@email.com">
+            <input type="email" id="email" name="email" placeholder="email@email.com">
         </div>
         <span class="requireMe" id="phone-message">Required</span>
         <div class="confirm-email">
             <p>CONFIRM EMAIL</p>
-            <input type="text" id="confirm-email" name="confirmedEmail" placeholder="email@email.com">
+            <input type="email" id="confirm-email" name="confirmedEmail" placeholder="email@email.com">
         </div>
         <div class="buttons-p2">
             <a href="#/"><button class="pure-button" id="previous-button-2">Previous</button></a>
@@ -271,4 +270,4 @@
     <input type="hidden" id="street2" name="street2">
 </form>
 
-<img id="step2Hidden" src="images/sanitation-logo.png" onload="replaceAddress()">
+<img id="step2Hidden" src="images/sanitation-logo.png" onload="getDates(); replaceAddress();">

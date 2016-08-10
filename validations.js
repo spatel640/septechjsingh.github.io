@@ -25,10 +25,38 @@ function step1Validate() {
 }
 
 function step2Validate() {
+    var w = phoneVal();
     var x = part1Val();
     var y = part2Val();
     var z = emailVal();
-    return (x && y && z)
+    return (w && x && y && z);
+}
+
+function phoneVal() {
+    var phone = document.getElementById("phone").value;
+    if ((phone[0] != '(') || (phone[4] != ')') || (phone[5] != ' ') || (phone[9] != '-')) {
+        alert("Please enter valid phone number to continue.");
+        return false;
+    }
+    for (i = 1; i < 4; i++) {
+        if (isNaN(phone[i])) {
+            alert("Please enter valid phone number to continue.");
+            return false;
+        }
+    }
+    for (i = 6; i < 9; i++) {
+        if (isNaN(phone[i])) {
+            alert("Please enter valid phone number to continue.");
+            return false;
+        }
+    }
+    for (i = 10; i <= 13; i++) {
+        if (isNaN(phone[i])) {
+            alert("Please enter valid phone number to continue.");
+            return false;
+        }
+    }
+    return true;
 }
 
 function emailVal() {
@@ -180,4 +208,11 @@ function hideElectronicMessage() {
 function phoneMask() {
     var x = document.getElementById("phone").value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
     document.getElementById("phone").value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
+}
+
+function reverseInfo() {
+    var x = window.location.href;
+    alert(x);
+    var n = x.length;
+    alert(n);
 }
