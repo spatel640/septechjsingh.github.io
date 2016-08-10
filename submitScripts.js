@@ -69,7 +69,7 @@ function createUpdate() {
         console.log(response);
     });
 
-    setCookie("record", recordID, 1);
+    setCookie("record", capID, 1);
 }
 
 function setCookie(cname, cvalue, exdays) {
