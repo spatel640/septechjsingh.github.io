@@ -8,8 +8,20 @@ function enableBorough() {
 
 var auth_token = "EMBRZ0IRrrfpPFG-8V8rfdvNzA3skbm147jk22gG4GAVhPRoHlJXnb3j3dxUdNzluuIVTnjvBsSDtQYh1w8lunivOVQYvhUDwRk9yM-uK0mYSLHC0nYKGRDUR1kn5Ou1b_oUixaz_tc6pIZGMoH3xN22yFwtbzwrNe5ZifJS6TehZRQkSkhfz0XjkJrsGVHMHzN9ojNtCb9JzsWBIybp7zbx2UB5jbijjXgxBwJpJKrcSSZckCfHvglOEOLswowUz9WcmCxuk3weaJ9TW9_fhvjjW8yXeq_5ddHixmszwIjaihD9Jjy6YIXZ8vzgnIKRjiu1Whj9F1Q_BDFeQGPJyIcwLwRRV0S87ZO0HUK4_dh-LIFFftPAP1BtsDYm39vXSxSHqH-jExACFtNJErdCWKWY-qMFdiSRIiicYuCF4iDi6cTKAUEqaIRhc9SBo8KyBb38ZfSHfMIvbalbxbI0vg2";
 
-function getDates() {
+function page1InfoRecap() {
+    var x = window.location.href;
+    if (x.length > 350) {
+        var building = getUrlVars()["bldg2"];
+        var street = getUrlVars()["street2"];
+        building = building.split('+').join(' ');
+        street = street.split('+').join(' ');
+        street = street.substr(0, street.length - 2);
+        document.getElementById("bldg-input").value = building;
+        document.getElementById("street-input").value = street;
+    }
+}
 
+function getDates() {
     var now = moment();
     var d = new Date();
     var n = d.getHours();
@@ -51,6 +63,41 @@ function getDates() {
     });
     document.getElementById("location-message").style.display = "none";
     document.getElementById("pickupDate").disabled = false;
+
+    var x = window.location.href;
+    if (x.length > 350) {
+        var borough = getUrlVars()["brgh2"];
+        var building = getUrlVars()["bldg2"];
+        var street = getUrlVars()["street2"];
+
+        borough = borough.split('+').join(' ');
+        building = building.split('+').join(' ');
+        street = street.split('+').join(' ');
+        street = street.substring(0, street.length - 7);
+
+        document.getElementById("buildingNumber").innerHTML = building;
+        document.getElementById("streetAddress").innerHTML = street.toUpperCase();
+        document.getElementById("verifiedBorough").innerHTML = borough.toUpperCase();
+
+        document.getElementById("bldg2").value = building;
+        document.getElementById("street2").value = street.toUpperCase();
+        document.getElementById("brgh2").value = borough.toUpperCase();
+
+        var firstName = getUrlVars()["firstName"];
+        var lastName = getUrlVars()["lastName"];
+        var phone = getUrlVars()["phone"];
+        var email = getUrlVars()["email"];
+        var confirmed = getUrlVars()["confirmedEmail"];
+
+        var phone2 = "(" + phone[3] + phone[4] + phone[5] + ") " + phone[10] + phone[11] + phone[12] + phone[13] + phone[14] + phone[15] + phone[16] + phone[17];
+
+        document.getElementById("first-name").value = firstName;
+        document.getElementById("last-name").value = lastName;
+        document.getElementById("phone").value = phone2;
+        document.getElementById("email").value = email.replace("%40", "@");
+        document.getElementById("confirm-email").value = confirmed.replace("%40", "@");
+    }
+
 }
 
 function enableElectronics() {
@@ -88,9 +135,9 @@ function replaceAddress() {
     var building = getUrlVars()["bldg"];
     var street = getUrlVars()["street"];
 
-    borough = borough.replace("+", " ");
-    building = building.replace("+", " ");
-    street = street.replace("+", " ");
+    borough = borough.split('+').join(' ');
+    building = building.split('+').join(' ');
+    street = street.split('+').join(' ');
     street = street.substring(0, street.length - 7);
 
     document.getElementById("buildingNumber").innerHTML = building;
@@ -110,8 +157,8 @@ function fillInfo() {
     var street = getUrlVars()["street2"];
 
     borough = borough.replace("+", " ");
-    building = building.replace("+", " ");
-    street = street.replace("+", " ");
+    building = building.split('+').join(' ');
+    street = street.split('+').join(' ');
     street = street.substring(0, street.length - 7);
 
     document.getElementById("buildingNumber").innerHTML = building;
@@ -301,10 +348,10 @@ function fillInfo() {
     var phone = getUrlVars()["phone"];
     var email = getUrlVars()["email"];
 
-    var phone = "(" + phone[3] + phone[4] + phone[5] + ") " + phone[10] + phone[11] + phone[12] + phone[13] + phone[14] + phone[15] + phone[16] + phone[17];
+    var phone2 = "(" + phone[3] + phone[4] + phone[5] + ") " + phone[10] + phone[11] + phone[12] + phone[13] + phone[14] + phone[15] + phone[16] + phone[17];
 
     document.getElementById("firstName").innerHTML = fName.toUpperCase();
     document.getElementById("lastName").innerHTML = lName.toUpperCase();
-    document.getElementById("phoneNumber").innerHTML = phone;
+    document.getElementById("phoneNumber").innerHTML = phone2;
     document.getElementById("emailAddress").innerHTML = email.replace("%40", "@");
 }

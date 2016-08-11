@@ -21,7 +21,7 @@
 
         <div class="applicant-bldg">
             <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
-            <input type="number" id="bldg-input" name="bldg">
+            <input type="number" id="bldg-input" name="bldg" min="0">
         </div>
 
         <div class="applicant-street">
@@ -52,3 +52,5 @@
         <button class="pure-button" type="submit" id="submit-address" onclick="enableBorough()">Next</button>
     </div>
 </form>
+
+<img id="step2Hidden" src="images/sanitation-logo.png" onload="page1InfoRecap()">
