@@ -48,11 +48,9 @@
     width: 20%;
 }
 
-.borough-select {
+#brgh {
+    height: 42px;
     width: 100%;
-    height: 53px;
-    font-size: 14px;
-    font-weight: bold;
 }
 
 .applicant-bldg {
@@ -72,11 +70,23 @@
     display: inline-block;
     font-size: 14px;
     font-weight: bolder;
-    width: 57%;
+    width: 42.9%;
 }
 
 #street-input {
     width: 100%;
+}
+
+.street-type {
+    display: inline-block;
+    width: 93px;
+    font-size: 14px;
+    font-weight: bolder;
+    margin-left: 36.79px;
+}
+
+#type {
+    height: 42px;
 }
 
 .separator {

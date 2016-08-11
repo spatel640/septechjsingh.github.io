@@ -16,7 +16,9 @@
     <div class="applicant-address">
         <div class="applicant-borough">
             <p class="applicant-input-prompt">BOROUGH<span class="requireMe">*</span></p>
-            <input type="text" class="borough-select" disabled value="Staten Island" id="brgh" name="brgh">
+            <select id="brgh" name="brgh">
+                <option selected>STATEN ISLAND</option>
+            </select>
         </div>
 
         <div class="applicant-bldg">
@@ -27,6 +29,41 @@
         <div class="applicant-street">
             <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
             <input type="text" id="street-input" name="street">
+        </div>
+
+        <div class="street-type">
+            <p class="street-type-prompt">TYPE<span class="requireMe">*</span></p>
+            <select id="type" name="type">
+                <option value="ALY">ALY</option>
+                <option value="AVE">AVE</option>
+                <option value="BLVD">BLVD</option>
+                <option value="BR">BR</option>
+                <option value="CIR">CIR</option>
+                <option value="CT">CT</option>
+                <option value="CTR">CTR</option>
+                <option value="DR">DR</option>
+                <option value="EXPY">EXPY</option>
+                <option value="FWY">FWY</option>
+                <option value="HILL">HILL</option>
+                <option value="HWY">HWY</option>
+                <option value="LAND">LAND</option>
+                <option value="LN">LN</option>
+                <option value="LOOP">LOOP</option>
+                <option value="MALL">MALL</option>
+                <option value="PKWY">PKWY</option>
+                <option value="PL">PL</option>
+                <option value="PLZ">PLZ</option>
+                <option value="PT">PT</option>
+                <option value="RD">RD</option>
+                <option value="RNCH">RNCH</option>
+                <option value="SQ">SQ</option>
+                <option value="ST">ST</option>
+                <option value="TER">TER</option>
+                <option value="TRAIL">TRAIL</option>
+                <option value="VIS">VIS</option>
+                <option value="VLY">VLY</option>
+                <option value="WAY">WAY</option>
+            </select>
         </div>
     </div>
     <div>

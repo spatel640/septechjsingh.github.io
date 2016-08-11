@@ -2,7 +2,7 @@
 <h2>{{message}}</h2>
 <div class="address-validation-message">
     <p>
-        <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span> <br>
+        <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span> <span id="streetType"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span> <br>
         <span class="boldMe">Cross Streets:</span> <span id="crossStreets"></span>
     </p>
 </div>
@@ -268,6 +268,7 @@
     <input type="hidden" id="brgh2" name="brgh2">
     <input type="hidden" id="bldg2" name="bldg2">
     <input type="hidden" id="street2" name="street2">
+    <input type="hidden" id="type2" name="type2">
 </form>
 
 <img id="step2Hidden" src="images/sanitation-logo.png" onload="getDates(); replaceAddress();">

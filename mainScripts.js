@@ -13,11 +13,23 @@ function page1InfoRecap() {
     if (x.length > 350) {
         var building = getUrlVars()["bldg2"];
         var street = getUrlVars()["street2"];
+        var type = getUrlVars()["type2"];
         building = building.split('+').join(' ');
         street = street.split('+').join(' ');
-        street = street.substr(0, street.length - 2);
+        type = type.substr(0, type.length - 2);
         document.getElementById("bldg-input").value = building;
         document.getElementById("street-input").value = street;
+        document.getElementById("type").value = type;
+    } else {
+        var building = getUrlVars()["bldg"];
+        var street = getUrlVars()["street"];
+        var type = getUrlVars()["type"];
+        building = building.split('+').join(' ');
+        street = street.split('+').join(' ');
+        type = type.substr(0, type.length - 2);
+        document.getElementById("bldg-input").value = building;
+        document.getElementById("street-input").value = street;
+        document.getElementById("type").value = type;
     }
 }
 
@@ -69,19 +81,22 @@ function getDates() {
         var borough = getUrlVars()["brgh2"];
         var building = getUrlVars()["bldg2"];
         var street = getUrlVars()["street2"];
+        var type = getUrlVars()["type2"];
 
         borough = borough.split('+').join(' ');
         building = building.split('+').join(' ');
         street = street.split('+').join(' ');
-        street = street.substring(0, street.length - 7);
+        type = type.substring(0, type.length - 7);
 
         document.getElementById("buildingNumber").innerHTML = building;
         document.getElementById("streetAddress").innerHTML = street.toUpperCase();
         document.getElementById("verifiedBorough").innerHTML = borough.toUpperCase();
+        document.getElementById("streetType").innerHTML = type;
 
         document.getElementById("bldg2").value = building;
         document.getElementById("street2").value = street.toUpperCase();
         document.getElementById("brgh2").value = borough.toUpperCase();
+        document.getElementById("type2").value = type;
 
         var firstName = getUrlVars()["firstName"];
         var lastName = getUrlVars()["lastName"];
@@ -134,19 +149,22 @@ function replaceAddress() {
     var borough = getUrlVars()["brgh"];
     var building = getUrlVars()["bldg"];
     var street = getUrlVars()["street"];
+    var type = getUrlVars()["type"];
 
     borough = borough.split('+').join(' ');
     building = building.split('+').join(' ');
     street = street.split('+').join(' ');
-    street = street.substring(0, street.length - 7);
+    type = type.substring(0, type.length - 7);
 
     document.getElementById("buildingNumber").innerHTML = building;
     document.getElementById("streetAddress").innerHTML = street.toUpperCase();
     document.getElementById("verifiedBorough").innerHTML = borough.toUpperCase();
+    document.getElementById("streetType").innerHTML = type;
 
     document.getElementById("bldg2").value = building;
     document.getElementById("street2").value = street.toUpperCase();
     document.getElementById("brgh2").value = borough.toUpperCase();
+    document.getElementById("type2").value = type;
 }
 
 function fillInfo() {
@@ -155,19 +173,22 @@ function fillInfo() {
     var borough = getUrlVars()["brgh2"];
     var building = getUrlVars()["bldg2"];
     var street = getUrlVars()["street2"];
+    var type = getUrlVars()["type2"];
+    type = type.substring(0, type.length - 7);
 
     borough = borough.replace("+", " ");
     building = building.split('+').join(' ');
     street = street.split('+').join(' ');
-    street = street.substring(0, street.length - 7);
 
     document.getElementById("buildingNumber").innerHTML = building;
     document.getElementById("streetAddress").innerHTML = street.toUpperCase();
+    document.getElementById("streetType").innerHTML = type;
     document.getElementById("verifiedBorough").innerHTML = borough.toUpperCase();
 
     document.getElementById("buildingNumber2").innerHTML = building;
     document.getElementById("streetAddress2").innerHTML = street.toUpperCase();
     document.getElementById("verifiedBorough2").innerHTML = borough.toUpperCase();
+    document.getElementById("streetType2").innerHTML = type;
 
     // Fill in Pickup location & appointment Date
     var pickupLoc = getUrlVars()["selectLocation"];
