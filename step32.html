@@ -1,0 +1,120 @@
+<br>
+<h2>{{message}}</h2>
+
+<p class="rightMe"><span class="requireMe">*</span>Denotes Required Field</p>
+<div class="sectionHeader">
+    <p>Review and Submit</p>
+</div>
+
+
+<div class="review-box-container">
+    <div class="review-box">
+        <br>
+        <span class="boldMe">User General Info:</span>
+        <div class="separator"></div>
+        <div class="table-container">
+            <table class="review-address-table">
+                <tr>
+                    <th>Address: </th>
+                    <td><span id="buildingNumber2"></span> <span id="streetAddress2"></span> <span id="streetType2"></span>, <span id="verifiedBorough2">STATEN ISLAND</span></td>
+                </tr>
+                <tr>
+                    <th>Cross Streets: </th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th><span class="whiteMe">________</span></th>
+                    <td><span class="whiteMe">________</span></td>
+                </tr>
+                <tr>
+                    <th>Pick Up Location: </th>
+                    <td><span id="pickupLocation"></span></td>
+                </tr>
+                <tr>
+                    <th>Appointment Date: </th>
+                    <td><span id="pickupDate"></span></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <span class="boldMe">Electronics Category:</span>
+        <div class="separator"></div>
+        <div class="electronic-container-box">
+            <ul class="leaders">
+                <li class="list-item" id="tvs2"><span>Televisions (including CRTs)</span>
+                    <span id="numTV">0</span></li>
+                <li class="list-item-shift" id="tv1"><span>TV # 1</span>
+                    <span id="tv1size">0</span></li>
+                <li class="list-item-shift" id="tv2"><span>TV # 2</span>
+                    <span id="tv2size">0</span></li>
+                <li class="list-item-shift" id="tv3"><span>TV # 3</span>
+                    <span id="tv3size">0</span></li>
+                <li class="list-item-shift" id="tv4"><span>TV # 4</span>
+                    <span id="tv4size">0</span></li>
+                <li class="list-item-shift" id="tv5"><span>TV # 5</span>
+                    <span id="tv5size">0</span></li>
+
+                <li class="list-item" id="comps2"><span>Computer Peripherals</span>
+                    <span id="numComps">0</span></li>
+                <li class="list-item" id="mon2"><span>Monitors, Laptops</span>
+                    <span id="numMon">0</span></li>
+                <li class="list-item" id="ekey"><span>Electronic Keyboards</span>
+                    <span id="numEKey">0</span></li>
+                <li class="list-item" id="emice"><span>Electronic Mice & Other Pointers</span>
+                    <span id="numEMice">0</span></li>
+                <li class="list-item" id="fax"><span>Fax Machines, Scanners, Printers</span>
+                    <span id="numFax">0</span></li>
+                <li class="list-item" id="tvp"><span>TV Peripherals</span>
+                    <span id="numTVP">0</span></li>
+                <li class="list-item" id="vcr2"><span>VCRs</span>
+                    <span id="numVCR">0</span></li>
+                <li class="list-item" id="dvr2"><span>Digital Video Recorders</span>
+                    <span id="numDVR">0</span></li>
+                <li class="list-item" id="dvd2"><span>DVD Players</span>
+                    <span id="numDVD">0</span></li>
+                <li class="list-item" id="dcb2"><span>Digital Converter Boxes</span>
+                    <span id="numDCB">0</span></li>
+                <li class="list-item" id="cable2"><span>Cable or Satellite Receivers</span>
+                    <span id="numCable">0</span></li>
+                <li class="list-item" id="xbox2"><span>Electronic or Video Game Consoles</span>
+                    <span id="numXbox">0</span></li>
+                <li class="list-item" id="sss2"><span>Small Scale Servers</span>
+                    <span id="numSSS">0</span></li>
+                <li class="list-item" id="pd2"><span>Portable Devices</span>
+                    <span id="numPD">0</span></li>
+                <li class="list-item" id="ipod2"><span>Portable Digital Music Players</span>
+                    <span id="numIpods">0</span></li>
+            </ul>
+        </div>
+        <br>
+        <span class="boldMe">User Contact Info:</span>
+        <div class="separator"></div>
+        <div class="table-container">
+            <table class="review-address-table">
+                <tr>
+                    <th>First Name: </th>
+                    <td><span id="firstName"></span></td>
+                </tr>
+                <tr>
+                    <th>Last Name: </th>
+                    <td><span id="lastName"></span></td>
+                </tr>
+                <tr>
+                    <th>Phone: </th>
+                    <td><span id="phoneNumber"></span></td>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td><span id="emailAddress"></span></td>
+                </tr>
+            </table>
+        </div>
+        <div class="certification">
+            <a href="#/step42"><button class="pure-button black-button" id="submit-button" onclick="createUpdate()">Submit</button></a>
+        </div>
+        <br>
+    </div>
+</div>
+<br><br>
+
+<img id="step2Hidden" src="images/sanitation-logo.png" onload="fillInfo()">

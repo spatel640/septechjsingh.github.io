@@ -1,0 +1,241 @@
+
+
+#apptSelect {
+	border-collapse: collapse;
+}
+
+#apptSelect th {
+	font-weight: bold;
+	white-space: nowrap;
+	font-size: 11px;
+	background-color: #dbdbdb;
+	text-align: left;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+select.borough {
+	width: 241px;
+}
+
+select.possStreets {
+	width: 301px;
+}
+
+#pickupLocation {
+	width: 369px;
+}
+
+input.hiddenOther {
+	display: none;
+	width: 369px;
+}
+
+input.displayOther {
+	display: block;
+	width: 369px;
+}
+
+select.numAppliance {
+	width: 5em;
+}
+
+input.radio {
+	border: none;
+}
+
+p {
+	margin: 0px;
+}
+
+option {
+	border: 0px;
+}
+
+#wrapper {
+	width: 769px;
+	position: relative;
+}
+
+#dsnyBanner {
+
+}
+
+#dsnyNav {
+	width: 180px;
+	float: left;
+}
+
+#content {
+	width: 589px;
+	float: right;
+}
+
+#cfcContent {
+	width: 389px;
+	float: left;
+	padding: 9px;
+	margin: 0px;
+}
+
+#dsnyReserved {
+	width: 180px;
+	float: right;
+	padding: 0px;
+	margin: 0px;
+}
+
+#nycgovFooter {
+	clear: both;
+}
+
+span.title, p.title, caption {
+	font-weight: bold;
+	font-size: 16px;
+	font-family: sans-serif, helvetica;
+}
+
+p.title {
+	margin-bottom: 17px;
+}
+
+#addressSearchForm {
+	background-color: #F2F2F2;
+	border: solid 1px #DBDBDB;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding: 30px;
+}
+
+p.appointmentSelectionForm {
+	padding-left: 7px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: #dbdbdb;
+	margin-bottom: 10px;
+}
+
+span.subTitle {
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+span.subTitle3 {
+	color: #1e951f;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+p.norm {
+	margin-bottom: 10px;
+}
+
+p.multiline {
+	line-height: 150%;
+	margin-bottom: 17px;
+}
+
+div.formFields {
+	clear: both;
+}
+
+div.formCol, div.errorLabel, div.selectionLabel {
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+span.formCol, span.errorLabel {
+	font-size: 10px;
+	color: #000000;
+}
+
+span.errorLabel {
+	color: red;
+	display: block;
+}
+
+div.formHeader {
+	position: relative;
+	clear: both;
+	margin-bottom: 17px;
+}
+
+p.formHeader {
+	font-weight: bold;
+	font-size: 14px;
+	color: #444444;
+	font-family: sans-serif, helvetica;
+}
+
+div.selectionLabel {
+	width: 95px;
+}
+
+div.submit, div.pickupLocation, div.clear, div.pickupDate {
+	clear: both;
+}
+
+div.pickupDate {
+	margin-top: 20px;
+}
+
+button {
+	font-family:Verdana, Arial, Helvetica;
+	border: 1px solid #7c8184;
+	text-align: center;
+	vertical-align: middle;
+	color: #7c8184;
+	font-weight: bold;
+	padding: 1px;
+	font-size: 11px;
+}
+
+button.submit {
+	background-color: #d9f8fb;
+}
+
+button.cancel {
+	background-color: #CCCCCC;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+span.resultValue {
+	color: black;
+}
+
+span.nonFormLabel {
+	font-weight: bold;
+	color: black;
+	font-size: 12px;
+}
+
+.sup {
+	color: red;
+}
+
+hr {
+    border-top: 1px dotted #666666;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    height: 0px;
+    margin-bottom: 2px;
+}
+
+img.banner {
+	display: block;
+}
+
+img {
+	padding: 0px;
+	margin: 0px;
+}

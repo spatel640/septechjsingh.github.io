@@ -1,0 +1,212 @@
+/* line 3, about.scss */
+.main {
+  margin: 0 0 60px 0; }
+  @media only screen and (max-width: 767px) {
+    /* line 3, about.scss */
+    .main {
+      margin: 20px 0 0 0; } }
+
+/* line 11, about.scss */
+.main-header .header-top .welcome-text {
+  top: 5px; }
+
+/* line 15, about.scss */
+.subheader .breadcrumbs a {
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px; }
+
+/* line 21, about.scss */
+.content-container {
+  margin-top: 20px; }
+
+/* line 25, about.scss */
+.main-header {
+  border-bottom: none; }
+
+/* line 29, about.scss */
+.about-main-image img {
+  width: 100%; }
+
+/* line 33, about.scss */
+.about-description {
+  width: 63.888888888889%;
+  margin: 20px 0 20px; }
+  /* line 37, about.scss */
+  .about-description h1 {
+    font-size: 36px; }
+
+/* line 42, about.scss */
+.about-news-panel {
+  width: 31.944444444444%;
+  margin: 20px 0 20px; }
+
+/* line 48, about.scss */
+.agencies-about-share {
+  padding: 20px 0 20px 0 !important;
+  width: 100%; }
+
+@media only screen and (max-width: 767px), screen and (max-device-width: 767px) {
+  /* line 90, about.scss */
+  .agencies-about-links {
+    width: 100%; }
+
+  /* line 94, about.scss */
+  .about-main-image {
+    width: 100%; }
+
+  /* line 98, about.scss */
+  .about-description {
+    width: 100%; }
+    /* line 101, about.scss */
+    .about-description h1 {
+      font-size: 18px;
+      line-height: 20px; } }
+.main-header .header-top{min-height:47px;}
+
+.feature-list {
+  margin: 0;
+  float: left;
+  margin: 20px 0 40px 0;
+  /*padding: 0 0 0 20px;*/ }
+  @media (max-width: 767px) {
+    
+    .feature-list {
+      margin: 20px 0 0 0;
+      width: 100%; } }
+
+
+.feature-list ul {
+  margin: 0;
+  clear: both;
+  list-style: none; }
+
+
+.feature-list .feature-item {
+  float: left;
+  clear: both;
+  margin-bottom: 20px; }
+
+
+.feature-list .feature-item.span12 {
+  margin-right: 0; }
+
+
+.lt-ie9 .feature-list .feature-item .feature-data.span9 {
+  width: 70%; }
+
+
+.feature-list .feature-item .feature-image {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px; }
+
+
+.feature-list .feature-item .feature-image img {
+  /*width:140px;*/
+  width: 100%; }
+  @media (max-width: 479px) {
+    
+    .feature-list .feature-item .feature-image img {
+      width: 100%; } }
+
+@media (max-width: 479px) {
+  
+  .feature-list .feature-item .feature-image.span3 {
+    width: 35%; } }
+
+@media (max-width: 479px) {
+  
+  .feature-list .feature-item .feature-data.span9 {
+    width: 60%; } }
+
+
+.feature-list label {
+  cursor: text; }
+
+
+.feature-item .feature-data {
+  float: left;
+  /*	margin-left:15px;*/ }
+
+
+.feature-data-detail {
+  /*	float:right; */ }
+
+
+.feature-item .feature-data h4 {
+  margin: 0;
+  color: #1771b7;
+  margin-left: 5px; }
+  @media (max-width: 479px) {
+    
+    .feature-item .feature-data h4 {
+      font-size: 14px; } }
+
+
+.feature-item .feature-data label {
+  font-weight: bold;
+  font-size: 16px;
+  float: left;
+  clear: both;
+  margin: 5px 0 0 5px; }
+  @media (max-width: 479px) {
+    
+    .feature-item .feature-data label {
+      margin: 2px 0 0 2px; } }
+
+
+.feature-item .feature-data label.date {
+  letter-spacing: -1px; }
+  @media (max-width: 479px) {
+    
+    .feature-item .feature-data label.date {
+      font-size: 12px;
+      letter-spacing: 0;
+      color: #666666;
+      font-weight: normal; } }
+
+
+.feature-item .feature-data p {
+  font-size: 16px;
+  font-weight: normal;
+  clear: both;
+  float: left;
+  margin: 6px 0 0 6px;
+  padding: 0; }
+  @media (max-width: 479px) {
+    
+    .feature-item .feature-data p {
+      font-size: 14px;
+      margin: 2px 0 0 2px; } }
+
+/* date picker stuff */
+.nyc-datepicker {
+  float: left;
+  cursor: pointer !important;
+  background: url("/assets/home/images/global/datepicker-agency.png") no-repeat white right 13px;
+ }
+
+.nyc-datepicker:focus {
+  outline: none; }
+
+
+.lt-ie9 .nyc-datepicker {
+  padding-top: 7px;
+  height: 24px; }
+label.inline{text-transform:none !important; font-weight:normal !important;}
+label.no-cursor{cursor:default !important;}
+label.noTrans{text-transform:none; padding-left:0px;}
+.form-text{font-size:12px; line-height:16px;}
+
+.inline_elements label{padding-left:0px; margin-right:10px;}
+.inline_elements input[type="radio"], .inline_elements input[type="radio"]{margin-top:-2px;}
+
+label.radio, label.checkbox{text-transform:none;}
+
+.control-label i,.control-label em{text-transform:none !important;font-weight:normal !important;font-style:italic;}
+.file-label{padding-top:5px; cursor:default;}
+.file-label span{cursor:pointer;}
+.file-label input[type="file"]{opacity:0;}
+.file-label .file-name{margin-left:15px; text-transform:none;}
+.content-info-inner[data-twttr-id]{ padding-left:0px; padding-right:0px;}
