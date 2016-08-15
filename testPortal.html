@@ -10,11 +10,38 @@
 </head>
 
 <body>
-    <h1>Test Page</h1>
     <div class="input-arena">
-        <h2>Enter Address</h2>
+        <h2>Enter Address</h2> Building Number:<br> <input id="number" type="number" min="0">
+        <br>
+        <br> Street Name: <br> <input id="street" type="text">
+        <br>
+        <br> Borough: <br>
+        <select id="borough">
+            <option value="Bronx">Bronx</option>
+            <option value="Brooklyn">Brooklyn</option>
+            <option value="Manhattan">Manhattan</option>
+            <option value="Queens">Queens</option>
+            <option value="Staten Island">Staten Island</option>
+        </select>
+        <br><br>
+        <button type="button" id="verify" onclick="verifyAddress()">Verify</button>
+    </div>
+    <br>
+    <div class="display-arena">
+        <p id="correct">Your address has been verified as: </p>
+        <p id="correct_address"><span id="correct_number"></span> <span id="correct_street"></span> <span id="correct_borough"></span> <span id="zip_code"></span></p>
+        <br>
+        <div id="address_choices">
+            <p id="incorrect_address">Incorrect Address Message</p>
+            <input type="radio" name="address" id="add1" value=""> <label for="add1">Address 1</label>
+            <br>
+            <input type="radio" name="address" id="add2" value=""> <label for="add2">Address 2</label>
+            <br>
+            <input type="radio" name="address" id="add3" value=""> <label for="add3">Address 3</label>
+        </div>
     </div>
 
     <link rel="stylesheet" href="testPortalCSS.css">
+    <script src="testPortalScripts.js"></script>
 </body>
 </html>
