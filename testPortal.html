@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -11,9 +12,9 @@
 
 <body>
     <div class="input-arena">
-        <h2>Enter Address</h2> Building Number:<br> <input id="number" type="number" min="0">
+        <h2>Enter Address</h2> Building Number:<br> <input id="number" type="number" min="0" value="321">
         <br>
-        <br> Street Name: <br> <input id="street" type="text">
+        <br> Street Name: <br> <input id="street" type="text" value="Union Avenue">
         <br>
         <br> Borough: <br>
         <select id="borough">
@@ -21,7 +22,7 @@
             <option value="Brooklyn">Brooklyn</option>
             <option value="Manhattan">Manhattan</option>
             <option value="Queens">Queens</option>
-            <option value="Staten Island">Staten Island</option>
+            <option selected value="Staten Island">Staten Island</option>
         </select>
         <br><br>
         <button type="button" id="verify" onclick="verifyAddress()">Verify</button>
@@ -33,15 +34,16 @@
         <br>
         <div id="address_choices">
             <p id="incorrect_address">Incorrect Address Message</p>
-            <input type="radio" name="address" id="add1" value=""> <label for="add1">Address 1</label>
+            <input type="radio" name="address" id="add1" value=""> <label for="add1"><span id="address1">Address 1</span></label>
             <br>
-            <input type="radio" name="address" id="add2" value=""> <label for="add2">Address 2</label>
+            <input type="radio" name="address" id="add2" value=""> <label for="add2"><span id="address2">Address 2</span></label>
             <br>
-            <input type="radio" name="address" id="add3" value=""> <label for="add3">Address 3</label>
+            <input type="radio" name="address" id="add3" value=""> <label for="add3"><span id="address3">Address 3</span></label>
         </div>
     </div>
 
     <link rel="stylesheet" href="testPortalCSS.css">
     <script src="testPortalScripts.js"></script>
 </body>
+
 </html>
