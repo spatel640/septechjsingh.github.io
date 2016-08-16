@@ -4,6 +4,10 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+#top-header {
+    color: #000000;
+}
+
 .stepsContainer {
     text-align: center;
 }
@@ -70,24 +74,12 @@
     display: inline-block;
     font-size: 14px;
     font-weight: bolder;
-    width: 32.4%;
+    width: 45.2%;
+    margin-right: 28px;
 }
 
 #street-input {
     width: 98%;
-}
-
-.street-type {
-    display: inline-block;
-    width: 93px;
-    font-size: 14px;
-    font-weight: bolder;
-    margin-left: 30.79px;
-    margin-right: 15px;
-}
-
-#type {
-    height: 42px;
 }
 
 #verify-contain {
@@ -631,4 +623,53 @@ ul.leaders span+ span {
     padding-top: 14px;
     height: 42px;
     opacity: 1;
+}
+
+#address-choices {
+    width: 85%;
+    margin: 0 auto;
+    text-align: left;
+    height: 0px;
+}
+
+#incorrect_address {
+    width: 100%;
+}
+
+.myRad {
+    width: 20px;
+    display: inline-block;
+}
+
+.radLabel {
+    width: 44%;
+    padding-left: 5px;
+    margin: 5px 0px 5px 0px;
+    display: inline-block;
+}
+
+#add1,
+#add2,
+#add3,
+#add4,
+#add5,
+#add6,
+#add7,
+#add8,
+#add9,
+#add10 {
+    display: none;
+}
+
+#lab1,
+#lab2,
+#lab3,
+#lab4,
+#lab5,
+#lab6,
+#lab7,
+#lab8,
+#lab9,
+#lab10 {
+    display: none;
 }

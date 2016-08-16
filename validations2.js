@@ -34,13 +34,81 @@ function streetChange() {
 function displayVerified() {
     var bldg = String(document.forms["step12"]["bldg"].value);
     var street = String(document.forms["step12"]["street"].value);
-    var type = String(document.forms["step12"]["type"].value);
+    var brgh = String(document.forms["step12"]["brgh"].value);
+
     if (!(bldg == null || bldg == "") && !(street == null || street == "")) {
-        document.getElementById("buildingNumber").innerHTML = bldg;
-        document.getElementById("streetAddress").innerHTML = street.toUpperCase();
-        document.getElementById("streetType").innerHTML = type;
-        document.getElementById("displayVerified").style.display = "block";
+
+        streetURI = encodeURI(street.trim());
+        brghURI = encodeURI(brgh.trim());
+        numURI = encodeURI(bldg.trim());
+
+        $.ajax({
+            url: "https://api.cityofnewyork.us/geoclient/v1/address.json?houseNumber=" + numURI + "&street=" + streetURI + "&borough=" + brghURI + "&app_id=b519ff0c&app_key=8351acab95743febeb729768d1251777",
+            dataType: "jsonp",
+            jsonpCallback: "logResults"
+        });
     }
+}
+
+function logResults(json) {
+    console.log(json);
+    var returnCode = json.address.geosupportReturnCode2;
+    hideEverything();
+    if (returnCode == "EE") {
+        document.getElementById("address-choices").style.height = "auto";
+        document.getElementById("incorrect_address").style.display = "block";
+        document.getElementById("incorrect_address").innerHTML = json.address.message2;
+        var numSimilar = Number(json.address.numberOfStreetCodesAndNamesInList);
+        var streetNames = ["", json.address.streetName1, json.address.streetName2, json.address.streetName3, json.address.streetName4, json.address.streetName5, json.address.streetName6, json.address.streetName7, json.address.streetName8, json.address.streetName9, json.address.streetName10];
+        console.log(streetNames);
+        for (i = 1; i <= numSimilar; i++) {
+            var curr_radio = "add" + String(i);
+            var curr_inc = "inc" + String(i);
+            var curr_lab = "lab" + String(i);
+            document.getElementById(curr_inc).innerHTML = streetNames[i];
+            document.getElementById(curr_radio).value = streetNames[i];
+            document.getElementById(curr_inc).style.display = "inline-block";
+            document.getElementById(curr_radio).style.display = "inline-block";
+            document.getElementById(curr_lab).style.display = "inline-block";
+        }
+        for (i = numSimilar + 1; i <= 10; i++) {
+            var curr_radio = "add" + String(i);
+            var curr_inc = "inc" + String(i);
+            var curr_lab = "lab" + String(i);
+            document.getElementById(curr_inc).style.display = "none";
+            document.getElementById(curr_radio).style.display = "none";
+            document.getElementById(curr_lab).style.display = "none";
+        }
+    } else if (returnCode == "42" || returnCode == "13") {
+        document.getElementById("incorrect_address").innerHTML = json.address.message2;
+        hideEverything();
+    } else if (returnCode == "00") {
+        hideEverything();
+        document.getElementById("address-choices").style.height = "0px";
+        document.getElementById("incorrect_address").style.display = "none";
+        document.getElementById("displayVerified").style.display = "block";
+        document.getElementById("buildingNumber").innerHTML = json.address.houseNumber;
+        document.getElementById("streetAddress").innerHTML = json.address.firstStreetNameNormalized;
+        document.getElementById("crossStreet1").innerHTML = json.address.lowCrossStreetName1;
+        document.getElementById("crossStreet2").innerHTML = json.address.highCrossStreetName1;
+    }
+}
+
+function hideEverything() {
+    for (i = 1; i <= 10; i++) {
+        var curr_radio = "add" + String(i);
+        var curr_inc = "inc" + String(i);
+        var curr_lab = "lab" + String(i);
+        document.getElementById(curr_inc).style.display = "none";
+        document.getElementById(curr_radio).style.display = "none";
+        document.getElementById(curr_lab).style.display = "none";
+        document.getElementById("address-choices").style.height = "30px";
+    }
+}
+
+function updateAdd(inc) {
+    var correct_street = document.getElementById(inc).innerHTML;
+    document.getElementById("street-input").value = correct_street;
 }
 
 function phoneMask() {

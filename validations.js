@@ -1,6 +1,24 @@
+function hideEverything() {
+    for (i = 1; i <= 10; i++) {
+        var curr_radio = "add" + String(i);
+        var curr_inc = "inc" + String(i);
+        var curr_lab = "lab" + String(i);
+        document.getElementById(curr_inc).style.display = "none";
+        document.getElementById(curr_radio).style.display = "none";
+        document.getElementById(curr_lab).style.display = "none";
+        document.getElementById("address-choices").style.height = "30px";
+    }
+}
+
+function updateAdd(inc) {
+    var correct_street = document.getElementById(inc).innerHTML;
+    document.getElementById("street-input").value = correct_street;
+}
+
 function step1Validate() {
     var bldg = document.forms["step1"]["bldg"].value;
     var street = document.forms["step1"]["street"].value;
+    var brgh = document.forms["step1"]["brgh"].value;
 
     if ((bldg == null || bldg == "") && (street == null || street == "")) {
         alert("You cannot continue without filling in a building number & street name.");
@@ -21,7 +39,32 @@ function step1Validate() {
         document.getElementById("bldg-message").style.display = "none";
         return false;
     }
+
+    var isAddressVerified = addressCheck(bldg, street, brgh);
+    console.log(isAddressVerified);
+    return false;
+
     return true;
+}
+
+function addressCheck(bldg, street, brgh) {
+    if (!(bldg == null || bldg == "") && !(street == null || street == "")) {
+
+        streetURI = encodeURI(street.trim());
+        brghURI = encodeURI(brgh.trim());
+        numURI = encodeURI(bldg.trim());
+
+        $.ajax({
+            url: "https://api.cityofnewyork.us/geoclient/v1/address.json?houseNumber=" + numURI + "&street=" + streetURI + "&borough=" + brghURI + "&app_id=b519ff0c&app_key=8351acab95743febeb729768d1251777",
+            dataType: "jsonp",
+            jsonpCallback: "logResults"
+        });
+    }
+}
+
+function logResults(json) {
+    console.log(json);
+    return false;
 }
 
 function step2Validate() {

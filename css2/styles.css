@@ -101,13 +101,6 @@ input {
     background: url('/images/step1_selected.png');
 }
 
-input[type=radio] {
-    width: 5%;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 10px;
-}
-
 input[type=checkbox] {
     width: 5%;
     margin: 0;

@@ -29,17 +29,16 @@
 }
 
 #nav .active {
-    background: #339933 !important;
+    background: #FFF200 !important;
 }
 
 .subheader {
     background: #FFF200 !important;
     min-height: 0px;
-    color: #000000;
 }
 
 .subheader a {
-    background: #339933 !important;
+    background: #FFF200 !important;
 }
 
 .subheader a.main-filter-category,

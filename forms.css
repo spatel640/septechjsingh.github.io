@@ -58,11 +58,11 @@
     padding: 0 2em 0 0;
     font-size: 14px;
     font-weight: bolder;
-    width: 15%;
+    width: 17%;
 }
 
 #bldg-input {
-    width: 120px;
+    width: 140px;
     height: 30px
 }
 
@@ -70,7 +70,7 @@
     display: inline-block;
     font-size: 14px;
     font-weight: bolder;
-    width: 42.9%;
+    width: 54%;
 }
 
 #street-input {
@@ -531,4 +531,53 @@ ul.leaders span+ span {
 
 #confirm-email {
     width: 96%;
+}
+
+#address-choices {
+    width: 85%;
+    margin: 0 auto;
+    text-align: left;
+    height: 0px;
+}
+
+#incorrect_address {
+    width: 100%;
+}
+
+.myRad {
+    width: 20px;
+    display: inline-block;
+}
+
+.radLabel {
+    width: 44%;
+    padding-left: 5px;
+    margin: 5px 0px 5px 0px;
+    display: inline-block;
+}
+
+#add1,
+#add2,
+#add3,
+#add4,
+#add5,
+#add6,
+#add7,
+#add8,
+#add9,
+#add10 {
+    display: none;
+}
+
+#lab1,
+#lab2,
+#lab3,
+#lab4,
+#lab5,
+#lab6,
+#lab7,
+#lab8,
+#lab9,
+#lab10 {
+    display: none;
 }

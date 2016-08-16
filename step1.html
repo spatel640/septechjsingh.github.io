@@ -17,10 +17,9 @@
         <div class="applicant-borough">
             <p class="applicant-input-prompt">BOROUGH<span class="requireMe">*</span></p>
             <select id="brgh" name="brgh">
-                <option selected>STATEN ISLAND</option>
+                <option value="Staten Island" selected>STATEN ISLAND</option>
             </select>
         </div>
-
         <div class="applicant-bldg">
             <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
             <input type="number" id="bldg-input" name="bldg" min="0">
@@ -29,41 +28,6 @@
         <div class="applicant-street">
             <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
             <input type="text" id="street-input" name="street">
-        </div>
-
-        <div class="street-type">
-            <p class="street-type-prompt">TYPE<span class="requireMe">*</span></p>
-            <select id="type" name="type">
-                <option value="ALY">ALY</option>
-                <option value="AVE">AVE</option>
-                <option value="BLVD">BLVD</option>
-                <option value="BR">BR</option>
-                <option value="CIR">CIR</option>
-                <option value="CT">CT</option>
-                <option value="CTR">CTR</option>
-                <option value="DR">DR</option>
-                <option value="EXPY">EXPY</option>
-                <option value="FWY">FWY</option>
-                <option value="HILL">HILL</option>
-                <option value="HWY">HWY</option>
-                <option value="LAND">LAND</option>
-                <option value="LN">LN</option>
-                <option value="LOOP">LOOP</option>
-                <option value="MALL">MALL</option>
-                <option value="PKWY">PKWY</option>
-                <option value="PL">PL</option>
-                <option value="PLZ">PLZ</option>
-                <option value="PT">PT</option>
-                <option value="RD">RD</option>
-                <option value="RNCH">RNCH</option>
-                <option value="SQ">SQ</option>
-                <option selected value="ST">ST</option>
-                <option value="TER">TER</option>
-                <option value="TRAIL">TRAIL</option>
-                <option value="VIS">VIS</option>
-                <option value="VLY">VLY</option>
-                <option value="WAY">WAY</option>
-            </select>
         </div>
     </div>
     <div id="req-contain">
@@ -79,6 +43,29 @@
             </ul>
         </div>
     </div>
+
+    <div id="address-choices">
+        <p id="incorrect_address"></p>
+        <input name="address" class="myRad" type="radio" id="add1" value="" onclick="updateAdd('inc1')"><label id="lab1" for="add1" class="radLabel" onclick="updateAdd('inc1')"><span id="inc1">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add2" value="" onclick="updateAdd('inc2')"><label id="lab2" for="add2" class="radLabel" onclick="updateAdd('inc2')"><span id="inc2">There</span></label>
+        <br>
+        <input name="address" class="myRad" type="radio" id="add3" value="" onclick="updateAdd('inc3')"><label id="lab3" for="add3" class="radLabel" onclick="updateAdd('inc3')"><span id="inc3">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add4" value="" onclick="updateAdd('inc4')"><label id="lab4" for="add4" class="radLabel" onclick="updateAdd('inc4')"><span id="inc4">There</span></label>
+        <br>
+        <input name="address" class="myRad" type="radio" id="add5" value="" onclick="updateAdd('inc5')"><label id="lab5" for="add5" class="radLabel" onclick="updateAdd('inc5')"><span id="inc5">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add6" value="" onclick="updateAdd('inc6')"><label id="lab6" for="add6" class="radLabel" onclick="updateAdd('inc6')">
+<span id="inc6">There</span></label>
+        <br>
+        <input name="address" class="myRad" type="radio" id="add7" value="" onclick="updateAdd('inc7')"><label id="lab7" for="add7" class="radLabel" onclick="updateAdd('inc7')"><span id="inc7">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add8" value="" onclick="updateAdd('inc8')"><label id="lab8" for="add8" class="radLabel" onclick="updateAdd('inc8')">
+<span id="inc8">There</span></label>
+        <br>
+        <input name="address" class="myRad" type="radio" id="add9" value="" onclick="updateAdd('inc9')"><label id="lab9" for="add9" class="radLabel" onclick="updateAdd('inc9')"><span id="inc9">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add10" value="" onclick="updateAdd('inc10')"><label id="lab10" for="add10" class="radLabel" onclick="updateAdd('inc10')">
+<span id="inc10">There</span></label>
+    </div>
+
+
     <div class="separator"></div>
     <span class="fixMe">Helpful hints on entering your address:</span>
     <ul>
@@ -86,7 +73,7 @@
         <li><span class="fixMe">Numbered streets should be formatted like '5th Street' instead of 'Fifth Street'</span></li>
     </ul>
     <div class="submit-address-container">
-        <button class="pure-button" type="submit" id="submit-address" onclick="enableBorough()">Next</button>
+        <button class="pure-button" type="submit" id="submit-address">Next</button>
     </div>
 </form>
 

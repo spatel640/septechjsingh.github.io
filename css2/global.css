@@ -4821,7 +4821,7 @@ footer .copyright p {
 .subheader {
     background-color: #0a5796;
     padding: 23px 0;
-    color: #000000;
+    color: #fff;
 }
 
 .subheader.centered {
@@ -4833,11 +4833,11 @@ footer .copyright p {
 }
 
 .subheader .breadcrumbs a {
-    color: #000000;
+    color: #fff;
 }
 
 .subheader .button-faqs-subheader {
-    color: #000000;
+    color: #fff;
     float: right;
     font-size: 14px;
     font-weight: bold;
@@ -7026,8 +7026,7 @@ input[type="color"]:focus,
     -webkit-appearance: none;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
+input[type="radio"],input[type="checkbox"] {
     margin: 4px 0 0;
     *margin-top: 0;
     /* IE7 */
