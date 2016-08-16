@@ -22,12 +22,12 @@
         </div>
         <div class="applicant-bldg">
             <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
-            <input type="number" id="bldg-input" name="bldg" min="0">
+            <input type="number" id="bldg-input" name="bldg" min="0" max="99999" onchange="addressCheck()">
         </div>
 
         <div class="applicant-street">
             <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
-            <input type="text" id="street-input" name="street">
+            <input type="text" id="street-input" name="street" onchange="addressCheck()">
         </div>
     </div>
     <div id="req-contain">

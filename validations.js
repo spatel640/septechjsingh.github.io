@@ -13,6 +13,7 @@ function hideEverything() {
 function updateAdd(inc) {
     var correct_street = document.getElementById(inc).innerHTML;
     document.getElementById("street-input").value = correct_street;
+    addressCheck();
 }
 
 function step1Validate() {
@@ -39,15 +40,14 @@ function step1Validate() {
         document.getElementById("bldg-message").style.display = "none";
         return false;
     }
-
-    var isAddressVerified = addressCheck(bldg, street, brgh);
-    console.log(isAddressVerified);
-    return false;
-
     return true;
 }
 
-function addressCheck(bldg, street, brgh) {
+function addressCheck() {
+    var bldg = String(document.forms["step1"]["bldg"].value);
+    var street = String(document.forms["step1"]["street"].value);
+    var brgh = String(document.forms["step1"]["brgh"].value);
+
     if (!(bldg == null || bldg == "") && !(street == null || street == "")) {
 
         streetURI = encodeURI(street.trim());
@@ -64,7 +64,41 @@ function addressCheck(bldg, street, brgh) {
 
 function logResults(json) {
     console.log(json);
-    return false;
+    var returnCode = json.address.geosupportReturnCode2;
+    hideEverything();
+    if (returnCode == "EE") {
+        document.getElementById("address-choices").style.height = "auto";
+        document.getElementById("incorrect_address").style.display = "block";
+        document.getElementById("incorrect_address").innerHTML = json.address.message2;
+        var numSimilar = Number(json.address.numberOfStreetCodesAndNamesInList);
+        var streetNames = ["", json.address.streetName1, json.address.streetName2, json.address.streetName3, json.address.streetName4, json.address.streetName5, json.address.streetName6, json.address.streetName7, json.address.streetName8, json.address.streetName9, json.address.streetName10];
+        console.log(streetNames);
+        for (i = 1; i <= numSimilar; i++) {
+            var curr_radio = "add" + String(i);
+            var curr_inc = "inc" + String(i);
+            var curr_lab = "lab" + String(i);
+            document.getElementById(curr_inc).innerHTML = streetNames[i];
+            document.getElementById(curr_radio).value = streetNames[i];
+            document.getElementById(curr_inc).style.display = "inline-block";
+            document.getElementById(curr_radio).style.display = "inline-block";
+            document.getElementById(curr_lab).style.display = "inline-block";
+        }
+        for (i = numSimilar + 1; i <= 10; i++) {
+            var curr_radio = "add" + String(i);
+            var curr_inc = "inc" + String(i);
+            var curr_lab = "lab" + String(i);
+            document.getElementById(curr_inc).style.display = "none";
+            document.getElementById(curr_radio).style.display = "none";
+            document.getElementById(curr_lab).style.display = "none";
+        }
+    } else if (returnCode == "42" || returnCode == "13") {
+        document.getElementById("incorrect_address").innerHTML = json.address.message2;
+        hideEverything();
+    } else if (returnCode == "00") {
+        hideEverything();
+        document.getElementById("address-choices").style.height = "0px";
+        document.getElementById("incorrect_address").style.display = "none";
+    }
 }
 
 function step2Validate() {
