@@ -58,11 +58,11 @@
     padding: 0 2em 0 0;
     font-size: 14px;
     font-weight: bolder;
-    width: 17%;
+    width: 15%;
 }
 
 #bldg-input {
-    width: 140px;
+    width: 120px;
     height: 30px
 }
 
@@ -70,7 +70,8 @@
     display: inline-block;
     font-size: 14px;
     font-weight: bolder;
-    width: 54%;
+    width: 44%;
+    margin-right: 28px;
 }
 
 #street-input {
@@ -580,4 +581,19 @@ ul.leaders span+ span {
 #lab9,
 #lab10 {
     display: none;
+}
+
+.search-button {
+    display: inline-block;
+    background-color: #0E8C1B;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 33px;
+    height: 42px;
+    opacity: .9;
+    text-align: left;
+}
+
+#verify-contain {
+    display: inline-block;
 }

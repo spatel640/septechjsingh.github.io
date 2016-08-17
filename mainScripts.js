@@ -6,30 +6,30 @@ function enableBorough() {
     document.getElementById("brgh").disabled = false;
 }
 
-var auth_token = "fzXcrFHQTb6NqH23qDW5UHinzrjrJSiTvc-Vs0VE9PRXIoOkN95XX2Aeobkf3nAmhtkfVJMP4-EZGTVi8cR2RNxhhPE-YSFf2GgAKUQvyFkdAVfjQoJBHKJQxIABtVmiKpOBtPNeLR8VhUL5Sb9c7xaY7XlPihzYJmScWv6F3hxz_VLMAnFo5UDuScYAnq-dqIMUlZ5gZcBYwCmtCt4kK1ja5KQvMWLJn4eSC22GJZgnZysTmj0K3c_uxa4cRMFkbDSyYNMtzt7IZh_Hj7KWLU5NvCo5YWH-ACgdaVEPUbXaq-ZVYM1UFYQoOynNaZobr-QhYrdCDK5SyMpqgOCEEHRubxG0Il9J6bxNzHq2LcV4W6krXaab62o8TJK_SLnWRjbSy06mPTwba2-zH8k9tEsk1HRsRB-45in8wBHIJXusME5WdV-K3qyT6JQQ8NEe5vBzx1H1l21rQi_6qtJbfqt220J5X1UEL2gfeOCaaUo1";
+var auth_token = "h0CdhfpO5qlo-s20WF9jsGJA9I8CJyCprNbNX3XLYEb7tcoNiu2gvI4GVF9B7VQE3nAOzHza2pOxldVoJBLHYc_tHDwAmXFiydq1cocU-ozpBnEtwVtwCzGjb1pMfJ67G3d1l8Yzui_Dx2yGbMA29r9IwRHApg_yw2dLVm7RpJ5G_NUY7ddy19brURwwzKysY9hX-s66ry_f2AepsQ-g6AgklmEV_tuwQQlWJzgBFI0agAT_So_CqEhZmkdZfZGg0BYbJ3UmU7pnb2H0AQ3qRc-pjTHPjyOwngMrRCDerFwFTCvIHHy2snJVn1t69OVNMUQ7unFnEVg2sjMTw1_zAd1WYqGp1j7zWzr4V2jP8Ypvgg1LPSzdd4Vuq-vBfUxMU4utMIFXGsciVaz5Fq9kqXV7UnCJGulmnnc27s3cHOt0ADHIA5dGh6E5lrbZnMa1JXaVIXzicecqrQWaZhlHxg2";
 
 function page1InfoRecap() {
-    var x = window.location.href;
-    if (x.length > 350) {
-        var building = getUrlVars()["bldg2"];
-        var street = getUrlVars()["street2"];
-        var type = getUrlVars()["type2"];
-        building = building.split('+').join(' ');
-        street = street.split('+').join(' ');
-        type = type.substr(0, type.length - 2);
-        document.getElementById("bldg-input").value = building;
-        document.getElementById("street-input").value = street;
-        document.getElementById("type").value = type;
-    } else {
+    var bldg2 = getUrlVars()["bldg2"];
+    if (bldg2 == null || bldg2 == undefined || bldg2 == "") {
+
         var building = getUrlVars()["bldg"];
         var street = getUrlVars()["street"];
-        var type = getUrlVars()["type"];
+
         building = building.split('+').join(' ');
         street = street.split('+').join(' ');
-        type = type.substr(0, type.length - 2);
+
         document.getElementById("bldg-input").value = building;
         document.getElementById("street-input").value = street;
-        document.getElementById("type").value = type;
+    } else {
+        var building = getUrlVars()["bldg2"];
+        var street = getUrlVars()["street2"];
+
+        building = building.split('+').join(' ');
+        street = street.substr(0, street.length - 2);
+        street = street.split('+').join(' ');
+
+        document.getElementById("bldg-input").value = building;
+        document.getElementById("street-input").value = street;
     }
 }
 
@@ -77,26 +77,49 @@ function getDates() {
     document.getElementById("pickupDate").disabled = false;
 
     var x = window.location.href;
-    if (x.length > 350) {
+    var isBldg2 = getUrlVars()["bldg2"];
+
+    if (isBldg2 != null && isBldg2 != undefined && isBldg2 != "") {
         var borough = getUrlVars()["brgh2"];
         var building = getUrlVars()["bldg2"];
         var street = getUrlVars()["street2"];
-        var type = getUrlVars()["type2"];
+
+        var cs1 = getUrlVars()["cs12"];
+        var cs2 = getUrlVars()["cs22"];
+        var bbl = getUrlVars()["bbl2"];
+        var district = getUrlVars()["district2"];
+        var lat = getUrlVars()["lat2"];
+        var lon = getUrlVars()["lon2"];
+        var cityName = getUrlVars()["cityName2"];
+        var zip = getUrlVars()["zip2"];
+
+        cs1 = cs1.split('+').join(' ');
+        cs2 = cs2.split('+').join(' ');
+
+        document.getElementById("cs12").value = cs1;
+        document.getElementById("cs22").value = cs2;
+        document.getElementById("bbl2").value = bbl;
+        document.getElementById("district2").value = district;
+        document.getElementById("lat2").value = lat;
+        document.getElementById("lon2").value = lon;
+        document.getElementById("cityName2").value = cityName.split('+').join(' ');
+        document.getElementById("zip2").value = zip;
 
         borough = borough.split('+').join(' ');
         building = building.split('+').join(' ');
+        street = street.substr(0, street.length - 7);
         street = street.split('+').join(' ');
-        type = type.substring(0, type.length - 7);
 
         document.getElementById("buildingNumber").innerHTML = building;
         document.getElementById("streetAddress").innerHTML = street.toUpperCase();
         document.getElementById("verifiedBorough").innerHTML = borough.toUpperCase();
-        document.getElementById("streetType").innerHTML = type;
+
+        document.getElementById("crossStreets1").innerHTML = cs1;
+        document.getElementById("crossStreets2").innerHTML = cs2;
 
         document.getElementById("bldg2").value = building;
         document.getElementById("street2").value = street.toUpperCase();
         document.getElementById("brgh2").value = borough.toUpperCase();
-        document.getElementById("type2").value = type;
 
         var firstName = getUrlVars()["firstName"];
         var lastName = getUrlVars()["lastName"];
@@ -149,22 +172,43 @@ function replaceAddress() {
     var borough = getUrlVars()["brgh"];
     var building = getUrlVars()["bldg"];
     var street = getUrlVars()["street"];
-    var type = getUrlVars()["type"];
+    var address = getUrlVars()["address"];
+    var cs1 = getUrlVars()["cs1"];
+    var cs2 = getUrlVars()["cs2"];
+    var bbl = getUrlVars()["bbl"];
+    var district = getUrlVars()["district"];
+    var lat = getUrlVars()["lat"];
+    var lon = getUrlVars()["lon"];
+    var cityName = getUrlVars()["cityName"];
+    var zip = getUrlVars()["zip"];
+
+    if (address == null || address == undefined || address == "") {
+        street = street.substr(0, street.length - 7);
+    }
 
     borough = borough.split('+').join(' ');
     building = building.split('+').join(' ');
+    cs1 = cs1.split('+').join(' ');
+    cs2 = cs2.split('+').join(' ');
     street = street.split('+').join(' ');
-    type = type.substring(0, type.length - 7);
 
     document.getElementById("buildingNumber").innerHTML = building;
     document.getElementById("streetAddress").innerHTML = street.toUpperCase();
     document.getElementById("verifiedBorough").innerHTML = borough.toUpperCase();
-    document.getElementById("streetType").innerHTML = type;
+    document.getElementById("crossStreets1").innerHTML = cs1;
+    document.getElementById("crossStreets2").innerHTML = cs2;
 
     document.getElementById("bldg2").value = building;
     document.getElementById("street2").value = street.toUpperCase();
     document.getElementById("brgh2").value = borough.toUpperCase();
-    document.getElementById("type2").value = type;
+    document.getElementById("cs12").value = cs1;
+    document.getElementById("cs22").value = cs2;
+    document.getElementById("bbl2").value = bbl;
+    document.getElementById("district2").value = district;
+    document.getElementById("lat2").value = lat;
+    document.getElementById("lon2").value = lon;
+    document.getElementById("cityName2").value = cityName.split('+').join(' ');
+    document.getElementById("zip2").value = zip;
 }
 
 function fillInfo() {
@@ -173,22 +217,41 @@ function fillInfo() {
     var borough = getUrlVars()["brgh2"];
     var building = getUrlVars()["bldg2"];
     var street = getUrlVars()["street2"];
-    var type = getUrlVars()["type2"];
-    type = type.substring(0, type.length - 7);
+    var cs1 = getUrlVars()["cs12"];
+    var cs2 = getUrlVars()["cs22"];
+
+    var bbl = getUrlVars()["bbl2"];
+    var district = getUrlVars()["district2"];
+    var lat = getUrlVars()["lat2"];
+    var lon = getUrlVars()["lon2"];
+    var cityName = getUrlVars()["cityName2"];
+    var zip = getUrlVars()["zip2"];
+
+    document.getElementById("bbl3").value = bbl;
+    document.getElementById("district3").value = district;
+    document.getElementById("lat3").value = lat;
+    document.getElementById("lon3").value = lon;
+    document.getElementById("cityName3").value = cityName.split('+').join(' ');
+    document.getElementById("zip3").value = zip;
 
     borough = borough.replace("+", " ");
     building = building.split('+').join(' ');
+    cs1 = cs1.split('+').join(' ');
+    cs2 = cs2.split('+').join(' ');
+    street = street.substr(0, street.length - 7);
     street = street.split('+').join(' ');
 
     document.getElementById("buildingNumber").innerHTML = building;
     document.getElementById("streetAddress").innerHTML = street.toUpperCase();
-    document.getElementById("streetType").innerHTML = type;
     document.getElementById("verifiedBorough").innerHTML = borough.toUpperCase();
+    document.getElementById("crossStreet1").innerHTML = cs1;
+    document.getElementById("crossStreet2").innerHTML = cs2;
 
     document.getElementById("buildingNumber2").innerHTML = building;
     document.getElementById("streetAddress2").innerHTML = street.toUpperCase();
     document.getElementById("verifiedBorough2").innerHTML = borough.toUpperCase();
-    document.getElementById("streetType2").innerHTML = type;
+    document.getElementById("CrossStreet1").innerHTML = cs1;
+    document.getElementById("CrossStreet2").innerHTML = cs2;
 
     // Fill in Pickup location & appointment Date
     var pickupLoc = getUrlVars()["selectLocation"];

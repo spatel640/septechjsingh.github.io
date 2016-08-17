@@ -12,7 +12,18 @@
     <p>Enter Your Address</p>
 </div>
 
+<input type="hidden" id="geoCode" value="">
+
 <form name="step1" action="#/step2" method="get" onsubmit="return step1Validate()">
+    <input type="hidden" name="cs1" id="cs1" value="">
+    <input type="hidden" name="cs2" id="cs2" value="">
+    <input type="hidden" name="bbl" id="bbl" value="">
+    <input type="hidden" name="lat" id="lat" value="">
+    <input type="hidden" name="lon" id="lon" value="">
+    <input type="hidden" name="district" id="district" value="">
+    <input type="hidden" name="cityName" id="cityName" value="">
+    <input type="hidden" name="zip" id="zip" value="">
+
     <div class="applicant-address">
         <div class="applicant-borough">
             <p class="applicant-input-prompt">BOROUGH<span class="requireMe">*</span></p>
@@ -22,12 +33,16 @@
         </div>
         <div class="applicant-bldg">
             <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
-            <input type="number" id="bldg-input" name="bldg" min="0" max="99999" onchange="addressCheck()">
+            <input type="number" id="bldg-input" name="bldg" min="0" max="99999" onchange="hideBldg()">
         </div>
 
         <div class="applicant-street">
             <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
-            <input type="text" id="street-input" name="street" onchange="addressCheck()">
+            <input type="text" id="street-input" name="street" onchange="hideStreet()">
+        </div>
+
+        <div id="verify-contain">
+            <button type="button" id="verify-button" class="pure-button search-button" onclick="addressCheck();">Verify</button>
         </div>
     </div>
     <div id="req-contain">

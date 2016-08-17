@@ -2,8 +2,8 @@
 <h2>{{message}}</h2>
 <div class="address-validation-message">
     <p>
-        <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span> <span id="streetType"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span> <br>
-        <span class="boldMe">Cross Streets:</span> <span id="crossStreets"></span>
+        <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span> <br>
+        <span class="boldMe">Cross Streets:</span> <span id="crossStreets1"></span> / <span id="crossStreets2"></span>
     </p>
 </div>
 <br>
@@ -265,10 +265,18 @@
         </div>
     </div>
 
+    <input type="hidden" name="cs12" id="cs12" value="">
+    <input type="hidden" name="cs22" id="cs22" value="">
+    <input type="hidden" name="bbl2" id="bbl2" value="">
+    <input type="hidden" name="lat2" id="lat2" value="">
+    <input type="hidden" name="lon2" id="lon2" value="">
+    <input type="hidden" name="district2" id="district2" value="">
+    <input type="hidden" name="cityName2" id="cityName2" value="">
+    <input type="hidden" name="zip2" id="zip2" value="">
+
     <input type="hidden" id="brgh2" name="brgh2">
     <input type="hidden" id="bldg2" name="bldg2">
     <input type="hidden" id="street2" name="street2">
-    <input type="hidden" id="type2" name="type2">
 </form>
 
 <img id="step2Hidden" src="images/sanitation-logo.png" onload="getDates(); replaceAddress();">

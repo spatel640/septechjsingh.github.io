@@ -17,6 +17,8 @@
             "streetName": "Maple Pkwy",
             "inspectionDistrict": "1",
             "city": "Staten Island",
+            "xCoordinate": "123431231",
+            "yCoordinate": "1212112121",
             "postalCode": "10303",
             "state": {
                 "value": "NY",

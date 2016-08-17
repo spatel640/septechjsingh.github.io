@@ -3,8 +3,8 @@
 <br><br>
 <div class="address-validation-message">
     <p>
-        <span class="boldMe">Address:</span> <span id="buildingNumber"></span> <span id="streetAddress"></span> <span id="streetType"></span>, <span id="verifiedBorough"></span> <br>
-        <span class="boldMe">Cross Streets:</span> <span id="crossStreets"></span>
+        <span class="boldMe">Address:</span> <span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough"></span> <br>
+        <span class="boldMe">Cross Streets:</span> <span id="crossStreet1"></span> / <span id="crossStreet2"></span>
     </p>
 </div>
 <br>
@@ -20,6 +20,12 @@
     <p>Review and Submit</p>
 </div>
 
+<input type="hidden" name="bbl3" id="bbl3" value="">
+<input type="hidden" name="lat3" id="lat3" value="">
+<input type="hidden" name="lon3" id="lon3" value="">
+<input type="hidden" name="district3" id="district3" value="">
+<input type="hidden" name="cityName3" id="cityName3" value="">
+<input type="hidden" name="zip3" id="zip3" value="">
 
 <div class="review-box-container">
     <div class="review-box">
@@ -29,11 +35,11 @@
             <table class="review-address-table">
                 <tr>
                     <th>Address: </th>
-                    <td><span id="buildingNumber2"></span> <span id="streetAddress2"></span> <span id="streetType2"></span>, <span id="verifiedBorough2"></span></td>
+                    <td><span id="buildingNumber2"></span> <span id="streetAddress2"></span>, <span id="verifiedBorough2"></span></td>
                 </tr>
                 <tr>
                     <th>Cross Streets: </th>
-                    <td></td>
+                    <td><span id="CrossStreet1"></span> / <span id="CrossStreet2"></span></td>
                 </tr>
                 <tr>
                     <th><span class="whiteMe">________</span></th>
