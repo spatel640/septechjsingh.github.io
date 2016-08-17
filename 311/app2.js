@@ -4,17 +4,17 @@ app.config(function ($routeProvider) {
     $routeProvider
 
         .when('/', {
-        templateUrl: '/step12.html',
+        templateUrl: 'Citizen/step12.html',
         controller: 'HomeController'
     })
 
     .when('/step32', {
-        templateUrl: '/step32.html',
+        templateUrl: 'Citizen/step32.html',
         controller: 'ReviewController'
     })
 
     .when('/step42', {
-        templateUrl: '/step42.html',
+        templateUrl: 'Citizen/step42.html',
         controller: 'ConfirmController'
     })
 

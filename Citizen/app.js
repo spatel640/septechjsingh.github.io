@@ -9,17 +9,17 @@ app.config(function ($routeProvider) {
     })
 
     .when('/step2', {
-        templateUrl: '/step2.html',
+        templateUrl: '/Citizen/step2.html',
         controller: 'InfoController'
     })
 
     .when('/step3', {
-        templateUrl: '/step3.html',
+        templateUrl: '/Citizen/step3.html',
         controller: 'ReviewController'
     })
 
     .when('/step4', {
-        templateUrl: '/step4.html',
+        templateUrl: '/Citizen/step4.html',
         controller: 'ConfirmController'
     })
 

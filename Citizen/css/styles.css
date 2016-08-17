@@ -87,7 +87,7 @@ input {
 
 .step1 {
     display: inline-block;
-    background: url('/images/step1.png');
+    background: url('Citizen/images/step1.png');
     width: 133px;
     height: 56px;
     margin: 0 10px 10px 0;
@@ -98,7 +98,7 @@ input {
 }
 
 .active1 {
-    background: url('/images/step1_selected.png');
+    background: url('Citizen/images/step1_selected.png');
 }
 
 input[type=radio] {
@@ -134,7 +134,7 @@ input[type=checkbox] {
 }
 
 .step1:hover {
-    background: url('/images/step1_selected.png');
+    background: url('Citizen/images/step1_selected.png');
     opacity: 1.0;
     transition: opacity .55s ease-in-out;
     -moz-transition: opacity .55s ease-in-out;
@@ -143,7 +143,7 @@ input[type=checkbox] {
 
 .step2 {
     display: inline-block;
-    background: url('/images/step2.png');
+    background: url('Citizen/images/step2.png');
     width: 133px;
     height: 56px;
     margin: 0 10px 10px 0;
@@ -154,11 +154,11 @@ input[type=checkbox] {
 }
 
 .active2 {
-    background: url('/images/step2_selected.png');
+    background: url('Citizen/images/step2_selected.png');
 }
 
 .step2:hover {
-    background: url('/images/step2_selected.png');
+    background: url('Citizen/images/step2_selected.png');
     opacity: 1.0;
     transition: opacity .55s ease-in-out;
     -moz-transition: opacity .55s ease-in-out;
@@ -167,7 +167,7 @@ input[type=checkbox] {
 
 .step3 {
     display: inline-block;
-    background: url('/images/step3.png');
+    background: url('Citizen/images/step3.png');
     width: 133px;
     height: 56px;
     margin: 0 10px 10px 0;
@@ -178,11 +178,11 @@ input[type=checkbox] {
 }
 
 .active3 {
-    background: url('/images/step3_selected.png');
+    background: url('Citizen/images/step3_selected.png');
 }
 
 .step3:hover {
-    background: url('/images/step3_selected.png');
+    background: url('Citizen/images/step3_selected.png');
     opacity: 1.0;
     transition: opacity .55s ease-in-out;
     -moz-transition: opacity .55s ease-in-out;
@@ -191,7 +191,7 @@ input[type=checkbox] {
 
 .step4 {
     display: inline-block;
-    background: url('/images/step4.png');
+    background: url('Citizen/images/step4.png');
     width: 133px;
     height: 56px;
     margin: 0 10px 10px 0;
@@ -202,11 +202,11 @@ input[type=checkbox] {
 }
 
 .active4 {
-    background: url('/images/step4_selected.png');
+    background: url('Citizen/images/step4_selected.png');
 }
 
 .step4:hover {
-    background: url('/images/step4_selected.png');
+    background: url('Citizen/images/step4_selected.png');
     opacity: 1.0;
     transition: opacity .55s ease-in-out;
     -moz-transition: opacity .55s ease-in-out;
