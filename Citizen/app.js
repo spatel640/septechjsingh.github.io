@@ -4,7 +4,7 @@ app.config(function ($routeProvider) {
     $routeProvider
 
         .when('/', {
-        templateUrl: '/step1.html',
+        templateUrl: '/Citizen/step1.html',
         controller: 'HomeController'
     })
 
