@@ -1,86 +1,24 @@
 <br>
 <h2>{{message}}</h2>
-
+<div class="address-validation-message">
+    <p>
+        <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span> <span id="streetType"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span> <br>
+        <span class="boldMe">Cross Streets:</span> <span id="crossStreets"></span>
+    </p>
+</div>
+<br>
+<div id="steps">
+    <a id="astep1" class="step1"></a>
+    <a id="astep2" class="step2 active2"></a>
+    <a id="astep3" class="step3"></a>
+    <a id="astep4" class="step4"></a>
+</div>
 <p class="rightMe"><span class="requireMe">*</span>Denotes Required Field</p>
 <div class="sectionHeader">
-    <p>Enter Your Address</p>
+    <p>Specific Information</p>
 </div>
 
-<form name="step12" action="#/step32" method="get" onsubmit="return step2Validate()">
-    <div class="applicant-address">
-        <div class="applicant-borough">
-            <p class="applicant-input-prompt">BOROUGH<span class="requireMe">*</span></p>
-            <select id="brgh" name="brgh">
-                <option value="Staten Island" selected>STATEN ISLAND</option>
-            </select>
-        </div>
-
-        <div class="applicant-bldg">
-            <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
-            <input type="number" id="bldg-input" name="bldg" min="0" onchange="bldgChange()">
-        </div>
-
-        <div class="applicant-street">
-            <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
-            <input type="text" id="street-input" name="street" onchange="streetChange()">
-        </div>
-
-        <div id="verify-contain">
-            <button type="button" id="verify-button" class="pure-button search-button" onclick="step1Verify(); displayVerified()">Verify</button>
-        </div>
-    </div>
-    <div id="req-contain">
-        <div id="req1"></div>
-        <div id="req2">
-            <ul>
-                <li class="requireMe" id="bldg-message">Required</li>
-            </ul>
-        </div>
-        <div id="req3">
-            <ul>
-                <li class="requireMe" id="street-message">Required</li>
-            </ul>
-        </div>
-    </div>
-    <div id="address-choices">
-        <p id="incorrect_address"></p>
-        <input name="address" class="myRad" type="radio" id="add1" value="" onclick="updateAdd('inc1')"><label id="lab1" for="add1" class="radLabel" onclick="updateAdd('inc1')"><span id="inc1">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add2" value="" onclick="updateAdd('inc2')"><label id="lab2" for="add2" class="radLabel" onclick="updateAdd('inc2')"><span id="inc2">There</span></label>
-        <br>
-        <input name="address" class="myRad" type="radio" id="add3" value="" onclick="updateAdd('inc3')"><label id="lab3" for="add3" class="radLabel" onclick="updateAdd('inc3')"><span id="inc3">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add4" value="" onclick="updateAdd('inc4')"><label id="lab4" for="add4" class="radLabel" onclick="updateAdd('inc4')"><span id="inc4">There</span></label>
-        <br>
-        <input name="address" class="myRad" type="radio" id="add5" value="" onclick="updateAdd('inc5')"><label id="lab5" for="add5" class="radLabel" onclick="updateAdd('inc5')"><span id="inc5">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add6" value="" onclick="updateAdd('inc6')"><label id="lab6" for="add6" class="radLabel" onclick="updateAdd('inc6')">
-<span id="inc6">There</span></label>
-        <br>
-        <input name="address" class="myRad" type="radio" id="add7" value="" onclick="updateAdd('inc7')"><label id="lab7" for="add7" class="radLabel" onclick="updateAdd('inc7')"><span id="inc7">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add8" value="" onclick="updateAdd('inc8')"><label id="lab8" for="add8" class="radLabel" onclick="updateAdd('inc8')">
-<span id="inc8">There</span></label>
-        <br>
-        <input name="address" class="myRad" type="radio" id="add9" value="" onclick="updateAdd('inc9')"><label id="lab9" for="add9" class="radLabel" onclick="updateAdd('inc9')"><span id="inc9">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add10" value="" onclick="updateAdd('inc10')"><label id="lab10" for="add10" class="radLabel" onclick="updateAdd('inc10')">
-<span id="inc10">There</span></label>
-    </div>
-    <div class="separator"></div>
-    <span class="fixMe">Helpful hints on entering your address:</span>
-    <ul>
-        <li><span class="fixMe">Include the street type in the street address. Common street types are Avenue, Street, Road, and Place</span></li>
-        <li><span class="fixMe">Numbered streets should be formatted like '5th Street' instead of 'Fifth Street'</span></li>
-    </ul>
-    <br>
-    <div class="address-validation-message" id="displayVerified">
-        <p>
-            <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span> <br>
-            <span class="boldMe">Cross Streets:</span> <span id="crossStreet1"></span> / <span id="crossStreet2"></span>
-        </p>
-    </div>
-    <h2>{{message2}}</h2>
-    <p class="rightMe"><span class="requireMe">*</span>Denotes Required Field</p>
-    <div class="sectionHeader">
-        <p>Specific Information</p>
-    </div>
-    <br>
+<form action="#/step3" method="get" name="step2" onsubmit="return step2Validate()">
     <div class="specific-info">
         <div class="pick-up-location-appointment">
             <p>PICK UP LOCATION<span class="requireMe">*</span></p>
@@ -322,10 +260,15 @@
             <input type="email" id="confirm-email" name="confirmedEmail" placeholder="email@email.com">
         </div>
         <div class="buttons-p2">
-            <button class="pure-button black-button" type="submit" id="next-button-2">Next <i class="fa fa-caret-right" aria-hidden="true"></i>
-</button>
+            <a href="#/"><button class="pure-button" id="previous-button-2">Previous</button></a>
+            <button class="pure-button" type="submit" id="next-button-2">Next</button>
         </div>
     </div>
+
+    <input type="hidden" id="brgh2" name="brgh2">
+    <input type="hidden" id="bldg2" name="bldg2">
+    <input type="hidden" id="street2" name="street2">
+    <input type="hidden" id="type2" name="type2">
 </form>
 
-<img id="step2Hidden" src="311/images/sanitation-logo.png" onload="getDates();">
+<img id="step2Hidden" src="images/sanitation-logo.png" onload="getDates(); replaceAddress();">

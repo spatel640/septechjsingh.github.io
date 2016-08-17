@@ -1,0 +1,120 @@
+<h2>{{message}}</h2>
+<div class="stepsContainer">
+    <a href="#/"><button class="step" id="step1"></button></a>
+    <a href="#/step2"><button class="step" id="step2"></button></a>
+    <a href="#/step3"><button class="step" id="step3"></button></a>
+    <button class="step" id="step4"></button>
+</div>
+<br>
+<div id="main_content2">
+    <form>
+        <fieldset>
+            <legend>Televisions</legend>
+            <table id="televisions">
+                <tr>
+                    <td class="elem1"><span class="boldMe">Y/N</span></td>
+                    <td class="elem2"><span class="boldMe">Size</span></td>
+                    <td><span class="boldMe">Number</span></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yntv32"></td>
+                    <td class="elem2">32 Inches & Under</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numtv32"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yntv33"></td>
+                    <td class="elem2">33 to 43 Inches</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numtv33"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yntv44"></td>
+                    <td class="elem2">44 to 49 Inches</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numtv44"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yntv50"></td>
+                    <td class="elem2">50 to 59 Inches</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numtv50"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yntv60"></td>
+                    <td class="elem2">60 to 69 Inches</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numtv60"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yntv70"></td>
+                    <td class="elem2">70 Inches and Up</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numtv70"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Other Electronics</legend>
+            <table id="otherElectronics">
+                <tr>
+                    <td class="elem1"><span class="boldMe">Y/N</span></td>
+                    <td class="elem2"><span class="boldMe">Item</span></td>
+                    <td><span class="boldMe">Number</span></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yndl"></td>
+                    <td class="elem2">Desktops & Laptops</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numdl"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="ynter"></td>
+                    <td class="elem2">Tablets, E-Book Readers</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numter"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="ynkm"></td>
+                    <td class="elem2">Keyboards, Mice, etc</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numkm"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="ynpsfm"></td>
+                    <td class="elem2">Printers, Scanners, Fax Machines</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numpsfm"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yndvr"></td>
+                    <td class="elem2">DVRs and VCRs</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numdvr"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yncsb"></td>
+                    <td class="elem2">Cable or Satellite Boxes</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numcsb"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="ynae"></td>
+                    <td class="elem2">Audio Equipment(Speakers, CD Players etc)</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numae"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="ynpap"></td>
+                    <td class="elem2">Portable Audio Players (iPod, MP3s)</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numpap"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="yncell"></td>
+                    <td class="elem2">Cellphones</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numcell"></td>
+                </tr>
+                <tr>
+                    <td class="elem1"><input type="checkbox" id="ynvgc"></td>
+                    <td class="elem2">Video Game Consoles</td>
+                    <td class="elem3"><input class="nums" type="number" value="1" id="numvgc"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <br>
+    <div id="centerMe">
+        <a href="#/step3"><button id="selectItems" onclick="submitMe()">SUBMIT</button></a>
+    </div>
+    <br>
+</div>
+<link rel="stylesheet" href="items.css">
+<link rel="stylesheet" href="step2.css">
