@@ -1,7 +1,8 @@
-var authorization2 = "h0CdhfpO5qlo-s20WF9jsGJA9I8CJyCprNbNX3XLYEb7tcoNiu2gvI4GVF9B7VQE3nAOzHza2pOxldVoJBLHYc_tHDwAmXFiydq1cocU-ozpBnEtwVtwCzGjb1pMfJ67G3d1l8Yzui_Dx2yGbMA29r9IwRHApg_yw2dLVm7RpJ5G_NUY7ddy19brURwwzKysY9hX-s66ry_f2AepsQ-g6AgklmEV_tuwQQlWJzgBFI0agAT_So_CqEhZmkdZfZGg0BYbJ3UmU7pnb2H0AQ3qRc-pjTHPjyOwngMrRCDerFwFTCvIHHy2snJVn1t69OVNMUQ7unFnEVg2sjMTw1_zAd1WYqGp1j7zWzr4V2jP8Ypvgg1LPSzdd4Vuq-vBfUxMU4utMIFXGsciVaz5Fq9kqXV7UnCJGulmnnc27s3cHOt0ADHIA5dGh6E5lrbZnMa1JXaVIXzicecqrQWaZhlHxg2";
+var authorization2 = "IdElKtjEXp53Hp4zMdgYTOfiqQ5RZGXdf2uXv6Aq6pavlaJbtE1PohVGNIExKvC1Kez-5T1fQC607UU-2D3hQAzclZqOWlPlTovjGGUFC65qpdovhuRVV4mPqmHhe4GCNd0nuoPeYdYSYLY2DT7ElklaHvTwYGqQZRUX_2Uh66NT231jxkp0uN5bETyj01AJT-O-FuPhSRKGnsgVio2vAwK1JB92eHirx_hjSJnqyxnlDBiqmsMXr27mkdtxznjy5fNPBtXULVNb4_JYDXgDuEOm-5G5KfIjAlkDIj-LXiWL3_7I7I55g1TDVsypCjNMGOF6eFcBDvPqxNQlxiBa9PgNQgbCASs4BGx54zbHLMcQv1SkZomkSVFBSBbj2UWbDanQLRAqXHzhE_q8uyIzJy3bNK4rw2eclms2uKVDh2-IoYCO8Z7JSY5qvWrxnwl4HlkdpP_ZAWTW3ERx8Gfbrg2";
 
 var recordID = "";
 var capID = "";
+var customId = "";
 
 function createUpdate() {
 
@@ -38,6 +39,7 @@ function createUpdate() {
     $.ajax(settings).done(function (response) {
         console.log(response);
         capID = response.result["id"];
+        customId = response.result["customId"];
     });
 
     var computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods;
@@ -291,7 +293,29 @@ function createUpdate() {
         console.log(response);
     });
 
-    setCookie("record", capID, 1);
+    // Schedule the Inspection on the Appropirate Date
+    var pickupDate = document.getElementById("pickupDate").innerHTML;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://apis.accela.com/v4/inspections/schedule",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "authorization": authorization2,
+            "cache-control": "no-cache",
+            "postman-token": "1fef8950-f3dc-ae46-a7ab-4c33c505a14c"
+        },
+        "processData": false,
+        "data": "{\r\n  \"serviceProviderCode\": \"PARTNER\",\r\n  \"isAutoAssign\": \"Y\",\r\n  \"type\": {\r\n    \"id\": 5\r\n  },\r\n  \"recordId\": {\r\n    \"id\": \"" + capID + "\"\r\n  },\r\n  \"scheduleDate\": \"" + pickupDate + "\"\r\n}"
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        console.log("Inspection Scheduled")
+    });
+
+    setCookie("record", customId, 1);
 }
 
 function setCookie(cname, cvalue, exdays) {
