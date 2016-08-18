@@ -296,7 +296,7 @@ function createUpdate() {
     // Schedule the Inspection on the Appropirate Date
     var pickupDate = document.getElementById("pickupDate").innerHTML;
     var settings = {
-        "async": true,
+        "async": false,
         "crossDomain": true,
         "url": "https://apis.accela.com/v4/inspections/schedule",
         "method": "POST",
