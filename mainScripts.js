@@ -15,6 +15,11 @@ function page1InfoRecap() {
         var building = getUrlVars()["bldg"];
         var street = getUrlVars()["street"];
 
+        var address = getUrlVars()["address"];
+        if (address == null || address == undefined || address == "") {
+            street = street.substr(0, street.length - 2);
+        }
+
         building = building.split('+').join(' ');
         street = street.split('+').join(' ');
 
