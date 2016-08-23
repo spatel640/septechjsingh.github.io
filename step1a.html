@@ -14,7 +14,7 @@
 
 <input type="hidden" id="geoCode" value="">
 
-<form name="step1" action="#/step2" method="get" onsubmit="return step1Validate()">
+<form name="step1" action="#/step2" method="get" onsubmit="return checkEmpty()">
     <input type="hidden" name="cs1" id="cs1" value="">
     <input type="hidden" name="cs2" id="cs2" value="">
     <input type="hidden" name="bbl" id="bbl" value="">
@@ -33,12 +33,12 @@
         </div>
         <div class="applicant-bldg">
             <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
-            <input type="number">
+            <input type="number" id="new1">
         </div>
 
         <div class="applicant-street">
             <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
-            <input type="text">
+            <input type="text" id="new2">
         </div>
 
         <div id="verify-contain">
@@ -93,3 +93,23 @@
 </form>
 
 <img id="step2Hidden" src="images/sanitation-logo.png" onload="page1InfoRecap()">
+
+<script type="text/javascript">
+    function checkEmpty() {
+        var x = document.getElementById("new1").value;
+        var z = document.getElementById("new2").value;
+
+        if (x == "" || x == null || x == undefined) {
+            alert("Must enter building");
+            return false;
+        }
+
+        if (z == "" || z == null || z == undefined) {
+            alert("must enter street");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
