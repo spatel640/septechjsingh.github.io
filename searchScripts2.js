@@ -1,10 +1,34 @@
-var authorize = "NknDw8rUpQUAJYbqHjANLcvbZl3ic1wDv5EwZ0rPQQdTyJuYnjy7wlwjfIbcH_S7y6Xvau0ytTVs8O_gH2xjaX0gRfduQ0u36eMlfpO0KqIpJWwd_hyyJyFxtL2vgN204aq1MwDPzPMcrMHj1S0Qejm2nO_aOfcVqGAH9tj7vBopl4aAyL_b7VPIGzEm-w1tO3aB3vri9YSJpOWs23HRmYbwBXYHW2pC96SrhJ7hCpKkntUkakb83FeaHMuyu-ZmvgCzyA2ff7i1jfVRqMKDSR8j0ngKXF7-oWjjG4aUoYWZImK9lA4gvlvd15NxbVBAQS91oReWk4vb0ChQTEDopxueUjo87ITwQr3Yn7ZWesJMJtgSYB_UcaiVPXvwqT5Mt99ZG-36qu79KoT2QXWLL3mB1xLAiMqBwWl9CRx_CERSHIKT-nCJKbuM8CEiB9bOBSbExgx7AiwUEY1CtdLVBA2";
+var authorize = "glB03r4JxIwDmxOPrkyporUgR7QyegSSiQ5SLHsXYJZY7VVC9SVAiUXXcFJBxKUplypAo_c3PsJ2pSJHr9T1RJRnCJ1Mqas_luXVy32AedekHod-mT6zhV8r5NetxQjlpldQyGAML8jm4beeJs9bpuQl4ZiCPUuc7MsOIbtANe2smT1uwS4yPRbAk_6oSftrm5PBGqKaRQfbG8PnuYk5vWvPg1rOUcuGBIROCVc6daSYCk8Tfq_aeI3hf08aPcA-37afBTfbHeT94sYHLWPbVHkAvUcWYNglFddTw0O1uU56-drLz3bXTgA3RI-DuRiAZ7YpiIoPTIWAjQ6eNXim43huT0YPYChLjMecPQoNJWA-9ldDr9OAaPPtLbf7EEiy8piG65EnABEOtI1-esC-uZkfyKmbxNN5tsH2Cy_It1KD4JH848ago35cgKDxfTY076QC7_hRWHfDE9vGoJUiSQ2";
+
 
 function search() {
-    var capId = document.getElementById("search-text").value;
+
+    var myCustomId = document.getElementById("search-text").value;
+    var capId = "";
+
+    // Get the Cap Id:
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "url": "https://apis.accela.com/v4/records?customId=" + myCustomId,
+        "method": "GET",
+        "headers": {
+            "authorization": authorize,
+            "cache-control": "no-cache",
+            "postman-token": "19266117-50eb-ad4d-0eb5-31ed6dd876e8"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        capId = response.result[0].id;
+        console.log(capId);
+    });
+
+
     var televisions, computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods = 0;
     var tv32, tv43, tv49, tv59, tv69, tv70;
-    document.getElementById("srNumber").innerHTML = capId;
+    document.getElementById("srNumber").innerHTML = myCustomId;
     var firstName;
     var lastName;
     var phoneNumber;
@@ -64,7 +88,7 @@ function search() {
         tv69 = Number(response.result[0]["60 to 69 Inches"]) + 0;
         tv70 = Number(response.result[0]["70 Inches & Up"]) + 0;
         computers = Number(response.result[1]["Computer peripherals, including any permanently attached cable or wiring"]) + 0;
-        monitors = Number(response.result[1]["Monitors, laptops"]) + 0;
+        monitors = Number(response.result[1]["Monitors, Laptops"]) + 0;
         keyboards = Number(response.result[1]["Electronic keyboards"]) + 0;
         mice = Number(response.result[1]["Electronic mice and other pointing devices"]) + 0;
         fax = Number(response.result[1]["Fax machines, document scanners, and printers that weigh less than 100lbs"]) + 0;
@@ -78,6 +102,8 @@ function search() {
         sss = Number(response.result[1]["Small scale servers"]) + 0;
         portables = Number(response.result[1]["Portable devices, including any permanently attached cable or wiring"]) + 0;
         ipods = Number(response.result[1]["Portable digital music players"]) + 0;
+
+        console.log("Number of monitors: " + monitors);
     });
 
     if (ipods == 0) {
@@ -231,15 +257,12 @@ function search() {
         console.log(response);
         streetStart = response.result[0].streetStart;
         streetName = response.result[0].streetName;
-        streetType = response.result[0].streetSuffix.text;
         pickupLocation = "Curb";
     });
 
     document.getElementById("buildingNumber22").innerHTML = streetStart;
     document.getElementById("streetAddress22").innerHTML = streetName;
     document.getElementById("pickupLocation22").innerHTML = pickupLocation;
-    document.getElementById("streetType22").innerHTML = streetType;
-
     document.getElementById("myModal").style.display = "block";
 }
 
