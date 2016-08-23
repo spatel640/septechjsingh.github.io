@@ -93,23 +93,3 @@
 </form>
 
 <img id="step2Hidden" src="images/sanitation-logo.png" onload="page1InfoRecap()">
-
-<script type="text/javascript">
-    function checkEmpty() {
-        var x = document.getElementById("new1").value;
-        var z = document.getElementById("new2").value;
-
-        if (x == "" || x == null || x == undefined) {
-            alert("Must enter building");
-            return false;
-        }
-
-        if (z == "" || z == null || z == undefined) {
-            alert("must enter street");
-            return false;
-        }
-
-        return true;
-    }
-
-</script>
