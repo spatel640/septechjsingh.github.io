@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>E-Waste Pickup</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" media="screen" href="css/3-Row Simple.css">
+    <link rel="stylesheet" media="screen" href="css/global.css">
+    <link rel="stylesheet" media="screen" href="css/header-agencies.css">
+    <link rel="stylesheet" media="screen" href="css/agency-styles.css">
+    <link rel="stylesheet" media="screen" href="css/inside.css">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/grids-responsive-min.css">
+    <link rel="stylesheet" media="screen" href="css/styles.css">
+
+    <script src="https://use.fontawesome.com/af3fb91b83.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+</head>
+
+<body>
+    <div class="agency-header">
+        <div class="upper-header-black">
+            <div class="container">
+                <span class="upper-header-left"><a href="http://www1.nyc.gov"><img class="small-nyc-logo" alt="" src="images/nyc_white.png"></a><img alt="" src="images/upper-header-divider.gif"><span class="upper-header-black-title">Department of Sanitation</span></span><span class="upper-header-padding"></span><span class="upper-header-right"><span class="upper-header-three-one-one"><a href="/311/index.page">311</a></span><img alt="" src="images/upper-header-divider.gif"><span class="upper-header-search"><a href="/home/search/index.page">Search all NYC.gov websites</a></span></span>
+            </div>
+        </div>
+    </div>
+    <div class="main-header" id="top" role="banner">
+        <div class="block">
+            <div class="header-top">
+                <div class="container">
+                    <a class="toggle-mobile-side-nav visible-phone" id="nav-open-btn" href="#"></a><span class="welcome-text hidden-phone agency-header">Keeping New York City clean since 1881</span>
+                    <div class="agency-logo-wrapper">
+                        <a href="/sites/dsny/index.page"><img class="agency-logo" alt="Department of Sanitation" src="images/sanitation-logo.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subheader">
+        <div class="container">
+            <h1 class="main-title">E-Waste pick up request</h1>
+        </div>
+    </div>
+
+    <div class="mainContent" ng-view>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="span9 footer-links">
+                <a href="#">Directory of City Agencies</a>
+                <a href="#">Contact NYC Government</a>
+                <a href="#">City Employees</a>
+                <a href="#">Notify NYC</a>
+                <a href="#">CityStore</a>
+                <a href="#">Stay Connected</a>
+                <a href="#">NYC Mobile Apps</a>
+                <a href="#">Maps</a>
+                <a href="#">Resident Toolkit</a>
+            </div>
+            <div class="span3">
+                <span class="logo-nyc">NYC</span>
+                <form action="#" method="get" class="form-search">
+                    <input name="search-terms" class="input-search placeholder" placeholder="Search" type="text">
+                    <button class="ico-search">Search</button>
+                </form>
+                <div class="copyright">
+                    <p></p>
+                    <p>City of New York. 2016 ALl Rights Reserved,</p>
+                    <p>NYC is a trademark and service mark of the City of New York</p>
+                    <p>
+                        <a target="_blank" href="#" title="Privacy">Privacy Policy</a>.
+                        <a target="_blank" href="#" title="TOU">Terms of Use</a>.
+                    </p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="app3.js"></script>
+    <script src="mainScripts.js"></script>
+    <script src="tableScripts.js"></script>
+    <script src="submitScripts.js"></script>
+    <script src="validations.js"></script>
+    <script src="moment.js"></script>
+    <link rel="stylesheet" media="screen" href="forms3.css">
+</body>
+
+</html>
