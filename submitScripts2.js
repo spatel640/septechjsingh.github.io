@@ -2,6 +2,7 @@ var authorization2 = "LajWsc85LecbOPUDU84V33LpGOO92zMBvWLH6YuJ04TiCboj5rOflgTahQ
 
 var recordID = "";
 var capID = "";
+var customId = "";
 
 function createUpdate() {
 
@@ -11,7 +12,14 @@ function createUpdate() {
     var lastName = document.getElementById("lastName").innerHTML;
     var userEmail = document.getElementById("emailAddress").innerHTML;
     var phoneNumber = document.getElementById("phoneNumber").innerHTML;
-    var suffix = document.getElementById("streetType2").innerHTML;
+    var suffix = "";
+
+    var bbl = document.getElementById("bbl3").value;
+    var district = document.getElementById("district3").value;
+    var lat = document.getElementById("lat3").value;
+    var lon = document.getElementById("lon3").value;
+    var cityName = document.getElementById("cityName3").value;
+    var zip = document.getElementById("zip3").value;
 
     var settings = {
         "async": false,
@@ -25,12 +33,13 @@ function createUpdate() {
             "postman-token": "aab06c5a-bde7-7b59-c426-874beb07ad16"
         },
         "processData": false,
-        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"005020018\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n            \"inspectionDistrict\": \"1\",\r\n            \"city\": \"Staten Island\",\r\n            \"postalCode\": \"10303\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
+        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n            \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
     }
 
     $.ajax(settings).done(function (response) {
         console.log(response);
         capID = response.result["id"];
+        customId = response.result["customId"];
     });
 
     var computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods;
@@ -284,7 +293,29 @@ function createUpdate() {
         console.log(response);
     });
 
-    setCookie("record", capID, 1);
+    // Schedule the Inspection on the Appropirate Date
+    var pickupDate = document.getElementById("pickupDate").innerHTML;
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "url": "https://apis.accela.com/v4/inspections/schedule",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "authorization": authorization2,
+            "cache-control": "no-cache",
+            "postman-token": "1fef8950-f3dc-ae46-a7ab-4c33c505a14c"
+        },
+        "processData": false,
+        "data": "{\r\n  \"serviceProviderCode\": \"PARTNER\",\r\n  \"isAutoAssign\": \"Y\",\r\n  \"type\": {\r\n    \"id\": 5\r\n  },\r\n  \"recordId\": {\r\n    \"id\": \"" + capID + "\"\r\n  },\r\n  \"scheduleDate\": \"" + pickupDate + "\"\r\n}"
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        console.log("Inspection Scheduled")
+    });
+
+    setCookie("record", customId, 1);
 }
 
 function setCookie(cname, cvalue, exdays) {

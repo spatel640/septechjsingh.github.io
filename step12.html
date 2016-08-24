@@ -19,16 +19,16 @@
 
         <div class="applicant-bldg">
             <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
-            <input type="number" id="bldg-input" name="bldg" min="0" max="99999" onchange="bldgChange()">
+            <input type="number" id="bldg-input" name="bldg" min="0" max="99999">
         </div>
 
         <div class="applicant-street">
             <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
-            <input type="text" id="street-input" name="street" onchange="streetChange()">
+            <input type="text" id="street-input" name="street">
         </div>
 
         <div id="verify-contain">
-            <button type="button" id="verify-button" class="pure-button search-button" onclick="step1Verify(); displayVerified()">Verify</button>
+            <button type="button" id="verify-button" class="pure-button search-button" onclick="step1Verify();">Verify</button>
         </div>
     </div>
     <div id="req-contain">
@@ -44,6 +44,16 @@
             </ul>
         </div>
     </div>
+
+    <input type="hidden" name="cs1" id="cs1" value="">
+    <input type="hidden" name="cs2" id="cs2" value="">
+    <input type="hidden" name="bbl" id="bbl" value="">
+    <input type="hidden" name="lat" id="lat" value="">
+    <input type="hidden" name="lon" id="lon" value="">
+    <input type="hidden" name="district" id="district" value="">
+    <input type="hidden" name="cityName" id="cityName" value="">
+    <input type="hidden" name="zip" id="zip" value="">
+
     <div id="address-choices">
         <p id="incorrect_address"></p>
         <input name="address" class="myRad" type="radio" id="add1" value="" onclick="updateAdd('inc1')"><label id="lab1" for="add1" class="radLabel" onclick="updateAdd('inc1')"><span id="inc1">Hello</span></label>

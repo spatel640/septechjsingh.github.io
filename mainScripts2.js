@@ -84,8 +84,18 @@ function fillInfo() {
     var borough = getUrlVars()["brgh"];
     var building = getUrlVars()["bldg"];
     var street = getUrlVars()["street"];
-    var type = getUrlVars()["type"];
 
+    var cs1 = getUrlVars()["cs1"];
+    var cs2 = getUrlVars()["cs2"];
+    var bbl = getUrlVars()["bbl"];
+    var district = getUrlVars()["district"];
+    var lat = getUrlVars()["lat"];
+    var lon = getUrlVars()["lon"];
+    var cityName = getUrlVars()["cityName"];
+    var zip = getUrlVars()["zip"];
+
+    cs1 = cs1.split('+').join(' ');
+    cs2 = cs2.split('+').join(' ');
     borough = borough.split('+').join(' ');
     building = building.split('+').join(' ');
     street = street.split('+').join(' ');
@@ -93,6 +103,15 @@ function fillInfo() {
     document.getElementById("buildingNumber2").innerHTML = building;
     document.getElementById("streetAddress2").innerHTML = street.toUpperCase();
     document.getElementById("verifiedBorough2").innerHTML = borough.toUpperCase();
+    document.getElementById("CrossStreet1").innerHTML = cs1;
+    document.getElementById("CrossStreet2").innerHTML = cs2;
+
+    document.getElementById("bbl3").value = bbl;
+    document.getElementById("district3").value = district;
+    document.getElementById("lat3").value = lat;
+    document.getElementById("lon3").value = lon;
+    document.getElementById("cityName3").value = cityName.split('+').join(' ');
+    document.getElementById("zip3").value = zip;
 
     // Fill in Pickup location & appointment Date
     var pickupLoc = getUrlVars()["selectLocation"];

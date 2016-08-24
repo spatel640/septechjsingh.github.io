@@ -1,33 +1,28 @@
 function step1Verify() {
     var bldg = document.forms["step12"]["bldg"].value;
     var street = document.forms["step12"]["street"].value;
+    var brgh = document.forms["step12"]["brgh"].value;
 
     if ((bldg == null || bldg == "") && (street == null || street == "")) {
+        alert("You cannot continue without filling in a building number & street name.");
         document.getElementById("bldg-message").style.display = "block";
         document.getElementById("street-message").style.display = "block";
     }
 
     if ((bldg == null || bldg == "") && !(street == null || street == "")) {
+        alert("You cannot continue without filling in a building number.");
         document.getElementById("bldg-message").style.display = "block";
         document.getElementById("street-message").style.display = "none";
     }
     if (!(bldg == null || bldg == "") && (street == null || street == "")) {
+        alert("You cannot continue without filling in a street name.");
         document.getElementById("street-message").style.display = "block";
         document.getElementById("bldg-message").style.display = "none";
     }
-}
-
-function bldgChange() {
-    var bldg = document.forms["step12"]["bldg"].value;
-    if (bldg != "" || bldg != null) {
-        document.getElementById("bldg-message").style.display = "none";
-    }
-}
-
-function streetChange() {
-    var street = document.forms["step12"]["street"].value;
-    if (street != "" || street != null) {
+    if (!(bldg == null || bldg == "") && !(street == null || street == "")) {
         document.getElementById("street-message").style.display = "none";
+        document.getElementById("bldg-message").style.display = "none";
+        displayVerified();
     }
 }
 
@@ -54,7 +49,13 @@ function logResults(json) {
     console.log(json);
     var returnCode = json.address.geosupportReturnCode2;
     hideEverything();
+    document.getElementById("street-input").style.border = "";
+    document.getElementById("bldg-input").style.border = "";
+    document.getElementById("verify-button").style.border = "";
+    document.getElementById("geoCode").value = returnCode;
+
     if (returnCode == "EE") {
+        document.getElementById("street-input").style.border = "solid red";
         document.getElementById("address-choices").style.height = "auto";
         document.getElementById("incorrect_address").style.display = "block";
         document.getElementById("incorrect_address").innerHTML = json.address.message2;
@@ -80,17 +81,36 @@ function logResults(json) {
             document.getElementById(curr_lab).style.display = "none";
         }
     } else if (returnCode == "42" || returnCode == "13") {
+        // Address Number out of range.
         document.getElementById("incorrect_address").innerHTML = json.address.message2;
-        hideEverything();
+        document.getElementById("address-choices").style.height = "30px";
+        document.getElementById("bldg-input").style.border = "solid red";
+        document.getElementById("incorrect_address").style.display = "block";
     } else if (returnCode == "00") {
-        hideEverything();
-        document.getElementById("address-choices").style.height = "0px";
-        document.getElementById("incorrect_address").style.display = "none";
-        document.getElementById("displayVerified").style.display = "block";
-        document.getElementById("buildingNumber").innerHTML = json.address.houseNumber;
-        document.getElementById("streetAddress").innerHTML = json.address.firstStreetNameNormalized;
-        document.getElementById("crossStreet1").innerHTML = json.address.lowCrossStreetName1;
-        document.getElementById("crossStreet2").innerHTML = json.address.highCrossStreetName1;
+        // Address is correct. Move on Citizen.
+        document.getElementById("street-input").style.border = "2px solid green";
+        document.getElementById("bldg-input").style.border = "2px solid green";
+        document.getElementById("incorrect_address").innerHTML = "Address Verified.";
+        document.getElementById("address-choices").style.height = "30px";
+        document.getElementById("incorrect_address").style.display = "block";
+
+        // Update Fields with Correct Address:
+        document.getElementById("street-input").value = json.address.firstStreetNameNormalized;
+        document.getElementById("bldg-input").value = json.address.houseNumber;
+        document.getElementById("cs1").value = json.address.highCrossStreetName1;
+        document.getElementById("cs2").value = json.address.lowCrossStreetName1;
+        document.getElementById("bbl").value = json.address.bbl;
+        document.getElementById("lat").value = json.address.latitude;
+        document.getElementById("lon").value = json.address.longitude;
+        document.getElementById("district").value = json.address.sanitationDistrict;
+        document.getElementById("cityName").value = json.address.uspsPreferredCityName;
+        document.getElementById("zip").value = json.address.zipCode;
+    } else {
+        // No Addresses on this street
+        document.getElementById("incorrect_address").innerHTML = json.address.message2;
+        document.getElementById("street-input").style.border = "solid red";
+        document.getElementById("address-choices").style.height = "30px";
+        document.getElementById("incorrect_address").style.display = "block";
     }
 }
 
@@ -206,60 +226,32 @@ function electronicsValidate() {
 
 function part1Val() {
     var electronics = electronicsValidate();
-    var isLocation = true;
     var isDate = true;
 
-    var location = document.forms["step12"]["selectLocation"].value;
-    var date = document.forms["step12"]["pickupDate"].value;
+    date = document.forms["step12"]["pickupDate"].value;
 
-    if (location == "Select Location") {
-        isLocation = false;
-    }
     if (date == "Select An Appointment Date") {
         isDate = false;
     }
 
-    if (!isDate && !isLocation && !electronics) { // FFF
+    if (!isDate && !electronics) { // FF
         document.getElementById("date-message").style.display = "block";
-        document.getElementById("location-message").style.display = "block";
         document.getElementById("electronic-message").style.display = "block";
         return false;
     }
-    if (!isDate && !isLocation && electronics) { // FFT
+    if (!isDate && electronics) { // FT
         document.getElementById("date-message").style.display = "block";
-        document.getElementById("location-message").style.display = "block";
         document.getElementById("electronic-message").style.display = "none";
         return false;
     }
-    if (!isDate && isLocation && electronics) { // FTT
-        document.getElementById("date-message").style.display = "block";
-        document.getElementById("location-message").style.display = "none";
+    if (isDate && !electronics) { // TF
+        document.getElementById("date-message").style.display = "none";
+        document.getElementById("electronic-message").style.display = "block";
+        return false;
+    }
+    if (isDate && electronics) { // TT
+        document.getElementById("date-message").style.display = "none";
         document.getElementById("electronic-message").style.display = "none";
-        return false;
-    }
-    if (!isDate && isLocation && !electronics) { // FTF
-        document.getElementById("date-message").style.display = "block";
-        document.getElementById("location-message").style.display = "none";
-        document.getElementById("electronic-message").style.display = "block";
-        return false;
-    }
-    if (isDate && !isLocation && !electronics) { // TFF
-        document.getElementById("date-message").style.display = "none";
-        document.getElementById("location-message").style.display = "block";
-        document.getElementById("electronic-message").style.display = "block";
-        return false;
-    }
-    if (isDate && !isLocation && electronics) { // TFT
-        document.getElementById("date-message").style.display = "none";
-        document.getElementById("location-message").style.display = "block";
-        document.getElementById("electronic-message").style.display = "none";
-        return false;
-    }
-    if (isDate && isLocation && !electronics) { // TTF
-        document.getElementById("date-message").style.display = "none";
-        document.getElementById("location-message").style.display = "none";
-        document.getElementById("electronic-message").style.display = "block";
-        return false;
     }
     return true;
 }
@@ -289,37 +281,21 @@ function part2Val() {
     return returnable;
 }
 
-function step1Validate() {
-    var bldg = document.forms["step12"]["bldg"].value;
-    var street = document.forms["step12"]["street"].value;
-
-    if ((bldg == null || bldg == "") && (street == null || street == "")) {
-        alert("You cannot continue without filling in a building number & street name.");
-        document.getElementById("bldg-message").style.display = "block";
-        document.getElementById("street-message").style.display = "block";
-        return false;
-    }
-
-    if ((bldg == null || bldg == "") && !(street == null || street == "")) {
-        alert("You cannot continue without filling in a building number.");
-        document.getElementById("bldg-message").style.display = "block";
-        document.getElementById("street-message").style.display = "none";
-        return false;
-    }
-    if (!(bldg == null || bldg == "") && (street == null || street == "")) {
-        alert("You cannot continue without filling in a street name.");
-        document.getElementById("street-message").style.display = "block";
-        document.getElementById("bldg-message").style.display = "none";
-        return false;
-    }
-    return true;
-}
 
 function step2Validate() {
-    var v = step1Validate();
+    var code = document.getElementById("geoCode").value;
+    if (code != "00") {
+        alert("Please validate Address before continuing.");
+        return false;
+    }
+
     var w = phoneVal();
+    console.log(w);
     var x = part1Val();
+    console.log(x);
     var y = part2Val();
+    console.log(y);
     var z = emailVal();
-    return (v && w && x && y && z);
+    console.log(z);
+    return (w && x && y && z);
 }
