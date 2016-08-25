@@ -2,7 +2,7 @@ $(function () {
     $("select").multiselect();
 });
 
-var auth_token = "LajWsc85LecbOPUDU84V33LpGOO92zMBvWLH6YuJ04TiCboj5rOflgTahQhHAICNTyemFWOOAeYEFdPgz4iiHy6h1Jx9Ut89A50lqWBJkfQmIMub0RpXE6qm7RdKm6HlLO0ajvy5xnQ77d2v91-X7gBUY9h8J5SjO2Z3f4-ImSnK9pnCdEjv6OgSsrVCVYpLI7QZDAlEZSl0NPBX0ITAoocntP_hbFe4Ob0OX_3vryvOZ0zgwWgAA1oRFMrUimkNJu-1JwifegQkuSAlsAV3DiymHfhmdvjDD20YhSvkD6d5lJgIjBPknqoTJkIoZ3qABd1EGteDnzCZCU1Njslz9otD3uEblM_M-5YAmxgfqe_ceE1MVazZdTpvaHfnvgDGCYDP__avst_H88xDmaJGsqr8eubLjZqf3LHh5otdvYGtzMqpzBoSFckvEfRPyOjikuHoyJa45_pdIhMf3mbSDQ2";
+var auth_token = "HQ_PtTews9v162n8q7AEq-PIGCvmCADLdEyt6VGCJbJ0h8CshK1R8r1u8vu2IbtYspzPJ-r9PM3sQqldOUBwo-fD9IS6ScR6XHUoXEtybK-ZDBG-tsrsBfR1OVLC1BKNsuWXiIAXI8ElSH_KFOv1aGtAhBGRbfczaGjMwvCkltBtvQTznGAJzgEPzBt2Uito_XmaU5k-tJlM-S4dpbwvG38Bqu1yVnzWsLH8gzIg72pibyEgSqTwf2qCC4496wwLXCEt_6_CI4J526o3VUMTr_H_VE5N8XZTvvJkuKiqmV3pRGMQkXKRNCXvnKsPSz4cUDBLpJ_PQyLteEd5f2tB8YyMJcC5KeCWCwSJoC5W9Z_s1cCWt_t1hUc9ge5HRjPHpDPIEdwWWOa-D2Efmk2IMZd00MjWEGSUQxkgERTdpSEh0Nkkj4-3ho8rvm5aK8PwLJlpdthGkwXesLUAuE2miA2";
 
 function getDates() {
     var now = moment();
@@ -16,10 +16,28 @@ function getDates() {
     var temp = now.format('YYYY MM DD').toString();
     var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
 
+    var district = document.getElementById("district").value;
+    console.log(district);
+
+    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true";
+    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true";
+    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true";
+
+    var myUrl = "";
+
+    if (district == "501")
+        myUrl = myUrl1;
+    else if (district == "502")
+        myUrl = myUrl2;
+    else
+        myUrl = myUrl3;
+
+    console.log(myUrl);
+
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-00001&startDate=" + date2Pass + "",
+        "url": myUrl,
         "method": "GET",
         "headers": {
             "authorization": auth_token,

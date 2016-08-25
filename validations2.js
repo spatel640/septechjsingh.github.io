@@ -105,6 +105,9 @@ function logResults(json) {
         document.getElementById("district").value = json.address.sanitationDistrict;
         document.getElementById("cityName").value = json.address.uspsPreferredCityName;
         document.getElementById("zip").value = json.address.zipCode;
+
+        getDates();
+
     } else {
         // No Addresses on this street
         document.getElementById("incorrect_address").innerHTML = json.address.message2;
