@@ -1,0 +1,42 @@
+.myForm {
+    display: none;
+}
+
+body {
+    max-width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+body form div div {
+    margin: 0 auto;
+    width: 91%;
+}
+
+body form div div div {
+    width: 49%;
+    display: inline-block;
+}
+
+.table {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.table th {
+    text-align: center;
+    width: 50%;
+}
+
+.table td {
+    max-width: 100%;
+}
+
+.hideMe {
+    display: none;
+}
