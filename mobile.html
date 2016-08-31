@@ -25,21 +25,21 @@
         <h1>SEP Tech Fee Estimator</h1>
         <h1><small>Configuration Module</small></h1>
     </div>
-    <button type="button" class="btn btn-primary" onclick="showDrops()" id="start">Start</button>
+    <button type="button" class="btn btn-primary" onclick="start()" id="start">Start</button>
     <br>
     <br>
     <form class="myForm" method="get" action="mobile.html">
         <div class="form-group">
             <label for="select1">Record Types</label>
             <br>
-            <select class="selectpicker" id="select1" data-width="91%" onchange="">
+            <select class="selectpicker" id="select1" data-width="91%" onchange="loadFeeSchedules()">
                 <option selected disabled value="">Select A Record Type...</option>
             </select>
         </div>
         <div class="form-group" id="fee_schedules">
             <label for="select2">Fee Schedules</label>
             <br>
-            <select class="selectpicker" id="select2" data-width="91%" onchange="">
+            <select class="selectpicker" id="select2" data-width="91%" onchange="loadStuff()">
             </select>
         </div>
         <div class="form-group" id="fee_items_inputs">
@@ -56,7 +56,7 @@
             <select class="selectpicker" id="select4" data-width="45%" multiple>
             </select>
         </div>
-        <button type="button" class="btn btn-default" onclick="addPair()" id="configButton">Add Configuration</button>
+        <button type="button" class="btn btn-default" onclick="addPair(); showSubmit()" id="configButton">Add Configuration</button>
         <br>
         <br>
         <table class="table table-striped table-bordered table-hover" id="feeTable">
@@ -64,7 +64,7 @@
             <th>Input Type / ASI Field</th>
         </table>
         <br>
-        <button type="submit" class="btn btn-primary" onclick="" id="start">Submit</button>
+        <button type="submit" class="btn btn-primary" onclick="" id="submit">Submit</button>
         <div id="submitData"></div>
     </form>
     <link rel="stylesheet" href="mobile_styles.css">

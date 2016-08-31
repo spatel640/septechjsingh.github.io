@@ -1,4 +1,3 @@
-/*
 var authorization_token = "iahx_izPsqcX3EtGT7_lvdwfijvnIs9d4gcYBq4Pwexl-1pxe8aO4zWJtX2yBwMdF_FVr0ZRcrcTW4VrkPcR5ymR1oTfrHZwuqxgclHXHycJfg8z26uya8Nl8WbQHGyRUD1suBLbVhaHwP4Tc11k02LXpTNMXoXzNBHjCkTjEhQdMmCFnXgA4jxp6BrlV3-D_pJTqVlRDPhzuKrIk9h4z4DjU0qozvV3zJoSWfOo9QTaFsEcBoMeIad1xTDsoxx2zg08uyVWjH5McB1m6OeZ8iu3ago8BeYfr-Y-s_1ejtV2oXyaUJAikXwc86JkGal1zTzXIMJQX0VB7A06WocJxkja_klM6_H6if9LO1N4T4poQgFeSfnKsYzEEmJ-i-Kz1BeVJ_F5Vm6Lb2h4xJBEswsPjTY83KEneocdP2Dm1_ECjDVcq0i3FL0yVupLN-SqBzL1Jb3A-h5wzKPAZlCklNeE6ClO0drb1XXh_hSMq1o1";
 
 function start() {
@@ -8,6 +7,7 @@ function start() {
     $('#fee_items_inputs').hide();
     $('#configButton').hide();
     $('#feeTable').hide();
+    $('#submit').hide();
     $('#start').prop('disabled', 'true');
 }
 
@@ -192,30 +192,9 @@ function loadASIs(record) {
         $('#configButton').show();
     });
 }
-*/
 
-function showDrops() {
-    $('.myForm').show();
-    $('#fee_schedules').show();
-    $('#fee_items_inputs').show();
-    $('#configButton').show();
-    $('#feeTable').show();
-    $('#start').prop('disabled', 'true');
-
-    fillDrop(1, "recordType", 15);
-    fillDrop(2, "feeSchedule", 4);
-    fillDrop(3, "feeItems", 20);
-    fillDrop(4, "ASI_Item", 50);
-}
-
-function fillDrop(numSelect, wordToUse, numOpts) {
-    for (i = 0; i < numOpts; i++) {
-        $("<option></option>", {
-            value: wordToUse + (i + 1).toString(),
-            text: wordToUse + (i + 1).toString()
-        }).appendTo('#select' + numSelect.toString());
-    }
-    $('#select' + numSelect.toString()).selectpicker('refresh');
+function showSubmit() {
+    $('#submit').show();
 }
 
 function addPair() {
@@ -232,7 +211,7 @@ function addPair() {
 }
 
 function load() {
-    $.getJSON('https://septechjsingh.github.io/mobile_data.json', function (data) {
+    $.getJSON( /*'https://septechjsingh.github.io/mobile_data.json'*/ 'mobile_data.json', function (data) {
         console.log("Hello World");
         console.log(data);
     });
