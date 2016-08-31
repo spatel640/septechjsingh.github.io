@@ -230,3 +230,10 @@ function addPair() {
     $('#submitData').append(newInput2);
     $('#select4').selectpicker('deselectAll');
 }
+
+function load() {
+    $.getJSON('https://septechjsingh.github.io/mobile_data.json', function (data) {
+        console.log("Hello World");
+        console.log(data);
+    });
+}
