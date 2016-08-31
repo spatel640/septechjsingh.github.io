@@ -18,28 +18,29 @@
     <!-- Bootstrap Select -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
+    <script src="mobile_data.json"></script>
 </head>
 
-<body>
+<body onload="">
     <div class="page-header">
         <h1>SEP Tech Fee Estimator</h1>
         <h1><small>Configuration Module</small></h1>
     </div>
-    <button type="button" class="btn btn-primary" onclick="start()" id="start">Start</button>
+    <button type="button" class="btn btn-primary" onclick="showDrops()" id="start">Start</button>
     <br>
     <br>
-    <form class="myForm">
+    <form class="myForm" method="get" action="mobile.html">
         <div class="form-group">
             <label for="select1">Record Types</label>
             <br>
-            <select class="selectpicker" id="select1" data-width="91%" onchange="loadFeeSchedules()">
+            <select class="selectpicker" id="select1" data-width="91%" onchange="">
                 <option selected disabled value="">Select A Record Type...</option>
             </select>
         </div>
         <div class="form-group" id="fee_schedules">
             <label for="select2">Fee Schedules</label>
             <br>
-            <select class="selectpicker" id="select2" data-width="91%" onchange="loadStuff()">
+            <select class="selectpicker" id="select2" data-width="91%" onchange="">
             </select>
         </div>
         <div class="form-group" id="fee_items_inputs">
@@ -63,6 +64,9 @@
             <th>Fee Item Codes</th>
             <th>Input Type / ASI Field</th>
         </table>
+        <br>
+        <button type="submit" class="btn btn-primary" onclick="" id="start">Submit</button>
+        <div id="submitData"></div>
     </form>
     <link rel="stylesheet" href="mobile_styles.css">
     <script src="mobile_scripts.js"></script>

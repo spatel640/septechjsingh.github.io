@@ -1,4 +1,5 @@
-var authorization_token = "FFU6v4DkHNpDFCfjyE0aLtehqPB7A4HRk3Xq1dhq-8uI5frSvNDIQduQF8J_n5aP6Qd_unNUg311obbCsIhlALo72J56ZhJu5RH1bkHYnBG_qgW0sd0HRWBaSSYoe6J8Q7y1_wv7EqIOF0WcFb5aXJRI8ApMzEDLL76Q9UPW67pfZiVe6zX7XSg_HnfweH316oh3uELmhEXf6TkzKr5xXBPG76t0rZwb3C0qdwLgA6YCH_tgy6zvl8zIsuv22RSxoKFO-Ib_OuC77mOsnBKb8T0E9OMblfYv09NHCpSFbnUsIjetH8rzZ3KMNoO-QAkws-OAe3YWPMzKGnZnb5SdX5zrED2ADhQphlVvqSE-IkC9SLF3b7bNaUatHJKlyShXpwMloSjG9vF1Ln-B8_eqiP2KGXIb0MfMrNp7am4OllIfxf6TvxKONut4P-QCfGMIYRrqKSLQ--ZoqHIEvimKOvfEhPwfmMa2Hve2F6wBIZk1";
+/*
+var authorization_token = "iahx_izPsqcX3EtGT7_lvdwfijvnIs9d4gcYBq4Pwexl-1pxe8aO4zWJtX2yBwMdF_FVr0ZRcrcTW4VrkPcR5ymR1oTfrHZwuqxgclHXHycJfg8z26uya8Nl8WbQHGyRUD1suBLbVhaHwP4Tc11k02LXpTNMXoXzNBHjCkTjEhQdMmCFnXgA4jxp6BrlV3-D_pJTqVlRDPhzuKrIk9h4z4DjU0qozvV3zJoSWfOo9QTaFsEcBoMeIad1xTDsoxx2zg08uyVWjH5McB1m6OeZ8iu3ago8BeYfr-Y-s_1ejtV2oXyaUJAikXwc86JkGal1zTzXIMJQX0VB7A06WocJxkja_klM6_H6if9LO1N4T4poQgFeSfnKsYzEEmJ-i-Kz1BeVJ_F5Vm6Lb2h4xJBEswsPjTY83KEneocdP2Dm1_ECjDVcq0i3FL0yVupLN-SqBzL1Jb3A-h5wzKPAZlCklNeE6ClO0drb1XXh_hSMq1o1";
 
 function start() {
     loadRecords();
@@ -191,9 +192,41 @@ function loadASIs(record) {
         $('#configButton').show();
     });
 }
+*/
+
+function showDrops() {
+    $('.myForm').show();
+    $('#fee_schedules').show();
+    $('#fee_items_inputs').show();
+    $('#configButton').show();
+    $('#feeTable').show();
+    $('#start').prop('disabled', 'true');
+
+    fillDrop(1, "recordType", 15);
+    fillDrop(2, "feeSchedule", 4);
+    fillDrop(3, "feeItems", 20);
+    fillDrop(4, "ASI_Item", 50);
+}
+
+function fillDrop(numSelect, wordToUse, numOpts) {
+    for (i = 0; i < numOpts; i++) {
+        $("<option></option>", {
+            value: wordToUse + (i + 1).toString(),
+            text: wordToUse + (i + 1).toString()
+        }).appendTo('#select' + numSelect.toString());
+    }
+    $('#select' + numSelect.toString()).selectpicker('refresh');
+}
 
 function addPair() {
     $('#feeTable').show();
     $('#feeTable').append('<tr><td>' + $('#select3').val() + '</td><td>' + $('#select4').val() + '</td></tr>');
+    var numItem = $('#feeTable tr').length - 1;
+    var newIn1 = '<input id="fielda' + numItem + '" name="fielda' + numItem + '" type="hidden" value="' + $('#select3').val() + '">';
+    var newIn2 = '<input id="fieldb' + numItem + '" name="fieldb' + numItem + '" type="hidden" value="' + $('#select4').val() + '">';
+    var newInput1 = $(newIn1);
+    var newInput2 = $(newIn2);
+    $('#submitData').append(newInput1);
+    $('#submitData').append(newInput2);
     $('#select4').selectpicker('deselectAll');
 }
