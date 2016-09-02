@@ -56,23 +56,33 @@
 
     <div id="address-choices">
         <p id="incorrect_address"></p>
-        <input name="address" class="myRad" type="radio" id="add1" value="" onclick="updateAdd('inc1')"><label id="lab1" for="add1" class="radLabel" onclick="updateAdd('inc1')"><span id="inc1">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add2" value="" onclick="updateAdd('inc2')"><label id="lab2" for="add2" class="radLabel" onclick="updateAdd('inc2')"><span id="inc2">There</span></label>
+        <input name="address" class="myRad" type="radio" id="add1" value="" onclick="updateAdd('inc1')">
+        <label id="lab1" for="add1" class="radLabel" onclick="updateAdd('inc1')"><span id="inc1">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add2" value="" onclick="updateAdd('inc2')">
+        <label id="lab2" for="add2" class="radLabel" onclick="updateAdd('inc2')"><span id="inc2">There</span></label>
         <br>
-        <input name="address" class="myRad" type="radio" id="add3" value="" onclick="updateAdd('inc3')"><label id="lab3" for="add3" class="radLabel" onclick="updateAdd('inc3')"><span id="inc3">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add4" value="" onclick="updateAdd('inc4')"><label id="lab4" for="add4" class="radLabel" onclick="updateAdd('inc4')"><span id="inc4">There</span></label>
+        <input name="address" class="myRad" type="radio" id="add3" value="" onclick="updateAdd('inc3')">
+        <label id="lab3" for="add3" class="radLabel" onclick="updateAdd('inc3')"><span id="inc3">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add4" value="" onclick="updateAdd('inc4')">
+        <label id="lab4" for="add4" class="radLabel" onclick="updateAdd('inc4')"><span id="inc4">There</span></label>
         <br>
-        <input name="address" class="myRad" type="radio" id="add5" value="" onclick="updateAdd('inc5')"><label id="lab5" for="add5" class="radLabel" onclick="updateAdd('inc5')"><span id="inc5">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add6" value="" onclick="updateAdd('inc6')"><label id="lab6" for="add6" class="radLabel" onclick="updateAdd('inc6')">
-<span id="inc6">There</span></label>
+        <input name="address" class="myRad" type="radio" id="add5" value="" onclick="updateAdd('inc5')">
+        <label id="lab5" for="add5" class="radLabel" onclick="updateAdd('inc5')"><span id="inc5">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add6" value="" onclick="updateAdd('inc6')">
+        <label id="lab6" for="add6" class="radLabel" onclick="updateAdd('inc6')">
+            <span id="inc6">There</span></label>
         <br>
-        <input name="address" class="myRad" type="radio" id="add7" value="" onclick="updateAdd('inc7')"><label id="lab7" for="add7" class="radLabel" onclick="updateAdd('inc7')"><span id="inc7">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add8" value="" onclick="updateAdd('inc8')"><label id="lab8" for="add8" class="radLabel" onclick="updateAdd('inc8')">
-<span id="inc8">There</span></label>
+        <input name="address" class="myRad" type="radio" id="add7" value="" onclick="updateAdd('inc7')">
+        <label id="lab7" for="add7" class="radLabel" onclick="updateAdd('inc7')"><span id="inc7">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add8" value="" onclick="updateAdd('inc8')">
+        <label id="lab8" for="add8" class="radLabel" onclick="updateAdd('inc8')">
+            <span id="inc8">There</span></label>
         <br>
-        <input name="address" class="myRad" type="radio" id="add9" value="" onclick="updateAdd('inc9')"><label id="lab9" for="add9" class="radLabel" onclick="updateAdd('inc9')"><span id="inc9">Hello</span></label>
-        <input name="address" class="myRad" type="radio" id="add10" value="" onclick="updateAdd('inc10')"><label id="lab10" for="add10" class="radLabel" onclick="updateAdd('inc10')">
-<span id="inc10">There</span></label>
+        <input name="address" class="myRad" type="radio" id="add9" value="" onclick="updateAdd('inc9')">
+        <label id="lab9" for="add9" class="radLabel" onclick="updateAdd('inc9')"><span id="inc9">Hello</span></label>
+        <input name="address" class="myRad" type="radio" id="add10" value="" onclick="updateAdd('inc10')">
+        <label id="lab10" for="add10" class="radLabel" onclick="updateAdd('inc10')">
+            <span id="inc10">There</span></label>
     </div>
     <div class="separator"></div>
     <span class="fixMe">Helpful hints on entering your address:</span>
@@ -83,7 +93,8 @@
     <br>
     <div class="address-validation-message" id="displayVerified">
         <p>
-            <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span> <br>
+            <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span>
+            <br>
             <span class="boldMe">Cross Streets:</span> <span id="crossStreet1"></span> / <span id="crossStreet2"></span>
         </p>
     </div>
@@ -125,37 +136,53 @@
                     <div class="overSelect"></div>
                 </div>
                 <div id="checkboxes">
-                    <label for="one"><input type="checkbox" id="one" value="Televisions (including cathode ray tubes)" onclick="makeEntryTable('one')">Televisions (including cathode ray tubes)</label>
+                    <label for="one">
+                        <input type="checkbox" id="one" value="Televisions (including cathode ray tubes)" onclick="makeEntryTable('one')">Televisions (including cathode ray tubes)</label>
 
-                    <label for="two"><input type="checkbox" id="two" value="Computer peripherals, including any permanently attached cable or wiring" onclick="makeEntryTable('two')">Computer peripherals, including any permanently attached cable or wiring</label>
+                    <label for="two">
+                        <input type="checkbox" id="two" value="Computer peripherals, including any permanently attached cable or wiring" onclick="makeEntryTable('two')">Computer peripherals, including any permanently attached cable or wiring</label>
 
-                    <label for="three"><input type="checkbox" id="three" value="Monitors, laptops" onclick="makeEntryTable('three')">Monitors, laptops</label>
+                    <label for="three">
+                        <input type="checkbox" id="three" value="Monitors, laptops" onclick="makeEntryTable('three')">Monitors, laptops</label>
 
-                    <label for="four"><input type="checkbox" id="four" value="Electronic keyboards" onclick="makeEntryTable('four')">Electronic keyboards</label>
+                    <label for="four">
+                        <input type="checkbox" id="four" value="Electronic keyboards" onclick="makeEntryTable('four')">Electronic keyboards</label>
 
-                    <label for="five"><input type="checkbox" id="five" value="Electronic mice and other pointing devices" onclick="makeEntryTable('five')">Electronic mice and other pointing devices</label>
+                    <label for="five">
+                        <input type="checkbox" id="five" value="Electronic mice and other pointing devices" onclick="makeEntryTable('five')">Electronic mice and other pointing devices</label>
 
-                    <label for="six"><input type="checkbox" id="six" value="Fax machines, document scanners, and printers that are meant for use with a computer and weigh less than 100 lbs" onclick="makeEntryTable('six')">Fax machines, document scanners, and printers that are meant for use with a computer and weigh less than 100 lbs</label>
+                    <label for="six">
+                        <input type="checkbox" id="six" value="Fax machines, document scanners, and printers that are meant for use with a computer and weigh less than 100 lbs" onclick="makeEntryTable('six')">Fax machines, document scanners, and printers that are meant for use with a computer and weigh less than 100 lbs</label>
 
-                    <label for="seven"><input type="checkbox" value="TV Peripherals, including any permanently attached cable or wiring" id="seven" onclick="makeEntryTable('seven')">TV Peripherals, including any permanently attached cable or wiring</label>
+                    <label for="seven">
+                        <input type="checkbox" value="TV Peripherals, including any permanently attached cable or wiring" id="seven" onclick="makeEntryTable('seven')">TV Peripherals, including any permanently attached cable or wiring</label>
 
-                    <label for="eight"><input type="checkbox" id="eight" value="VCRs" onclick="makeEntryTable('eight')">VCRs</label>
+                    <label for="eight">
+                        <input type="checkbox" id="eight" value="VCRs" onclick="makeEntryTable('eight')">VCRs</label>
 
-                    <label for="nine"><input type="checkbox" id="nine" value="Digital Video recorders" onclick="makeEntryTable('nine')">Digital Video recorders</label>
+                    <label for="nine">
+                        <input type="checkbox" id="nine" value="Digital Video recorders" onclick="makeEntryTable('nine')">Digital Video recorders</label>
 
-                    <label for="ten"><input type="checkbox" id="ten" value="DVD players" onclick="makeEntryTable('ten')">DVD players</label>
+                    <label for="ten">
+                        <input type="checkbox" id="ten" value="DVD players" onclick="makeEntryTable('ten')">DVD players</label>
 
-                    <label for="eleven"><input type="checkbox" id="eleven" value="Digital Converter Boxes" onclick="makeEntryTable('eleven')">Digital Converter Boxes</label>
+                    <label for="eleven">
+                        <input type="checkbox" id="eleven" value="Digital Converter Boxes" onclick="makeEntryTable('eleven')">Digital Converter Boxes</label>
 
-                    <label for="twelve"><input type="checkbox" id="twelve" value="Cable or satellite receivers" onclick="makeEntryTable('twelve')">Cable or satellite receivers</label>
+                    <label for="twelve">
+                        <input type="checkbox" id="twelve" value="Cable or satellite receivers" onclick="makeEntryTable('twelve')">Cable or satellite receivers</label>
 
-                    <label for="thirteen"><input type="checkbox" id="thirteen" value="Electronic or video game consoles" onclick="makeEntryTable('thirteen')">Electronic or video game consoles</label>
+                    <label for="thirteen">
+                        <input type="checkbox" id="thirteen" value="Electronic or video game consoles" onclick="makeEntryTable('thirteen')">Electronic or video game consoles</label>
 
-                    <label for="fourteen"><input type="checkbox" id="fourteen" value="Small scale servers" onclick="makeEntryTable('fourteen')">Small scale servers</label>
+                    <label for="fourteen">
+                        <input type="checkbox" id="fourteen" value="Small scale servers" onclick="makeEntryTable('fourteen')">Small scale servers</label>
 
-                    <label for="fifteen"><input type="checkbox" id="fifteen" value="Portable devices, including any permanently attached cable or wiring" onclick="makeEntryTable('fifteen')">Portable devices, including any permanently attached cable or wiring</label>
+                    <label for="fifteen">
+                        <input type="checkbox" id="fifteen" value="Portable devices, including any permanently attached cable or wiring" onclick="makeEntryTable('fifteen')">Portable devices, including any permanently attached cable or wiring</label>
 
-                    <label for="sixteen"><input type="checkbox" id="sixteen" value="Portable digital music players" onclick="makeEntryTable('sixteen')">Portable digital music players</label>
+                    <label for="sixteen">
+                        <input type="checkbox" id="sixteen" value="Portable digital music players" onclick="makeEntryTable('sixteen')">Portable digital music players</label>
                 </div>
             </div>
         </div>
@@ -172,132 +199,174 @@
             <tr id="televisions">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('one'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">Televisions (including cathode ray tubes)</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" name="televisions" min="1" max="5" id="numTV" onchange="displayTVs(); hideElectronicMessage();"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" name="televisions" min="1" max="5" id="numTV" onchange="displayTVs(); hideElectronicMessage();">
+                </td>
             </tr>
             <tr class="tvSizes" id="tv1">
-                <td>TV # 1 &nbsp; &nbsp;<select class="tvSize" name="tv1">
-                    <option>32 Inches and Under</option>
-                    <option>33 to 43 inches</option>
-                    <option>44 to 49 inches</option>
-                    <option>50 to 59 inches</option>
-                    <option>60 to 69 inches</option>
-                    <option>Larger than 70 inches</option>
-                    </select></td>
+                <td>TV # 1 &nbsp; &nbsp;
+                    <select class="tvSize" name="tv1">
+                        <option>32 Inches and Under</option>
+                        <option>33 to 43 inches</option>
+                        <option>44 to 49 inches</option>
+                        <option>50 to 59 inches</option>
+                        <option>60 to 69 inches</option>
+                        <option>Larger than 70 inches</option>
+                    </select>
+                </td>
             </tr>
             <tr class="tvSizes" id="tv2">
-                <td>TV # 2 &nbsp; &nbsp;<select class="tvSize" name="tv2">
-                    <option>32 Inches and Under</option>
-                    <option>33 to 43 inches</option>
-                    <option>44 to 49 inches</option>
-                    <option>50 to 59 inches</option>
-                    <option>60 to 69 inches</option>
-                    <option>Larger than 70 inches</option>
-                    </select></td>
+                <td>TV # 2 &nbsp; &nbsp;
+                    <select class="tvSize" name="tv2">
+                        <option>32 Inches and Under</option>
+                        <option>33 to 43 inches</option>
+                        <option>44 to 49 inches</option>
+                        <option>50 to 59 inches</option>
+                        <option>60 to 69 inches</option>
+                        <option>Larger than 70 inches</option>
+                    </select>
+                </td>
             </tr>
             <tr class="tvSizes" id="tv3">
-                <td>TV # 3 &nbsp; &nbsp;<select class="tvSize" name="tv3">
-                    <option>32 Inches and Under</option>
-                    <option>33 to 43 inches</option>
-                    <option>44 to 49 inches</option>
-                    <option>50 to 59 inches</option>
-                    <option>60 to 69 inches</option>
-                    <option>Larger than 70 inches</option>
-                    </select></td>
+                <td>TV # 3 &nbsp; &nbsp;
+                    <select class="tvSize" name="tv3">
+                        <option>32 Inches and Under</option>
+                        <option>33 to 43 inches</option>
+                        <option>44 to 49 inches</option>
+                        <option>50 to 59 inches</option>
+                        <option>60 to 69 inches</option>
+                        <option>Larger than 70 inches</option>
+                    </select>
+                </td>
             </tr>
             <tr class="tvSizes" id="tv4">
-                <td>TV # 4 &nbsp; &nbsp;<select class="tvSize" name="tv4">
-                    <option>32 Inches and Under</option>
-                    <option>33 to 43 inches</option>
-                    <option>44 to 49 inches</option>
-                    <option>50 to 59 inches</option>
-                    <option>60 to 69 inches</option>
-                    <option>Larger than 70 inches</option>
-                    </select></td>
+                <td>TV # 4 &nbsp; &nbsp;
+                    <select class="tvSize" name="tv4">
+                        <option>32 Inches and Under</option>
+                        <option>33 to 43 inches</option>
+                        <option>44 to 49 inches</option>
+                        <option>50 to 59 inches</option>
+                        <option>60 to 69 inches</option>
+                        <option>Larger than 70 inches</option>
+                    </select>
+                </td>
             </tr>
             <tr class="tvSizes" id="tv5">
-                <td>TV # 5 &nbsp; &nbsp;<select class="tvSize" name="tv5">
-                    <option>32 Inches and Under</option>
-                    <option>33 to 43 inches</option>
-                    <option>44 to 49 inches</option>
-                    <option>50 to 59 inches</option>
-                    <option>60 to 69 inches</option>
-                    <option>Larger than 70 inches</option>
-                    </select></td>
+                <td>TV # 5 &nbsp; &nbsp;
+                    <select class="tvSize" name="tv5">
+                        <option>32 Inches and Under</option>
+                        <option>33 to 43 inches</option>
+                        <option>44 to 49 inches</option>
+                        <option>50 to 59 inches</option>
+                        <option>60 to 69 inches</option>
+                        <option>Larger than 70 inches</option>
+                    </select>
+                </td>
             </tr>
             <tr id="computers">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('two'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">Computer peripherals, including any permanently attached cable or wiring</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numComps" name="computers" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numComps" name="computers" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="monitors">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('three'); hideElectronicMessage()"></i></span></td>
                 <td class="electronicItem">Monitors, laptops</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numMon" name="monitors" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numMon" name="monitors" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="keyboards">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('four'); hideElectronicMessage()"></i></span></td>
                 <td class="electronicItem">Electronic keyboards</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numEKey" name="keyboards" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numEKey" name="keyboards" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="pointers">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('five'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">Electronic mice and other pointing devices</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numEMice" name="pointers" onclick="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numEMice" name="pointers" onclick="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="printers">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('six'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">Fax machines, document scanners, and printers that are meant for use with a computer and weigh less than 100 lbs</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numFax" name="printers" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numFax" name="printers" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="tvPeripherals">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('seven'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">TV Peripherals, including any permanently attached cable or wiring</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numTVP" name="tvPeripherals" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numTVP" name="tvPeripherals" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="vcrs">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('eight'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">VCRs</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numVCR" name="vcrs" onchange="hideElectronicMessage();"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numVCR" name="vcrs" onchange="hideElectronicMessage();">
+                </td>
             </tr>
             <tr id="dvrs">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('nine'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">Digital Video recorders</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numDVR" name="dvrs" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numDVR" name="dvrs" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="dvd">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('ten'); hideElectronicMessage()"></i></span></td>
                 <td class="electronicItem">DVD players</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numDVD" name="dvd" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numDVD" name="dvd" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="dcb">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('eleven'); hideElectronicMessage()"></i></span></td>
                 <td class="electronicItem">Digital Converter Boxes</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numDCB" name="dcb" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numDCB" name="dcb" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="cable">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('twelve'); hideElectronicMessage()"></i></span></td>
                 <td class="electronicItem">Cable or satellite receivers</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numCable" name="cable" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numCable" name="cable" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="xbox">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('thirteen'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">Electronic or video game consoles</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numXbox" name="xbox" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numXbox" name="xbox" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="sss">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('fourteen'); hideElectronicMessage();"></i></span></td>
                 <td class="electronicItem">Small scale servers</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numSSS" name="sss" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numSSS" name="sss" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="portables">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('fifteen'); hideElectronicMessage()"></i></span></td>
                 <td class="electronicItem">Portable devices, including any permanently attached cable or wiring</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numPD" name="portables" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numPD" name="portables" onchange="hideElectronicMessage()">
+                </td>
             </tr>
             <tr id="ipods">
                 <td class="trashCan"><span class="clickable"><i class="fa fa-trash" aria-hidden="true" onclick="hideItem('sixteen'); hideElectronicMessage()"></i></span></td>
                 <td class="electronicItem">Portable digital music players</td>
-                <td class="electronicNumber"><input type="number" class="inputNumber" min="1" id="numIpods" name="ipods" onchange="hideElectronicMessage()"></td>
+                <td class="electronicNumber">
+                    <input type="number" class="inputNumber" min="1" id="numIpods" name="ipods" onchange="hideElectronicMessage()">
+                </td>
             </tr>
         </table>
     </div>
@@ -335,7 +404,9 @@
         </div>
         <div class="buttons-p2">
             <button class="pure-button black-button" type="submit" id="next-button-2">Next <i class="fa fa-caret-right" aria-hidden="true"></i>
-</button>
+            </button>
         </div>
     </div>
 </form>
+
+<img id="step2Hidden" src="images/sanitation-logo.png" onload="reschedule2()">
