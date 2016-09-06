@@ -340,7 +340,7 @@ function cancelRequest() {
 
 
 function reschedule() {
-    cancelRequest();
+    setCookie("resched", "true", 1);
     window.location.href = '/311Page.html';
 }
 
@@ -481,126 +481,155 @@ function hideItem2(keyword) {
 }
 
 function reschedule2() {
-    var bnum = getCookie("streetStart");
-    var street = getCookie("streetName");
+    var isRe = getCookie("resched");
+    if (isRe == "true") {
+        var capCook = getCookie("capCookie");
+        document.getElementById("search-text").value = capCook;
+        var bnum = getCookie("streetStart");
+        var street = getCookie("streetName");
 
-    var firstName = getCookie("firstName");
-    var lastName = getCookie("lastName");
-    var phoneNumber = getCookie("phoneNumber");
-    var email = getCookie("email");
+        var firstName = getCookie("firstName");
+        var lastName = getCookie("lastName");
+        var phoneNumber = getCookie("phoneNumber");
+        var email = getCookie("email");
 
-    document.getElementById("bldg-input").value = Number(bnum);
-    document.getElementById("street-input").value = street;
-    document.getElementById("first-name").value = firstName;
-    document.getElementById("last-name").value = lastName;
-    document.getElementById("phone").value = phoneNumber;
-    document.getElementById("email").value = email;
-    document.getElementById("confirm-email").value = email;
+        document.getElementById("bldg-input").value = Number(bnum);
+        document.getElementById("street-input").value = street;
+        document.getElementById("first-name").value = firstName;
+        document.getElementById("last-name").value = lastName;
+        document.getElementById("phone").value = phoneNumber;
+        document.getElementById("email").value = email;
+        document.getElementById("confirm-email").value = email;
 
-    var computers = Number(getCookie("computers")) + 0;
-    var monitors = Number(getCookie("monitors")) + 0;
-    var keyboards = Number(getCookie("keyboards")) + 0;
-    var mice = Number(getCookie("mice")) + 0;
-    var fax = Number(getCookie("fax")) + 0;
-    var peripherals = Number(getCookie("peripherals")) + 0;
-    var vcrs = Number(getCookie("vcrs")) + 0;
-    var dvrs = Number(getCookie("dvrs")) + 0;
-    var dvd = Number(getCookie("dvd")) + 0;
-    var dcb = Number(getCookie("dcb")) + 0;
-    var cable = Number(getCookie("cable")) + 0;
-    var xbox = Number(getCookie("xbox")) + 0;
-    var sss = Number(getCookie("sss")) + 0;
-    var portables = Number(getCookie("portables")) + 0;
-    var ipods = Number(getCookie("ipods")) + 0;
+        var computers = Number(getCookie("computers")) + 0;
+        var monitors = Number(getCookie("monitors")) + 0;
+        var keyboards = Number(getCookie("keyboards")) + 0;
+        var mice = Number(getCookie("mice")) + 0;
+        var fax = Number(getCookie("fax")) + 0;
+        var peripherals = Number(getCookie("peripherals")) + 0;
+        var vcrs = Number(getCookie("vcrs")) + 0;
+        var dvrs = Number(getCookie("dvrs")) + 0;
+        var dvd = Number(getCookie("dvd")) + 0;
+        var dcb = Number(getCookie("dcb")) + 0;
+        var cable = Number(getCookie("cable")) + 0;
+        var xbox = Number(getCookie("xbox")) + 0;
+        var sss = Number(getCookie("sss")) + 0;
+        var portables = Number(getCookie("portables")) + 0;
+        var ipods = Number(getCookie("ipods")) + 0;
 
-    if (computers > 0) {
-        displayItem2('two');
-        document.getElementById('numComps').value = computers;
-    } else {
-        hideItem2('two');
+        if (computers > 0) {
+            displayItem2('two');
+            document.getElementById('numComps').value = computers;
+        } else {
+            hideItem2('two');
+        }
+        if (monitors > 0) {
+            displayItem2('three');
+            document.getElementById('numMon').value = monitors;
+        } else {
+            hideItem2('three');
+        }
+        if (keyboards > 0) {
+            displayItem2('four');
+            document.getElementById('numEKey').value = keyboards;
+        } else {
+            hideItem2('four');
+        }
+        if (mice > 0) {
+            displayItem2('five');
+            document.getElementById('numEMice').value = mice;
+        } else {
+            hideItem2('five');
+        }
+        if (fax > 0) {
+            displayItem2('six');
+            document.getElementById('numFax').value = fax;
+        } else {
+            hideItem2('six');
+        }
+        if (peripherals > 0) {
+            displayItem2('seven');
+            document.getElementById('numTVP').value = peripherals;
+        } else {
+            hideItem2('seven');
+        }
+        if (vcrs > 0) {
+            displayItem2('eight');
+            document.getElementById('numVCR').value = vcrs;
+        } else {
+            hideItem2('eight');
+        }
+        if (dvrs > 0) {
+            displayItem2('nine');
+            document.getElementById('numDVR').value = dvrs;
+        } else {
+            hideItem2('nine');
+        }
+        if (dvd > 0) {
+            displayItem2('ten');
+            document.getElementById('numDVD').value = dvd;
+        } else {
+            hideItem2('ten');
+        }
+        if (dcb > 0) {
+            displayItem2('eleven');
+            document.getElementById('numDCB').value = dcb;
+        } else {
+            hideItem2('eleven');
+        }
+        if (cable > 0) {
+            displayItem2('twelve');
+            document.getElementById('numCable').value = cable;
+        } else {
+            hideItem2('twelve');
+        }
+        if (xbox > 0) {
+            displayItem2('thirteen');
+            document.getElementById('numXbox').value = xbox;
+        } else {
+            hideItem2('thirteen');
+        }
+        if (sss > 0) {
+            displayItem2('fourteen');
+            document.getElementById('numSSS').value = sss;
+        } else {
+            hideItem2('fourteen');
+        }
+        if (portables > 0) {
+            displayItem2('fifteen');
+            document.getElementById('numPD').value = portables;
+        } else {
+            hideItem2('fifteen');
+        }
+        if (ipods > 0) {
+            displayItem2('sixteen');
+            document.getElementById('numIpods').value = ipods;
+        } else {
+            hideItem2('sixteen');
+        }
+
+        setCookie("computers", computers, -1);
+        setCookie("monitors", monitors, -1);
+        setCookie("keyboards", keyboards, -1);
+        setCookie("mice", mice, -1);
+        setCookie("fax", fax, -1);
+        setCookie("peripherals", peripherals, -1);
+        setCookie("vcrs", vcrs, -1);
+        setCookie("dvrs", dvrs, -1);
+        setCookie("dvd", dvd, -1);
+        setCookie("dcb", dcb, -1);
+        setCookie("cable", cable, -1);
+        setCookie("xbox", xbox, -1);
+        setCookie("sss", sss, -1);
+        setCookie("portables", portables, -1);
+        setCookie("ipods", ipods, -1);
     }
-    if (monitors > 0) {
-        displayItem2('three');
-        document.getElementById('numMon').value = monitors;
-    } else {
-        hideItem2('three');
-    }
-    if (keyboards > 0) {
-        displayItem2('four');
-        document.getElementById('numEKey').value = keyboards;
-    } else {
-        hideItem2('four');
-    }
-    if (mice > 0) {
-        displayItem2('five');
-        document.getElementById('numEMice').value = mice;
-    } else {
-        hideItem2('five');
-    }
-    if (fax > 0) {
-        displayItem2('six');
-        document.getElementById('numFax').value = fax;
-    } else {
-        hideItem2('six');
-    }
-    if (peripherals > 0) {
-        displayItem2('seven');
-        document.getElementById('numTVP').value = peripherals;
-    } else {
-        hideItem2('seven');
-    }
-    if (vcrs > 0) {
-        displayItem2('eight');
-        document.getElementById('numVCR').value = vcrs;
-    } else {
-        hideItem2('eight');
-    }
-    if (dvrs > 0) {
-        displayItem2('nine');
-        document.getElementById('numDVR').value = dvrs;
-    } else {
-        hideItem2('nine');
-    }
-    if (dvd > 0) {
-        displayItem2('ten');
-        document.getElementById('numDVD').value = dvd;
-    } else {
-        hideItem2('ten');
-    }
-    if (dcb > 0) {
-        displayItem2('eleven');
-        document.getElementById('numDCB').value = dcb;
-    } else {
-        hideItem2('eleven');
-    }
-    if (cable > 0) {
-        displayItem2('twelve');
-        document.getElementById('numCable').value = cable;
-    } else {
-        hideItem2('twelve');
-    }
-    if (xbox > 0) {
-        displayItem2('thirteen');
-        document.getElementById('numXbox').value = xbox;
-    } else {
-        hideItem2('thirteen');
-    }
-    if (sss > 0) {
-        displayItem2('fourteen');
-        document.getElementById('numSSS').value = sss;
-    } else {
-        hideItem2('fourteen');
-    }
-    if (portables > 0) {
-        displayItem2('fifteen');
-        document.getElementById('numPD').value = portables;
-    } else {
-        hideItem2('fifteen');
-    }
-    if (ipods > 0) {
-        displayItem2('sixteen');
-        document.getElementById('numIpods').value = ipods;
-    } else {
-        hideItem2('sixteen');
+}
+
+function cancelIfRe() {
+    var isRe = getCookie("resched");
+    console.log(isRe);
+    if (isRe == "true") {
+        cancelRequest();
     }
 }
