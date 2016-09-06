@@ -469,15 +469,6 @@ function hideItem2(keyword) {
         document.getElementById("ipods").style.display = "none";
         document.getElementById("numIpods").value = "";
     }
-
-    document.getElementById(keyword).checked = false;
-
-    var x = Number(document.getElementById("numItems").innerHTML);
-    x--;
-    document.getElementById("numItems").innerHTML = x;
-    if (x == 0) {
-        document.getElementById("thread").style.display = "none";
-    }
 }
 
 function reschedule2() {
@@ -628,8 +619,9 @@ function reschedule2() {
 
 function cancelIfRe() {
     var isRe = getCookie("resched");
-    console.log(isRe);
+    console.log("IsRe: " + isRe);
     if (isRe == "true") {
         cancelRequest();
+        setCookie("resched", "false", 1);
     }
 }

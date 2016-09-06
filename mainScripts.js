@@ -53,9 +53,9 @@ function getDates() {
 
     var district = getUrlVars()["district"];
 
-    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true";
-    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true";
-    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true";
+    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
 
     var myUrl = "";
 
