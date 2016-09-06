@@ -1,4 +1,4 @@
-var authorization2 = "7dOZZEWbJ1516pUoHsdDzsNh3l7ZvX_7N7WH1NiQNELB-pvwJxQ4w8l0OIUS6fJ5hp2f_OaKQIGN1AORC1gXP6KcTSz1LWVk5PPPKmy2eD-9Qlf4vLbJHwyofLKPm7ang_vAXrTfLzI2r5SxowVQcURyeF4oTxzPaJk_Nn7zUYmE7xgGBRcKizTbQdRvmkeTLLNuNiBVgK3gG9em35-J1rIt3sPM3ddGh5y4JtIyKzUFKXpMZyVzlwHJHV8AwrfV2X7MynAwFWOlKLWfsZ6j4Nmd9k6WnCxQF_CmutbpSF4V3iJ2ODvwGQlAOJitr82buVUHMIbLFAFzxK53kU8FPHbqdXQs-6ryCnDTZEjDtprYu3O_ynKm-WTtPr0g4MPl7dEF5hafjL6mV0Fj-vbs45Pbac4nuQnub-MFz48dyAcY7sMMPzZ9n-BIGj4bWewNBzQEgeywZ3YLW8PG9PZShDL22s27guoIlnmY82an22E1";
+var authorization2 = auth_token;
 
 var recordID = "";
 var capID = "";
@@ -6,20 +6,21 @@ var customId = "";
 
 function createUpdate() {
 
-    var buildingNumber = document.getElementById("buildingNumber2").innerHTML;
-    var streetAddress = document.getElementById("streetAddress2").innerHTML;
-    var firstName = document.getElementById("firstName").innerHTML;
-    var lastName = document.getElementById("lastName").innerHTML;
-    var userEmail = document.getElementById("emailAddress").innerHTML;
-    var phoneNumber = document.getElementById("phoneNumber").innerHTML;
+    var buildingNumber = document.getElementById("bldg-input").value;
+    var streetAddress = document.getElementById("street-input").value;
+    var firstName = document.getElementById("first-name").value;
+    var lastName = document.getElementById("last-name").value;
+    var userEmail = document.getElementById("email").value;
+    var phoneNumber = document.getElementById("phone").value;
     var suffix = "";
 
-    var bbl = document.getElementById("bbl3").value;
-    var district = document.getElementById("district3").value;
-    var lat = document.getElementById("lat3").value;
-    var lon = document.getElementById("lon3").value;
-    var cityName = document.getElementById("cityName3").value;
-    var zip = document.getElementById("zip3").value;
+    var crossStreet = document.getElementById('cs1').value + " / " + document.getElementById('cs2').value;
+    var bbl = document.getElementById("bbl").value;
+    var district = document.getElementById("district").value;
+    var lat = document.getElementById("lat").value;
+    var lon = document.getElementById("lon").value;
+    var cityName = document.getElementById("cityName").value;
+    var zip = document.getElementById("zip").value;
 
     var settings = {
         "async": false,
@@ -33,7 +34,7 @@ function createUpdate() {
             "postman-token": "aab06c5a-bde7-7b59-c426-874beb07ad16"
         },
         "processData": false,
-        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n            \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
+        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n           \"secondaryStreet\": \"" + crossStreet + "\",\r\n             \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
     }
 
     $.ajax(settings).done(function (response) {
@@ -43,23 +44,23 @@ function createUpdate() {
     });
 
     var computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods;
-    computers = Number(document.getElementById("numComps").innerHTML) + 0;
-    monitors = Number(document.getElementById("numMon").innerHTML) + 0;
-    keyboards = Number(document.getElementById("numEKey").innerHTML) + 0;
-    mice = Number(document.getElementById("numEMice").innerHTML) + 0;
-    fax = Number(document.getElementById("numFax").innerHTML) + 0;
-    peripherals = Number(document.getElementById("numTVP").innerHTML) + 0;
-    vcrs = Number(document.getElementById("numVCR").innerHTML) + 0;
-    dvrs = Number(document.getElementById("numDVR").innerHTML) + 0;
-    dvd = Number(document.getElementById("numDVD").innerHTML) + 0;
-    dcb = Number(document.getElementById("numDCB").innerHTML) + 0;
-    cable = Number(document.getElementById("numCable").innerHTML) + 0;
-    xbox = Number(document.getElementById("numXbox").innerHTML) + 0;
-    sss = Number(document.getElementById("numSSS").innerHTML) + 0;
-    portables = Number(document.getElementById("numPD").innerHTML) + 0;
-    ipods = Number(document.getElementById("numIpods").innerHTML) + 0;
+    computers = Number(document.getElementById("numComps").value) + 0;
+    monitors = Number(document.getElementById("numMon").value) + 0;
+    keyboards = Number(document.getElementById("numEKey").value) + 0;
+    mice = Number(document.getElementById("numEMice").value) + 0;
+    fax = Number(document.getElementById("numFax").value) + 0;
+    peripherals = Number(document.getElementById("numTVP").value) + 0;
+    vcrs = Number(document.getElementById("numVCR").value) + 0;
+    dvrs = Number(document.getElementById("numDVR").value) + 0;
+    dvd = Number(document.getElementById("numDVD").value) + 0;
+    dcb = Number(document.getElementById("numDCB").value) + 0;
+    cable = Number(document.getElementById("numCable").value) + 0;
+    xbox = Number(document.getElementById("numXbox").value) + 0;
+    sss = Number(document.getElementById("numSSS").value) + 0;
+    portables = Number(document.getElementById("numPD").value) + 0;
+    ipods = Number(document.getElementById("numIpods").value) + 0;
 
-    var televisions = Number(document.getElementById("numTV").innerHTML) + 0;
+    var televisions = Number(document.getElementById("numTV").value) + 0;
     var tv32 = 0;
     var tv43 = 0;
     var tv49 = 0;
@@ -68,7 +69,7 @@ function createUpdate() {
     var tv70 = 0;
 
     if (televisions == 1) {
-        var size1 = document.getElementById("tv1size").innerHTML;
+        var size1 = document.getElementById("tv1size").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -83,7 +84,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 2) {
-        var size1 = document.getElementById("tv1size").innerHTML;
+        var size1 = document.getElementById("tv1size").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -96,7 +97,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").innerHTML;
+        var size2 = document.getElementById("tv2size").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -111,7 +112,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 3) {
-        var size1 = document.getElementById("tv1size").innerHTML;
+        var size1 = document.getElementById("tv1size").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -124,7 +125,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").innerHTML;
+        var size2 = document.getElementById("tv2size").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -137,7 +138,7 @@ function createUpdate() {
             tv69++;
         if (size2 == "Larger than 70 inches")
             tv70++;
-        var size3 = document.getElementById("tv3size").innerHTML;
+        var size3 = document.getElementById("tv3size").value;
         if (size3 == "32 Inches and Under")
             tv32++;
         if (size3 == "33 to 43 inches")
@@ -152,7 +153,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 4) {
-        var size1 = document.getElementById("tv1size").innerHTML;
+        var size1 = document.getElementById("tv1size").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -165,7 +166,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").innerHTML;
+        var size2 = document.getElementById("tv2size").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -178,7 +179,7 @@ function createUpdate() {
             tv69++;
         if (size2 == "Larger than 70 inches")
             tv70++;
-        var size3 = document.getElementById("tv3size").innerHTML;
+        var size3 = document.getElementById("tv3size").value;
         if (size3 == "32 Inches and Under")
             tv32++;
         if (size3 == "33 to 43 inches")
@@ -191,7 +192,7 @@ function createUpdate() {
             tv69++;
         if (size3 == "Larger than 70 inches")
             tv70++;
-        var size4 = document.getElementById("tv4size").innerHTML;
+        var size4 = document.getElementById("tv4size").value;
         if (size4 == "32 Inches and Under")
             tv32++;
         if (size4 == "33 to 43 inches")
@@ -206,7 +207,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 5) {
-        var size1 = document.getElementById("tv1size").innerHTML;
+        var size1 = document.getElementById("tv1size").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -219,7 +220,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").innerHTML;
+        var size2 = document.getElementById("tv2size").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -232,7 +233,7 @@ function createUpdate() {
             tv69++;
         if (size2 == "Larger than 70 inches")
             tv70++;
-        var size3 = document.getElementById("tv3size").innerHTML;
+        var size3 = document.getElementById("tv3size").value;
         if (size3 == "32 Inches and Under")
             tv32++;
         if (size3 == "33 to 43 inches")
@@ -245,7 +246,7 @@ function createUpdate() {
             tv69++;
         if (size3 == "Larger than 70 inches")
             tv70++;
-        var size4 = document.getElementById("tv4size").innerHTML;
+        var size4 = document.getElementById("tv4size").value;
         if (size4 == "32 Inches and Under")
             tv32++;
         if (size4 == "33 to 43 inches")
@@ -258,7 +259,7 @@ function createUpdate() {
             tv69++;
         if (size4 == "Larger than 70 inches")
             tv70++;
-        var size5 = document.getElementById("tv5size").innerHTML;
+        var size5 = document.getElementById("tv5size").value;
         if (size5 == "32 Inches and Under")
             tv32++;
         if (size5 == "33 to 43 inches")
@@ -294,7 +295,7 @@ function createUpdate() {
     });
 
     // Schedule the Inspection on the Appropirate Date
-    var pickupDate = document.getElementById("pickupDate").innerHTML;
+    var pickupDate = document.getElementById("pickupDate").value;
     var settings = {
         "async": false,
         "crossDomain": true,

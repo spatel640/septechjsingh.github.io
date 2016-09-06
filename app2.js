@@ -29,7 +29,7 @@ app.controller('HomeController', function ($scope) {
 });
 
 app.controller('ReviewController', function ($scope) {
-    $scope.message = 'STEP 3 - Submit';
+    $scope.message = 'STEP 3 - Confirmation';
 });
 
 app.controller('ConfirmController', function ($scope) {

@@ -70,7 +70,6 @@ function enableElectronics() {
     document.getElementById("selectElectronics").disabled = false;
 }
 
-
 var expanded = false;
 
 function showCheckboxes() {
@@ -123,13 +122,6 @@ function fillInfo() {
     document.getElementById("verifiedBorough2").innerHTML = borough.toUpperCase();
     document.getElementById("CrossStreet1").innerHTML = cs1;
     document.getElementById("CrossStreet2").innerHTML = cs2;
-
-    document.getElementById("bbl3").value = bbl;
-    document.getElementById("district3").value = district;
-    document.getElementById("lat3").value = lat;
-    document.getElementById("lon3").value = lon;
-    document.getElementById("cityName3").value = cityName.split('+').join(' ');
-    document.getElementById("zip3").value = zip;
 
     // Fill in Pickup location & appointment Date
     var pickupLoc = getUrlVars()["selectLocation"];

@@ -93,6 +93,13 @@ function logResults(json) {
         document.getElementById("incorrect_address").innerHTML = "Address Verified.";
         document.getElementById("address-choices").style.height = "30px";
         document.getElementById("incorrect_address").style.display = "block";
+        document.getElementById("displayVerified").style.display = "block";
+
+        document.getElementById('buildingNumber').innerHTML = json.address.houseNumber;
+        document.getElementById('streetAddress').innerHTML = json.address.firstStreetNameNormalized;
+        document.getElementById('verifiedBorough').innerHTML = json.address.uspsPreferredCityName;
+        document.getElementById('crossStreet1').innerHTML = json.address.highCrossStreetName1;
+        document.getElementById('crossStreet2').innerHTML = json.address.lowCrossStreetName1;
 
         // Update Fields with Correct Address:
         document.getElementById("street-input").value = json.address.firstStreetNameNormalized;
@@ -300,5 +307,10 @@ function step2Validate() {
     console.log(y);
     var z = emailVal();
     console.log(z);
-    return (w && x && y && z);
+    if (w && x && y && z) {
+        cancelIfRe();
+        createUpdate();
+    } else {
+        return (w && x && y && x);
+    }
 }

@@ -1,4 +1,4 @@
-var authorize = "7dOZZEWbJ1516pUoHsdDzsNh3l7ZvX_7N7WH1NiQNELB-pvwJxQ4w8l0OIUS6fJ5hp2f_OaKQIGN1AORC1gXP6KcTSz1LWVk5PPPKmy2eD-9Qlf4vLbJHwyofLKPm7ang_vAXrTfLzI2r5SxowVQcURyeF4oTxzPaJk_Nn7zUYmE7xgGBRcKizTbQdRvmkeTLLNuNiBVgK3gG9em35-J1rIt3sPM3ddGh5y4JtIyKzUFKXpMZyVzlwHJHV8AwrfV2X7MynAwFWOlKLWfsZ6j4Nmd9k6WnCxQF_CmutbpSF4V3iJ2ODvwGQlAOJitr82buVUHMIbLFAFzxK53kU8FPHbqdXQs-6ryCnDTZEjDtprYu3O_ynKm-WTtPr0g4MPl7dEF5hafjL6mV0Fj-vbs45Pbac4nuQnub-MFz48dyAcY7sMMPzZ9n-BIGj4bWewNBzQEgeywZ3YLW8PG9PZShDL22s27guoIlnmY82an22E1";
+var authorize = auth_token;
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -83,6 +83,9 @@ function search() {
         setCookie("firstName", firstName, 1);
         setCookie("lastName", lastName, 1);
         setCookie("phoneNumber", phoneNumber, 1);
+        if (email == "" || email == undefined || email == null) {
+            email = "";
+        }
         setCookie("email", email, 1);
     });
 
@@ -241,14 +244,15 @@ function search() {
     }
 
     televisions = tv32 + tv43 + tv49 + tv59 + tv69 + tv70;
-    if (televisions == 0) {
-        document.getElementById("tvs2").style.display = "none";
+    console.log("Number of televisions: " + televisions);
+    if (televisions < 1) {
         document.getElementById("tv11").style.display = "none";
         document.getElementById("tv22").style.display = "none";
         document.getElementById("tv33").style.display = "none";
         document.getElementById("tv44").style.display = "none";
         document.getElementById("tv55").style.display = "none";
         document.getElementById("tv66").style.display = "none";
+        document.getElementById('numTelevisions2').style.display = "none";
     } else {
         document.getElementById("numTV2").innerHTML = televisions;
         if (tv32 == 0) {
@@ -284,7 +288,7 @@ function search() {
     }
 
     // Get the address
-    var streetStart, streetName, pickupLocation, streetType;
+    var streetStart, streetName, pickupLocation, streetType, crossS;
     var settings = {
         "async": false,
         "crossDomain": true,
@@ -301,6 +305,7 @@ function search() {
         console.log(response);
         streetStart = response.result[0].streetStart;
         streetName = response.result[0].streetName;
+        crossS = response.result[0].secondaryStreet;
         pickupLocation = "Curb";
 
         setCookie("streetStart", streetStart, 1);
@@ -310,7 +315,27 @@ function search() {
     document.getElementById("buildingNumber22").innerHTML = streetStart;
     document.getElementById("streetAddress22").innerHTML = streetName;
     document.getElementById("pickupLocation22").innerHTML = pickupLocation;
+    document.getElementById('crossS').innerHTML = crossS;
     document.getElementById("myModal").style.display = "block";
+
+    // Get Inspection Date
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "url": "https://apis.accela.com/v4/records/PARTNER-REC16-00000-0003E/inspections",
+        "method": "GET",
+        "headers": {
+            "authorization": authorize,
+            "cache-control": "no-cache",
+            "postman-token": "bb993a40-3687-403e-cc05-d953547bff10"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var insp_date = response.result[0].scheduleDate;
+        document.getElementById('pickupDate22').innerHTML = insp_date;
+    });
 }
 
 function closeThisBox() {

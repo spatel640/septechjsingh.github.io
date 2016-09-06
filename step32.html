@@ -3,15 +3,14 @@
 
 <p class="rightMe"><span class="requireMe">*</span>Denotes Required Field</p>
 <div class="sectionHeader">
-    <p>Review and Submit</p>
+    <p>Confirmation</p>
 </div>
-
-<input type="hidden" name="bbl3" id="bbl3" value="">
-<input type="hidden" name="lat3" id="lat3" value="">
-<input type="hidden" name="lon3" id="lon3" value="">
-<input type="hidden" name="district3" id="district3" value="">
-<input type="hidden" name="cityName3" id="cityName3" value="">
-<input type="hidden" name="zip3" id="zip3" value="">
+<br><br><br>
+<div class="receipt-message">
+    Thank you for submitting your E-Waste pick up request! <br> The users Service Request Number is: <span id="recordID">16DSNY-EWASTE0005</span>. <br> They will receive an email when tracking becomes available.
+    <br><br><br>
+    <a href="#/"><button class="pure-button black-button" id="schedule-another-pickup-button">Schedule Another Pick Up</button></a><br><br><br>
+</div>
 
 <div class="review-box-container">
     <div class="review-box">
@@ -115,12 +114,9 @@
                 </tr>
             </table>
         </div>
-        <div class="certification">
-            <a href="#/step42"><button class="pure-button black-button" id="submit-button" onclick="createUpdate()">Submit</button></a>
-        </div>
         <br>
     </div>
 </div>
 <br><br>
 
-<img id="step2Hidden" src="images/sanitation-logo.png" onload="fillInfo()">
+<img id="step2Hidden" src="images/sanitation-logo.png" onload="fillInfo(); onLastLoad()">

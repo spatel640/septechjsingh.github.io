@@ -1,4 +1,4 @@
-var authorization2 = "7dOZZEWbJ1516pUoHsdDzsNh3l7ZvX_7N7WH1NiQNELB-pvwJxQ4w8l0OIUS6fJ5hp2f_OaKQIGN1AORC1gXP6KcTSz1LWVk5PPPKmy2eD-9Qlf4vLbJHwyofLKPm7ang_vAXrTfLzI2r5SxowVQcURyeF4oTxzPaJk_Nn7zUYmE7xgGBRcKizTbQdRvmkeTLLNuNiBVgK3gG9em35-J1rIt3sPM3ddGh5y4JtIyKzUFKXpMZyVzlwHJHV8AwrfV2X7MynAwFWOlKLWfsZ6j4Nmd9k6WnCxQF_CmutbpSF4V3iJ2ODvwGQlAOJitr82buVUHMIbLFAFzxK53kU8FPHbqdXQs-6ryCnDTZEjDtprYu3O_ynKm-WTtPr0g4MPl7dEF5hafjL6mV0Fj-vbs45Pbac4nuQnub-MFz48dyAcY7sMMPzZ9n-BIGj4bWewNBzQEgeywZ3YLW8PG9PZShDL22s27guoIlnmY82an22E1";
+var authorization2 = auth_token;
 
 var recordID = "";
 var capID = "";
@@ -13,6 +13,7 @@ function createUpdate() {
     var userEmail = document.getElementById("emailAddress").innerHTML;
     var phoneNumber = document.getElementById("phoneNumber").innerHTML;
     var suffix = "";
+    var crossStreet = document.getElementById('crossStreet1').innerHTML + " / " + document.getElementById('crossStreet2').innerHTML;
 
     var bbl = document.getElementById("bbl3").value;
     var district = document.getElementById("district3").value;
@@ -33,7 +34,7 @@ function createUpdate() {
             "postman-token": "aab06c5a-bde7-7b59-c426-874beb07ad16"
         },
         "processData": false,
-        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n            \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
+        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n           \"secondaryStreet\": \"" + crossStreet + "\",\r\n             \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
     }
 
     $.ajax(settings).done(function (response) {

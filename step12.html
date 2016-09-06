@@ -93,7 +93,7 @@
     <br>
     <div class="address-validation-message" id="displayVerified">
         <p>
-            <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough">STATEN ISLAND</span></span>
+            <span class="boldMe">Address:</span> <span id="completeAddress"><span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough"></span></span>
             <br>
             <span class="boldMe">Cross Streets:</span> <span id="crossStreet1"></span> / <span id="crossStreet2"></span>
         </p>
@@ -205,7 +205,7 @@
             </tr>
             <tr class="tvSizes" id="tv1">
                 <td>TV # 1 &nbsp; &nbsp;
-                    <select class="tvSize" name="tv1">
+                    <select class="tvSize" name="tv1" id="tv1size">
                         <option>32 Inches and Under</option>
                         <option>33 to 43 inches</option>
                         <option>44 to 49 inches</option>
@@ -217,7 +217,7 @@
             </tr>
             <tr class="tvSizes" id="tv2">
                 <td>TV # 2 &nbsp; &nbsp;
-                    <select class="tvSize" name="tv2">
+                    <select class="tvSize" name="tv2" id="tv2size">
                         <option>32 Inches and Under</option>
                         <option>33 to 43 inches</option>
                         <option>44 to 49 inches</option>
@@ -229,7 +229,7 @@
             </tr>
             <tr class="tvSizes" id="tv3">
                 <td>TV # 3 &nbsp; &nbsp;
-                    <select class="tvSize" name="tv3">
+                    <select class="tvSize" name="tv3" id="tv3size">
                         <option>32 Inches and Under</option>
                         <option>33 to 43 inches</option>
                         <option>44 to 49 inches</option>
@@ -241,7 +241,7 @@
             </tr>
             <tr class="tvSizes" id="tv4">
                 <td>TV # 4 &nbsp; &nbsp;
-                    <select class="tvSize" name="tv4">
+                    <select class="tvSize" name="tv4" id="tv4size">
                         <option>32 Inches and Under</option>
                         <option>33 to 43 inches</option>
                         <option>44 to 49 inches</option>
@@ -253,7 +253,7 @@
             </tr>
             <tr class="tvSizes" id="tv5">
                 <td>TV # 5 &nbsp; &nbsp;
-                    <select class="tvSize" name="tv5">
+                    <select class="tvSize" name="tv5" id="tv5size">
                         <option>32 Inches and Under</option>
                         <option>33 to 43 inches</option>
                         <option>44 to 49 inches</option>
@@ -403,7 +403,7 @@
             <input type="email" id="confirm-email" name="confirmedEmail" placeholder="email@email.com">
         </div>
         <div class="buttons-p2">
-            <button class="pure-button black-button" type="submit" id="next-button-2" onclick="cancelIfRe()">Next <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <button class="pure-button black-button" type="submit" id="next-button-2">Submit <i class="fa fa-caret-right" aria-hidden="true"></i>
             </button>
         </div>
     </div>
