@@ -291,12 +291,77 @@ function part2Val() {
     return returnable;
 }
 
+function checkScheduleDate(insp_date, district) {
+    setCookie("invalidDate", "false", 1);
+
+    var returnable = false;
+    var now = moment();
+    var d = new Date();
+    var n = d.getHours();
+
+    if (n >= 12) {
+        now.add(1, 'days');
+    }
+
+    var temp = now.format('YYYY MM DD').toString();
+    var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
+
+    console.log(date2Pass);
+
+    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+
+    var myUrl = "";
+
+    if (district == "501")
+        myUrl = myUrl1;
+    else if (district == "502")
+        myUrl = myUrl2;
+    else
+        myUrl = myUrl3;
+
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "url": myUrl,
+        "method": "GET",
+        "headers": {
+            "authorization": auth_token,
+            "cache-control": "no-cache",
+            "postman-token": "2b42eb30-50a4-61dd-4153-9de32a983d81"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var datesArray = response.result;
+        for (i = 0; i < datesArray.length; i++) {
+            var validDate = datesArray[i].substring(0, datesArray[i].length - 9);
+            if (insp_date == validDate) {
+                console.log("FOUND A VALID DATE");
+                returnable = true;
+            }
+        }
+    });
+    return returnable;
+}
+
 
 function step2Validate() {
     var code = document.getElementById("geoCode").value;
     if (code != "00") {
         alert("Please validate Address before continuing.");
         return false;
+    }
+
+    var insp_date = document.getElementById('pickupDate').value;
+    var district = document.getElementById('district').value;
+    var v = checkScheduleDate(insp_date, district);
+
+    if (v == false) {
+        alert("The current appointment date is no longer available. Please pick another one.");
+        getDates();
     }
 
     var w = phoneVal();
@@ -307,10 +372,10 @@ function step2Validate() {
     console.log(y);
     var z = emailVal();
     console.log(z);
-    if (w && x && y && z) {
+    if (v && w && x && y && z) {
         cancelIfRe();
         createUpdate();
     } else {
-        return (w && x && y && x);
+        return (v && w && x && y && x);
     }
 }
