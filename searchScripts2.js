@@ -322,7 +322,7 @@ function search() {
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://apis.accela.com/v4/records/PARTNER-REC16-00000-0003E/inspections",
+        "url": "https://apis.accela.com/v4/records/" + capId + "/inspections",
         "method": "GET",
         "headers": {
             "authorization": authorize,
