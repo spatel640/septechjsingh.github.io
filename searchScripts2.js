@@ -344,6 +344,142 @@ function reschedule() {
     window.location.href = '/311Page.html';
 }
 
+function displayItem2(keyword) {
+    if (keyword == "one") {
+        document.getElementById("televisions").style.display = "block";
+    }
+    if (keyword == "two") {
+        document.getElementById("computers").style.display = "block";
+    }
+    if (keyword == "three") {
+        document.getElementById("monitors").style.display = "block";
+    }
+    if (keyword == "four") {
+        document.getElementById("keyboards").style.display = "block";
+    }
+    if (keyword == "five") {
+        document.getElementById("pointers").style.display = "block";
+    }
+    if (keyword == "six") {
+        document.getElementById("printers").style.display = "block";
+    }
+    if (keyword == "seven") {
+        document.getElementById("tvPeripherals").style.display = "block";
+    }
+    if (keyword == "eight") {
+        document.getElementById("vcrs").style.display = "block";
+    }
+    if (keyword == "nine") {
+        document.getElementById("dvrs").style.display = "block";
+    }
+    if (keyword == "ten") {
+        document.getElementById("dvd").style.display = "block";
+    }
+    if (keyword == "eleven") {
+        document.getElementById("dcb").style.display = "block";
+    }
+    if (keyword == "twelve") {
+        document.getElementById("cable").style.display = "block";
+    }
+    if (keyword == "thirteen") {
+        document.getElementById("xbox").style.display = "block";
+    }
+    if (keyword == "fourteen") {
+        document.getElementById("sss").style.display = "block";
+    }
+    if (keyword == "fifteen") {
+        document.getElementById("portables").style.display = "block";
+    }
+    if (keyword == "sixteen") {
+        document.getElementById("ipods").style.display = "block"
+    }
+
+    var x = Number(document.getElementById("numItems").innerHTML);
+    x++;
+    document.getElementById("numItems").innerHTML = x;
+}
+
+function hideItem2(keyword) {
+    if (keyword == "one") {
+        document.getElementById("televisions").style.display = "none";
+        document.getElementById("numTV").value = "";
+        document.getElementById("tv1").style.display = "none";
+        document.getElementById("tv2").style.display = "none";
+        document.getElementById("tv3").style.display = "none";
+        document.getElementById("tv4").style.display = "none";
+        document.getElementById("tv5").style.display = "none";
+    }
+    if (keyword == "two") {
+        document.getElementById("computers").style.display = "none";
+        document.getElementById("numComps").value = "";
+    }
+    if (keyword == "three") {
+        document.getElementById("monitors").style.display = "none";
+        document.getElementById("numMon").value = "";
+    }
+    if (keyword == "four") {
+        document.getElementById("keyboards").style.display = "none";
+        document.getElementById("numEKey").value = "";
+    }
+    if (keyword == "five") {
+        document.getElementById("pointers").style.display = "none";
+        document.getElementById("numEMice").value = "";
+    }
+    if (keyword == "six") {
+        document.getElementById("printers").style.display = "none";
+        document.getElementById("numFax").value = "";
+    }
+    if (keyword == "seven") {
+        document.getElementById("tvPeripherals").style.display = "none";
+        document.getElementById("numTVP").value = "";
+    }
+    if (keyword == "eight") {
+        document.getElementById("vcrs").style.display = "none";
+        document.getElementById("numVCR").value = "";
+    }
+    if (keyword == "nine") {
+        document.getElementById("dvrs").style.display = "none";
+        document.getElementById("numDVR").value = "";
+    }
+    if (keyword == "ten") {
+        document.getElementById("dvd").style.display = "none";
+        document.getElementById("numDVD").value = "";
+    }
+    if (keyword == "eleven") {
+        document.getElementById("dcb").style.display = "none";
+        document.getElementById("numDCB").value = "";
+    }
+    if (keyword == "twelve") {
+        document.getElementById("cable").style.display = "none";
+        document.getElementById("numCable").value = "";
+    }
+    if (keyword == "thirteen") {
+        document.getElementById("xbox").style.display = "none";
+        document.getElementById("numXbox").value = "";
+    }
+    if (keyword == "fourteen") {
+        document.getElementById("sss").style.display = "none";
+        document.getElementById("numSSS").value = "";
+    }
+    if (keyword == "fifteen") {
+        document.getElementById("portables").style.display = "none";
+        document.getElementById("numPD").value = "";
+    }
+    if (keyword == "sixteen") {
+        document.getElementById("ipods").style.display = "none";
+        document.getElementById("numIpods").value = "";
+    }
+
+    document.getElementById(keyword).checked = false;
+
+    var x = Number(document.getElementById("numItems").innerHTML);
+    x--;
+    document.getElementById("numItems").innerHTML = x;
+    if (x == 0) {
+        document.getElementById("thread").style.display = "none";
+    }
+}
+
 function reschedule2() {
     var bnum = getCookie("streetStart");
     var street = getCookie("streetName");
@@ -360,4 +496,112 @@ function reschedule2() {
     document.getElementById("phone").value = phoneNumber;
     document.getElementById("email").value = email;
     document.getElementById("confirm-email").value = email;
+
+    var computers = Number(getCookie("computers")) + 0;
+    alert(computers);
+    var monitors = Number(getCookie("monitors")) + 0;
+    var keyboards = Number(getCookie("keyboards")) + 0;
+    var mice = Number(getCookie("mice")) + 0;
+    var fax = Number(getCookie("fax")) + 0;
+    var peripherals = Number(getCookie("peripherals")) + 0;
+    var vcrs = Number(getCookie("vcrs")) + 0;
+    var dvrs = Number(getCookie("dvrs")) + 0;
+    var dvd = Number(getCookie("dvd")) + 0;
+    var dcb = Number(getCookie("dcb")) + 0;
+    var cable = Number(getCookie("cable")) + 0;
+    var xbox = Number(getCookie("xbox")) + 0;
+    var sss = Number(getCookie("sss")) + 0;
+    var portables = Number(getCookie("portables")) + 0;
+    var ipods = Number(getCookie("ipods")) + 0;
+
+    if (computers > 0) {
+        displayItem2('two');
+        document.getElementById('numComps').value = computers;
+    } else {
+        hideItem2('two');
+    }
+    if (monitors > 0) {
+        displayItem2('three');
+        document.getElementById('numMon').value = monitors;
+    } else {
+        hideItem2('three');
+    }
+    if (keyboards > 0) {
+        displayItem2('four');
+        document.getElementById('numEKey').value = keyboards;
+    } else {
+        hideItem2('four');
+    }
+    if (mice > 0) {
+        displayItem2('five');
+        document.getElementById('numEMice').value = mice;
+    } else {
+        hideItem2('five');
+    }
+    if (fax > 0) {
+        displayItem2('six');
+        document.getElementById('numFax').value = fax;
+    } else {
+        hideItem2('six');
+    }
+    if (peripherals > 0) {
+        displayItem2('seven');
+        document.getElementById('numTVP').value = peripherals;
+    } else {
+        hideItem2('seven');
+    }
+    if (vcrs > 0) {
+        displayItem2('eight');
+        document.getElementById('numVCR').value = vcrs;
+    } else {
+        hideItem2('eight');
+    }
+    if (dvrs > 0) {
+        displayItem2('nine');
+        document.getElementById('numDVR').value = dvrs;
+    } else {
+        hideItem2('nine');
+    }
+    if (dvd > 0) {
+        displayItem2('ten');
+        document.getElementById('numDVD').value = dvd;
+    } else {
+        hideItem2('ten');
+    }
+    if (dcb > 0) {
+        displayItem2('eleven');
+        document.getElementById('numDCB').value = dcb;
+    } else {
+        hideItem2('eleven');
+    }
+    if (cable > 0) {
+        displayItem2('twelve');
+        document.getElementById('numCable').value = cable;
+    } else {
+        hideItem2('twelve');
+    }
+    if (xbox > 0) {
+        displayItem2('thirteen');
+        document.getElementById('numXbox').value = xbox;
+    } else {
+        hideItem2('thirteen');
+    }
+    if (sss > 0) {
+        displayItem2('fourteen');
+        document.getElementById('numSSS').value = sss;
+    } else {
+        hideItem2('fourteen');
+    }
+    if (portables > 0) {
+        displayItem2('fifteen');
+        document.getElementById('numPD').value = portables;
+    } else {
+        hideItem2('fifteen');
+    }
+    if (ipods > 0) {
+        displayItem2('sixteen');
+        document.getElementById('numIpods').value = ipods;
+    } else {
+        hideItem2('sixteen');
+    }
 }
