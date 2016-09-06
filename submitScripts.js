@@ -4,6 +4,62 @@ var recordID = "";
 var capID = "";
 var customId = "";
 
+function checkScheduleDate(insp_date, district) {
+    setCookie("invalidDate", "false", 1);
+
+    var returnable = false;
+    var now = moment();
+    var d = new Date();
+    var n = d.getHours();
+
+    if (n >= 12) {
+        now.add(1, 'days');
+    }
+
+    var temp = now.format('YYYY MM DD').toString();
+    var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
+
+    console.log(date2Pass);
+
+    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+
+    var myUrl = "";
+
+    if (district == "501")
+        myUrl = myUrl1;
+    else if (district == "502")
+        myUrl = myUrl2;
+    else
+        myUrl = myUrl3;
+
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "url": myUrl,
+        "method": "GET",
+        "headers": {
+            "authorization": auth_token,
+            "cache-control": "no-cache",
+            "postman-token": "2b42eb30-50a4-61dd-4153-9de32a983d81"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var datesArray = response.result;
+        for (i = 0; i < datesArray.length; i++) {
+            var validDate = datesArray[i].substring(0, datesArray[i].length - 9);
+            if (insp_date == validDate) {
+                console.log("FOUND A VALID DATE");
+                returnable = true;
+            }
+        }
+    });
+    return returnable;
+}
+
 function createUpdate() {
 
     var buildingNumber = document.getElementById("buildingNumber2").innerHTML;
@@ -21,6 +77,13 @@ function createUpdate() {
     var lon = document.getElementById("lon3").value;
     var cityName = document.getElementById("cityName3").value;
     var zip = document.getElementById("zip3").value;
+    var pickupDate = document.getElementById("pickupDate").innerHTML;
+
+    var isDateValid = checkScheduleDate(pickupDate, district);
+    if (isDateValid == false) {
+        setCookie("invalidDate", "true", 1);
+        return;
+    }
 
     var settings = {
         "async": false,
@@ -295,7 +358,6 @@ function createUpdate() {
     });
 
     // Schedule the Inspection on the Appropirate Date
-    var pickupDate = document.getElementById("pickupDate").innerHTML;
     var settings = {
         "async": false,
         "crossDomain": true,
@@ -342,6 +404,13 @@ function getCookie(cname) {
 }
 
 function onLastLoad() {
-    var myRecord = getCookie("record");
-    document.getElementById("recordID").innerHTML = myRecord;
+    var inValidDate = getCookie("invalidDate");
+    if (inValidDate == "true") {
+        document.getElementById('receipt').innerHTML = "Sorry the pickup date you selected is no longer available. Please reschedule for another Date.";
+        $('#track-request-button').prop('disabled', 'disabled');
+    } else {
+        var myRecord = getCookie("record");
+        document.getElementById("recordID").innerHTML = myRecord;
+    }
+    setCookie("invalidDate", "false", 1);
 }
