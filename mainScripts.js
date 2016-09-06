@@ -8,6 +8,7 @@ function enableBorough() {
 
 var auth_token = "7dOZZEWbJ1516pUoHsdDzsNh3l7ZvX_7N7WH1NiQNELB-pvwJxQ4w8l0OIUS6fJ5hp2f_OaKQIGN1AORC1gXP6KcTSz1LWVk5PPPKmy2eD-9Qlf4vLbJHwyofLKPm7ang_vAXrTfLzI2r5SxowVQcURyeF4oTxzPaJk_Nn7zUYmE7xgGBRcKizTbQdRvmkeTLLNuNiBVgK3gG9em35-J1rIt3sPM3ddGh5y4JtIyKzUFKXpMZyVzlwHJHV8AwrfV2X7MynAwFWOlKLWfsZ6j4Nmd9k6WnCxQF_CmutbpSF4V3iJ2ODvwGQlAOJitr82buVUHMIbLFAFzxK53kU8FPHbqdXQs-6ryCnDTZEjDtprYu3O_ynKm-WTtPr0g4MPl7dEF5hafjL6mV0Fj-vbs45Pbac4nuQnub-MFz48dyAcY7sMMPzZ9n-BIGj4bWewNBzQEgeywZ3YLW8PG9PZShDL22s27guoIlnmY82an22E1";
 
+
 function page1InfoRecap() {
     var bldg2 = getUrlVars()["bldg2"];
     if (bldg2 == null || bldg2 == undefined || bldg2 == "") {

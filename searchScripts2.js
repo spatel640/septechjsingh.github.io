@@ -1,5 +1,26 @@
 var authorize = "7dOZZEWbJ1516pUoHsdDzsNh3l7ZvX_7N7WH1NiQNELB-pvwJxQ4w8l0OIUS6fJ5hp2f_OaKQIGN1AORC1gXP6KcTSz1LWVk5PPPKmy2eD-9Qlf4vLbJHwyofLKPm7ang_vAXrTfLzI2r5SxowVQcURyeF4oTxzPaJk_Nn7zUYmE7xgGBRcKizTbQdRvmkeTLLNuNiBVgK3gG9em35-J1rIt3sPM3ddGh5y4JtIyKzUFKXpMZyVzlwHJHV8AwrfV2X7MynAwFWOlKLWfsZ6j4Nmd9k6WnCxQF_CmutbpSF4V3iJ2ODvwGQlAOJitr82buVUHMIbLFAFzxK53kU8FPHbqdXQs-6ryCnDTZEjDtprYu3O_ynKm-WTtPr0g4MPl7dEF5hafjL6mV0Fj-vbs45Pbac4nuQnub-MFz48dyAcY7sMMPzZ9n-BIGj4bWewNBzQEgeywZ3YLW8PG9PZShDL22s27guoIlnmY82an22E1";
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 function search() {
 
@@ -34,6 +55,8 @@ function search() {
     var phoneNumber;
     var email;
 
+    setCookie("capCookie", capId, 1);
+
     // Get the Contact Information
     var settings = {
         "async": false,
@@ -56,6 +79,11 @@ function search() {
         lastName = response.result[0].lastName;
         phoneNumber = response.result[0].phone3;
         email = response.result[0].email;
+
+        setCookie("firstName", firstName, 1);
+        setCookie("lastName", lastName, 1);
+        setCookie("phoneNumber", phoneNumber, 1);
+        setCookie("email", email, 1);
     });
 
     document.getElementById("firstName22").innerHTML = firstName;
@@ -102,6 +130,22 @@ function search() {
         sss = Number(response.result[1]["Small scale servers"]) + 0;
         portables = Number(response.result[1]["Portable devices, including any permanently attached cable or wiring"]) + 0;
         ipods = Number(response.result[1]["Portable digital music players"]) + 0;
+
+        setCookie("computers", computers, 1);
+        setCookie("monitors", monitors, 1);
+        setCookie("keyboards", keyboards, 1);
+        setCookie("mice", mice, 1);
+        setCookie("fax", fax, 1);
+        setCookie("peripherals", peripherals, 1);
+        setCookie("vcrs", vcrs, 1);
+        setCookie("dvrs", dvrs, 1);
+        setCookie("dvd", dvd, 1);
+        setCookie("dcb", dcb, 1);
+        setCookie("cable", cable, 1);
+        setCookie("xbox", xbox, 1);
+        setCookie("sss", sss, 1);
+        setCookie("portables", portables, 1);
+        setCookie("ipods", ipods, 1);
 
         console.log("Number of monitors: " + monitors);
     });
@@ -258,6 +302,9 @@ function search() {
         streetStart = response.result[0].streetStart;
         streetName = response.result[0].streetName;
         pickupLocation = "Curb";
+
+        setCookie("streetStart", streetStart, 1);
+        setCookie("streetName", streetName, 1);
     });
 
     document.getElementById("buildingNumber22").innerHTML = streetStart;
@@ -271,7 +318,7 @@ function closeThisBox() {
 }
 
 function cancelRequest() {
-    var capId = document.getElementById("search-text").value;
+    var capId = getCookie("capCookie");
     var settings = {
         "async": false,
         "crossDomain": true,
@@ -289,4 +336,28 @@ function cancelRequest() {
     });
 
     document.getElementById("myModal").style.display = "none";
+}
+
+
+function reschedule() {
+    cancelRequest();
+    window.location.href = '/311Page.html';
+}
+
+function reschedule2() {
+    var bnum = getCookie("streetStart");
+    var street = getCookie("streetName");
+
+    var firstName = getCookie("firstName");
+    var lastName = getCookie("lastName");
+    var phoneNumber = getCookie("phoneNumber");
+    var email = getCookie("email");
+
+    document.getElementById("bldg-input").value = Number(bnum);
+    document.getElementById("street-input").value = street;
+    document.getElementById("first-name").value = firstName;
+    document.getElementById("last-name").value = lastName;
+    document.getElementById("phone").value = phoneNumber;
+    document.getElementById("email").value = email;
+    document.getElementById("confirm-email").value = email;
 }
