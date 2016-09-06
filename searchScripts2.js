@@ -498,7 +498,6 @@ function reschedule2() {
     document.getElementById("confirm-email").value = email;
 
     var computers = Number(getCookie("computers")) + 0;
-    alert(computers);
     var monitors = Number(getCookie("monitors")) + 0;
     var keyboards = Number(getCookie("keyboards")) + 0;
     var mice = Number(getCookie("mice")) + 0;
