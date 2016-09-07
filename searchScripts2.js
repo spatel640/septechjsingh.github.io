@@ -351,7 +351,12 @@ function search() {
         console.log(response);
         var insp_date = response.result[0].scheduleDate;
         document.getElementById('pickupDate22').innerHTML = insp_date;
+        if (response.result[0].status.text == "Pickup Complete" || response.result[0].status.text == "Additional / Missing") {
+            $('#cancel').hide();
+            $('#reschedule').hide();
+        }
     });
+    $('#mtc').css("font-weight", "Bolder");
 }
 
 function closeThisBox() {
