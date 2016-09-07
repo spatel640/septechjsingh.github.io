@@ -136,6 +136,12 @@ function search() {
         portables = Number(response.result[1]["Portable devices, including any permanently attached cable or wiring"]) + 0;
         ipods = Number(response.result[1]["Portable digital music players"]) + 0;
 
+        setCookie("tv32", tv32, 1);
+        setCookie("tv43", tv43, 1);
+        setCookie("tv49", tv49, 1);
+        setCookie("tv59", tv59, 1);
+        setCookie("tv69", tv69, 1);
+        setCookie("tv70", tv70, 1);
         setCookie("computers", computers, 1);
         setCookie("monitors", monitors, 1);
         setCookie("keyboards", keyboards, 1);
@@ -261,32 +267,39 @@ function search() {
             document.getElementById("tv11").style.display = "none";
         } else {
             console.log("Num 32 TVs: " + tv32);
-            document.getElementById("tv1size").innerHTML = tv32;
+            document.getElementById("tv11").style.display = "block";
+            document.getElementById("tv1size2").innerHTML = tv32;
         }
         if (tv43 == 0) {
             document.getElementById("tv22").style.display = "none";
         } else {
-            document.getElementById("tv2size").innerHTML = tv43;
+            document.getElementById("tv22").style.display = "block";
+            document.getElementById("tv2size2").innerHTML = tv43;
         }
         if (tv49 == 0) {
             document.getElementById("tv33").style.display = "none";
         } else {
-            document.getElementById("tv3size").innerHTML = tv49;
+            document.getElementById("tv33").style.display = "block";
+            document.getElementById("tv3size2").innerHTML = tv49;
         }
+        console.log(tv59);
         if (tv59 == 0) {
             document.getElementById("tv44").style.display = "none";
         } else {
-            document.getElementById("tv4size").innerHTML = tv59;
+            document.getElementById("tv44").style.display = "block";
+            document.getElementById("tv4size2").innerHTML = tv59;
         }
         if (tv69 == 0) {
             document.getElementById("tv55").style.display = "none";
         } else {
-            document.getElementById("tv5size").innerHTML = tv69;
+            document.getElementById("tv55").style.display = "block";
+            document.getElementById("tv5size2").innerHTML = tv69;
         }
         if (tv70 == 0) {
             document.getElementById("tv66").style.display = "none";
         } else {
-            document.getElementById("tv6size").innerHTML = tv70;
+            document.getElementById("tv66").style.display = "block";
+            document.getElementById("tv6size2").innerHTML = tv70;
         }
     }
 
@@ -502,6 +515,7 @@ function hideItem2(keyword) {
 function reschedule2() {
     setCookie("isDelete", "false", 1);
     var isRe = getCookie("resched");
+    console.log("Is Reschedule: " + isRe);
     if (isRe == "true") {
         var capCook = getCookie("capCookie");
         var aloha = getCookie("aloha");
@@ -629,6 +643,21 @@ function reschedule2() {
             hideItem2('sixteen');
         }
 
+        var tv32 = Number(getCookie("tv32")) + 0;
+        var tv43 = Number(getCookie("tv43")) + 0;
+        var tv49 = Number(getCookie("tv49")) + 0;
+        var tv59 = Number(getCookie("tv59")) + 0;
+        var tv69 = Number(getCookie("tv69")) + 0;
+        var tv70 = Number(getCookie("tv70")) + 0;
+
+        showTVs(tv32, tv43, tv49, tv59, tv69, tv70);
+
+        setCookie("tv32", tv32, -1);
+        setCookie("tv43", tv43, -1);
+        setCookie("tv49", tv49, -1);
+        setCookie("tv59", tv59, -1);
+        setCookie("tv69", tv69, -1);
+        setCookie("tv70", tv70, -1);
         setCookie("computers", computers, -1);
         setCookie("monitors", monitors, -1);
         setCookie("keyboards", keyboards, -1);
@@ -646,6 +675,71 @@ function reschedule2() {
         setCookie("ipods", ipods, -1);
         setCookie("resched", "false", 1);
         setCookie("isDelete", "true", 1);
+    }
+}
+
+function showTVs(tv32, tv43, tv49, tv59, tv69, tv70) {
+    var numTVs1 = tv32 + tv43 + tv49 + tv59 + tv69 + tv70;
+    if (numTVs1 == "") {
+        document.getElementById("televisions").style.display = "none";
+    } else {
+        document.getElementById("televisions").style.display = "block";
+        document.getElementById("numTV").value = numTVs1;
+        if (numTVs1 == "1") {
+            document.getElementById("tv1").style.display = "block";
+        }
+        if (numTVs1 == "2") {
+            document.getElementById("tv1").style.display = "block";
+            document.getElementById("tv2").style.display = "block";
+        }
+        if (numTVs1 == "3") {
+            document.getElementById("tv1").style.display = "block";
+            document.getElementById("tv2").style.display = "block";
+            document.getElementById("tv3").style.display = "block";
+        }
+        if (numTVs1 == "4") {
+            document.getElementById("tv1").style.display = "block";
+            document.getElementById("tv2").style.display = "block";
+            document.getElementById("tv3").style.display = "block";
+            document.getElementById("tv4").style.display = "block";
+        }
+        if (numTVs1 == "5") {
+            document.getElementById("tv1").style.display = "block";
+            document.getElementById("tv2").style.display = "block";
+            document.getElementById("tv3").style.display = "block";
+            document.getElementById("tv4").style.display = "block";
+            document.getElementById("tv5").style.display = "block";
+        }
+    }
+    while (tv70 != 0 && numTVs1 != 0) {
+        var tvString = "tv" + numTVs1 + "size1";
+        document.getElementById(tvString).value = "Larger than 70 inches";
+        tv70 = tv70 - 1;
+        numTVs1 = numTVs1 - 1;
+    }
+    while (tv69 != 0 && numTVs1 != 0) {
+        var tvString = "tv" + numTVs1 + "size1";
+        document.getElementById(tvString).value = "60 to 69 inches";
+        tv69 = tv69 - 1;
+        numTVs1 = numTVs1 - 1;
+    }
+    while (tv59 != 0 && numTVs1 != 0) {
+        var tvString = "tv" + numTVs1 + "size1";
+        document.getElementById(tvString).value = "50 to 59 inches";
+        tv59 = tv59 - 1;
+        numTVs1 = numTVs1 - 1;
+    }
+    while (tv49 != 0 && numTVs1 != 0) {
+        var tvString = "tv" + numTVs1 + "size1";
+        document.getElementById(tvString).value = "44 to 49 inches";
+        tv49 = tv49 - 1;
+        numTVs1 = numTVs1 - 1;
+    }
+    while (tv43 != 0 && numTVs1 != 0) {
+        var tvString = "tv" + numTVs1 + "size1";
+        document.getElementById(tvString).value = "33 to 43 inches";
+        tv43 = tv43 - 1;
+        numTVs1 = numTVs1 - 1;
     }
 }
 
