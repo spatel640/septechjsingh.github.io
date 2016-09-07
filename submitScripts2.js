@@ -69,7 +69,7 @@ function createUpdate() {
     var tv70 = 0;
 
     if (televisions == 1) {
-        var size1 = document.getElementById("tv1size").value;
+        var size1 = document.getElementById("tv1size1").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -84,7 +84,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 2) {
-        var size1 = document.getElementById("tv1size").value;
+        var size1 = document.getElementById("tv1size1").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -97,7 +97,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").value;
+        var size2 = document.getElementById("tv2size1").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -112,7 +112,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 3) {
-        var size1 = document.getElementById("tv1size").value;
+        var size1 = document.getElementById("tv1size1").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -125,7 +125,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").value;
+        var size2 = document.getElementById("tv2size1").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -138,7 +138,7 @@ function createUpdate() {
             tv69++;
         if (size2 == "Larger than 70 inches")
             tv70++;
-        var size3 = document.getElementById("tv3size").value;
+        var size3 = document.getElementById("tv3size1").value;
         if (size3 == "32 Inches and Under")
             tv32++;
         if (size3 == "33 to 43 inches")
@@ -153,7 +153,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 4) {
-        var size1 = document.getElementById("tv1size").value;
+        var size1 = document.getElementById("tv1size1").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -166,7 +166,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").value;
+        var size2 = document.getElementById("tv2size1").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -179,7 +179,7 @@ function createUpdate() {
             tv69++;
         if (size2 == "Larger than 70 inches")
             tv70++;
-        var size3 = document.getElementById("tv3size").value;
+        var size3 = document.getElementById("tv3size1").value;
         if (size3 == "32 Inches and Under")
             tv32++;
         if (size3 == "33 to 43 inches")
@@ -192,7 +192,7 @@ function createUpdate() {
             tv69++;
         if (size3 == "Larger than 70 inches")
             tv70++;
-        var size4 = document.getElementById("tv4size").value;
+        var size4 = document.getElementById("tv4size1").value;
         if (size4 == "32 Inches and Under")
             tv32++;
         if (size4 == "33 to 43 inches")
@@ -207,7 +207,7 @@ function createUpdate() {
             tv70++;
     }
     if (televisions == 5) {
-        var size1 = document.getElementById("tv1size").value;
+        var size1 = document.getElementById("tv1size1").value;
         if (size1 == "32 Inches and Under")
             tv32++;
         if (size1 == "33 to 43 inches")
@@ -220,7 +220,7 @@ function createUpdate() {
             tv69++;
         if (size1 == "Larger than 70 inches")
             tv70++;
-        var size2 = document.getElementById("tv2size").value;
+        var size2 = document.getElementById("tv2size1").value;
         if (size2 == "32 Inches and Under")
             tv32++;
         if (size2 == "33 to 43 inches")
@@ -233,7 +233,7 @@ function createUpdate() {
             tv69++;
         if (size2 == "Larger than 70 inches")
             tv70++;
-        var size3 = document.getElementById("tv3size").value;
+        var size3 = document.getElementById("tv3size1").value;
         if (size3 == "32 Inches and Under")
             tv32++;
         if (size3 == "33 to 43 inches")
@@ -246,7 +246,7 @@ function createUpdate() {
             tv69++;
         if (size3 == "Larger than 70 inches")
             tv70++;
-        var size4 = document.getElementById("tv4size").value;
+        var size4 = document.getElementById("tv4size1").value;
         if (size4 == "32 Inches and Under")
             tv32++;
         if (size4 == "33 to 43 inches")
@@ -259,7 +259,7 @@ function createUpdate() {
             tv69++;
         if (size4 == "Larger than 70 inches")
             tv70++;
-        var size5 = document.getElementById("tv5size").value;
+        var size5 = document.getElementById("tv5size1").value;
         if (size5 == "32 Inches and Under")
             tv32++;
         if (size5 == "33 to 43 inches")

@@ -24,7 +24,7 @@ function getCookie(cname) {
 
 function search() {
 
-    var myCustomId = document.getElementById("search-text").value;
+    var myCustomId = document.getElementById("search-text").value.trim();
     var capId = "";
 
     // Get the Cap Id:
@@ -258,6 +258,7 @@ function search() {
         if (tv32 == 0) {
             document.getElementById("tv11").style.display = "none";
         } else {
+            console.log("Num 32 TVs: " + tv32);
             document.getElementById("tv1size").innerHTML = tv32;
         }
         if (tv43 == 0) {
@@ -639,6 +640,7 @@ function reschedule2() {
         setCookie("sss", sss, -1);
         setCookie("portables", portables, -1);
         setCookie("ipods", ipods, -1);
+        setCookie("resched", "false", 1);
     }
 }
 
