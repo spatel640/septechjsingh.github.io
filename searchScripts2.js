@@ -27,6 +27,8 @@ function search() {
     var myCustomId = document.getElementById("search-text").value.trim();
     var capId = "";
 
+    setCookie("aloha", myCustomId, 1);
+
     // Get the Cap Id:
     var settings = {
         "async": false,
@@ -498,10 +500,12 @@ function hideItem2(keyword) {
 }
 
 function reschedule2() {
+    setCookie("isDelete", "false", 1);
     var isRe = getCookie("resched");
     if (isRe == "true") {
         var capCook = getCookie("capCookie");
-        document.getElementById("search-text").value = capCook;
+        var aloha = getCookie("aloha");
+        document.getElementById("search-text").value = aloha;
         var bnum = getCookie("streetStart");
         var street = getCookie("streetName");
 
@@ -641,14 +645,16 @@ function reschedule2() {
         setCookie("portables", portables, -1);
         setCookie("ipods", ipods, -1);
         setCookie("resched", "false", 1);
+        setCookie("isDelete", "true", 1);
     }
 }
 
 function cancelIfRe() {
-    var isRe = getCookie("resched");
-    console.log("IsRe: " + isRe);
-    if (isRe == "true") {
+    var isDel = getCookie("isDelete");
+    console.log("IsDel: " + isDel);
+    if (isDel == "true") {
         cancelRequest();
         setCookie("resched", "false", 1);
+        setCookie("isDelete", "false", 1);
     }
 }
