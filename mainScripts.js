@@ -82,19 +82,15 @@ function getDates() {
 
     $.ajax(settings).done(function (response) {
         console.log(response);
-
         var datesArray = response.result;
-        console.log("Date 1: " + datesArray[0]);
-        console.log("Date 2: " + datesArray[1]);
-        console.log("Date 3: " + datesArray[2]);
 
-        document.getElementById("date1").innerHTML = datesArray[0].substring(0, datesArray[0].length - 9);
-        document.getElementById("date2").innerHTML = datesArray[1].substring(0, datesArray[1].length - 9);
-        document.getElementById("date3").innerHTML = datesArray[2].substring(0, datesArray[2].length - 9);
-
-        document.getElementById("date1").value = datesArray[0].substring(0, datesArray[0].length - 9);;
-        document.getElementById("date2").value = datesArray[1].substring(0, datesArray[1].length - 9);
-        document.getElementById("date3").value = datesArray[2].substring(0, datesArray[2].length - 9);
+        var i = 0;
+        for (i = 0; i < 14; i++) {
+            var dateString = "date" + (i + 1);
+            document.getElementById(dateString).innerHTML = datesArray[i].substring(0, datesArray[i].length - 9);
+            document.getElementById(dateString).value = datesArray[i].substring(0, datesArray[i].length - 9);
+            console.log(dateString + " " + datesArray[i].substring(0, datesArray[i].length - 9));
+        }
     });
     document.getElementById("location-message").style.display = "none";
     document.getElementById("pickupDate").disabled = false;

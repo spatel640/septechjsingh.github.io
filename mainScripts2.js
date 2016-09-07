@@ -48,7 +48,6 @@ function getDates() {
 
     $.ajax(settings).done(function (response) {
         console.log(response);
-
         var datesArray = response.result;
 
         var i = 0;
