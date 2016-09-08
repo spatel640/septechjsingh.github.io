@@ -886,7 +886,7 @@ ul.leaders span+ span {
     }
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 736px) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 736px) and (orientation: landscape) {
     /* STYLES GO HERE */
     .applicant-address {
         max-width: 750px;
