@@ -597,7 +597,71 @@ ul.leaders span+ span {
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
+    .applicant-address {
+        max-width: 905px;
+        width: 96%;
+        margin: 0 auto;
+        padding: 0.5em 0 1em 1.5em;
+        text-align: center;
+    }
+    .applicant-borough {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bolder;
+        max-width: 181px;
+        width: 100%;
+        padding-right: 40px;
+        display: block;
+    }
+    #brgh {
+        height: 42px;
+        width: 100%;
+    }
+    .applicant-bldg {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bolder;
+        width: 100%;
+        max-width: 181px;
+        display: block;
+    }
+    #bldg-input {
+        width: 120px;
+        height: 30px
+    }
+    .applicant-street {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bolder;
+        width: 100%;
+        max-width: 362px;
+        display: block;
+    }
+    #street-input {
+        width: 85%;
+    }
+    #verify-contain {
+        display: block;
+        max-width: 40px;
+    }
+    .search-button {
+        background-color: #0E8C1B;
+        color: white;
+        opacity: .9;
+        text-align: left;
+        padding-top: 14px;
+        padding-bottom: 7.4px;
+    }
     /* STYLES GO HERE */
+    .specific-info {
+        width: 100%;
+        max-width: 905px;
+        min-width: 320px;
+        margin: 0 auto;
+        text-align: left;
+        padding-left: 25px;
+        padding-bottom: 15px;
+    }
     .pick-up-location-appointment {
         min-width: 300px;
         text-align: left;
