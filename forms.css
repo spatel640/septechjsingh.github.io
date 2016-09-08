@@ -596,7 +596,7 @@ ul.leaders span+ span {
     display: none;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 736px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
     /* STYLES GO HERE */
     .pick-up-location-appointment {
         min-width: 300px;
@@ -610,7 +610,6 @@ ul.leaders span+ span {
         text-align: left;
         font-size: 13px;
         font-weight: bolder;
-        margin-left: 6px;
         display: block;
     }
     .electronics {
@@ -625,7 +624,6 @@ ul.leaders span+ span {
         max-width: 320px;
         margin: 0 auto;
         text-align: left;
-        padding-left: 25px;
         padding-bottom: 15px;
         display: block;
     }
@@ -633,7 +631,6 @@ ul.leaders span+ span {
         min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
-        margin-right: 21px;
         display: block;
     }
     .last-of-my-name {
@@ -646,7 +643,6 @@ ul.leaders span+ span {
         min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
-        margin-right: 21px;
         display: block;
     }
     .email {
@@ -659,7 +655,6 @@ ul.leaders span+ span {
         min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
-        margin-right: 21px;
         display: block;
     }
 }
