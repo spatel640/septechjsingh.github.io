@@ -924,8 +924,24 @@ ul.leaders span+ span {
         background-color: #15d228;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         margin-top: 10px;
-        padding: 0;
         margin: 0;
+        padding: 0;
+    }
+    #track-request-button {
+        height: 35px;
+        width: 150px;
+        color: white;
+        background-color: #15d228;
+        margin: 0;
+        padding: 0;
+    }
+    #schedule-another-pickup-button {
+        height: 35px;
+        width: 150px;
+        color: white;
+        background-color: #15d228;
+        margin: 0;
+        padding: 0;
     }
 }
 
