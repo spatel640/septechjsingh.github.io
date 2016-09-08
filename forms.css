@@ -614,7 +614,7 @@ ul.leaders span+ span {
         display: block;
     }
     .electronics {
-        min-width: 300px;
+        max-width: 300px;
         text-align: left;
         font-size: 13px;
         font-weight: bolder;
