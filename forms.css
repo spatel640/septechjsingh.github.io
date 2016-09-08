@@ -655,7 +655,7 @@ ul.leaders span+ span {
         max-width: 905px;
         min-width: 320px;
         margin: 0 auto;
-        text-align: left;
+        text-align: center;
         padding-left: 25px;
         padding-bottom: 15px;
     }
@@ -684,7 +684,7 @@ ul.leaders span+ span {
         padding-top: 1.5em;
         max-width: 320px;
         margin: 0 auto;
-        text-align: left;
+        text-align: center;
         padding-bottom: 15px;
         display: block;
     }
