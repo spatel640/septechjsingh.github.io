@@ -62,6 +62,27 @@ function checkScheduleDate(insp_date, district) {
 
 function createUpdate() {
 
+    var computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods;
+    computers = Number(document.getElementById("numComps").innerHTML) + 0;
+    monitors = Number(document.getElementById("numMon").innerHTML) + 0;
+    keyboards = Number(document.getElementById("numEKey").innerHTML) + 0;
+    mice = Number(document.getElementById("numEMice").innerHTML) + 0;
+    fax = Number(document.getElementById("numFax").innerHTML) + 0;
+    peripherals = Number(document.getElementById("numTVP").innerHTML) + 0;
+    vcrs = Number(document.getElementById("numVCR").innerHTML) + 0;
+    dvrs = Number(document.getElementById("numDVR").innerHTML) + 0;
+    dvd = Number(document.getElementById("numDVD").innerHTML) + 0;
+    dcb = Number(document.getElementById("numDCB").innerHTML) + 0;
+    cable = Number(document.getElementById("numCable").innerHTML) + 0;
+    xbox = Number(document.getElementById("numXbox").innerHTML) + 0;
+    sss = Number(document.getElementById("numSSS").innerHTML) + 0;
+    portables = Number(document.getElementById("numPD").innerHTML) + 0;
+    ipods = Number(document.getElementById("numIpods").innerHTML) + 0;
+
+    var televisions = Number(document.getElementById("numTV").innerHTML) + 0;
+
+    var electronicDevicesTotal = computers + monitors + keyboards + mice + fax + peripherals + vcrs + dvrs + dvd + dcb + cable + xbox + sss + portables + ipods + televisions + 0;
+
     var buildingNumber = document.getElementById("buildingNumber2").innerHTML;
     var streetAddress = document.getElementById("streetAddress2").innerHTML;
     var firstName = document.getElementById("firstName").innerHTML;
@@ -97,7 +118,7 @@ function createUpdate() {
             "postman-token": "aab06c5a-bde7-7b59-c426-874beb07ad16"
         },
         "processData": false,
-        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n   \"name\": \"YOOELLLELELLELLELLELELLELEL\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n           \"secondaryStreet\": \"" + crossStreet + "\",\r\n             \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
+        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n   \"name\": \"" + electronicDevicesTotal + " Devices (" + televisions + " TVs)" + "\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n           \"secondaryStreet\": \"" + crossStreet + "\",\r\n             \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
     }
 
     $.ajax(settings).done(function (response) {
@@ -106,24 +127,7 @@ function createUpdate() {
         customId = response.result["customId"];
     });
 
-    var computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods;
-    computers = Number(document.getElementById("numComps").innerHTML) + 0;
-    monitors = Number(document.getElementById("numMon").innerHTML) + 0;
-    keyboards = Number(document.getElementById("numEKey").innerHTML) + 0;
-    mice = Number(document.getElementById("numEMice").innerHTML) + 0;
-    fax = Number(document.getElementById("numFax").innerHTML) + 0;
-    peripherals = Number(document.getElementById("numTVP").innerHTML) + 0;
-    vcrs = Number(document.getElementById("numVCR").innerHTML) + 0;
-    dvrs = Number(document.getElementById("numDVR").innerHTML) + 0;
-    dvd = Number(document.getElementById("numDVD").innerHTML) + 0;
-    dcb = Number(document.getElementById("numDCB").innerHTML) + 0;
-    cable = Number(document.getElementById("numCable").innerHTML) + 0;
-    xbox = Number(document.getElementById("numXbox").innerHTML) + 0;
-    sss = Number(document.getElementById("numSSS").innerHTML) + 0;
-    portables = Number(document.getElementById("numPD").innerHTML) + 0;
-    ipods = Number(document.getElementById("numIpods").innerHTML) + 0;
 
-    var televisions = Number(document.getElementById("numTV").innerHTML) + 0;
     var tv32 = 0;
     var tv43 = 0;
     var tv49 = 0;

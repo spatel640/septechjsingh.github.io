@@ -10,6 +10,7 @@ var auth_token = "ikIA_XgK2RC39Omt-GP6_cnK0OuiNShxG9_4g78si_pKISAoPwIuU_fngnHzCl
 
 
 function page1InfoRecap() {
+    $('#submit-address').prop('disabled', true);
     var bldg2 = getUrlVars()["bldg2"];
     if (bldg2 == null || bldg2 == undefined || bldg2 == "") {
 

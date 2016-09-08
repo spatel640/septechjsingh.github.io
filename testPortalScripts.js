@@ -36,6 +36,7 @@ function logResults(json) {
         document.getElementById("correct_street").style.display = "block";
         document.getElementById("correct_borough").style.display = "block";
         document.getElementById("zip_code").style.display = "block";
+        $('#submit-address').prop('disabled', 'false');
     } else {
         document.getElementById("correct").style.display = "none";
         document.getElementById("correct_address").style.display = "none"

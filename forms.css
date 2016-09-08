@@ -119,7 +119,8 @@
     height: 35px;
     width: 150px;
     color: white;
-    background-color: #15d228;
+    background-color: #0E8C1B;
+    opacity: 0.9;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -555,6 +556,7 @@ ul.leaders span+ span {
     height: 0px;
     max-width: 799px;
     min-width: 320px;
+    margin-bottom: 20px;
 }
 
 #incorrect_address {

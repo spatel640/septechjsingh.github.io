@@ -299,6 +299,7 @@ function logResults(json) {
             document.getElementById(curr_radio).style.display = "none";
             document.getElementById(curr_lab).style.display = "none";
         }
+        $('#submit-address').prop('disabled', false);
     } else if (returnCode == "42" || returnCode == "13") {
         // Address Number out of range.
         document.getElementById("incorrect_address").innerHTML = json.address.message2;
