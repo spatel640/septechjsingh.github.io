@@ -539,23 +539,21 @@ ul.leaders span+ span {
     text-align: left;
     padding-left: 10px;
     height: 0px;
+    max-width: 799px;
+    min-width: 320px;
 }
 
 #incorrect_address {
     width: 100%;
 }
 
-#group1 {
-    width: 40%;
-}
-
+#group1,
 #group2 {
-    width: 40%;
+    width: 100%;
 }
 
 .radLabel {
     margin: 5px 0px 5px 0px;
-    display: inline-block;
 }
 
 #add1,
