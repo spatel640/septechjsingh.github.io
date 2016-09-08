@@ -774,6 +774,23 @@ ul.leaders span+ span {
         text-align: left;
     }
     /* STYLES GO HERE */
+    .userInputs tr .trashCan {
+        padding-left: 10px;
+        padding-right: 7px;
+        padding-bottom: 10px
+    }
+    .userInputs tr .electronicItem {
+        padding-bottom: 10px;
+    }
+    .userInputs tr .electronicNumber {
+        min-width: 12px;
+        text-align: right;
+    }
+    .tvSize {
+        max-height: 30px;
+        max-width: 140px;
+    }
+    /* Stylse also go here */
     .specific-info {
         width: 100%;
         max-width: 750px;
