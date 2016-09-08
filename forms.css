@@ -643,18 +643,24 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .appointment-date {
         font-size: 13px;
         font-weight: bolder;
         display: block;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .electronics {
         font-size: 13px;
         font-weight: bolder;
         display: block;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .contact-info {
         padding-top: 1.5em;
@@ -669,29 +675,39 @@ ul.leaders span+ span {
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        margin: 0;
+        padding: 0;
     }
     .last-of-my-name {
         font-size: 13px;
         font-weight: bolder;
         display: block;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .phone {
         font-size: 13px;
         font-weight: bolder;
         display: block;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .email {
         font-size: 13px;
         font-weight: bolder;
         display: block;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .confirm-email {
         font-size: 13px;
         font-weight: bolder;
         display: block;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
 }
