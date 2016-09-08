@@ -605,7 +605,6 @@ ul.leaders span+ span {
         text-align: center;
     }
     .applicant-borough {
-        display: inline-block;
         font-size: 14px;
         font-weight: bolder;
         max-width: 181px;
@@ -618,7 +617,6 @@ ul.leaders span+ span {
         width: 100%;
     }
     .applicant-bldg {
-        display: inline-block;
         font-size: 14px;
         font-weight: bolder;
         width: 100%;
@@ -630,7 +628,6 @@ ul.leaders span+ span {
         height: 30px
     }
     .applicant-street {
-        display: inline-block;
         font-size: 14px;
         font-weight: bolder;
         width: 100%;
