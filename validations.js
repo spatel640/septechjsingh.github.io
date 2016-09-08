@@ -299,7 +299,6 @@ function logResults(json) {
             document.getElementById(curr_radio).style.display = "none";
             document.getElementById(curr_lab).style.display = "none";
         }
-        $('#submit-address').prop('disabled', false);
     } else if (returnCode == "42" || returnCode == "13") {
         // Address Number out of range.
         document.getElementById("incorrect_address").innerHTML = json.address.message2;
@@ -307,6 +306,7 @@ function logResults(json) {
         document.getElementById("bldg-input").style.border = "solid red";
         document.getElementById("incorrect_address").style.display = "block";
     } else if (returnCode == "00") {
+        document.getElementById('submit-address').disabled = false;
         // Address is correct. Move on Citizen.
         document.getElementById("street-input").style.border = "2px solid green";
         document.getElementById("bldg-input").style.border = "2px solid green";

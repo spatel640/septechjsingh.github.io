@@ -8,6 +8,9 @@ function enableBorough() {
 
 var auth_token = "ikIA_XgK2RC39Omt-GP6_cnK0OuiNShxG9_4g78si_pKISAoPwIuU_fngnHzClVxxgXaIGMRVV_5u9aVyaFKg_HMUIcAly0_wwjCT0oH4fSMlC8UDND29kfhqs7MNPSNIikq8AH_XntYhb1FGtyfp7BWBfS_fVms_8hkwMdXWe_pHPnGGFZLxdA5WoxgE68kjLdnBXRndlDIf4dQj7mJxPolDMxkLnLmDNWseRAKP0Qx91sq3LtCJO_vMSpVVLT6SBaaDSCS0a-vOal84oS8q2qzFz_fp8aTX4tyq-ClQ9M8-057Jnt-VuqS5jZA_TML_Rz00iKsW_DZg7Ncd4Y2aadP7k4EWMYmtGeWLGC7pkilwHNqxghqUqpu2_RW8bm6Vqx3Vw3VexRCgEoqLDorxQ7jlCjCn4Y2D7S8bf3u0C-TtmEOI4inH57nPXzR4clS6MuLMMvS7mhRlh4xzVR9ty4pDkRohY94SC_3BwF8QjM1";
 
+function gotoStart() {
+    window.location.href = '/citizenPage.html';
+}
 
 function page1InfoRecap() {
     $('#submit-address').prop('disabled', true);
