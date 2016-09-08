@@ -1,5 +1,7 @@
 .mainContent {
     max-width: 940px;
+    min-width: 480px;
+    width: 86%;
     margin: 0 auto;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -12,6 +14,9 @@
     color: white;
     background-color: #686868;
     height: 30px;
+    max-width: 940px;
+    min-width: 480px;
+    width: 100%;
 }
 
 .sectionHeader p {
@@ -36,16 +41,18 @@
 
 .applicant-address {
     max-width: 905px;
+    width: 96%;
     margin: 0 auto;
-    padding: 0.5em 0 1em 0;
+    padding: 0.5em 0 1em 2em;
 }
 
 .applicant-borough {
     display: inline-block;
-    padding: 0 2em 0 0;
     font-size: 14px;
     font-weight: bolder;
-    width: 20%;
+    max-width: 181px;
+    width: 100%;
+    padding-right: 40px;
 }
 
 #brgh {
@@ -55,10 +62,10 @@
 
 .applicant-bldg {
     display: inline-block;
-    padding: 0 2em 0 0;
     font-size: 14px;
     font-weight: bolder;
-    width: 15%;
+    width: 100%;
+    max-width: 181px;
 }
 
 #bldg-input {
@@ -70,24 +77,27 @@
     display: inline-block;
     font-size: 14px;
     font-weight: bolder;
-    width: 44%;
-    margin-right: 28px;
+    width: 100%;
+    max-width: 362px;
 }
 
 #street-input {
-    width: 100%;
+    width: 85%;
 }
 
-.street-type {
+#verify-contain {
     display: inline-block;
-    width: 93px;
-    font-size: 14px;
-    font-weight: bolder;
-    margin-left: 36.79px;
+    max-width: 40px;
 }
 
-#type {
-    height: 42px;
+.search-button {
+    display: inline-block;
+    background-color: #0E8C1B;
+    color: white;
+    opacity: .9;
+    text-align: left;
+    padding-top: 14px;
+    padding-bottom: 7.4px;
 }
 
 .separator {
@@ -581,19 +591,4 @@ ul.leaders span+ span {
 #lab9,
 #lab10 {
     display: none;
-}
-
-.search-button {
-    display: inline-block;
-    background-color: #0E8C1B;
-    color: white;
-    padding-top: 15px;
-    padding-bottom: 33px;
-    height: 42px;
-    opacity: .9;
-    text-align: left;
-}
-
-#verify-contain {
-    display: inline-block;
 }
