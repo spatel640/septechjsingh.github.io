@@ -634,38 +634,32 @@ ul.leaders span+ span {
     /* STYLES GO HERE */
     .specific-info {
         width: 100%;
-        max-width: 905px;
-        min-width: 320px;
-        margin: 0 auto;
+        max-width: 750px;
+        width: 85%;
         text-align: center;
-        padding-left: 25px;
-        padding-bottom: 15px;
     }
     .pick-up-location-appointment {
-        min-width: 300px;
-        text-align: left;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
     }
     .appointment-date {
-        min-width: 300px;
-        text-align: left;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
     }
     .electronics {
-        max-width: 300px;
-        text-align: left;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
     }
     .contact-info {
         padding-top: 1.5em;
-        max-width: 320px;
-        margin: 0 auto;
+        max-width: 750px;
+        width: 100%;
         text-align: center;
         padding-bottom: 15px;
         display: block;
@@ -677,27 +671,27 @@ ul.leaders span+ span {
         display: block;
     }
     .last-of-my-name {
-        min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
     }
     .phone {
-        min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
     }
     .email {
-        min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
     }
     .confirm-email {
-        min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
     }
 }
