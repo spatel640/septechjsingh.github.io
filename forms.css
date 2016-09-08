@@ -643,6 +643,7 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
@@ -651,6 +652,7 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
@@ -659,6 +661,7 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
@@ -666,15 +669,17 @@ ul.leaders span+ span {
         padding-top: 1.5em;
         max-width: 750px;
         width: 100%;
+        max-width: 300px;
         text-align: left;
         padding-bottom: 15px;
         display: block;
     }
     .first-of-my-name {
-        min-width: 300px;
         font-size: 13px;
         font-weight: bolder;
         display: block;
+        width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
@@ -683,6 +688,7 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
@@ -691,6 +697,7 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
@@ -699,6 +706,7 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
@@ -707,6 +715,7 @@ ul.leaders span+ span {
         font-weight: bolder;
         display: block;
         width: 100%;
+        max-width: 300px;
         margin: 0;
         padding: 0;
     }
