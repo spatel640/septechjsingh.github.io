@@ -596,6 +596,17 @@ ul.leaders span+ span {
     display: none;
 }
 
+
+/* ----------- iPad 3 and 4 ----------- */
+
+
+/* Portrait and Landscape */
+
+
+/* Landscape */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
     .applicant-address {
         max-width: 750px;
