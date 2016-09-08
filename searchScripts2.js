@@ -361,6 +361,7 @@ function search() {
 
 function closeThisBox() {
     document.getElementById("myModal").style.display = "none";
+    window.location.href = '/311Page.html';
 }
 
 function cancelRequest() {
