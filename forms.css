@@ -1,6 +1,6 @@
 .mainContent {
     max-width: 940px;
-    min-width: 480px;
+    min-width: 320px;
     width: 86%;
     margin: 0 auto;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -15,7 +15,7 @@
     background-color: #686868;
     height: 30px;
     max-width: 940px;
-    min-width: 480px;
+    min-width: 320px;
     width: 100%;
 }
 
