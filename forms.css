@@ -43,7 +43,7 @@
     max-width: 905px;
     width: 96%;
     margin: 0 auto;
-    padding: 0.5em 0 1em 2em;
+    padding: 0.5em 0 1em 1.5em;
 }
 
 .applicant-borough {
@@ -121,6 +121,17 @@
     color: white;
     background-color: #15d228;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.address-validation-message {
+    background-color: #F5F5F5;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.address-validation-message p {
+    padding: 6px 0 6px 7px;
 }
 
 .review-box-container {
@@ -240,8 +251,9 @@ ul.leaders span+ span {
 }
 
 .specific-info {
-    width: 905px;
+    width: 100%;
     max-width: 905px;
+    min-width: 320px;
     margin: 0 auto;
     text-align: left;
     padding-left: 25px;
@@ -250,6 +262,7 @@ ul.leaders span+ span {
 
 .pick-up-location-appointment {
     width: 49%;
+    min-width: 300px;
     text-align: left;
     display: inline-block;
     font-size: 13px;
@@ -258,6 +271,7 @@ ul.leaders span+ span {
 
 .appointment-date {
     width: 49%;
+    min-width: 300px;
     text-align: left;
     display: inline-block;
     font-size: 13px;
