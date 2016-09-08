@@ -884,6 +884,30 @@ ul.leaders span+ span {
         margin: 0;
         padding: 0;
     }
+    .buttons-p2 {
+        width: 100%;
+        max-width: 300px;
+        display: block;
+        text-align: right;
+    }
+    #previous-button-2 {
+        height: 35px;
+        width: 150px;
+        color: white;
+        background-color: #15d228;
+        padding: 0;
+        padding-top: 10px;
+        margin: 0;
+    }
+    #next-button-2 {
+        height: 35px;
+        width: 150px;
+        color: white;
+        background-color: #15d228;
+        padding: 0;
+        padding-top: 10px;
+        margin: 0;
+    }
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 736px) and (orientation: landscape) {
