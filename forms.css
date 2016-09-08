@@ -607,31 +607,28 @@ ul.leaders span+ span {
     .applicant-borough {
         font-size: 14px;
         font-weight: bolder;
-        max-width: 181px;
         width: 100%;
         padding-right: 40px;
         display: block;
     }
     #brgh {
         height: 42px;
-        width: 100%;
+        width: 85%;
     }
     .applicant-bldg {
         font-size: 14px;
         font-weight: bolder;
         width: 100%;
-        max-width: 181px;
         display: block;
     }
     #bldg-input {
-        width: 120px;
+        width: 85%;
         height: 30px
     }
     .applicant-street {
         font-size: 14px;
         font-weight: bolder;
         width: 100%;
-        max-width: 362px;
         display: block;
     }
     #street-input {
