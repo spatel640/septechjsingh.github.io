@@ -605,7 +605,138 @@ ul.leaders span+ span {
 
 /* Landscape */
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    .specific-info {
+        width: 100%;
+        max-width: 905px;
+        min-width: 320px;
+        margin: 0 auto;
+        text-align: left;
+        padding-left: 25px;
+        padding-bottom: 15px;
+    }
+    .pick-up-location-appointment {
+        width: 49%;
+        min-width: 300px;
+        text-align: left;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bolder;
+    }
+    .appointment-date {
+        width: 49%;
+        min-width: 300px;
+        text-align: left;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bolder;
+        margin-left: 6px;
+    }
+    .electronics {
+        width: 97%;
+        text-align: left;
+        font-size: 13px;
+        font-weight: bolder;
+    }
+    .select-items {
+        width: 99%;
+    }
+    .contact-info {
+        padding-top: 1.5em;
+        width: 905px;
+        max-width: 905px;
+        margin: 0 auto;
+        text-align: left;
+        padding-left: 25px;
+        padding-bottom: 15px;
+    }
+    .first-of-my-name {
+        font-size: 13px;
+        font-weight: bolder;
+        width: 47.5%;
+        display: inline-block;
+        margin-right: 21px;
+    }
+    .last-of-my-name {
+        font-size: 13px;
+        font-weight: bolder;
+        width: 47.5%;
+        display: inline-block;
+    }
+    .phone {
+        font-size: 13px;
+        font-weight: bolder;
+        width: 47.5%;
+        display: inline-block;
+        margin-right: 21px;
+    }
+    .email {
+        font-size: 13px;
+        font-weight: bolder;
+        width: 47.5%;
+        display: inline-block;
+    }
+    .confirm-email {
+        font-size: 13px;
+        font-weight: bolder;
+        width: 47.5%;
+        display: inline-block;
+        margin-right: 21px
+    }
+    /***/
+    .applicant-address {
+        max-width: 905px;
+        width: 96%;
+        margin: 0 auto;
+        padding: 0.5em 0 1em 1.5em;
+    }
+    .applicant-borough {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bolder;
+        max-width: 181px;
+        width: 100%;
+        padding-right: 40px;
+    }
+    #brgh {
+        height: 42px;
+        width: 100%;
+    }
+    .applicant-bldg {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bolder;
+        width: 100%;
+        max-width: 181px;
+    }
+    #bldg-input {
+        width: 120px;
+        height: 30px
+    }
+    .applicant-street {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bolder;
+        width: 100%;
+        max-width: 362px;
+    }
+    #street-input {
+        width: 85%;
+    }
+    #verify-contain {
+        display: inline-block;
+        max-width: 40px;
+    }
+    .search-button {
+        display: inline-block;
+        background-color: #0E8C1B;
+        color: white;
+        opacity: .9;
+        text-align: left;
+        padding-top: 14px;
+        padding-bottom: 7.4px;
+    }
+}
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
     .applicant-address {
