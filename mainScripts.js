@@ -48,7 +48,7 @@ function getDates() {
     var d = new Date();
     var n = d.getHours();
 
-    if (n >= 12) {
+    if (n >= 20) {
         now.add(1, 'days');
     }
 
@@ -57,9 +57,9 @@ function getDates() {
 
     var district = getUrlVars()["district"];
 
-    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
-    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
-    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=false";
+    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=false";
+    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=false";
 
     var myUrl = "";
 
