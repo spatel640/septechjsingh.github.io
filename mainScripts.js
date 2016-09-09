@@ -48,7 +48,7 @@ function getDates() {
     var d = new Date();
     var n = d.getHours();
 
-    if (n >= 20) {
+    if (n >= 12) {
         now.add(1, 'days');
     }
 
