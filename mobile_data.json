@@ -1,17 +1,63 @@
 {
-    "items": [{
-        "key": "First",
-        "value": 100
-	}, {
-        "key": "Second",
-        "value": false
-	}, {
-        "key": "Last",
-        "value": "Mixed"
-	}],
-    "obj": {
-        "number": 1.2345e-6,
-        "enabled": true
+    "result": [
+        {
+            "name": "Commercial New Construction",
+            "fee_types": {
+                "fee1": {
+                    "name": "Total Volume Fee",
+                    "inputs": {
+                        "field1": "",
+                        "name1": "Length",
+                        "field2": "",
+                        "name2": "Width",
+                        "field3": "",
+                        "name3": "Height"
+                    },
+                    "formula": "Multiplier",
+                    "variable": ""
+                }
+            }
     },
-    "message": "Strings have to be in double-quotes."
+        {
+            "name": "Commercial Alteration",
+            "fee_types": {
+                "fee1": {
+                    "name": "",
+                    "inputs": "",
+                    "formula": "",
+                    "variable": ""
+                },
+                "fee2": {
+                    "name": "",
+                    "inputs": "",
+                    "formula": "",
+                    "variable": ""
+                }
+            }
+    },
+        {
+            "name": "Residential New Construction",
+            "fee_types": {
+                "fee1": {
+                    "name": "",
+                    "inputs": "",
+                    "formula": "",
+                    "variable": ""
+                },
+                "fee2": {
+                    "name": "",
+                    "inputs": "",
+                    "formula": "",
+                    "variable": ""
+                },
+                "fee3": {
+                    "name": "",
+                    "inputs": "",
+                    "formula": "",
+                    "variable": ""
+                }
+            }
+    }
+  ],
+    "status": 200
 }

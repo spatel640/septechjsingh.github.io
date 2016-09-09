@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +21,18 @@
 </head>
 
 
-<body>
+<body onload="load()">
     <div class="page-header">
         <img src="Logo.PNG" id="logo">
         <h1><small>Accela Fee Estimator</small></h1>
     </div>
+    <select class="selectpicker" id="fee_to_calculate" data-width="100%" onchange="showButton('#proceed')">
+        <option selected disabled>Please Select A Fee</option>
+    </select>
+    <br><br>
+    <button type="button" class="btn btn-primary" id="proceed" onclick="showInputs()">Proceed</button>
     <link rel="stylesheet" href="fee_estimator.css">
     <script src="fee_estimator_scripts.js"></script>
 </body>
+
 </html>
