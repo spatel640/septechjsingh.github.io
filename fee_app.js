@@ -54,8 +54,60 @@ function create_items_schedules() {
     console.log("Plan Review Fees: " + fee_code_AR);
     console.log("Inspection Fees: " + fee_code_PC);
     console.log("Fee Schedules: " + fee_schedule);
+
+    var quantity = $('#square_feet').val();
+    var formula = "";
+
+    $.getJSON( /*'https://septechjsingh.github.io/mobile_data.json'*/ 'fee_app_2.json', function (data) {
+        formula = data[fee_code_AR];
+        console.log(formula);
+        console.log(linear_with_min_max_enhanced(formula, quantity));
+    });
 }
 
-funciton linear_with_min_max_enhanced(input_string, quantity) {
+var test_string = '350,0,0,9999999,15,150,5250,0,9999999';
+var test_string2 = '0,0,0,0,499,0.0224,325.0176,0,999999999,1499,0.0544,580.0256,0,999999999,2499,0.0928,634.7072,0,999999999,3499,0.0864,728.7936,0,999999999,4499,0.0608,815.2192,0,999999999,6499,0.0352,934.6048,0,999999999,9999,0.112,1058.368,0,999999999';
 
+function linear_with_min_max_enhanced(myString, quantity) {
+    myString = myString.split(',');
+    var a, b, m, M, R;
+
+    var R_index = myString.length - 5;
+    console.log(myString);
+
+    while (R_index > 4) {
+        R = Number(myString[R_index]);
+        if (quantity > R) {
+            // STOP. 
+            // Quantity is greater than the range parameter
+            break;
+        }
+        R_index = R_index - 5
+    }
+    fee = 0;
+
+    R = Number(myString[R_index]);
+
+    if (R == myString[4] && quantity < R) {
+        a = Number(myString[0]);
+        b = Number(myString[1]);
+        m = Number(myString[2]);
+        M = Number(myString[3]);
+        console.log("a: " + a);
+        console.log("b: " + b);
+        console.log("R: " + R);
+        fee = a * quantity + b;
+        return fee;
+    }
+
+    a = Number(myString[R_index + 1]);
+    b = Number(myString[R_index + 2]);
+    m = Number(myString[R_index + 3]);
+    M = Number(myString[R_index + 4]);
+
+    console.log("a: " + a);
+    console.log("b: " + b);
+    console.log("R: " + R);
+    fee = a * (quantity - R) + b;
+    return fee;
 }
