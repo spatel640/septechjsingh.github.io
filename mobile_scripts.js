@@ -199,7 +199,7 @@ function showSubmit() {
 
 function addPair() {
     $('#feeTable').show();
-    $('#feeTable').append('<tr><td>' + $('#select3').val() + '</td><td>' + $('#select4').val() + '</td></tr>');
+    $('#feeTable').append('<tr><td>' + $('#select3').val() + '</td><td>' + $('#select4').val() + '</td><td>' + $('#select5').val() + '</td></tr>');
     var numItem = $('#feeTable tr').length - 1;
     var newIn1 = '<input id="fielda' + numItem + '" name="fielda' + numItem + '" type="hidden" value="' + $('#select3').val() + '">';
     var newIn2 = '<input id="fieldb' + numItem + '" name="fieldb' + numItem + '" type="hidden" value="' + $('#select4').val() + '">';

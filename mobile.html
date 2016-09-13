@@ -50,16 +50,24 @@
                 <div>
                     <label for="select4">Inputs</label>
                 </div>
-                <div>
-                    <label for="select5">Formula</label>
-                </div>
             </div>
-            <select class="selectpicker" id="select3" data-width="30%">
+            <select class="selectpicker" id="select3" data-width="45%">
             </select>
-            <select class="selectpicker" id="select4" data-width="30%" multiple>
+            <select class="selectpicker" id="select4" data-width="45%" multiple>
             </select>
-            <select class="selectpicker" id="select5" data-width="30%" multiple>
+            <br><br>
+            <div>
+                <label for="select5">Formula</label>
+            </div>
+            <select class="selectpicker" id="select5" data-width="90%">
+                <option value="Constant">Constant</option>
+                <option value="Fee Multiplier">Fee Multipler</option>
+                <option value="Fixed Fee By Range">Fixed Fee By Range</option>
+                <option value="Fixed Fee By Range Enhanced">Fixed Fee By Range Enhanced</option>
+                <option value="Fixed Fee By Range Multiplier">Fixed Fee By Range Multiplier</option>
+                <option value="Linear Min Max Enhanced">Linear Min Max Enhanced</option>
             </select>
+            <br><br>
         </div>
         <button type="button" class="btn btn-default" onclick="addPair(); showSubmit()" id="configButton">Add Configuration</button>
         <br>
@@ -67,6 +75,7 @@
         <table class="table table-striped table-bordered table-hover" id="feeTable">
             <th>Fee Item Codes</th>
             <th>Input Type / ASI Field</th>
+            <th>Fee Formula</th>
         </table>
         <br>
         <button type="submit" class="btn btn-primary" onclick="" id="submit">Submit</button>

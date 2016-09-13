@@ -19,7 +19,7 @@ body form div div {
 }
 
 body form div div div {
-    width: 33%;
+    width: 49%;
     display: inline-block;
 }
 
@@ -30,7 +30,7 @@ body form div div div {
 
 .table th {
     text-align: center;
-    width: 50%;
+    width: 33%;
 }
 
 .table td {
