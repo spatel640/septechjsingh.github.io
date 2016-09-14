@@ -18,9 +18,12 @@
     <!-- Bootstrap Select -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
+    <!-- Moment.js -->
+    <script src="moment.js"></script>
+
 </head>
 
-<body onload="onload()">
+<body onload="getJobs()">
     <div class="container-fluid">
         <div class="page-header text-center">
             <h1 class="text-capitalize">field agent dashboard</h1>
@@ -28,12 +31,289 @@
         </div>
     </div>
     <div class="container-fluid" id="job-container">
+
         <div class="inspectionBox panel panel-default" id="panel1">
             <div class="panel-heading" id="altId1">Panel Heading Without Title</div>
             <div class="panel-body" id="content1">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg1"></span> <span id="street1"></span>
+                <br> Nearby: <span id="cross1"></span>
+            </div>
+            <div class="panel-body" id="district1"></div>
+            <input type="hidden" id="cap1" value="">
+            <input type="hidden" id="lat1" value="">
+            <input type="hidden" id="lon1" value="">
+            <input type="hidden" id="insp1" value="">
         </div>
+
+        <div class="inspectionBox panel panel-default" id="panel2">
+            <div class="panel-heading" id="altId2">Panel Heading Without Title</div>
+            <div class="panel-body" id="content2">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg2"></span> <span id="street2"></span>
+                <br> Nearby: <span id="cross2"></span>
+            </div>
+            <div class="panel-body" id="district2"></div>
+            <input type="hidden" id="cap2" value="">
+            <input type="hidden" id="lat2" value="">
+            <input type="hidden" id="lon2" value="">
+            <input type="hidden" id="insp2" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel3">
+            <div class="panel-heading" id="altId3">Panel Heading Without Title</div>
+            <div class="panel-body" id="content3">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg3"></span> <span id="street3"></span>
+                <br> Nearby: <span id="cross3"></span>
+            </div>
+            <div class="panel-body" id="district3"></div>
+            <input type="hidden" id="cap3" value="">
+            <input type="hidden" id="lat3" value="">
+            <input type="hidden" id="lon3" value="">
+            <input type="hidden" id="insp3" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel4">
+            <div class="panel-heading" id="altId4">Panel Heading Without Title</div>
+            <div class="panel-body" id="content4">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg4"></span> <span id="street4"></span>
+                <br> Nearby: <span id="cross4"></span>
+            </div>
+            <div class="panel-body" id="district4"></div>
+            <input type="hidden" id="cap4" value="">
+            <input type="hidden" id="lat4" value="">
+            <input type="hidden" id="lon4" value="">
+            <input type="hidden" id="insp4" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel5">
+            <div class="panel-heading" id="altId5">Panel Heading Without Title</div>
+            <div class="panel-body" id="content5">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg5"></span> <span id="street5"></span>
+                <br> Nearby: <span id="cross5"></span>
+            </div>
+            <div class="panel-body" id="district5"></div>
+            <input type="hidden" id="cap5" value="">
+            <input type="hidden" id="lat5" value="">
+            <input type="hidden" id="lon5" value="">
+            <input type="hidden" id="insp5" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel6">
+            <div class="panel-heading" id="altId6">Panel Heading Without Title</div>
+            <div class="panel-body" id="content6">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg6"></span> <span id="street6"></span>
+                <br> Nearby: <span id="cross6"></span>
+            </div>
+            <div class="panel-body" id="district6"></div>
+            <input type="hidden" id="cap6" value="">
+            <input type="hidden" id="lat6" value="">
+            <input type="hidden" id="lon6" value="">
+            <input type="hidden" id="insp6" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel7">
+            <div class="panel-heading" id="altId7">Panel Heading Without Title</div>
+            <div class="panel-body" id="content7">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg7"></span> <span id="street7"></span>
+                <br> Nearby: <span id="cross7"></span>
+            </div>
+            <div class="panel-body" id="district7"></div>
+            <input type="hidden" id="cap7" value="">
+            <input type="hidden" id="lat7" value="">
+            <input type="hidden" id="lon7" value="">
+            <input type="hidden" id="insp7" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel8">
+            <div class="panel-heading" id="altId8">Panel Heading Without Title</div>
+            <div class="panel-body" id="content8">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg8"></span> <span id="street8"></span>
+                <br> Nearby: <span id="cross8"></span>
+            </div>
+            <div class="panel-body" id="district8"></div>
+            <input type="hidden" id="cap8" value="">
+            <input type="hidden" id="lat8" value="">
+            <input type="hidden" id="lon8" value="">
+            <input type="hidden" id="insp8" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel9">
+            <div class="panel-heading" id="altId9">Panel Heading Without Title</div>
+            <div class="panel-body" id="content9">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg9"></span> <span id="street9"></span>
+                <br> Nearby: <span id="cross9"></span>
+            </div>
+            <div class="panel-body" id="district9"></div>
+            <input type="hidden" id="cap9" value="">
+            <input type="hidden" id="lat9" value="">
+            <input type="hidden" id="lon9" value="">
+            <input type="hidden" id="insp9" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel10">
+            <div class="panel-heading" id="altId10">Panel Heading Without Title</div>
+            <div class="panel-body" id="content10">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg10"></span> <span id="street10"></span>
+                <br> Nearby: <span id="cross10"></span>
+            </div>
+            <div class="panel-body" id="district10"></div>
+            <input type="hidden" id="cap10" value="">
+            <input type="hidden" id="lat10" value="">
+            <input type="hidden" id="lon10" value="">
+            <input type="hidden" id="insp10" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel11">
+            <div class="panel-heading" id="altId11">Panel Heading Without Title</div>
+            <div class="panel-body" id="content11">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg11"></span> <span id="street11"></span>
+                <br> Nearby: <span id="cross11"></span>
+            </div>
+            <div class="panel-body" id="district11"></div>
+            <input type="hidden" id="cap11" value="">
+            <input type="hidden" id="lat11" value="">
+            <input type="hidden" id="lon11" value="">
+            <input type="hidden" id="insp11" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel12">
+            <div class="panel-heading" id="altId12">Panel Heading Without Title</div>
+            <div class="panel-body" id="content12">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg12"></span> <span id="street12"></span>
+                <br> Nearby: <span id="cross12"></span>
+            </div>
+            <div class="panel-body" id="district12"></div>
+            <input type="hidden" id="cap12" value="">
+            <input type="hidden" id="lat12" value="">
+            <input type="hidden" id="lon12" value="">
+            <input type="hidden" id="insp12" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel13">
+            <div class="panel-heading" id="altId13">Panel Heading Without Title</div>
+            <div class="panel-body" id="content13">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg13"></span> <span id="street13"></span>
+                <br> Nearby: <span id="cross13"></span>
+            </div>
+            <div class="panel-body" id="district13"></div>
+            <input type="hidden" id="cap13" value="">
+            <input type="hidden" id="lat13" value="">
+            <input type="hidden" id="lon13" value="">
+            <input type="hidden" id="insp13" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel14">
+            <div class="panel-heading" id="altId14">Panel Heading Without Title</div>
+            <div class="panel-body" id="content14">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg14"></span> <span id="street14"></span>
+                <br> Nearby: <span id="cross14"></span>
+            </div>
+            <div class="panel-body" id="district14"></div>
+            <input type="hidden" id="cap14" value="">
+            <input type="hidden" id="lat14" value="">
+            <input type="hidden" id="lon14" value="">
+            <input type="hidden" id="insp14" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel15">
+            <div class="panel-heading" id="altId15">Panel Heading Without Title</div>
+            <div class="panel-body" id="content15">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg15"></span> <span id="street15"></span>
+                <br> Nearby: <span id="cross15"></span>
+            </div>
+            <div class="panel-body" id="district15"></div>
+            <input type="hidden" id="cap15" value="">
+            <input type="hidden" id="lat15" value="">
+            <input type="hidden" id="lon15" value="">
+            <input type="hidden" id="insp15" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel16">
+            <div class="panel-heading" id="altId16">Panel Heading Without Title</div>
+            <div class="panel-body" id="content16">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg16"></span> <span id="street16"></span>
+                <br> Nearby: <span id="cross16"></span>
+            </div>
+            <div class="panel-body" id="district16"></div>
+            <input type="hidden" id="cap16" value="">
+            <input type="hidden" id="lat16" value="">
+            <input type="hidden" id="lon16" value="">
+            <input type="hidden" id="insp16" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel17">
+            <div class="panel-heading" id="altId17">Panel Heading Without Title</div>
+            <div class="panel-body" id="content17">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg17"></span> <span id="street17"></span>
+                <br> Nearby: <span id="cross17"></span>
+            </div>
+            <div class="panel-body" id="district17"></div>
+            <input type="hidden" id="cap17" value="">
+            <input type="hidden" id="lat17" value="">
+            <input type="hidden" id="lon17" value="">
+            <input type="hidden" id="insp17" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel18">
+            <div class="panel-heading" id="altId18">Panel Heading Without Title</div>
+            <div class="panel-body" id="content18">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg18"></span> <span id="street18"></span>
+                <br> Nearby: <span id="cross18"></span>
+            </div>
+            <div class="panel-body" id="district18"></div>
+            <input type="hidden" id="cap18" value="">
+            <input type="hidden" id="lat18" value="">
+            <input type="hidden" id="lon18" value="">
+            <input type="hidden" id="insp18" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel19">
+            <div class="panel-heading" id="altId19">Panel Heading Without Title</div>
+            <div class="panel-body" id="content19">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg19"></span> <span id="street19"></span>
+                <br> Nearby: <span id="cross19"></span>
+            </div>
+            <div class="panel-body" id="district19"></div>
+            <input type="hidden" id="cap19" value="">
+            <input type="hidden" id="lat19" value="">
+            <input type="hidden" id="lon19" value="">
+            <input type="hidden" id="insp19" value="">
+        </div>
+
+        <div class="inspectionBox panel panel-default" id="panel20">
+            <div class="panel-heading" id="altId20">Panel Heading Without Title</div>
+            <div class="panel-body" id="content20">Panel content</div>
+            <div class="panel-body">
+                <span id="bldg20"></span> <span id="street20"></span>
+                <br> Nearby: <span id="cross20"></span>
+            </div>
+            <div class="panel-body" id="district20"></div>
+            <input type="hidden" id="cap20" value="">
+            <input type="hidden" id="lat20" value="">
+            <input type="hidden" id="lon20" value="">
+            <input type="hidden" id="insp20" value="">
+        </div>
+
     </div>
-    <script src="recordTypes.js"></script>
+    <script src="inspection.js"></script>
     <script src="field_agent.js"></script>
     <link rel="stylesheet" href="field_agent.css">
 </body>
