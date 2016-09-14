@@ -20,42 +20,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
 </head>
 
-<body onload="">
+<body onload="onload()">
     <div class="container-fluid">
         <div class="page-header text-center">
             <h1 class="text-capitalize">field agent dashboard</h1>
+            <h1 class="text-capitalize"><small>job list</small></h1>
         </div>
     </div>
-    <div class="container-fluid">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="email">Username:</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="username" placeholder="Username">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="pwd">Password:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox text-justify">
-                        <label><input type="checkbox" id="rememberMe"> Remember Username</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10 text-left">
-                    <button type="button" class="btn btn-primary" onclick="redirector()">Submit</button>
-                </div>
-            </div>
-        </form>
+    <div class="container-fluid" id="job-container">
+        <div class="inspectionBox panel panel-default" id="panel1">
+            <div class="panel-heading" id="altId1">Panel Heading Without Title</div>
+            <div class="panel-body" id="content1">Panel content</div>
+        </div>
     </div>
     <script src="recordTypes.js"></script>
     <script src="field_agent.js"></script>
+    <link rel="stylesheet" href="field_agent.css">
 </body>
 
 </html>
