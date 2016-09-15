@@ -30,13 +30,11 @@
     </div>
     <div class="container-fluid" id="job-container">
 
-        <div class="inspectionBox panel panel-default" id="panel1">
+        <div class="inspectionBox panel panel-primary" id="panel1">
             <div class="panel-heading"><span id="altId1" class="">Panel Heading Without Title</span><span id="content1" class="col-md-6"></span></div>
-            <div class="panel-body information">
-                District: <span id="district1" class=""></span><br> Address: <span id="bldg1" class=""></span> <span id="street1" class=""></span><br> Cross Streets: <span id="cross1" class=""></span>
-            </div>
-            <div class="individual-map-button">
-                <button type="button" class="btn btn-success map-button"></button>
+            <div class="panel-body information" onclick="showMap(1)">
+                <p>District: <span id="district1" class=""></span>&emsp; Address: <span id="bldg1" class=""></span> <span id="street1" class=""></span></p>
+                <p>Cross Streets: <span id="cross1" class=""></span></p>
             </div>
             <input type="hidden" id="cap1" value="">
             <input type="hidden" id="lat1" value="">
@@ -44,9 +42,9 @@
             <input type="hidden" id="insp1" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel2">
+        <div class="inspectionBox panel panel-primary" id="panel2">
             <div class="panel-heading"><span id="altId2" class="">Panel Heading Without Title</span><span id="content2" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(2)">
                 District: <span id="district2" class=""></span><br> Address: <span id="bldg2" class=""></span> <span id="street2" class=""></span><br> Cross Streets: <span id="cross2" class=""></span>
             </div>
             <input type="hidden" id="cap2" value="">
@@ -55,9 +53,9 @@
             <input type="hidden" id="insp2" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel3">
+        <div class="inspectionBox panel panel-primary" id="panel3">
             <div class="panel-heading"><span id="altId3" class="">Panel Heading Without Title</span><span id="content3" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(3)">
                 District: <span id="district3" class=""></span><br> Address: <span id="bldg3" class=""></span> <span id="street3" class=""></span><br> Cross Streets: <span id="cross3" class=""></span>
             </div>
             <input type="hidden" id="cap3" value="">
@@ -66,9 +64,9 @@
             <input type="hidden" id="insp3" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel4">
+        <div class="inspectionBox panel panel-primary" id="panel4">
             <div class="panel-heading"><span id="altId4" class="">Panel Heading Without Title</span><span id="content4" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(4)">
                 District: <span id="district4" class=""></span><br> Address: <span id="bldg4" class=""></span> <span id="street4" class=""></span><br> Cross Streets: <span id="cross4" class=""></span>
             </div>
             <input type="hidden" id="cap4" value="">
@@ -77,9 +75,9 @@
             <input type="hidden" id="insp4" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel5">
+        <div class="inspectionBox panel panel-primary" id="panel5">
             <div class="panel-heading"><span id="altId5" class="">Panel Heading Without Title</span><span id="content5" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(5)">
                 District: <span id="district5" class=""></span><br> Address: <span id="bldg5" class=""></span> <span id="street5" class=""></span><br> Cross Streets: <span id="cross5" class=""></span>
             </div>
             <input type="hidden" id="cap5" value="">
@@ -88,10 +86,11 @@
             <input type="hidden" id="insp5" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel6">
+        <div class="inspectionBox panel panel-primary" id="panel6">
             <div class="panel-heading"><span id="altId6" class="">Panel Heading Without Title</span><span id="content6" class="col-md-6"></span></div>
-            <div class="panel-body">
-                District: <span id="district6" class=""></span><br> Address: <span id="bldg6" class=""></span> <span id="street6" class=""></span><br> Cross Streets: <span id="cross6" class=""></span>
+            <div class="panel-body information" onclick="showMap(6)">
+                <p>District: <span id="district6" class=""></span> Address: <span id="bldg6" class=""></span> <span id="street6" class=""></span></p>
+                <p>Cross Streets: <span id="cross6" class=""></span></p>
             </div>
             <input type="hidden" id="cap6" value="">
             <input type="hidden" id="lat6" value="">
@@ -99,9 +98,9 @@
             <input type="hidden" id="insp6" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel7">
+        <div class="inspectionBox panel panel-primary" id="panel7">
             <div class="panel-heading"><span id="altId7" class="">Panel Heading Without Title</span><span id="content7" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(7)">
                 District: <span id="district7" class=""></span><br> Address: <span id="bldg7" class=""></span> <span id="street7" class=""></span><br> Cross Streets: <span id="cross7" class=""></span>
             </div>
             <input type="hidden" id="cap7" value="">
@@ -110,9 +109,9 @@
             <input type="hidden" id="insp7" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel8">
+        <div class="inspectionBox panel panel-primary" id="panel8">
             <div class="panel-heading"><span id="altId8" class="">Panel Heading Without Title</span><span id="content8" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(8)">
                 District: <span id="district8" class=""></span><br> Address: <span id="bldg8" class=""></span> <span id="street8" class=""></span><br> Cross Streets: <span id="cross8" class=""></span>
             </div>
             <input type="hidden" id="cap8" value="">
@@ -121,9 +120,9 @@
             <input type="hidden" id="insp8" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel9">
+        <div class="inspectionBox panel panel-primary" id="panel9">
             <div class="panel-heading"><span id="altId9" class="">Panel Heading Without Title</span><span id="content9" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(9)">
                 District: <span id="district9" class=""></span><br> Address: <span id="bldg9" class=""></span> <span id="street9" class=""></span><br> Cross Streets: <span id="cross9" class=""></span>
             </div>
             <input type="hidden" id="cap9" value="">
@@ -132,9 +131,9 @@
             <input type="hidden" id="insp9" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel10">
+        <div class="inspectionBox panel panel-primary" id="panel10">
             <div class="panel-heading"><span id="altId10" class="">Panel Heading Without Title</span><span id="content10" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(10)">
                 District: <span id="district10" class=""></span><br> Address: <span id="bldg10" class=""></span> <span id="street10" class=""></span><br> Cross Streets: <span id="cross10" class=""></span>
             </div>
             <input type="hidden" id="cap10" value="">
@@ -143,9 +142,9 @@
             <input type="hidden" id="insp10" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel11">
+        <div class="inspectionBox panel panel-primary" id="panel11">
             <div class="panel-heading"><span id="altId11" class="">Panel Heading Without Title</span><span id="content11" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(11)">
                 District: <span id="district11" class=""></span><br> Address: <span id="bldg11" class=""></span> <span id="street11" class=""></span><br> Cross Streets: <span id="cross11" class=""></span>
             </div>
             <input type="hidden" id="cap11" value="">
@@ -154,9 +153,9 @@
             <input type="hidden" id="insp11" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel12">
+        <div class="inspectionBox panel panel-primary" id="panel12">
             <div class="panel-heading"><span id="altId1" class="">Panel Heading Without Title</span><span id="content1" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(12)">
                 District: <span id="district12" class=""></span><br> Address: <span id="bldg12" class=""></span> <span id="street12" class=""></span><br> Cross Streets: <span id="cross12" class=""></span>
             </div>
             <input type="hidden" id="cap12" value="">
@@ -165,9 +164,9 @@
             <input type="hidden" id="insp12" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel13">
+        <div class="inspectionBox panel panel-primary" id="panel13">
             <div class="panel-heading"><span id="altId13" class="">Panel Heading Without Title</span><span id="content13" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(13)">
                 District: <span id="district13" class=""></span><br> Address: <span id="bldg13" class=""></span> <span id="street13" class=""></span><br> Cross Streets: <span id="cross13" class=""></span>
             </div>
             <input type="hidden" id="cap13" value="">
@@ -176,9 +175,9 @@
             <input type="hidden" id="insp13" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel14">
+        <div class="inspectionBox panel panel-primary" id="panel14">
             <div class="panel-heading"><span id="altId14" class="">Panel Heading Without Title</span><span id="content14" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(14)">
                 District: <span id="district14" class=""></span><br> Address: <span id="bldg14" class=""></span> <span id="street14" class=""></span><br> Cross Streets: <span id="cross14" class=""></span>
             </div>
             <input type="hidden" id="cap14" value="">
@@ -187,9 +186,9 @@
             <input type="hidden" id="insp14" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel15">
+        <div class="inspectionBox panel panel-primary" id="panel15">
             <div class="panel-heading"><span id="altId15" class="">Panel Heading Without Title</span><span id="content15" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(15)">
                 District: <span id="district15" class=""></span><br> Address: <span id="bldg15" class=""></span> <span id="street15" class=""></span><br> Cross Streets: <span id="cross15" class=""></span>
             </div>
             <input type="hidden" id="cap15" value="">
@@ -198,9 +197,9 @@
             <input type="hidden" id="insp15" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel16">
+        <div class="inspectionBox panel panel-primary" id="panel16">
             <div class="panel-heading"><span id="altId16" class="">Panel Heading Without Title</span><span id="content16" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(16)">
                 District: <span id="district16" class=""></span><br> Address: <span id="bldg16" class=""></span> <span id="street16" class=""></span><br> Cross Streets: <span id="cross16" class=""></span>
             </div>
             <input type="hidden" id="cap16" value="">
@@ -209,9 +208,9 @@
             <input type="hidden" id="insp16" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel17">
+        <div class="inspectionBox panel panel-primary" id="panel17">
             <div class="panel-heading"><span id="altId17" class="">Panel Heading Without Title</span><span id="content17" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(17)">
                 District: <span id="district17" class=""></span><br> Address: <span id="bldg17" class=""></span> <span id="street17" class=""></span><br> Cross Streets: <span id="cross17" class=""></span>
             </div>
             <input type="hidden" id="cap17" value="">
@@ -220,9 +219,9 @@
             <input type="hidden" id="insp17" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel18">
+        <div class="inspectionBox panel panel-primary" id="panel18">
             <div class="panel-heading"><span id="altId18" class="">Panel Heading Without Title</span><span id="content18" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(18)">
                 District: <span id="district18" class=""></span><br> Address: <span id="bldg18" class=""></span> <span id="street18" class=""></span><br> Cross Streets: <span id="cross18" class=""></span>
             </div>
             <input type="hidden" id="cap18" value="">
@@ -231,9 +230,9 @@
             <input type="hidden" id="insp18" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel19">
+        <div class="inspectionBox panel panel-primary" id="panel19">
             <div class="panel-heading"><span id="altId19" class="">Panel Heading Without Title</span><span id="content19" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(19)">
                 District: <span id="district19" class=""></span><br> Address: <span id="bldg19" class=""></span> <span id="street19" class=""></span><br> Cross Streets: <span id="cross19" class=""></span>
             </div>
             <input type="hidden" id="cap19" value="">
@@ -242,9 +241,9 @@
             <input type="hidden" id="insp19" value="">
         </div>
 
-        <div class="inspectionBox panel panel-default" id="panel20">
+        <div class="inspectionBox panel panel-primary" id="panel20">
             <div class="panel-heading"><span id="altId20" class="">Panel Heading Without Title</span><span id="content20" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information" onclick="showMap(20)">
                 District: <span id="district20" class=""></span><br> Address: <span id="bldg20" class=""></span> <span id="street20" class=""></span><br> Cross Streets: <span id="cross20" class=""></span>
             </div>
             <input type="hidden" id="cap20" value="">

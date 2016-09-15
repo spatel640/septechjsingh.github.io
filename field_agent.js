@@ -146,3 +146,55 @@ function getJobs() {
         console.log("Username did not exist");
     }
 }
+
+var map;
+
+function initMap() {
+
+    var latitude = parseFloat(getCookie('lat'));
+    var longitude = parseFloat(getCookie('lon'));
+
+    var myLatLng = {
+        lat: longitude,
+        lng: latitude
+    };
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 17,
+        center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+    });
+}
+
+function showMap(number) {
+    var capId = document.getElementById('cap' + number.toString()).value;
+    var altId = document.getElementById('altId' + number.toString()).innerHTML;
+    var bldg = document.getElementById('bldg' + number.toString()).innerHTML;
+    var street = document.getElementById('street' + number.toString()).innerHTML;
+    var lat = document.getElementById('lat' + number.toString()).value;
+    var lon = document.getElementById('lon' + number.toString()).value;
+    var insp = document.getElementById('insp' + number.toString()).value;
+
+    console.log(capId);
+    console.log(altId);
+    console.log(bldg);
+    console.log(street);
+    console.log(lat);
+    console.log(lon);
+    console.log(insp);
+
+    setCookie('capId', capId, 1);
+    setCookie('altId', altId, 1);
+    setCookie('bldg', bldg, 1);
+    setCookie('street', street, 1);
+    setCookie('lat', lat, 1);
+    setCookie('lon', lon, 1);
+    setCookie('insp', insp, 1);
+
+    window.location.href = '/field_agent_single_map.html';
+}
