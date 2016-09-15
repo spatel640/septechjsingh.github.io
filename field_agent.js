@@ -71,73 +71,85 @@ function getJobs() {
         }
 
         var i;
+        var num_scheduled = 0;
+        myInspections = new Array();
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            if (response.result != null && response.result != undefined && response.result != "") {
-                myInspections = new Array(response.result.length);
+            if (response.result != undefined) {
+
                 for (i = 0; i < response.result.length; i++) {
-                    var capId = response.result[i].recordId.id;
-                    var custId = response.result[i].recordId.customId;
-                    var bldg = response.result[i].address.streetStart;
-                    var street = response.result[i].address.streetName;
-                    var lat = response.result[i].address.xCoordinate;
-                    var lon = response.result[i].address.yCoordinate;
-                    var zipCode = response.result[i].address.postalCode;
-                    var district = response.result[i].address.inspectionDistrict;
-                    var secondary = response.result[i].address.secondaryStreet;
-                    var id = response.result[i].id;
-                    var district = 501;
+                    //if (response.result[i].status.text == "Scheduled") {
+                    if (response.result[i].status.text.match("Scheduled")) {
+                        num_scheduled = num_scheduled + 1;
 
-                    if (username.toUpperCase() == "SI01")
-                        district = 501;
-                    else if (username.toUpperCase() == "SI02")
-                        district = 502;
-                    else
-                        district = 503;
+                        console.log('Should be Scheduled ONLY: ' + response.result[i].status.text);
 
-                    var name = '';
+                        var capId = response.result[i].recordId.id;
+                        var custId = response.result[i].recordId.customId;
+                        var bldg = response.result[i].address.streetStart;
+                        var street = response.result[i].address.streetName;
+                        var lat = response.result[i].address.xCoordinate;
+                        var lon = response.result[i].address.yCoordinate;
+                        var zipCode = response.result[i].address.postalCode;
+                        var district = response.result[i].address.inspectionDistrict;
+                        var secondary = response.result[i].address.secondaryStreet;
+                        var id = response.result[i].id;
+                        var district = 501;
 
-                    var settings = {
-                        "async": false,
-                        "crossDomain": true,
-                        "url": "https://apis.accela.com/v4/records/" + capId,
-                        "method": "GET",
-                        "headers": {
-                            "authorization": authorization_token,
-                            "cache-control": "no-cache",
-                            "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"
+                        if (username.toUpperCase() == "SI01")
+                            district = 501;
+                        else if (username.toUpperCase() == "SI02")
+                            district = 502;
+                        else
+                            district = 503;
+
+                        var name = '';
+
+                        var settings = {
+                            "async": false,
+                            "crossDomain": true,
+                            "url": "https://apis.accela.com/v4/records/" + capId,
+                            "method": "GET",
+                            "headers": {
+                                "authorization": authorization_token,
+                                "cache-control": "no-cache",
+                                "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"
+                            }
                         }
+
+                        $.ajax(settings).done(function (response) {
+                            console.log(response);
+                            name = response.result[0].name;
+                        });
+
+                        var myInspection = new Insepction(capId, custId, district, name, bldg, street, lat, lon, zipCode, district, secondary, id);
+                        myInspections[i] = myInspection;
                     }
-
-                    $.ajax(settings).done(function (response) {
-                        console.log(response);
-                        name = response.result[0].name;
-                    });
-
-                    var myInspection = new Insepction(capId, custId, district, name, bldg, street, lat, lon, zipCode, district, secondary, id);
-                    myInspections[i] = myInspection;
                 }
             }
         });
+        console.log(num_scheduled);
+        console.log(myInspections.length);
 
         if (myInspections != undefined) {
-            for (i; i < myInspections.length; i++) {
-                myInspections[i] = null;
-            }
             for (i = 0; i < myInspections.length; i++) {
                 var cur_num = (i + 1).toString();
-                document.getElementById('altId' + cur_num).innerHTML = myInspections[i].altId;
-                document.getElementById('content' + cur_num).innerHTML = myInspections[i].name;
-                document.getElementById('bldg' + cur_num).innerHTML = myInspections[i].bldg;
-                document.getElementById('street' + cur_num).innerHTML = myInspections[i].street;
-                document.getElementById('cross' + cur_num).innerHTML = myInspections[i].secondary;
-                document.getElementById('district' + cur_num).innerHTML = myInspections[i].district;
-                document.getElementById('cap' + cur_num).value = myInspections[i].capId;
-                document.getElementById('lat' + cur_num).value = myInspections[i].lat;
-                document.getElementById('lon' + cur_num).value = myInspections[i].lon;
-                document.getElementById('insp' + cur_num).value = myInspections[i].inspectionId;
-                document.getElementById('panel' + cur_num).style.display = 'block';
+                console.log(myInspections[i]);
+                console.log("Value of i: " + i);
+                if (myInspections[i] != undefined && myInspections[i] != null) {
+                    document.getElementById('altId' + cur_num).innerHTML = myInspections[i].altId;
+                    document.getElementById('content' + cur_num).innerHTML = myInspections[i].name;
+                    document.getElementById('bldg' + cur_num).innerHTML = myInspections[i].bldg;
+                    document.getElementById('street' + cur_num).innerHTML = myInspections[i].street;
+                    document.getElementById('cross' + cur_num).innerHTML = myInspections[i].secondary;
+                    document.getElementById('district' + cur_num).innerHTML = myInspections[i].district;
+                    document.getElementById('cap' + cur_num).value = myInspections[i].capId;
+                    document.getElementById('lat' + cur_num).value = myInspections[i].lat;
+                    document.getElementById('lon' + cur_num).value = myInspections[i].lon;
+                    document.getElementById('insp' + cur_num).value = myInspections[i].inspectionId;
+                    document.getElementById('panel' + cur_num).style.display = 'block';
+                }
             }
         }
         console.log(myInspections);
@@ -185,6 +197,7 @@ function initMap() {
 }
 
 function showDetails(capId) {
+    $('#result_insp').hide()
     var televisions, computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods, tv32, tv43, tv49, tv59, tv69, tv70;
     var firstName;
     var lastName;
@@ -332,4 +345,39 @@ function showMap(number) {
     setCookie('name', name, 1);
 
     window.location.href = '/field_agent_single_map.html';
+}
+
+function resultOrNot() {
+    var insp_result = $('#insp_result').val();
+    if (insp_result == 'Pickup Complete' || insp_result == 'Item Not Found') {
+        $('#result_insp').show();
+    } else if (insp_result == 'Additional / Missing') {
+        $('#result_insp').hide();
+    }
+}
+
+function resultInsp() {
+    var insp_id = getCookie('insp');
+    var result = $('#insp_result').val();
+
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "url": "https://apis.accela.com/v4/inspections/" + insp_id + "/result",
+        "method": "PUT",
+        "headers": {
+            "content-type": "application/json",
+            "authorization": authorization_token,
+            "cache-control": "no-cache",
+            "postman-token": "a46b0778-4842-e7f9-96e3-252bdf31f524"
+        },
+        "processData": false,
+        "data": "{\r\n  \"status\": {\r\n    \"value\": \"" + result + "\",\r\n    \"text\": \"" + result + "\"\r\n  },\r\n  \"resultComment\": \"All requirements met.\"\r\n}"
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert('The Pickup Request Has Been Succesfully Updated!');
+    });
+    window.location.href = '/field_agent_P2.html';
 }
