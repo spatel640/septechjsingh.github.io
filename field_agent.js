@@ -55,7 +55,6 @@ function getJobs() {
         console.log(username);
 
         var now = moment();
-        now.add(1, 'days');
         var temp = now.format('YYYY MM DD').toString();
         var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
 

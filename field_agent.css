@@ -1,3 +1,7 @@
 .panel {
     display: none;
 }
+
+.col-md-6 {
+    margin-left: 20%;
+}
