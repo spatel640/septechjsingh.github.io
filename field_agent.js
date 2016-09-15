@@ -197,7 +197,28 @@ function initMap() {
 }
 
 function showDetails(capId) {
-    $('#result_insp').hide()
+    $('#result_insp').hide();
+    $('#additionalItems').selectpicker('hide');
+    $('#select_title').hide();
+
+    $('#addTv').hide();
+    $('#addComps').hide();
+    $('#addMons').hide();
+    $('#addKeys').hide();
+    $('#addMice').hide();
+    $('#addFax').hide();
+    $('#addTVP').hide();
+    $('#addVCRs').hide();
+    $('#addDVRs').hide();
+    $('#addDVDs').hide();
+    $('#addDCB').hide();
+    $('#addCable').hide();
+    $('#addGame').hide();
+    $('#addSSS').hide();
+    $('#addPorts').hide();
+    $('#addIpods').hide();
+    $('#updates').hide();
+
     var televisions, computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods, tv32, tv43, tv49, tv59, tv69, tv70;
     var firstName;
     var lastName;
@@ -305,6 +326,8 @@ function showDetails(capId) {
             addRow("Cable Boxes", cable);
         if (xbox > 0)
             addRow("Video Game Systems", xbox);
+        if (sss > 0)
+            addRow("Small Scale Servers", sss);
         if (portables > 0)
             addRow("Portable Devices", portables);
         if (ipods > 0)
@@ -353,6 +376,7 @@ function resultOrNot() {
         $('#result_insp').show();
     } else if (insp_result == 'Additional / Missing') {
         $('#result_insp').hide();
+        showAdditional();
     }
 }
 
@@ -380,4 +404,92 @@ function resultInsp() {
         alert('The Pickup Request Has Been Succesfully Updated!');
     });
     window.location.href = '/field_agent_P2.html';
+}
+
+/*
+option value = "tv" > Televisions < /option> <
+option value = "comp" > Computers < /option> <
+option value = "mon" > Monitors, Laptops < /option> <
+option value = "keys" > Keyboards < /option> <
+option value = "mice" > Mice < /option> <
+option value = "fax" > Fax Machines < /option> <
+option value = "tvp" > TV Peripherals < /option> <
+option value = "vcr" > VCRs < /option> <
+option value = "dvr" > DVRs < /option> <
+option value = "dvd" > DVDs < /option> <
+option value = "dcb" > Digital Converter Boxes < /option> <
+option value = "cable" > Cable or Satellite Receivers < /option> <
+option value = "xbox" > Video Game Consoles < /option> <
+option value = "sss" > Small Scale Servers < /option> <
+option value = "ports" > Portable Devices < /option> <
+option value = "ipods" > Portable Music Players < /option>
+*/
+/*
+$('#addTv').hide();
+$('#addComps').hide();
+$('#addMons').hide();
+$('#addKeys').hide();
+$('#addMice').hide();
+$('#adFax').hide();
+$('#addTVP').hide();
+$('#addVCRs').hide();
+$('#addDVRs').hide();
+$('#addDVDs').hide();
+$('#addDCB').hide();
+$('#addCable').hide();
+$('#addGame').hide();
+$('#addSSS').hide();
+$('#addPorts').hide();
+$('#addIpods').hide();
+*/
+
+function showAdditional() {
+    $('#addTv').show();
+    $('#addComps').show();
+    $('#addMons').show();
+    $('#addKeys').show();
+    $('#addMice').show();
+    $('#addFax').show();
+    $('#addTVP').show();
+    $('#addVCRs').show();
+    $('#addDVRs').show();
+    $('#addDVDs').show();
+    $('#addDCB').show();
+    $('#addCable').show();
+    $('#addGame').show();
+    $('#addSSS').show();
+    $('#addPorts').show();
+    $('#addIpods').show();
+    $('#updates').show();
+    /*
+    var multi_val = $('#additionalItems').val();
+    console.log(multi_val.length);
+    for (i = 0; i < multi_val.length; i++) {
+        var item = multi_val[i];
+        if (item == 'tv')
+            $('#addTv').show();
+        else
+            $('#addTv').hide();
+        if (item == 'comp')
+            $('#addComps').show();
+        else
+            $('#addComps').hide();
+        if (item == 'mon')
+            $('#addMons').show();
+        else
+            $('#addMons').hide();
+        if (item == 'keys')
+            $('#addKeys').show();
+        else
+            $('#addKeys').hide();
+        if (item == 'mice')
+            $('#addMice').show();
+        else
+            $('#addMice').hide();
+        if (item == 'fax')
+            $('#addFax').show();
+        else
+            $('#addFax').hide();
+    }
+    */
 }

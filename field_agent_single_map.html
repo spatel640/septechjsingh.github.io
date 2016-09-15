@@ -68,10 +68,120 @@
         </select>
         <br><br>
         <button class="btn btn-success" id="result_insp" onclick="resultInsp()">Submit</button>
+        <!--
+        <h5 id="select_title">Select Additional</h5>
+        <select class="selectpicker" data-style="btn-success" multiple onchange="showAdditional()" id="additionalItems">
+            <option selected disabled>Select One or More..</option>
+            <option value="tv">Televisions</option>
+            <option value="comp">Computers</option>
+            <option value="mon">Monitors, Laptops</option>
+            <option value="keys">Keyboards</option>
+            <option value="mice">Mice</option>
+            <option value="fax">Fax Machines</option>
+            <option value="tvp">TV Peripherals</option>
+            <option value="vcr">VCRs</option>
+            <option value="dvr">DVRs</option>
+            <option value="dvd">DVDs</option>
+            <option value="dcb">Digital Converter Boxes</option>
+            <option value="cable">Cable or Satellite Receivers</option>
+            <option value="xbox">Video Game Consoles</option>
+            <option value="sss">Small Scale Servers</option>
+            <option value="ports">Portable Devices</option>
+            <option value="ipods">Portable Music Players</option>
+        </select>
+        -->
     </div>
-    <br><br>
+    <br>
+    <div class="container-fluid text-center" id="additionalStuff">
+        <div class="input-group" id="addTv">
+            <span class="input-group-addon" id="basic-addon3">Televisions</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addComps">
+            <span class="input-group-addon" id="basic-addon3">Computers</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addMons">
+            <span class="input-group-addon" id="basic-addon3">Monitors / Laptops</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addKeys">
+            <span class="input-group-addon" id="basic-addon3">Keyboards</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addMice">
+            <span class="input-group-addon" id="basic-addon3">Mice</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addFax">
+            <span class="input-group-addon" id="basic-addon3">Fax Machines</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addTVP">
+            <span class="input-group-addon" id="basic-addon3">TV Peripherals</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addVCRs">
+            <span class="input-group-addon" id="basic-addon3">VCRs</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addDVRs">
+            <span class="input-group-addon" id="basic-addon3">DVRs</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addDVDs">
+            <span class="input-group-addon" id="basic-addon3">DVDs</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addDCB">
+            <span class="input-group-addon" id="basic-addon3">Converter Boxes</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addCable">
+            <span class="input-group-addon" id="basic-addon3">Cable Boxes</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addGame">
+            <span class="input-group-addon" id="basic-addon3">Game Consoles</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addSSS">
+            <span class="input-group-addon" id="basic-addon3">Small Scale Servers</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addPorts">
+            <span class="input-group-addon" id="basic-addon3">Portable Devices</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <div class="input-group" id="addIpods">
+            <span class="input-group-addon" id="basic-addon3">Music Players</span>
+            <input type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <br>
+    </div>
+    <br>
+    <div class="container-fluid text-center" id="updates">
+        <button class="btn btn-success">Update & Submit</button>
+    </div>
+    <br>
     <script src="field_agent.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRGDhU9Vl3wASvkzWPz_Y01cPQ1v3O7IE&callback=initMap" async defer></script>
+    <link rel="stylesheet" href="field_agent.css">
 </body>
 
 </html>
