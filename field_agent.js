@@ -153,6 +153,8 @@ function initMap() {
 
     var latitude = parseFloat(getCookie('lat'));
     var longitude = parseFloat(getCookie('lon'));
+    var bldg = getCookie('bldg');
+    var street = getCookie('street');
 
     var myLatLng = {
         lat: longitude,
@@ -167,7 +169,7 @@ function initMap() {
     var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
-        title: 'Hello World!'
+        title: bldg + ' ' + street
     });
 }
 
