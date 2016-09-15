@@ -255,7 +255,52 @@ function showDetails(capId) {
         sss = Number(response.result[1]["Small scale servers"]) + 0;
         portables = Number(response.result[1]["Portable devices, including any permanently attached cable or wiring"]) + 0;
         ipods = Number(response.result[1]["Portable digital music players"]) + 0;
+
+        if (tv32 > 0)
+            addRow("TVs 32 Inches & Under", tv32);
+        if (tv43 > 0)
+            addRow("TVs 33-43 Inches", tv43);
+        if (tv49 > 0)
+            addRow("TVs 44-49 Inches", tv49);
+        if (tv59 > 0)
+            addRow("TVs 50-59 Inches", tv59);
+        if (tv69 > 0)
+            addRow("TVs 60-69 Inches", tv69);
+        if (tv70 > 0)
+            addRow("TVs 70 Inches & Up", tv70);
+        if (computers > 0)
+            addRow("Computer Peripherals", computers);
+        if (monitors > 0)
+            addRow("Monitors, Laptops", monitors);
+        if (keyboards > 0)
+            addRow("Electronic Keyboards", keyboards);
+        if (mice > 0)
+            addRow("Electronic Mice", mice);
+        if (fax > 0)
+            addRow("Fax Machines", fax);
+        if (peripherals > 0)
+            addRow("TV Peripherals", peripherals);
+        if (vcrs > 0)
+            addRow("VCRs", vcrs);
+        if (dvrs > 0)
+            addRow("DVRs", dvrs);
+        if (dvd > 0)
+            addRow("DVDs", dvd);
+        if (dcb > 0)
+            addRow("Digital Converter Boxes", dcb);
+        if (cable > 0)
+            addRow("Cable Boxes", cable);
+        if (xbox > 0)
+            addRow("Video Game Systems", xbox);
+        if (portables > 0)
+            addRow("Portable Devices", portables);
+        if (ipods > 0)
+            addRow("Portable Music Players", ipods);
     });
+}
+
+function addRow(item_name, number) {
+    $('#item_table').append('<tr><td>' + item_name + '</td><td>' + number + '</td></tr>');
 }
 
 function showMap(number) {
