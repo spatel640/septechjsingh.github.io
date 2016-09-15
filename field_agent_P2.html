@@ -25,16 +25,18 @@
 <body onload="getJobs()">
     <div class="container-fluid">
         <div class="page-header text-center">
-            <h1 class="text-capitalize">field agent dashboard</h1>
-            <h1 class="text-capitalize"><small>job list</small></h1>
+            <h1 class="text-capitalize"><span id="username"></span> job list</h1>
         </div>
     </div>
     <div class="container-fluid" id="job-container">
 
         <div class="inspectionBox panel panel-default" id="panel1">
             <div class="panel-heading"><span id="altId1" class="">Panel Heading Without Title</span><span id="content1" class="col-md-6"></span></div>
-            <div class="panel-body">
+            <div class="panel-body information">
                 District: <span id="district1" class=""></span><br> Address: <span id="bldg1" class=""></span> <span id="street1" class=""></span><br> Cross Streets: <span id="cross1" class=""></span>
+            </div>
+            <div class="individual-map-button">
+                <button type="button" class="btn btn-success">Hello World</button>
             </div>
             <input type="hidden" id="cap1" value="">
             <input type="hidden" id="lat1" value="">

@@ -5,3 +5,14 @@
 .col-md-6 {
     margin-left: 5%;
 }
+
+.information {
+    display: inline-block;
+    width: 80%;
+}
+
+.individual-map-button {
+    display: inline-block;
+    width: 15%;
+    height: 100%;
+}

@@ -53,7 +53,7 @@ function getJobs() {
     if (checkCookie("username")) {
         var username = getCookie("username");
         console.log(username);
-
+        $('#username').text(username.toUpperCase());
         var now = moment();
         var temp = now.format('YYYY MM DD').toString();
         var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
