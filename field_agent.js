@@ -155,6 +155,9 @@ function initMap() {
     var longitude = parseFloat(getCookie('lon'));
     var bldg = getCookie('bldg');
     var street = getCookie('street');
+    var altId = getCookie('altId');
+    var capId = getCookie('capId');
+    var insp = getCookie('insp');
 
     var myLatLng = {
         lat: longitude,
