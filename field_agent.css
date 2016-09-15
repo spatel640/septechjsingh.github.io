@@ -9,6 +9,7 @@
 .information {
     display: inline-block;
     width: 70%;
+    height: 100%;
 }
 
 .individual-map-button {
