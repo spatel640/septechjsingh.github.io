@@ -158,6 +158,13 @@ function initMap() {
     var altId = getCookie('altId');
     var capId = getCookie('capId');
     var insp = getCookie('insp');
+    var name = getCookie('name');
+
+    $('#address').text(bldg + ' ' + street);
+    $('#summary').text(name);
+    $('#altId').text(altId);
+
+    console.log('Name: ' + name);
 
     var myLatLng = {
         lat: longitude,
@@ -174,6 +181,81 @@ function initMap() {
         map: map,
         title: bldg + ' ' + street
     });
+    showDetails(capId);
+}
+
+function showDetails(capId) {
+    var televisions, computers, monitors, keyboards, mice, fax, peripherals, vcrs, dvrs, dvd, dcb, cable, xbox, sss, portables, ipods, tv32, tv43, tv49, tv59, tv69, tv70;
+    var firstName;
+    var lastName;
+    var phoneNumber;
+    var email;
+
+    // Get the Contact Information
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://apis.accela.com/v4/records/" + capId + "/contacts",
+        "method": "GET",
+        "headers": {
+            "content-type": "application/json",
+            "authorization": authorization_token,
+            "cache-control": "no-cache",
+            "postman-token": "63042cf8-346e-57e7-eb14-e16956b3c997"
+        },
+        "processData": false,
+        "data": ""
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        firstName = response.result[0].firstName;
+        lastName = response.result[0].lastName;
+        phoneNumber = response.result[0].phone3;
+        $('#name').text(firstName + ' ' + lastName);
+        $('#number').text(phoneNumber);
+    });
+
+    // Get the Custom Forms Data
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://apis.accela.com/v4/records/" + capId + "/customForms",
+        "method": "GET",
+        "headers": {
+            "content-type": "application/json",
+            "authorization": authorization_token,
+            "cache-control": "no-cache",
+            "postman-token": "3df01117-52d4-a291-4621-ffd974d6c370"
+        },
+        "processData": false,
+        "data": ""
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        tv32 = Number(response.result[0]["32 Inches & Under"]) + 0;
+        tv43 = Number(response.result[0]["33 to 43 Inches"]) + 0;
+        tv49 = Number(response.result[0]["44 to 49 Inches"]) + 0;
+        tv59 = Number(response.result[0]["50 to 59 Inches"]) + 0;
+        tv69 = Number(response.result[0]["60 to 69 Inches"]) + 0;
+        tv70 = Number(response.result[0]["70 Inches & Up"]) + 0;
+        computers = Number(response.result[1]["Computer peripherals, including any permanently attached cable or wiring"]) + 0;
+        monitors = Number(response.result[1]["Monitors, Laptops"]) + 0;
+        keyboards = Number(response.result[1]["Electronic keyboards"]) + 0;
+        mice = Number(response.result[1]["Electronic mice and other pointing devices"]) + 0;
+        fax = Number(response.result[1]["Fax machines, document scanners, and printers that weigh less than 100lbs"]) + 0;
+        peripherals = Number(response.result[1]["TV Peripherals, including any permanently attached cable or wiring"]) + 0;
+        vcrs = Number(response.result[1]["VCRs"]) + 0;
+        dvrs = Number(response.result[1]["Digital video recorders"]) + 0;
+        dvd = Number(response.result[1]["DVD players"]) + 0;
+        dcb = Number(response.result[1]["Digital converter boxes"]) + 0;
+        cable = Number(response.result[1]["Cable or satellite receivers"]) + 0;
+        xbox = Number(response.result[1]["Electronic or video game consoles"]) + 0;
+        sss = Number(response.result[1]["Small scale servers"]) + 0;
+        portables = Number(response.result[1]["Portable devices, including any permanently attached cable or wiring"]) + 0;
+        ipods = Number(response.result[1]["Portable digital music players"]) + 0;
+    });
 }
 
 function showMap(number) {
@@ -184,6 +266,7 @@ function showMap(number) {
     var lat = document.getElementById('lat' + number.toString()).value;
     var lon = document.getElementById('lon' + number.toString()).value;
     var insp = document.getElementById('insp' + number.toString()).value;
+    var name = document.getElementById('content' + number.toString()).textContent;
 
     console.log(capId);
     console.log(altId);
@@ -192,6 +275,7 @@ function showMap(number) {
     console.log(lat);
     console.log(lon);
     console.log(insp);
+    console.log(name);
 
     setCookie('capId', capId, 1);
     setCookie('altId', altId, 1);
@@ -200,6 +284,7 @@ function showMap(number) {
     setCookie('lat', lat, 1);
     setCookie('lon', lon, 1);
     setCookie('insp', insp, 1);
+    setCookie('name', name, 1);
 
     window.location.href = '/field_agent_single_map.html';
 }
