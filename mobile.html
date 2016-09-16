@@ -23,7 +23,7 @@
 <body onload="load()">
     <div class="page-header">
         <h1>SEP Tech Fee Estimator</h1>
-        <h1><small>Configuration Module</small></h1>
+        <h1><small>Record Type Configuration</small></h1>
     </div>
     <button type="button" class="btn btn-primary" onclick="start()" id="start">Start</button>
     <br>
@@ -51,11 +51,15 @@
                     <label for="select4">Inputs</label>
                 </div>
             </div>
-            <select class="selectpicker" id="select3" data-width="45%">
+            <select class="selectpicker" id="select3" data-width="45%" onchange="instaItem()">
             </select>
-            <select class="selectpicker" id="select4" data-width="45%" multiple>
+            <select class="selectpicker" id="select4" data-width="45%" multiple onchange="showNumField()">
             </select>
             <br><br>
+            <div class="input-group text-center" id="number_field">
+                <span class="input-group-addon" id="basic-addon1">Number</span>
+                <input type="number" class="form-control" aria-describedby="basic-addon1">
+            </div>
             <div>
                 <label for="select5">Formula</label>
             </div>

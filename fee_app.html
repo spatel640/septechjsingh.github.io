@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Client Facing Fee Estimator</title>
+    <title>Fee Estimator</title>
     <link rel="shortcut icon" href="">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -20,54 +20,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
 </head>
 
-<body onload="">
-    <img src="Logo.PNG" id="logo">
-    <h1><small>Accela Fee Estimator</small></h1>
-    <br>
-    <form>
-        <h4>Construction Type</h4>
-        <select class="selectpicker" id="const_type" data-width="100%">
-            <option selected disabled>Select One</option>
-            <option value="1A">1A - Type IA</option>
-            <option value="1B">1B - Type IB</option>
-            <option value="2A">2A - Type IIA</option>
-            <option value="2B">2B - Type IIB</option>
-            <option value="3A">3A - Type IIIA</option>
-            <option value="3B">3B - Type IIIB</option>
-            <option value="4">4 - Type IV</option>
-            <option value="5A">5A - Type VA</option>
-            <option value="5B">5B - Type VB</option>
+<body onload="hideStuff()">
+    <div class="page-header text-center">
+        <img src="Logo.PNG" id="logo">
+        <h1>Accela Fee Estimator</h1>
+    </div>
+    <div class="container-fluid text-center" id="inputs">
+        <select class="selectpicker show-tick" id="fee_type" data-style="btn-info" onchange="showInput()" data-width="100%">
+            <option selected disabled>Select A Fee Type..</option>
+            <option value="cincy_obc">Residential Repair Alterations</option>
         </select>
         <br><br>
-        <h4>Occupancy Category</h4>
-        <select class="selectpicker" id="occ_cat" data-width="100%">
-            <option selected disabled>Select One</option>
-            <option value="R3A">R-3A Dwellings-Custom Homes</option>
-            <option value="R3B">R-3B Dwellings-Models, First Master Plan</option>
-            <option value="R3C">R-3C Dwellings-Production Phase of Master Plan</option>
-            <option value="R3D">R-3D Dwellings-Dwellings Accesory Structure - Shed, Deck, Gazebo, Pergola</option>
-        </select>
-        <br><br>
-        <h4>New Construction Type</h4>
-        <select class="selectpicker" id="new_const_type" data-width="100%">
-            <option selected disabled>Select One</option>
-            <option value="2">2-Phased (Shell) Project</option>
-            <option value="3">3-Phased Project</option>
-            <option value="complete">Complete Project</option>
-        </select>
-        <br><br>
-        <h4>Is This A New Construction</h4>
-        <select class="selectpicker" id="is_new_const" data-width="100%">
-            <option selected disabled>Select One</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
-        <br><br>
-        <h4>Total Square Feet</h4>
-        <input type="number" id="square_feet" class="form-control">
+        <form id="myForm">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">Sq Ft.</div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Square Footage Involved">
+                </div>
+            </div>
+            <button type="button" class="btn btn-info" onclick="calc()">Calculate</button>
+        </form>
         <br>
-        <button type="button" class="btn btn-primary" onclick="create_items_schedules()">Submit</button>
-    </form>
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Fee Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>APP_FEE</td>
+                    <td id="app_fee"></td>
+                </tr>
+                <tr>
+                    <td>PERMIT_FEE</td>
+                    <td id="permit_fee"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><b>Total:</b> </td>
+                    <td id="total"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
     <link rel="stylesheet" media=screen href="fee_app.css">
     <script src="fee_app.js"></script>
 </body>

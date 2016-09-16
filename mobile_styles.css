@@ -40,3 +40,8 @@ body form div div div {
 .hideMe {
     display: none;
 }
+
+#number_field {
+    max-width: 150px;
+    margin-bottom: 10px;
+}

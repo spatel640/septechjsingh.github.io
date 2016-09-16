@@ -1,4 +1,4 @@
-var authorization_token = "pCccHP98W0Rv3Ul1dZuH02UdBQMY-dWbxlVBeQLXq5EzaNBwtm-QAhrjItSLIt3qdJB1Qzh2Xm9pzjrNVlqRHc4kidPiXp0-LflHkm49n5Moxv3ay5r6dn-RPGg1IH1YF9kG_-7oRYTZ-h9R8AWrmdVi2ZwAIG6BUHvb0jlDkfgMSShFT3jtcOM4bFgaWL3Yk02vuVOulCgZek39F7VCWsGz5scvvPWjQ65V4EE-fBXqtAj2d6BrbBy1mGRhjf_5kGUUaZ_2iYzm8BByvy2m4FAZZYv4Kh35OylPnh68vJgYO_a6Od5FfESUzB_u-E_fojv_Pz4WJ56P5oE2xWy60mhdxpRPktA-rDxN79sWJFjY1GTK02DyzigUb16qTtqSWxqwk9XDaM0RUfOpSVbpDcSdAzFukmZeNe8zvP3mYp_vJ_hTl_aoQ28h2ym1zzsAROuriLQP-yzZhK_tqfViZVqouORhWdr1xjD5aF3OCiQ1";
+var authorization_token = "qKW3PD5N-dKpIxPSwneyA0vOzDT1ZG_penFxLyZ99zG37rDBLVAoIc4J-fRH7mE6hwcU2GSUp_Ed_LSr4A5WdEWkT_Ot23d6ja9raT-olqfErBDGmxtwVqBOYRyKAQX3CWAHllDMo5AxBj5ZuRoZS_TGI5fQONudfQeCtIPa9N7vSk6y7JzEPyFYVR6AMhAF5pJ6eNkLXiWbhGcDTnuqqfuDMNITpOEpZHpXlkvPUOlG42_PLsBm5axpIpcCBDNq2pRYT4wfoXMZOCo5n1_AXCknzTqOiOxsXIc70IGRHrDqjDIBmo-rs2iaA0lOrlNkpwDWYj9v6c457SOxi-D1coNV_Vappr-IWVYkbbYQc0NlIsC7BJ28rAdQAqLHE5GhnpB0dHhZ5cGsosmuXSYk29Ipmi92Wk4yo0PP5MiRE6HAJPXAvCko0r9NHn4ay2NjA-BX5liU1dS2Dac0U3QRsw2";
 
 function start() {
     loadRecords();
@@ -35,7 +35,7 @@ function loadRecords() {
             var recordType = response.result[i];
             $("<option></option>", {
                 value: encodeURI(recordType.id),
-                text: recordType.value
+                text: recordType.alias
             }).appendTo('#select1');
         }
         $('#select1').selectpicker('refresh');
@@ -86,6 +86,7 @@ function loadStuff() {
     var record = $("#select1").val();
     console.log("Record Selected: " + record);
 
+    $('#number_field').hide();
     loadItems(schedule);
     loadASIs(record);
 }
@@ -215,4 +216,22 @@ function load() {
         console.log("Hello World");
         console.log(data);
     });
+}
+
+function instaItem() {
+    var fee_item = $('#select3').val();
+    console.log(fee_item);
+    if (fee_item == 'PERMIT_FEE')
+        $('#select5').selectpicker('val', 'Linear Min Max Enhanced');
+    if (fee_item == 'APP_FEE')
+        $('#select5').selectpicker('val', 'Constant');
+}
+
+function showNumField() {
+    var current = $('#select4').val();
+    if (current == 'Number') {
+        $('#number_field').show();
+    } else {
+        $('#number_field').hide();
+    }
 }

@@ -111,3 +111,27 @@ function linear_with_min_max_enhanced(myString, quantity) {
     fee = a * (quantity - R) + b;
     return fee;
 }
+
+function hideStuff() {
+    $('#myForm').hide();
+    $('#myTable').hide();
+}
+
+function showInput() {
+    $('#myForm').show();
+}
+
+function calc() {
+    var quant = $('#exampleInputAmount').val();
+    if (quant == null || quant == undefined || quant == 0) {
+        alert("Please enter a value greater than 0 to continue");
+    } else {
+        var fee = linear_with_min_max_enhanced(test_string2, quant).toFixed(2);
+        var total_fee = parseFloat(fee) + 50;
+        total_fee = total_fee.toFixed(2);
+        $('#app_fee').text('50');
+        $('#permit_fee').text(fee);
+        $('#total').text(total_fee);
+        $('#myTable').show();
+    }
+}
