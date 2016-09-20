@@ -57,9 +57,9 @@ function getDates() {
 
     var district = getUrlVars()["district"];
 
-    var myUrl1 = "http://10.30.106.225:3000/dates/501/" + date2Pass;
-    var myUrl2 = "http://10.30.106.225:3000/dates/502/" + date2Pass;
-    var myUrl3 = "http://10.30.106.225:3000/dates/503/" + date2Pass;
+    var myUrl1 = "http://54.174.123.211:3000/dates/501/" + date2Pass;
+    var myUrl2 = "http://54.174.123.211:3000/dates/502/" + date2Pass;
+    var myUrl3 = "http://54.174.123.211:3000/dates/503/" + date2Pass;
 
     var myUrl = "";
 
