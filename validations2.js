@@ -306,11 +306,12 @@ function checkScheduleDate(insp_date, district) {
     var temp = now.format('YYYY MM DD').toString();
     var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
 
-    console.log(date2Pass);
+    var district = document.getElementById("district").value;
+    console.log(district);
 
-    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
-    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
-    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=true";
+    var myUrl1 = "http://10.30.5.123:3000/dates/501/" + date2Pass;
+    var myUrl2 = "http://10.30.5.123:3000/dates/502/" + date2Pass;
+    var myUrl3 = "http://10.30.5.123:3000/dates/503/" + date2Pass;
 
     var myUrl = "";
 

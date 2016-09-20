@@ -6,7 +6,7 @@ function enableBorough() {
     document.getElementById("brgh").disabled = false;
 }
 
-var auth_token = "qKW3PD5N-dKpIxPSwneyAyioIcfeRFEZaypEe0wiE9MvDZg7b1mQYsO_qxOw9ojzlyQ78XGRNcbs0XePyLQSY0SUCH0-scQ2PxE04SEVVe4LYK9sd0HGerCys4PuTyG2TgBer_4zqmdr65m0R2Sz0Aw0D-R6RyLNcPWPocWkX9ASddrG6rUn8SzQFE6j97gqZMuc4Qv4CqE_haGUpEdKH7ZAqMwXxZOa1CT8lqV9KGv1ZDMaTDlsd2pgLxmJROuo-rxRAVWlw7NovIc3dbjRHMpUxoAMoaTsLxW2NX6igr4zETbnWNxcSPwAM_N7Ed-wypHWCICVNtsMuU01MM2Te5w9URdqceSY7_78eOv9YW4LEgKyxm729l74YJtq0RbAYhBqmVgVxm9x2aOgEdRz2XalQSMdrvDF0tEnbv69iIrakJFYd8ebkKsRjktyViwrsh0DWpgqFtXyHf43srbJqw2";
+var auth_token = "9dnDO-uuZvUMSVDfucUJlk7o3SAbHjn_SuuykF4Acr7jZ_xs0qmGdKj6FPiSDDw4COgNVq8MLtVxgJE_EbEzh2eX8EJDZbLsmTSM95WSCZzE3CgyS1KTFnODEvtdb3Xv3C4G7nw1NYFk1an6OlyWNIthH6mBfgqiBqtI2xkwLYdrPdwjYwARN6FBRUCzvNWZY8ZsKPr17-7zmJ4TK3iD6uph-eQuqaNFiuxbhTVRs039VICiMy_1WNFJAg8whuGlxSb9GJfM4ESDLNhHh2gHk4M-nPoPTmp4GgkIZUqCNB5j5BpjxdXkO7b8XhV8HqMMyJ2NQOkSxSh9eJeAUXMrl9EYcSMK7O-SRDo8BU2pyi4zTzJzwG1XjjM0ZhovkUYMuLgrRFJZvwQKlPIdkGx3yzhoXALXjwsDaUaCrBNEEaH7fx_daBT9achZZKCLHGNWzv2y_BxEkezBZhH_zoeRoQ2";
 
 function gotoStart() {
     window.location.href = '/citizenPage.html';
@@ -57,9 +57,9 @@ function getDates() {
 
     var district = getUrlVars()["district"];
 
-    var myUrl1 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002O&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=false";
-    var myUrl2 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002P&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=false";
-    var myUrl3 = "https://apis.accela.com/v4/inspections/availableDates?typeId=5&recordId=PARTNER-16CAP-00000-0002Q&startDate=" + date2Pass + "&validateScheduleNumOfDays=true&validateCutOffTime=false";
+    var myUrl1 = "http://10.30.106.225:3000/dates/501/" + date2Pass;
+    var myUrl2 = "http://10.30.106.225:3000/dates/502/" + date2Pass;
+    var myUrl3 = "http://10.30.106.225:3000/dates/503/" + date2Pass;
 
     var myUrl = "";
 

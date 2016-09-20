@@ -27,36 +27,39 @@ function createUpdate() {
 
     var electronicDevicesTotal = computers + monitors + keyboards + mice + fax + peripherals + vcrs + dvrs + dvd + dcb + cable + xbox + sss + portables + ipods + televisions + 0;
 
-    var buildingNumber = document.getElementById("bldg-input").value;
-    var streetAddress = document.getElementById("street-input").value;
-    var firstName = document.getElementById("first-name").value;
-    var lastName = document.getElementById("last-name").value;
-    var userEmail = document.getElementById("email").value;
-    var phoneNumber = document.getElementById("phone").value;
+    var buildingNumber = encodeURI(document.getElementById("bldg-input").value);
+    var streetAddress = encodeURI(document.getElementById("street-input").value);
+    var firstName = encodeURI(document.getElementById("first-name").value);
+    var lastName = encodeURI(document.getElementById("last-name").value);
+    var userEmail = encodeURI(document.getElementById("email").value);
+    var phoneNumber = encodeURI(document.getElementById("phone").value);
     var suffix = "";
 
-    var crossStreet = document.getElementById('cs1').value + " / " + document.getElementById('cs2').value;
-    var bbl = document.getElementById("bbl").value;
-    var district = document.getElementById("district").value;
-    var lat = document.getElementById("lat").value;
-    var lon = document.getElementById("lon").value;
-    var cityName = document.getElementById("cityName").value;
-    var zip = document.getElementById("zip").value;
+    var crossStreet = encodeURI(document.getElementById('cs1').value + " - " + document.getElementById('cs2').value);
+    var bbl = encodeURI(document.getElementById("bbl").value);
+    var district = encodeURI(document.getElementById("district").value);
+    var lat = encodeURI(document.getElementById("lat").value);
+    var lon = encodeURI(document.getElementById("lon").value);
+    var cityName = encodeURI(document.getElementById("cityName").value);
+    var zip = encodeURI(document.getElementById("zip").value);
+    if (userEmail == '') {
+        userEmail = "null";
+    }
 
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://apis.accela.com/v4/records/",
-        "method": "POST",
+        "url": "http://10.30.5.123:3000/create/" + electronicDevicesTotal + "/" + televisions + "/" + bbl + "/" + buildingNumber + "/" + streetAddress + "/" + 'null' + "/" + crossStreet + "/" + district + "/" + cityName + "/" + lon + "/" + lat + "/" + zip + "/" + firstName + "/" + lastName + "/" + userEmail + "/" + phoneNumber + "",
+        "method": "GET",
         "headers": {
-            "content-type": "application/json",
-            "authorization": authorization2,
             "cache-control": "no-cache",
-            "postman-token": "aab06c5a-bde7-7b59-c426-874beb07ad16"
-        },
-        "processData": false,
-        "data": "{\r\n    \"type\": {\r\n        \"id\": \"Building-DSNY-Electronic Waste Pickup Prgm-NA\"\r\n    },\r\n    \"description\": \"Electronic Waste Pickup\",\r\n   \"name\": \"" + electronicDevicesTotal + " Devices (" + televisions + " TVs)" + "\",\r\n    \"parcels\": [\r\n        {\r\n            \"parcelNumber\": \"" + bbl + "\"\r\n    }\r\n  ],\r\n    \"addresses\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"streetStart\": \"" + buildingNumber + "\",\r\n            \"streetName\": \"" + streetAddress + "\",\r\n            \"streetSuffix\": {\r\n                \"value\": \"" + suffix + "\",\r\n                \"text\": \"" + suffix + "\"\r\n            },\r\n           \"secondaryStreet\": \"" + crossStreet + "\",\r\n             \"inspectionDistrict\": \"" + district + "\",\r\n            \"city\": \"" + cityName + "\", \r\n            \"xCoordinate\": \"" + lon + "\",\r\n            \"yCoordinate\": \"" + lat + "\",\r\n            \"postalCode\": \"" + zip + "\",\r\n            \"state\": {\r\n                \"value\": \"NY\",\r\n                \"text\": \"NY\"\r\n            }\r\n    }\r\n  ],\r\n    \"contacts\": [\r\n        {\r\n            \"isPrimary\": \"Y\",\r\n            \"fullName\": \"" + firstName + " " + lastName + "\",\r\n            \"email\": \"" + userEmail + "\",\r\n            \"firstName\": \"" + firstName + "\",\r\n            \"lastName\": \"" + lastName + "\",\r\n            \"phone3\": \"" + phoneNumber + "\",\r\n            \"status\": {\r\n                \"value\": \"A\",\r\n                \"text\": \"Active\"\r\n            },\r\n            \"type\": {\r\n                \"value\": \"Owner\",\r\n                \"text\": \"Owner\"\r\n            }\r\n    }\r\n  ]\r\n}"
+            "postman-token": "a24a589c-fcdc-0d6d-f9b2-e6ca3ebd9f7a"
+        }
     }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
 
     $.ajax(settings).done(function (response) {
         console.log(response);
@@ -277,20 +280,17 @@ function createUpdate() {
             tv70++;
     }
 
+    capID = encodeURI(capID);
     // Update with Correct Information
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://apis.accela.com/v4/records/" + capID + "/customForms",
-        "method": "PUT",
+        "url": "http://10.30.5.123:3000/update/" + capID + "/" + tv32 + "/" + tv43 + "/" + tv49 + "/" + tv59 + "/" + tv69 + "/" + tv70 + "/" + televisions + "/" + computers + "/" + monitors + "/" + keyboards + "/" + mice + "/" + fax + "/" + peripherals + "/" + vcrs + "/" + dvrs + "/" + dvd + "/" + dcb + "/" + cable + "/" + xbox + "/" + sss + "/" + portables + "/" + ipods + "",
+        "method": "GET",
         "headers": {
-            "content-type": "application/json",
-            "authorization": authorization2,
             "cache-control": "no-cache",
             "postman-token": "8bce7523-f85e-4883-8c09-b9331ab5cc97"
         },
-        "processData": false,
-        "data": "[\n    {\n      \"id\": \"DSNY_EW-TELEVISION\",\n      \"44 to 49 Inches\": \"" + tv49 + "\",\n      \"32 Inches & Under\": \"" + tv32 + "\",\n      \"33 to 43 Inches\": \"" + tv43 + "\",\n      \"70 Inches & Up\": \"" + tv70 + "\",\n      \"60 to 69 Inches\": \"" + tv69 + "\",\n      \"50 to 59 Inches\": \"" + tv59 + "\"\n    },\n    {\n      \"Computer peripherals, including any permanently attached cable or wiring\": \"" + computers + "\",\n      \"Portable devices, including any permanently attached cable or wiring\": \"" + portables + "\",\n      \"Digital converter boxes\": \"" + dcb + "\",\n      \"Fax machines, document scanners, and printers that weigh less than 100lbs\": \"" + fax + "\",\n      \"VCRs\": \"" + vcrs + "\",\n      \"Portable digital music players\": \"" + ipods + "\",\n      \"Electronic mice and other pointing devices\": \"" + mice + "\",\n      \"Small scale servers\": \"" + sss + "\",\n      \"Digital video recorders\": \"" + dvrs + "\",\n      \"Electronic or video game consoles\": \"" + xbox + "\",\n      \"id\": \"DSNY_EW-OTHER.cELECTRONICS\",\n      \"Televisions (including cathode ray tubes)\": \"0\",\n      \"Monitors, Laptops\": \"" + monitors + "\",\n      \"Electronic keyboards\": \"" + keyboards + "\",\n      \"DVD players\": \"" + dvd + "\",\n      \"Cable or satellite receivers\": \"" + cable + "\",\n      \"TV Peripherals, including any permanently attached cable or wiring\": \"" + peripherals + "\"\n    }\n  ]"
     }
 
     $.ajax(settings).done(function (response) {
@@ -302,16 +302,12 @@ function createUpdate() {
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://apis.accela.com/v4/inspections/schedule",
-        "method": "POST",
+        "url": "http://10.30.5.123:3000/schedule/" + capID + "/" + pickupDate + "",
+        "method": "GET",
         "headers": {
-            "content-type": "application/json",
-            "authorization": authorization2,
             "cache-control": "no-cache",
             "postman-token": "1fef8950-f3dc-ae46-a7ab-4c33c505a14c"
         },
-        "processData": false,
-        "data": "{\r\n  \"serviceProviderCode\": \"PARTNER\",\r\n  \"isAutoAssign\": \"Y\",\r\n  \"type\": {\r\n    \"id\": 5\r\n  },\r\n  \"recordId\": {\r\n    \"id\": \"" + capID + "\"\r\n  },\r\n  \"scheduleDate\": \"" + pickupDate + "\"\r\n}"
     }
 
     $.ajax(settings).done(function (response) {

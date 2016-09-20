@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>E-Waste Pickup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" media="screen" href="css/3-Row Simple.css">
+    <link rel="stylesheet" media="screen" href="css/global.css">
+    <link rel="stylesheet" media="screen" href="css/header-agencies.css">
+    <link rel="stylesheet" media="screen" href="css/agency-styles.css">
+    <link rel="stylesheet" media="screen" href="css/inside.css">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/grids-responsive-min.css">
+    <link rel="stylesheet" media="screen" href="css/styles.css">
+
+    <script src="https://use.fontawesome.com/af3fb91b83.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
+</head>
+
+<body>
+    <div class="agency-header">
+        <div class="upper-header-black">
+            <div class="container">
+                <span class="upper-header-left"><a href="http://www1.nyc.gov"><img class="small-nyc-logo" alt="" src="images/nyc_white.png"></a><img alt="" src="images/upper-header-divider.gif"><span class="upper-header-black-title">Department of Sanitation</span></span><span class="upper-header-padding"></span><span class="upper-header-right"><span class="upper-header-three-one-one"><a href="/311/index.page">311</a></span><img alt="" src="images/upper-header-divider.gif"><span class="upper-header-search"><a href="/home/search/index.page">Search all NYC.gov websites</a></span></span>
+            </div>
+        </div>
+    </div>
+    <div class="main-header" id="top" role="banner">
+        <div class="block">
+            <div class="header-top">
+                <div class="container">
+                    <a class="toggle-mobile-side-nav visible-phone" id="nav-open-btn" href="#"></a><span class="welcome-text hidden-phone agency-header">Keeping New York City clean since 1881</span>
+                    <div class="agency-logo-wrapper">
+                        <a href="/sites/dsny/index.page"><img class="agency-logo" alt="Department of Sanitation" src="images/sanitation-logo.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subheader">
+        <div class="container">
+            <h1 class="main-title">E-Waste pick up request</h1>
+        </div>
+    </div>
+
+    <div class="mainContent">
+        <br>
+        <h2>STEP 1 - General Info</h2>
+
+        <div id="steps">
+            <a id="astep1" class="step1 active1" href="#/"></a>
+            <a id="astep2" class="step2"></a>
+            <a id="astep3" class="step3"></a>
+            <a id="astep4" class="step4"></a>
+        </div>
+        <p class="rightMe"><span class="requireMe">*</span>Denotes Required Field</p>
+        <div class="sectionHeader">
+            <p>Enter Your Address</p>
+        </div>
+
+        <input type="hidden" id="geoCode" value="">
+
+        <form name="step1">
+            <input type="hidden" name="cs1" id="cs1" value="">
+            <input type="hidden" name="cs2" id="cs2" value="">
+            <input type="hidden" name="bbl" id="bbl" value="">
+            <input type="hidden" name="lat" id="lat" value="">
+            <input type="hidden" name="lon" id="lon" value="">
+            <input type="hidden" name="district" id="district" value="">
+            <input type="hidden" name="cityName" id="cityName" value="">
+            <input type="hidden" name="zip" id="zip" value="">
+
+            <div class="applicant-address">
+                <div class="applicant-borough">
+                    <p class="applicant-input-prompt">BOROUGH<span class="requireMe">*</span></p>
+                    <select id="brgh" name="brgh">
+                <option value="Staten Island" selected>STATEN ISLAND</option>
+            </select>
+                </div>
+                <div class="applicant-bldg">
+                    <p class="applicant-input-prompt">BLDG. #<span class="requireMe">*</span></p>
+                    <input type="number" id="bldg-input" name="bldg" min="0" max="99999" onchange="hideBldg()">
+                </div>
+
+                <div class="applicant-street">
+                    <p class="applicant-input-prompt">STREET<span class="requireMe">*</span></p>
+                    <input type="text" id="street-input" name="street" onchange="hideStreet()">
+                </div>
+
+                <div id="verify-contain">
+                    <button type="button" id="verify-button" class="pure-button search-button" onclick="addressCheck()">Verify</button>
+                </div>
+            </div>
+            <div id="req-contain">
+                <div id="req1"></div>
+                <div id="req2">
+                    <ul>
+                        <li class="requireMe" id="bldg-message">Required</li>
+                    </ul>
+                </div>
+                <div id="req3">
+                    <ul>
+                        <li class="requireMe" id="street-message">Required</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="address-choices">
+                <p id="incorrect_address"></p>
+
+                <div id="group1">
+                    <input name="address" class="myRad" type="radio" id="add1" value="" onclick="updateAdd('inc1')"><label id="lab1" for="add1" class="radLabel" onclick="updateAdd('inc1')"><span id="inc1">Hello</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add3" value="" onclick="updateAdd('inc3')"><label id="lab3" for="add3" class="radLabel" onclick="updateAdd('inc3')"><span id="inc3">Hello</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add5" value="" onclick="updateAdd('inc5')"><label id="lab5" for="add5" class="radLabel" onclick="updateAdd('inc5')"><span id="inc5">Hello</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add7" value="" onclick="updateAdd('inc7')"><label id="lab7" for="add7" class="radLabel" onclick="updateAdd('inc7')"><span id="inc7">Hello</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add9" value="" onclick="updateAdd('inc9')"><label id="lab9" for="add9" class="radLabel" onclick="updateAdd('inc9')"><span id="inc9">Hello</span></label>
+                </div>
+                <div id="group2">
+                    <input name="address" class="myRad" type="radio" id="add2" value="" onclick="updateAdd('inc2')"><label id="lab2" for="add2" class="radLabel" onclick="updateAdd('inc2')"><span id="inc2">There</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add4" value="" onclick="updateAdd('inc4')"><label id="lab4" for="add4" class="radLabel" onclick="updateAdd('inc4')"><span id="inc4">There</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add6" value="" onclick="updateAdd('inc6')"><label id="lab6" for="add6" class="radLabel" onclick="updateAdd('inc6')"><span id="inc6">There</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add8" value="" onclick="updateAdd('inc8')"><label id="lab8" for="add8" class="radLabel" onclick="updateAdd('inc8')"><span id="inc8">There</span></label>
+                    <br>
+                    <input name="address" class="myRad" type="radio" id="add10" value="" onclick="updateAdd('inc10')"><label id="lab10" for="add10" class="radLabel" onclick="updateAdd('inc10')"><span id="inc10">There</span></label>
+                </div>
+            </div>
+
+
+            <div class="separator"></div>
+            <span class="fixMe">Helpful hints on entering your address:</span>
+            <ul>
+                <li><span class="fixMe">Include the street type in the street address. Common street types are Avenue, Street, Road, and Place</span></li>
+                <li><span class="fixMe">Numbered streets should be formatted like '5th Street' instead of 'Fifth Street'</span></li>
+            </ul>
+            <div class="submit-address-container">
+                <button class="pure-button" type="button" id="submit-address" onclick="step1Validate()">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="span9 footer-links">
+                <a href="#">Directory of City Agencies</a>
+                <a href="#">Contact NYC Government</a>
+                <a href="#">City Employees</a>
+                <a href="#">Notify NYC</a>
+                <a href="#">CityStore</a>
+                <a href="#">Stay Connected</a>
+                <a href="#">NYC Mobile Apps</a>
+                <a href="#">Maps</a>
+                <a href="#">Resident Toolkit</a>
+            </div>
+            <div class="span3">
+                <span class="logo-nyc">NYC</span>
+                <form action="#" method="get" class="form-search">
+                    <input name="search-terms" class="input-search placeholder" placeholder="Search" type="text">
+                    <button class="ico-search">Search</button>
+                </form>
+                <div class="copyright">
+                    <p></p>
+                    <p>City of New York. 2016 ALl Rights Reserved,</p>
+                    <p>NYC is a trademark and service mark of the City of New York</p>
+                    <p>
+                        <a target="_blank" href="#" title="Privacy">Privacy Policy</a>.
+                        <a target="_blank" href="#" title="TOU">Terms of Use</a>.
+                    </p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="cookieScripts.js"></script>
+    <script src="citizenP1Scripts.js"></script>
+    <link rel="stylesheet" media="screen" href="forms.css">
+</body>
+
+</html>

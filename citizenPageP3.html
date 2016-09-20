@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>E-Waste Pickup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" media="screen" href="css/3-Row Simple.css">
+    <link rel="stylesheet" media="screen" href="css/global.css">
+    <link rel="stylesheet" media="screen" href="css/header-agencies.css">
+    <link rel="stylesheet" media="screen" href="css/agency-styles.css">
+    <link rel="stylesheet" media="screen" href="css/inside.css">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/grids-responsive-min.css">
+    <link rel="stylesheet" media="screen" href="css/styles.css">
+
+    <script src="https://use.fontawesome.com/af3fb91b83.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
+</head>
+
+<body onload="fillInfo()">
+    <div class="agency-header">
+        <div class="upper-header-black">
+            <div class="container">
+                <span class="upper-header-left"><a href="http://www1.nyc.gov"><img class="small-nyc-logo" alt="" src="images/nyc_white.png"></a><img alt="" src="images/upper-header-divider.gif"><span class="upper-header-black-title">Department of Sanitation</span></span><span class="upper-header-padding"></span><span class="upper-header-right"><span class="upper-header-three-one-one"><a href="/311/index.page">311</a></span><img alt="" src="images/upper-header-divider.gif"><span class="upper-header-search"><a href="/home/search/index.page">Search all NYC.gov websites</a></span></span>
+            </div>
+        </div>
+    </div>
+    <div class="main-header" id="top" role="banner">
+        <div class="block">
+            <div class="header-top">
+                <div class="container">
+                    <a class="toggle-mobile-side-nav visible-phone" id="nav-open-btn" href="#"></a><span class="welcome-text hidden-phone agency-header">Keeping New York City clean since 1881</span>
+                    <div class="agency-logo-wrapper">
+                        <a href="/sites/dsny/index.page"><img class="agency-logo" alt="Department of Sanitation" src="images/sanitation-logo.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subheader">
+        <div class="container">
+            <h1 class="main-title">E-Waste pick up request</h1>
+        </div>
+    </div>
+
+    <div class="mainContent">
+        <br>
+        <h2>STEP 3 - Submit</h2> Review the form before submitting:
+        <br><br>
+        <div class="address-validation-message">
+            <p>
+                <span class="boldMe">Address:</span> <span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough"></span> <br>
+                <span class="boldMe">Cross Streets:</span> <span id="crossStreet1"></span> / <span id="crossStreet2"></span>
+            </p>
+        </div>
+        <br>
+        <div id="steps">
+            <a id="astep1" class="step1"></a>
+            <a id="astep2" class="step2"></a>
+            <a id="astep3" class="step3 active3"></a>
+            <a id="astep4" class="step4"></a>
+        </div>
+
+        <p class="rightMe"><span class="requireMe">*</span>Denotes Required Field</p>
+        <div class="sectionHeader">
+            <p>Review and Submit</p>
+        </div>
+
+        <input type="hidden" name="bbl3" id="bbl3" value="">
+        <input type="hidden" name="lat3" id="lat3" value="">
+        <input type="hidden" name="lon3" id="lon3" value="">
+        <input type="hidden" name="district3" id="district3" value="">
+        <input type="hidden" name="cityName3" id="cityName3" value="">
+        <input type="hidden" name="zip3" id="zip3" value="">
+
+        <div class="review-box-container">
+            <div class="review-box">
+                <br>
+                <span class="boldMe">User General Info:</span>
+                <div class="table-container">
+                    <table class="review-address-table">
+                        <tr>
+                            <th>Address: </th>
+                            <td><span id="buildingNumber2"></span> <span id="streetAddress2"></span>, <span id="verifiedBorough2"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Cross Streets: </th>
+                            <td><span id="CrossStreet1"></span> / <span id="CrossStreet2"></span></td>
+                        </tr>
+                        <tr>
+                            <th><span class="whiteMe">________</span></th>
+                            <td><span class="whiteMe">________</span></td>
+                        </tr>
+                        <tr>
+                            <th>Pick Up Location: </th>
+                            <td><span id="pickupLocation"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Appointment Date: </th>
+                            <td><span id="pickupDate"></span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="separator"></div>
+                <span class="boldMe">Electronics Category:</span>
+                <div class="electronic-container-box">
+                    <ul class="leaders">
+                        <li class="list-item" id="tvs2"><span>Televisions (including CRTs)</span>
+                            <span id="numTV">0</span></li>
+                        <li class="list-item-shift" id="tv1"><span>TV # 1</span>
+                            <span id="tv1size">0</span></li>
+                        <li class="list-item-shift" id="tv2"><span>TV # 2</span>
+                            <span id="tv2size">0</span></li>
+                        <li class="list-item-shift" id="tv3"><span>TV # 3</span>
+                            <span id="tv3size">0</span></li>
+                        <li class="list-item-shift" id="tv4"><span>TV # 4</span>
+                            <span id="tv4size">0</span></li>
+                        <li class="list-item-shift" id="tv5"><span>TV # 5</span>
+                            <span id="tv5size">0</span></li>
+
+                        <li class="list-item" id="comps2"><span>Computer Peripherals</span>
+                            <span id="numComps">0</span></li>
+                        <li class="list-item" id="mon2"><span>Monitors, Laptops</span>
+                            <span id="numMon">0</span></li>
+                        <li class="list-item" id="ekey"><span>Electronic Keyboards</span>
+                            <span id="numEKey">0</span></li>
+                        <li class="list-item" id="emice"><span>Electronic Mice & Other Pointers</span>
+                            <span id="numEMice">0</span></li>
+                        <li class="list-item" id="fax"><span>Fax Machines, Scanners, Printers</span>
+                            <span id="numFax">0</span></li>
+                        <li class="list-item" id="tvp"><span>TV Peripherals</span>
+                            <span id="numTVP">0</span></li>
+                        <li class="list-item" id="vcr2"><span>VCRs</span>
+                            <span id="numVCR">0</span></li>
+                        <li class="list-item" id="dvr2"><span>Digital Video Recorders</span>
+                            <span id="numDVR">0</span></li>
+                        <li class="list-item" id="dvd2"><span>DVD Players</span>
+                            <span id="numDVD">0</span></li>
+                        <li class="list-item" id="dcb2"><span>Digital Converter Boxes</span>
+                            <span id="numDCB">0</span></li>
+                        <li class="list-item" id="cable2"><span>Cable or Satellite Receivers</span>
+                            <span id="numCable">0</span></li>
+                        <li class="list-item" id="xbox2"><span>Electronic or Video Game Consoles</span>
+                            <span id="numXbox">0</span></li>
+                        <li class="list-item" id="sss2"><span>Small Scale Servers</span>
+                            <span id="numSSS">0</span></li>
+                        <li class="list-item" id="pd2"><span>Portable Devices</span>
+                            <span id="numPD">0</span></li>
+                        <li class="list-item" id="ipod2"><span>Portable Digital Music Players</span>
+                            <span id="numIpods">0</span></li>
+                    </ul>
+                </div>
+                <div class="separator"></div>
+                <span class="boldMe">User Contact Info:</span>
+                <div class="table-container">
+                    <table class="review-address-table">
+                        <tr>
+                            <th>First Name: </th>
+                            <td><span id="firstName"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Last Name: </th>
+                            <td><span id="lastName"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Phone: </th>
+                            <td><span id="phoneNumber"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Email: </th>
+                            <td><span id="emailAddress"></span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="certification">
+                    <label for="certify"><input type="checkbox" id="certify" ng-model="checked">I certify that this request is not for a commercial business</label>
+                    <br><br>
+                    <a href="/citizenPageP2.html"><button class="pure-button" type="button" id="previous-button">Previous</button></a>
+                    <a href="/citizenPageP4.html"><button class="pure-button" type="button" id="submit-button" onclick="createUpdate()">Submit</button></a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="span9 footer-links">
+                <a href="#">Directory of City Agencies</a>
+                <a href="#">Contact NYC Government</a>
+                <a href="#">City Employees</a>
+                <a href="#">Notify NYC</a>
+                <a href="#">CityStore</a>
+                <a href="#">Stay Connected</a>
+                <a href="#">NYC Mobile Apps</a>
+                <a href="#">Maps</a>
+                <a href="#">Resident Toolkit</a>
+            </div>
+            <div class="span3">
+                <span class="logo-nyc">NYC</span>
+                <form action="#" method="get" class="form-search">
+                    <input name="search-terms" class="input-search placeholder" placeholder="Search" type="text">
+                    <button class="ico-search">Search</button>
+                </form>
+                <div class="copyright">
+                    <p></p>
+                    <p>City of New York. 2016 ALl Rights Reserved,</p>
+                    <p>NYC is a trademark and service mark of the City of New York</p>
+                    <p>
+                        <a target="_blank" href="#" title="Privacy">Privacy Policy</a>.
+                        <a target="_blank" href="#" title="TOU">Terms of Use</a>.
+                    </p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="cookieScripts.js"></script>
+    <script src="moment.js"></script>
+    <script src="citizenP3Scripts.js"></script>
+    <link rel="stylesheet" media="screen" href="forms.css">
+</body>
+
+</html>
