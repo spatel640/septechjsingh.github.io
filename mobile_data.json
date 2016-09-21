@@ -2,61 +2,39 @@
     "result": [
         {
             "name": "Commercial New Construction",
-            "fee_types": {
-                "fee1": {
-                    "name": "Total Volume Fee",
-                    "inputs": {
-                        "field1": "",
-                        "name1": "Length",
-                        "field2": "",
-                        "name2": "Width",
-                        "field3": "",
-                        "name3": "Height"
-                    },
-                    "formula": "Multiplier",
-                    "variable": ""
+            "fee_types": [
+                {
+                    "name": "Volume Fee",
+                    "inputs": [
+                        {
+                            "name": "Length"
+                        },
+                        {
+                            "name": "Width"
+                        },
+                        {
+                            "name": "Height"
+                        }
+                    ],
+                    "formula": "FEE_MULTIPLIER",
+                    "variable": "0.3"
                 }
-            }
+            ]
     },
         {
-            "name": "Commercial Alteration",
-            "fee_types": {
-                "fee1": {
-                    "name": "",
-                    "inputs": "",
-                    "formula": "",
-                    "variable": ""
-                },
-                "fee2": {
-                    "name": "",
-                    "inputs": "",
-                    "formula": "",
-                    "variable": ""
+            "name": "Residential Repair Alterations",
+            "fee_types": [
+                {
+                    "name": "PERMIT_FEE",
+                    "inputs": [
+                        {
+                            "name": "Square Footage Involved"
+                        }
+                    ],
+                    "formula": "LINEAR_MIN_MAX_ENHANCED",
+                    "variable": "0,0,0,0,499,0.0224,325.0176,0,999999999,1499,0.0544,580.0256,0,999999999,2499,0.0928,634.7072,0,999999999,3499,0.0864,728.7936,0,999999999,4499,0.0608,815.2192,0,999999999,6499,0.0352,934.6048,0,999999999,9999,0.112,1058.368,0,999999999"
                 }
-            }
-    },
-        {
-            "name": "Residential New Construction",
-            "fee_types": {
-                "fee1": {
-                    "name": "",
-                    "inputs": "",
-                    "formula": "",
-                    "variable": ""
-                },
-                "fee2": {
-                    "name": "",
-                    "inputs": "",
-                    "formula": "",
-                    "variable": ""
-                },
-                "fee3": {
-                    "name": "",
-                    "inputs": "",
-                    "formula": "",
-                    "variable": ""
-                }
-            }
+            ]
     }
   ],
     "status": 200

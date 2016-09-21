@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Fee Estimator</title>
+    <link rel="shortcut icon" href="">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Select -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
+</head>
+
+<body onload="">
+    <div class="page-header text-center">
+        <img src="Logo.PNG" id="logo">
+        <h1>Accela Fee Estimator</h1>
+    </div>
+    <div class="container-fluid text-center" id="inputs">
+        <select class="selectpicker show-tick" id="fee_type" data-style="btn-info" onchange="showInput()" data-width="100%">
+            <option selected disabled>Select A Fee Type..</option>
+        </select>
+        <br><br>
+        <div class="form-group" id="cont1">
+            <label for="var1" id="lab1">Email address</label>
+            <input type="number" class="form-control" id="var1" placeholder="">
+        </div>
+        <div class="form-group" id="cont2">
+            <label for="var2" id="lab2">Email address</label>
+            <input type="number" class="form-control" id="var2" placeholder="">
+        </div>
+        <div class="form-group" id="cont3">
+            <label for="var3" id="lab3">Email address</label>
+            <input type="number" class="form-control" id="var3" placeholder="">
+        </div>
+        <button type="button" class="btn btn-success" id="calc" onclick="calculateThisFee()">Calculate</button>
+        <br><br>
+        <table class="table table-hover table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>Fee Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>APP_FEE</td>
+                    <td id="app_fee">50</td>
+                </tr>
+                <tr>
+                    <td id="fee_name">PERMIT_FEE</td>
+                    <td id="fees"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><b>Total:</b> </td>
+                    <td id="total"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <form>
+
+    </form>
+    <script src="fee_free.js"></script>
+    <link rel="stylesheet" href="fee_app.css">
+</body>
+
+</html>
