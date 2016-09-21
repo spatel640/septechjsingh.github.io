@@ -4,20 +4,14 @@
             "name": "Commercial Repair Alterations",
             "fee_types": [
                 {
-                    "name": "Volume Fee",
+                    "name": "PERMIT_FEE",
                     "inputs": [
                         {
-                            "name": "Length"
-                        },
-                        {
-                            "name": "Width"
-                        },
-                        {
-                            "name": "Height"
+                            "name": "Square Footage"
                         }
                     ],
-                    "formula": "FEE_MULTIPLIER",
-                    "variable": "0.3"
+                    "formula": "LINEAR_MIN_MAX_ENHANCED",
+                    "variable": "0,0,0,0,1999,0.054,1166.346,0,999999999,19999,0.138,18716.262,0,999999999,99999,0.15,37037.85,0,999999999,199999,0.108,52175.892,0,999999999,399999,0.054,84719.946,0,999999999,999999,0.114,112379.886,0,999999999"
                 }
             ]
     },
