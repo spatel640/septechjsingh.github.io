@@ -23,10 +23,14 @@ var variable = '';
 var num_fee_inputs;
 
 function showInput() {
+    $('#var1').val(0);
+    $('#var2').val(0);
+    $('#var3').val(0);
     $('#cont1').hide();
     $('#cont2').hide();
     $('#cont3').hide();
     $('#calc').hide();
+    $('#myTable').hide();
     $.getJSON( /*'https://septechjsingh.github.io/mobile_data.json'*/ 'mobile_data.json', function (data) {
         console.log(data);
         var num_selected = Number($('#fee_type').val());
@@ -100,6 +104,10 @@ function calculateThisFee() {
             for (i = 0; i < num_fee_items; i++) {
                 var input_string = "var" + (i + 1).toString();
                 var input = document.getElementById(input_string).value;
+                if (input < 0) {
+                    alert("No Negative Numbers Allowed");
+                    return false;
+                }
                 fee2 = fee2 * input;
             }
             fee2 = fee2 * parseFloat(variable);
@@ -117,6 +125,6 @@ function calculateThisFee() {
         $('#fee_name').text(fee_name);
         $('#fees').text(fee);
         $('#total').text(total);
+        $('#myTable').show();
     });
-    $('#myTable').show();
 }
