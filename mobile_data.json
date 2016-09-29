@@ -23,9 +23,6 @@
                     "inputs": [
                         {
                             "name": "Square Footage Involved"
-                        },
-                        {
-                            "name": "Height"
                         }
                     ],
                     "formula": "LINEAR_MIN_MAX_ENHANCED",
