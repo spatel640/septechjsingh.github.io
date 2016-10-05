@@ -8,6 +8,9 @@
                     "inputs": [
                         {
                             "name": "Square Footage"
+                        },
+                        {
+                            "name": "Height"
                         }
                     ],
                     "formula": "LINEAR_MIN_MAX_ENHANCED",
