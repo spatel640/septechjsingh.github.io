@@ -10,7 +10,10 @@
                             "name": "Square Footage"
                         },
                         {
-                            "name": "Height"
+                            "name": "Number of Floors"
+                        },
+                        {
+                            "name": "Total Building Height"
                         }
                     ],
                     "formula": "LINEAR_MIN_MAX_ENHANCED",
