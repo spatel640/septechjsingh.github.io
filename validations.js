@@ -54,10 +54,10 @@ function step1Validate() {
 
 function step2Validate() {
     var w = phoneVal();
-    var x = part1Val();
+    //var x = part1Val();
     var y = part2Val();
     var z = emailVal();
-    return (w && x && y && z);
+    return (w && /*x && */ y && z);
 }
 
 function phoneVal() {
