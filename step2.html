@@ -20,38 +20,6 @@
 
 <form action="#/step3" method="get" name="step2" onsubmit="return step2Validate()">
     <div class="specific-info">
-        <div class="pick-up-location-appointment">
-            <p>PICK UP LOCATION<span class="requireMe">*</span></p>
-            <select class="spec-info-drop1" id="selectLocation" name="selectLocation">
-                <option value="curb" selected>Curb</option>
-            </select>
-        </div>
-        <div class="appointment-date">
-            <p>APPOINTMENT DATE<span class="requireMe">*</span>&nbsp; (YYYY-MM-DD)</p>
-            <select class="spec-info-drop1" disabled id="pickupDate" onchange="enableElectronics()" name="pickupDate">
-                <option disabled selected>Select An Appointment Date</option>
-                <option id="date1"></option>
-                <option id="date2"></option>
-                <option id="date3"></option>
-                <option id="date4"></option>
-                <option id="date5"></option>
-                <option id="date6"></option>
-                <option id="date7"></option>
-                <option id="date8"></option>
-                <option id="date9"></option>
-                <option id="date10"></option>
-                <option id="date11"></option>
-                <option id="date12"></option>
-                <option id="date13"></option>
-                <option id="date14"></option>
-            </select>
-        </div>
-        <div id="req4">
-            <span class="requireMe" id="location-message">Required</span>
-        </div>
-        <div id="req5">
-            <span class="requireMe" id="date-message">Required</span>
-        </div>
         <div class="electronics">
             <p>ELECTRONICS CATEGORY<span class="requireMe">*</span></p>
             <div class="multiselect">
@@ -96,6 +64,41 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="appointment-date">
+            <p>APPOINTMENT DATE<span class="requireMe">*</span>&nbsp; (YYYY-MM-DD)</p>
+            <select class="spec-info-drop1" disabled id="pickupDate" onchange="enableElectronics()" name="pickupDate">
+                <option disabled selected>Select An Appointment Date</option>
+                <option id="date1"></option>
+                <option id="date2"></option>
+                <option id="date3"></option>
+                <option id="date4"></option>
+                <option id="date5"></option>
+                <option id="date6"></option>
+                <option id="date7"></option>
+                <option id="date8"></option>
+                <option id="date9"></option>
+                <option id="date10"></option>
+                <option id="date11"></option>
+                <option id="date12"></option>
+                <option id="date13"></option>
+                <option id="date14"></option>
+            </select>
+        </div>
+        <br><br>
+        <div class="pick-up-location-appointment">
+            <p>PICK UP LOCATION<span class="requireMe">*</span></p>
+            <select class="spec-info-drop1" id="selectLocation" name="selectLocation">
+                <option value="curb" selected>Curb</option>
+            </select>
+        </div>
+        <div id="req4">
+            <span class="requireMe" id="location-message">Required</span>
+        </div>
+        <div id="req5">
+            <span class="requireMe" id="date-message">Required</span>
+        </div>
+
         <span class="requireMe" id="electronic-message">At least one (1) electronic item is required.</span>
         <div id="thread">
             <table id="thread-table">
@@ -290,4 +293,4 @@
     <input type="hidden" id="street2" name="street2">
 </form>
 
-<img id="step2Hidden" src="images/sanitation-logo.png" onload="getDates(); replaceAddress();">
+<img id="step2Hidden" src="images/sanitation-logo.png" onload="replaceAddress(); getDates();">

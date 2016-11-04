@@ -44,6 +44,7 @@ function page1InfoRecap() {
 }
 
 function getDates() {
+    /*
     var now = moment();
     var d = new Date();
     var n = d.getHours();
@@ -55,11 +56,11 @@ function getDates() {
     var temp = now.format('YYYY MM DD').toString();
     var date2Pass = temp[0] + temp[1] + temp[2] + temp[3] + '-' + temp[5] + temp[6] + '-' + temp[8] + temp[9];
 
-    var district = getUrlVars()["district"];
+    var district = getCookie('district');
 
-    var myUrl1 = "http://54.174.123.211:3000/dates/501/" + date2Pass + "/14";
-    var myUrl2 = "http://54.174.123.211:3000/dates/502/" + date2Pass + "/14";
-    var myUrl3 = "http://54.174.123.211:3000/dates/503/" + date2Pass + "/14";
+    var myUrl1 = "http://10.30.5.142:3000/dates/501/" + date2Pass;
+    var myUrl2 = "http://10.30.5.142:3000/dates/502/" + date2Pass;
+    var myUrl3 = "http://10.30.5.142:3000/dates/503/" + date2Pass;
 
     var myUrl = "";
 
@@ -78,7 +79,6 @@ function getDates() {
         "url": myUrl,
         "method": "GET",
         "headers": {
-            "authorization": auth_token,
             "cache-control": "no-cache",
             "postman-token": "2b42eb30-50a4-61dd-4153-9de32a983d81"
         }
@@ -96,6 +96,14 @@ function getDates() {
             console.log(dateString + " " + datesArray[i].substring(0, datesArray[i].length - 9));
         }
     });
+    */
+
+    for (i = 0; i < 14; i++) {
+        var dateString = "date" + (i + 1);
+        document.getElementById(dateString).innerHTML = "11/" + (i + 1) + "/2016";
+        document.getElementById(dateString).value = "11/" + (i + 1) + "/2016";
+    }
+
     document.getElementById("location-message").style.display = "none";
     document.getElementById("pickupDate").disabled = false;
 

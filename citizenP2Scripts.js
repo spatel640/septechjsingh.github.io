@@ -235,6 +235,7 @@ function electronicsValidate() {
 }
 
 function getDates() {
+    /*
     var now = moment();
     var d = new Date();
     var n = d.getHours();
@@ -286,6 +287,14 @@ function getDates() {
             console.log(dateString + " " + datesArray[i].substring(0, datesArray[i].length - 9));
         }
     });
+    */
+
+    for (i = 0; i < 14; i++) {
+        var dateString = "date" + (i + 1);
+        document.getElementById(dateString).innerHTML = "11/" + (i + 1) + "/2016";
+        document.getElementById(dateString).value = "11/" + (i + 1) + "/2016";
+    }
+
     document.getElementById("location-message").style.display = "none";
     document.getElementById("pickupDate").disabled = false;
 }
