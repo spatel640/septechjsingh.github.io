@@ -246,13 +246,25 @@
         <p>Contact Information</p>
     </div>
     <div class="contact-info">
+        <div class="confirm-email">
+            <p>CONFIRM EMAIL</p>
+            <input type="email" id="confirm-email" name="confirmedEmail" placeholder="email@email.com">
+        </div>
         <div class="first-of-my-name">
             <p>FIRST NAME<span class="requireMe">*</span></p>
             <input type="text" id="first-name" name="firstName" onchange="hideNamePhoneMessages()" placeholder="John">
         </div>
+        <div class="phone">
+            <p>PHONE<span class="requireMe">*</span></p>
+            <input type="text" id="phone" name="phone" onchange="hideNamePhoneMessages(); phoneMask();" placeholder="(555) 555-5555">
+        </div>
         <div class="last-of-my-name">
             <p>LAST NAME<span class="requireMe">*</span></p>
             <input type="text" id="last-name" name="lastName" placeholder="Doe" onchange="hideNamePhoneMessages()">
+        </div>
+        <div class="buttons-p2">
+            <a href="#/"><button class="pure-button" id="previous-button-2">Previous</button></a>
+            <button class="pure-button" type="submit" id="next-button-2">Next</button>
         </div>
         <div id="req6">
             <span class="requireMe" id="fname-message">Required</span>
@@ -260,23 +272,12 @@
         <div id="req7">
             <span class="requireMe" id="lname-message">Required</span>
         </div>
-        <div class="phone">
-            <p>PHONE<span class="requireMe">*</span></p>
-            <input type="text" id="phone" name="phone" onchange="hideNamePhoneMessages(); phoneMask();" placeholder="(555) 555-5555">
-        </div>
+
         <div class="email">
             <p>EMAIL</p>
             <input type="email" id="email" name="email" placeholder="email@email.com">
         </div>
         <span class="requireMe" id="phone-message">Required</span>
-        <div class="confirm-email">
-            <p>CONFIRM EMAIL</p>
-            <input type="email" id="confirm-email" name="confirmedEmail" placeholder="email@email.com">
-        </div>
-        <div class="buttons-p2">
-            <a href="#/"><button class="pure-button" id="previous-button-2">Previous</button></a>
-            <button class="pure-button" type="submit" id="next-button-2">Next</button>
-        </div>
     </div>
 
     <input type="hidden" name="cs12" id="cs12" value="">
