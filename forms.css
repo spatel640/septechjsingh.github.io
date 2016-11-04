@@ -145,11 +145,11 @@
 }
 
 .table-container {
-    padding: 20px 0 0 0;
+    padding: 20px 200px 0 0;
 }
 
 .review-address-table {
-    margin: 0 auto;
+    margin-right: 200px;
 }
 
 .review-address-table th {

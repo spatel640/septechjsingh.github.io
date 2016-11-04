@@ -1,6 +1,31 @@
 <br>
 <h2>{{message}}</h2> Review the form before submitting:
 <br><br>
+<div class="table-container">
+    <table class="review-address-table">
+        <tr>
+            <th>Address: </th>
+            <td><span id="buildingNumber2"></span> <span id="streetAddress2"></span>, <span id="verifiedBorough2"></span></td>
+        </tr>
+        <tr>
+            <th>Cross Streets: </th>
+            <td><span id="CrossStreet1"></span> / <span id="CrossStreet2"></span></td>
+        </tr>
+        <tr>
+            <th><span class="whiteMe">________</span></th>
+            <td><span class="whiteMe">________</span></td>
+        </tr>
+        <tr>
+            <th>Pick Up Location: </th>
+            <td><span id="pickupLocation"></span></td>
+        </tr>
+        <tr>
+            <th>Appointment Date: </th>
+            <td><span id="pickupDate"></span></td>
+        </tr>
+    </table>
+</div>
+<br>
 <div class="address-validation-message">
     <p>
         <span class="boldMe">Address:</span> <span id="buildingNumber"></span> <span id="streetAddress"></span>, <span id="verifiedBorough"></span> <br>
@@ -28,33 +53,15 @@
 <input type="hidden" name="zip3" id="zip3" value="">
 
 <div class="review-box-container">
+    <div class="certification">
+        <label for="certify"><input type="checkbox" id="certify" ng-model="checked">I certify that this request is not for a commercial business</label>
+        <br><br>
+        <a href="#/step2"><button class="pure-button" id="previous-button">Previous</button></a>
+        <a href="#/step4"><button class="pure-button" id="submit-button" onclick="createUpdate()" ng-model="button" ng-disabled="!checked">Submit</button></a>
+    </div>
     <div class="review-box">
         <br>
         <span class="boldMe">User General Info:</span>
-        <div class="table-container">
-            <table class="review-address-table">
-                <tr>
-                    <th>Address: </th>
-                    <td><span id="buildingNumber2"></span> <span id="streetAddress2"></span>, <span id="verifiedBorough2"></span></td>
-                </tr>
-                <tr>
-                    <th>Cross Streets: </th>
-                    <td><span id="CrossStreet1"></span> / <span id="CrossStreet2"></span></td>
-                </tr>
-                <tr>
-                    <th><span class="whiteMe">________</span></th>
-                    <td><span class="whiteMe">________</span></td>
-                </tr>
-                <tr>
-                    <th>Pick Up Location: </th>
-                    <td><span id="pickupLocation"></span></td>
-                </tr>
-                <tr>
-                    <th>Appointment Date: </th>
-                    <td><span id="pickupDate"></span></td>
-                </tr>
-            </table>
-        </div>
         <div class="separator"></div>
         <span class="boldMe">Electronics Category:</span>
         <div class="electronic-container-box">
@@ -125,12 +132,6 @@
                     <td><span id="emailAddress"></span></td>
                 </tr>
             </table>
-        </div>
-        <div class="certification">
-            <label for="certify"><input type="checkbox" id="certify" ng-model="checked">I certify that this request is not for a commercial business</label>
-            <br><br>
-            <a href="#/step2"><button class="pure-button" id="previous-button">Previous</button></a>
-            <a href="#/step4"><button class="pure-button" id="submit-button" onclick="createUpdate()" ng-model="button" ng-disabled="!checked">Submit</button></a>
         </div>
         <br>
     </div>

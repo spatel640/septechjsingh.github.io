@@ -100,8 +100,8 @@ function getDates() {
 
     for (i = 0; i < 14; i++) {
         var dateString = "date" + (i + 1);
-        document.getElementById(dateString).innerHTML = "11/" + (i + 1) + "/2016";
-        document.getElementById(dateString).value = "11/" + (i + 1) + "/2016";
+        document.getElementById(dateString).innerHTML = "11-" + (i + 5) + "-2016";
+        document.getElementById(dateString).value = "11-" + (i + 5) + "-2016";
     }
 
     document.getElementById("location-message").style.display = "none";
