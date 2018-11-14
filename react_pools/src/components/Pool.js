@@ -2,13 +2,13 @@ import React,{Component} from 'react'
 
 export default class Pool extends Component{
   constructor(props){
-    super()
+    super(props)
     this.state={
-      facility:'',
-      site:'',
-      lab:'',
+      facility:this.props.facility,
+      site:this.props.site,
+      lab:this.props.lab,
       collection_date:'',
-      sample_id:'',
+      sample_id:this.props.sample_id,
       failed:false
     }
     this.handleInput=this.handleInput.bind(this)
@@ -26,18 +26,39 @@ export default class Pool extends Component{
 
   render(){
     return(
-      <div>
-        <label>Pool Facility</label>
-          <input type="text" name="pool_facility" value={this.state.facility} onChange={this.handleInput}/>
-        <label>Pool Site</label>
-          <input type="text" name="pool_site" value={this.state.site} onChange={this.handleInput}/>
-        <label>Lab</label>
-          <input type="text" name="lab" value={this.state.lab} onChange={this.handleInput}/>
-        <label>Sample Collection Date</label>
-          <input type="date" name="collection_date" value={this.state.collection_date} onChange={this.handleInput}/>
-        <label>Sample ID</label>
-          <input type="sample_id" name="sample_id" value={this.state.sample_id} onChange={this.handleInput}/>
-      </div>
+      <tr>
+        <td>
+          <input type="text" name="pool_facility" value={this.props.facility} onChange={this.handleInput}/>
+        </td>
+        <td>
+          <input type="text" name="pool_site" value={this.props.site} onChange={this.handleInput}/>
+        </td>
+        <td>
+          <input type="text" name="collection_date" value={this.props.collection_date} onChange={this.handleInput}/>
+        </td>
+        <td>
+          <input type="text" name="results" value={this.props.results} onChange={this.handleInput}/>
+        </td>
+        <td>
+            <input type="text" name="coliform" value={this.props.coliform} onChange={this.handleInput}/>
+        </td>
+        <td>
+              <input type="text" name="ecoli" value={this.props.ecoli} onChange={this.handleInput}/>
+        </td>
+        <td>
+                <input type="text" name="heterotropic" value={this.props.heterotropic} onChange={this.handleInput}/>
+        </td>
+        <td>
+                  <input type="textarea" name="comments" value={this.props.comments} onChange={this.handleInput}/>
+        </td>
+        <td>
+                    <input type="text" name="user" value={this.props.user} onChange={this.handleInput}/>
+        </td>
+        <td>
+                <input type="text" name="submitted" value={this.props.submitted ? "Y" : "N"} onChange={this.handleInput}/>    
+        </td>
+
+      </tr>
     )
   }
 

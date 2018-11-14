@@ -3,14 +3,13 @@ import axios from 'axios'
 
 export default class Login extends Component{
   constructor(props){
-    super()
+    super(props)
     this.state={
       username:'',
       password:'',
       failed:false
     }
     this.handleInput=this.handleInput.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
   }
 
   handleInput(e){
@@ -22,30 +21,15 @@ export default class Login extends Component{
     )
   }
 
-  handleSubmit(e){
+  requestSubmit(e){
     e.preventDefault()
-    axios({
-			method: 'POST',
-			url: '',
-			data: {username: this.state.username, password: this.state.password}
-		})
-		.then(resp => {
-
-		})
-			.then(resp => {
-				this.props.setUsername(resp.data.username)
-			})
-		.catch((error) => {
-			this.setState({
-				failed: true
-			});
-		})
+    this.props.handleSubmit(this.state.username, this.state.password)
   }
 
   render(){
     return(
       <div>
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.requestSubmit}>
         <label>Username</label>
         <input type='text' name='username' value={this.state.username} onChange={this.handleInput}/>
         <label>Password</label>
