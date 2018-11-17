@@ -22,11 +22,11 @@ class App extends Component {
     this.getInitialInspectionsChecklists=this.getInitialInspectionsChecklists.bind(this)
     this.getWQSampleList=this.getWQSampleList.bind(this)
     this.getPoolItemsTable=this.getPoolItemsTable.bind(this)
+    this.handlePoolSampleInfo=this.handlePoolSampleInfo.bind(this)
   }
 
    getInitialInspectionsChecklists(inspList, header){
      var myPools=[]
-     debugger
      var initialInsp = inspList.filter((insp)=>{
        return insp.type.text=="Initial"
      })
@@ -80,9 +80,7 @@ class App extends Component {
         return set.filter((item)=> item.checklistItem.text=="Pool")
     })
     var tablePromises=poolItems.map(function(item, index){
-      debugger
       return new Promise(function(resolve, reject){
-            debugger
                  axios.get(`https://apis.accela.com/v4/inspections/${this.state.pools[index]["inspection"]}/checklists/${item[0].checklistId}/checklistItems/${item[0].id}/customTables`, header)
                .then(function(data){
                  resolve(data.data.result)
@@ -95,8 +93,22 @@ class App extends Component {
     Promise.all(tablePromises).then((table)=>{
       return table.flat()
     }).then((tables)=>{
-      debugger
-       tables.filter((t)=>t.id=="WQ_GWQ_POOL-SAMPLE")
+       return tables.filter((t)=>t.id=="WQ_GWQ_POOL-SAMPLE")
+    }).then((poolSamples)=>{
+      this.handlePoolSampleInfo(poolSamples)
+    })
+  }
+
+  handlePoolSampleInfo(poolSamples){
+    var myPools=this.state.pools
+    poolSamples.forEach((sample, index)=>{
+      if(sample.rows){
+         myPools[index]= Object.assign(myPools[index],sample.rows[0].fields)
+      }
+    })
+    this.setState({
+      pools:myPools,
+      loadPools:true
     })
   }
 
@@ -110,7 +122,6 @@ class App extends Component {
       "cache-control": "no-cache",
       "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"
     }}
-    debugger
     this.setState({
       user:'lwacht@septechconsulting.com'
     })
@@ -134,7 +145,6 @@ class App extends Component {
                })
     }).then((promiseArr)=>{
       Promise.all(promiseArr).then((insp)=>{
-        debugger
         console.log("Got all water quality inspections")
         return insp.flat()
       }).then((wqInspections)=>{
