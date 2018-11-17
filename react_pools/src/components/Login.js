@@ -10,6 +10,7 @@ export default class Login extends Component{
       failed:false
     }
     this.handleInput=this.handleInput.bind(this)
+    this.requestSubmit=this.requestSubmit.bind(this)
   }
 
   handleInput(e){
