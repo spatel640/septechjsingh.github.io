@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
+      inspections:[],
       pools:[],
       token:'',
       user:'',
@@ -28,9 +29,8 @@ class App extends Component {
    getInitialInspectionsChecklists(inspList, header){
      var myPools=[]
      var initialInsp = inspList.filter((insp)=>{
-       return insp.type.text=="Initial"
+       return insp.status.value=="Scheduled" && insp.type.value=="Pool Test Results"
      })
-
     var inspPromise=initialInsp.map((insp)=>{
       return new Promise(function(resolve, reject){
                  axios.get(`https://apis.accela.com/v4/inspections/${insp.id}/checklists`,header)
@@ -54,10 +54,10 @@ class App extends Component {
   }
 
   getWQSampleList(lists, header){
-    var wqList=lists.filter((list)=> list.guideType.text==="WQ Samples")
+    var wqList=lists.filter((list)=> list.group==="Pool Test Results")
     var itemsPromises=wqList.map((list)=>{
       this.setState({
-        pools:[... this.state.pools, {"inspection":list.inspectionId}],
+        inspections:[... this.state.inspections, list.inspectionId]
       })
       return new Promise(function(resolve, reject){
                  axios.get(`https://apis.accela.com/v4/inspections/${list.inspectionId}/checklists/${list.id}/checklistItems`,header)
@@ -77,11 +77,11 @@ class App extends Component {
   getPoolItemsTable(items, header){
     var test=""
     var poolItems=items.map((set, index)=>{
-        return set.filter((item)=> item.checklistItem.text=="Pool")
+        return set.filter((item)=> item.checklist=="Pool Test Results")
     })
     var tablePromises=poolItems.map(function(item, index){
       return new Promise(function(resolve, reject){
-                 axios.get(`https://apis.accela.com/v4/inspections/${this.state.pools[index]["inspection"]}/checklists/${item[0].checklistId}/checklistItems/${item[0].id}/customTables`, header)
+                 axios.get(`https://apis.accela.com/v4/inspections/${this.state.inspections[index]}/checklists/${item[0].checklistId}/checklistItems/${item[0].id}/customTables`, header)
                .then(function(data){
                  resolve(data.data.result)
                }.bind(this))
@@ -93,32 +93,45 @@ class App extends Component {
     Promise.all(tablePromises).then((table)=>{
       return table.flat()
     }).then((tables)=>{
-       return tables.filter((t)=>t.id=="WQ_GWQ_POOL-SAMPLE")
+       return tables.filter((t)=>t.id=="POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES")
     }).then((poolSamples)=>{
       this.handlePoolSampleInfo(poolSamples)
     })
   }
 
   handlePoolSampleInfo(poolSamples){
-    var myPools=this.state.pools
+    var row;
     poolSamples.forEach((sample, index)=>{
       if(sample.rows){
-         myPools[index]= Object.assign(myPools[index],sample.rows[0].fields)
+         row= Object.assign({inspection:this.state.inspections[index], submit:false}, sample.rows[0].fields)
+      }else{
+        row={inspection:this.state.inspections[index],
+          "Coliform Results":"",
+          "Collection Date":"",
+          "Valid Results":"",
+          "Sample ID":"",
+          "E. Coli Results":"",
+          "HPC":"",
+          "Notes":"",
+          "Name":"",
+          "submit":false
+        }
       }
+        this.setState({
+          pools:[...this.state.pools, row]
+        })
     })
     this.setState({
-      pools:myPools,
       loadPools:true
     })
   }
 
 
 
-
   handleSubmit(username, password){
     var header={
       "headers": {
-      "authorization": "YAA_q285TjvsndEmOxVeQQzU1-9WCkNlV5Y-8iLlC2v00SIgalJtwjvTaNrT4ZC7VgvWt_O0RYAeCokILGHNvttGHcXionwA25OO75f5_0boeyxCTJDdxPtr6XW7tJMCGWfuPVLMnL1PY_t-ZSuRauh-frJp339UDrcmHS9nl5BZf9k37vPeUtArk3avS2V7Hp-eUbs4mu1C3BMy964hbgfx3UOtMXBxNT6gzN9kKBYmGna4TSC0mlrwTWtqzu7delgNMowu5GzrGdEMEIGEt90hrOe8cTdoIkLXFWX7YV4Xw_TpUDpNpp_e7IkXoqUVWySCHa0PNSb5RN1rnDSJ1k2ASC_ip987TIq3XRdw82tz8CUVAAF9KCS-TjbP9gvPKfzEk8Fk4j0txrjcmwTKW_JnIKQPUiccXF9aC1INR2Szkmxhzbj7gmhKBQqVwezLwEYnMkoYxWQiMfYg2bajhisyOSVgbMHt5c2kywEPILdA64rPk_bWVxa_zCD1QygYQbZSzTSqyR8MRKEhn-jxPA2",
+      "authorization": "vTpwv8T0LWdDdsk6ZFFRfAw4WWFeHP76K5dKM_1zeGUq_3lxQrPW5_Ojol4oeZ3mqFyVhiO1ubMNppqWwyOvZTtVpnsFuFoQSDyECa-uJD9K1K7mE40lFHAcMOaC6LZVX7OHjh1KYenVDNb73T7FUwCc_XlMkgjJkmNerQK2n9y9c84luI73OyKrNddbV2uY-g-y3bJZKafi_VE0mOEC5K2HQOFO9fz2_0C5IAbykGcpaT_ns8aDqLsi5ZuvFOHHr5X0XKB9UjlncZH6Teaps5BCvOdTN9oMv3guiRespI7do4TEq291w30Wb4YPLIAFEpZw3nqtAd3flM74dwfAzaVmxhTIGvm8_7IrB2K_icvDB04GYKPGRnhZpT3fiq1yscXyaXwspUquaduIQcBueXffacXnlT41NQGDRWv8Vvw4HgteEd5J69YX5srlONt6LSSZ3KLd-1GxFcyKBcDspMkxOhB_wWGt2W5G5Aat4rjrC_wZEt1KJkmoF4RE63K9LOurvHSGOqaPVxiUbfC-Wg2",
       "cache-control": "no-cache",
       "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"
     }}
@@ -128,7 +141,7 @@ class App extends Component {
     axios.get("https://apis.accela.com/v4/records/mine", header)
     .then(function(data){
       return data.data.result.filter((cap)=>{
-        return cap.type.type=="WQ"
+        return cap.type.type=="WQ" && cap.type.category=="License" && (cap.status.value != "Closed – Permanent" || cap.status.value !="Closed – Self Closure")
       })
     }.bind(this))
     .then((waterQualityCaps)=>{
@@ -158,6 +171,9 @@ class App extends Component {
       console.log("error getting my caps")
     })
   }
+
+
+
 
 
 

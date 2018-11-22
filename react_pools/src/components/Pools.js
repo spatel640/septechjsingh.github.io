@@ -6,10 +6,36 @@ export default class Pools extends Component{
   constructor(props){
     super(props)
     this.state={
-      myPools:this.props.pools_list
+      loading:true,
+      pools:this.props.pools_list
     }
+    this.handleSubmit=this.handleSubmit.bind(this)
+    this.manageInput=this.manageInput.bind(this)
+  }
+
+  handleSubmit(e){
+    e.preventDefault()
+    debugger
 
   }
+
+  manageInput(index, name, value){
+    var updatedPools=this.state.pools
+    var updated=Object.assign({}, this.state.pools[index],{[name]: value})
+    updatedPools[index]= updated
+      this.setState({
+        pools:[
+        ...this.state.pools.slice(0,index),
+        {
+            ...this.state.pools[index],
+            [name]: value,
+        },
+        ...this.state.pools.slice(index+1)
+    ]
+      })
+      debugger
+  }
+
 
 
   render(){
@@ -18,35 +44,39 @@ export default class Pools extends Component{
       <table>
       <thead>
       <tr>
-        <th>Sample Location</th>
-        <th>Date Collected</th>
-        <th>Results</th>
-        <th>Sample Type</th>
-        <th>Biological Sample Result</th>
-        <th>Chemical Sample Result</th>
+        <th>Coliform Results</th>
+        <th>Collection Date</th>
+        <th>Valid Results</th>
+        <th>Sample ID</th>
+        <th>E. Coli Results</th>
+        <th>HPC</th>
         <th>Comments</th>
         <th>User</th>
-        <th>Submitted</th>
+        <th>Submit Results</th>
       </tr>
       </thead>
       <tbody>
-        {this.props.pools_list.map((pool,index)=> <Pool
-        inspectionId={pool["inspection"]}
-        site={pool["Sample Location"]? pool["Sample Location"] : null}
-        collection_date={pool["Date Collected"]? pool["Date Collected"]:null}
-        results={pool["Result"] ? pool["Result"] : null}
-        sampleType={pool["Sample Type"] ? pool["Sample Type"] : null}
-        bioSampleResult={pool["Biological Sample Result"] ? pool["Biological Sample Result"]:null}
-        chemSampleResult={pool["Chemical Sample Result"] ? pool["Chemical Sample Result"] : null}
-        comments={pool["Field Notes"] ? pool["Field Notes"] : null}
-        user={pool["Sample ID"] ? pool["Sample ID"]: null}
+        {this.state.pools.map((pool,index)=>{
+
+        return<Pool
+        inspection={pool["inspection"]}
+        coliformsResults={pool["Coliform Results"]}
+        collection_date={pool["Collection Date"]}
+        results={pool["Valid Results"]}
+        sampleID={pool["Sample ID"]}
+        eColiResults={pool["E. Coli Results"]}
+        hpc={pool["HPC"]}
+        comments={pool["Notes"] }
+        poolName={pool["Name"]}
         key={index}
-        submitted={pool["Result"] ? true : false }
-        /> )
+        id={index}
+        submitInsp={pool["submit"]}
+        submitted={pool["Valid Results"] ? true : false }
+        manageInput={this.manageInput} /> })
       }
       </tbody>
       </table>
-      <input type="submit" value="submit" onClick={this.props.handleSubmit} />
+      <input type="submit" value="submit" onClick={this.handleSubmit} />
       </div>
 
 

@@ -14,7 +14,6 @@ export default class Login extends Component{
   }
 
   handleInput(e){
-    debugger
     this.setState(
       {
         [e.target.name] : e.target.value
