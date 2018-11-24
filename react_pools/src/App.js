@@ -13,6 +13,8 @@ class App extends Component {
     this.state={
       inspections:[],
       pools:[],
+      checklists:[],
+      itemIds:[],
       token:'',
       user:'',
       key:'',
@@ -57,7 +59,8 @@ class App extends Component {
     var wqList=lists.filter((list)=> list.group==="Pool Test Results")
     var itemsPromises=wqList.map((list)=>{
       this.setState({
-        inspections:[... this.state.inspections, list.inspectionId]
+        inspections:[... this.state.inspections, list.inspectionId],
+        checklists:[...this.state.checklists, list.id]
       })
       return new Promise(function(resolve, reject){
                  axios.get(`https://apis.accela.com/v4/inspections/${list.inspectionId}/checklists/${list.id}/checklistItems`,header)
@@ -80,6 +83,9 @@ class App extends Component {
         return set.filter((item)=> item.checklist=="Pool Test Results")
     })
     var tablePromises=poolItems.map(function(item, index){
+      this.setState({
+        itemIds:[...this.state.itemIds, item[0].id]
+      })
       return new Promise(function(resolve, reject){
                  axios.get(`https://apis.accela.com/v4/inspections/${this.state.inspections[index]}/checklists/${item[0].checklistId}/checklistItems/${item[0].id}/customTables`, header)
                .then(function(data){
@@ -103,9 +109,13 @@ class App extends Component {
     var row;
     poolSamples.forEach((sample, index)=>{
       if(sample.rows){
-         row= Object.assign({inspection:this.state.inspections[index], submit:false}, sample.rows[0].fields)
+         row= Object.assign({inspection:this.state.inspections[index], submit:false, rowId:sample.rows[0].id, checklistId:this.state.checklists[index], itemIds:this.state.itemIds[index]}, sample.rows[0].fields)
       }else{
         row={inspection:this.state.inspections[index],
+          checklistId:this.state.checklists[index],
+          itemId:this.state.itemIds[index],
+          "submit":false,
+          "rowId":"",
           "Coliform Results":"",
           "Collection Date":"",
           "Valid Results":"",
@@ -114,7 +124,7 @@ class App extends Component {
           "HPC":"",
           "Notes":"",
           "Name":"",
-          "submit":false
+          "Updated":false
         }
       }
         this.setState({
@@ -131,7 +141,7 @@ class App extends Component {
   handleSubmit(username, password){
     var header={
       "headers": {
-      "authorization": "vTpwv8T0LWdDdsk6ZFFRfAw4WWFeHP76K5dKM_1zeGUq_3lxQrPW5_Ojol4oeZ3mqFyVhiO1ubMNppqWwyOvZTtVpnsFuFoQSDyECa-uJD9K1K7mE40lFHAcMOaC6LZVX7OHjh1KYenVDNb73T7FUwCc_XlMkgjJkmNerQK2n9y9c84luI73OyKrNddbV2uY-g-y3bJZKafi_VE0mOEC5K2HQOFO9fz2_0C5IAbykGcpaT_ns8aDqLsi5ZuvFOHHr5X0XKB9UjlncZH6Teaps5BCvOdTN9oMv3guiRespI7do4TEq291w30Wb4YPLIAFEpZw3nqtAd3flM74dwfAzaVmxhTIGvm8_7IrB2K_icvDB04GYKPGRnhZpT3fiq1yscXyaXwspUquaduIQcBueXffacXnlT41NQGDRWv8Vvw4HgteEd5J69YX5srlONt6LSSZ3KLd-1GxFcyKBcDspMkxOhB_wWGt2W5G5Aat4rjrC_wZEt1KJkmoF4RE63K9LOurvHSGOqaPVxiUbfC-Wg2",
+      "authorization": "NdCld7jo5njgLdFJLX77VpXvPTVEPd9qoxMOiqJMe3o61FY9UpZTFHrz2jrhLDIxwo_DKuy70iHit_dFzov9NYHsRrVSGNBFdCf8xZolGY5ZQJMYD7sboJf8t8YxPJQjJHATeCSALGfgRsi1ep1zRcwHpojz1T43tXZECeWNC2sqB0QntomiR2I22WfSOKTCwmMfRPHwkZMQrbK5Xmv5nwjnrMtocD3uEc0rZhUxYXZB4pBlJ4uc1gmKl8B39Q8ZU8ifGfLbe0lRUTUN6dKprIVTs7STxwAkGx-AGcUPSrT4BHr76UvckecoMaiOwC8-XVyxemhELJC_a964yIZYyRLZo6DR7lBMK1BdoGoifMGKl458WEdciAy46eT62rrl_JoPB5SamwFaU0qQJZ2p1VttixJWxNe4p_05xmp3bK-m4xYWH7N2vzjMtjcmZilN27fctYuKmYna6e2NU0Vujg2",
       "cache-control": "no-cache",
       "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"
     }}
