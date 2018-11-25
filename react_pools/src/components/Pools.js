@@ -84,7 +84,7 @@ export default class Pools extends Component{
         ...this.state.pools.slice(index+1)
     ]
       })
-
+debugger
   }
 
 

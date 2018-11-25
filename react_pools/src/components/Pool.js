@@ -26,7 +26,8 @@ componentWillMount(){
 
 
   handleInput(e){
-    this.props.manageInput(this.props.itemId ,e.target.name, e.target.value)
+    let value=e.target.type == "checkbox" ? e.target.checked : e.target.value
+    this.props.manageInput(this.props.itemId ,e.target.name, value)
   }
 
   render(){
@@ -40,7 +41,7 @@ componentWillMount(){
         <td> <input type="text" name="HPC" value={this.props.hpc} onChange={this.handleInput} readOnly={this.state.readOnly}/> </td>
         <td> <input type="textarea" name="Notes" value={this.state.comments} onChange={this.handleInput} readOnly={this.state.readOnly}/> </td>
         <td> <input type="text" name="Name" value={this.props.name}  onChange={this.handleInput} readOnly={this.state.readOnly}/> </td>
-        <td> <input type="checkbox" name="submit"  onClick={this.validateSubmitStatus}  disabled={this.state.disableCheck} /> </td>
+        <td> <input type="checkbox" name="submit"  checked={this.props.submit} onChange={this.handleInput}  disabled={this.state.disableCheck} /> </td>
       </tr>
     )
   }
