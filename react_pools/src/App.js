@@ -13,6 +13,7 @@ class App extends Component {
     this.state={
       inspections:[],
       pools:[],
+      poolsTest:[],
       checklists:[],
       itemIds:[],
       token:'',
@@ -59,6 +60,7 @@ class App extends Component {
     var wqList=lists.filter((list)=> list.group==="Pool Test Results")
     var itemsPromises=wqList.map((list)=>{
       this.setState({
+        poolsTest:[...this.state.poolsTest, {inspectionId:list.inspectionId, checklistId:list.id}],
         inspections:[... this.state.inspections, list.inspectionId],
         checklists:[...this.state.checklists, list.id]
       })
@@ -106,15 +108,14 @@ class App extends Component {
   }
 
   handlePoolSampleInfo(poolSamples){
-    var row;
+    var row
     poolSamples.forEach((sample, index)=>{
       if(sample.rows){
-         row= Object.assign({inspection:this.state.inspections[index], submit:false, rowId:sample.rows[0].id, checklistId:this.state.checklists[index], itemIds:this.state.itemIds[index]}, sample.rows[0].fields)
+         row= Object.assign({submit:false, read:true, rowId:sample.rows[0].id}, sample.rows[0].fields)
       }else{
-        row={inspection:this.state.inspections[index],
-          checklistId:this.state.checklists[index],
-          itemId:this.state.itemIds[index],
+        row={
           "submit":false,
+          "read":false,
           "rowId":"",
           "Coliform Results":"",
           "Collection Date":"",
@@ -127,10 +128,17 @@ class App extends Component {
           "Updated":false
         }
       }
+      debugger
         this.setState({
+          poolsTest:[
+            ...this.state.poolsTest.slice(0, index),
+            Object.assign({},this.state.poolsTest[index],row),
+            ...this.state.poolsTest.slice(index+1)
+          ],
           pools:[...this.state.pools, row]
         })
     })
+    debugger
     this.setState({
       loadPools:true
     })
@@ -141,7 +149,7 @@ class App extends Component {
   handleSubmit(username, password){
     var header={
       "headers": {
-      "authorization": "jErAh0nGYoTFMS9gZZsv0OssLtG62pFoYK00RFIFKflWgCe9c2lEn7SbF5PoKQqiVB8e0C9OmVdvhQyBjcRDfc7VbFHaAshQVdn7adLr9m5Mube0bS75V0nEJycmfmZXTrxrGkAcCGq7Rk1mw8BGr4lFgjzkmpxwB0j162I6-l5_A4S_ZfkCeKoRyIOLQPmsvkTVLDaMzhcZkrLjmWjemowcWBm3XiC6WQ1XDCxNwyenrIK0lUZKt3LkXEPhgw0p2uXUw8ERgoHJl__-XIiNxvGkWVaZmPyRoJcCFK4ey02P8otVTe2HjqkzZdEpz5dKDePGdRDujAPSpy9niqQXwx3UcU8pS0Gr9c4PbvZbr_AFTsMJGqgHXCR3-wihDWTaOcdPz5C3JKsm5YHYVgG-mo2nGis1dEz41BbuoC-Bvd5LpxsI3iqqinubrcdkCmlWuPkqciIfUYC2OpojT9QksA2",
+      "authorization": "2GAV4UM-m2Zk7Of8IStbAU_t1-6uE9bmBw6hZxelnYLmlNSZ7HWtF99jZAAhncjjJXh121ztfCgnYJRuGHJHzlTKokN8yQjGwZ_OYmLdeWP637MFQF7p7xYZE0kPeNpCSwpoTJvaBYIXpShhCEHLKWff1h-6uAMk7Q4rOBXbLQgW4jPjAXkNJI9RUK0DvcLl0qrgrFyd759tf4BcDpJJ6hBAMYx_wZoHFpswXaoQ0MSdpq_qaRJyYfvvZkynyI1jrpeG-M-qHTPcoJUgFfZ74kTDPGWB2rbnY-IckyJnJhUy9E0NxHDl_tAXEnEgMvnr01b1xRkYZnKgLfNNKY2nTubV-6CLw9FVm-jIiG2YNwkyRn-EHy_I9R9I_GsUO3oXsTiK1QxAQO1Tnie8DEkLg_w2sIwGFtAUZJJXIuJ3BjLbZMYK93-Jf2cu03-ljzUMnemKxdnka2m_vEcGZcYH5mEKcla45XM07p9x_YaW4Xs1",
       "cache-control": "no-cache",
       "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"
     }}
@@ -171,6 +179,7 @@ class App extends Component {
         console.log("Got all water quality inspections")
         return insp.flat()
       }).then((wqInspections)=>{
+        debugger
         this.getInitialInspectionsChecklists(wqInspections, header);
       })
       .catch((error)=>{

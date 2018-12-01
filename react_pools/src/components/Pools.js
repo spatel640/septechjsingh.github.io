@@ -16,7 +16,7 @@ export default class Pools extends Component{
   handleSubmit(e){
     e.preventDefault()
     const config = { "headers":{
-      "authorization": "NdCld7jo5njgLdFJLX77VpXvPTVEPd9qoxMOiqJMe3o61FY9UpZTFHrz2jrhLDIxwo_DKuy70iHit_dFzov9NYHsRrVSGNBFdCf8xZolGY5ZQJMYD7sboJf8t8YxPJQjJHATeCSALGfgRsi1ep1zRcwHpojz1T43tXZECeWNC2sqB0QntomiR2I22WfSOKTCwmMfRPHwkZMQrbK5Xmv5nwjnrMtocD3uEc0rZhUxYXZB4pBlJ4uc1gmKl8B39Q8ZU8ifGfLbe0lRUTUN6dKprIVTs7STxwAkGx-AGcUPSrT4BHr76UvckecoMaiOwC8-XVyxemhELJC_a964yIZYyRLZo6DR7lBMK1BdoGoifMGKl458WEdciAy46eT62rrl_JoPB5SamwFaU0qQJZ2p1VttixJWxNe4p_05xmp3bK-m4xYWH7N2vzjMtjcmZilN27fctYuKmYna6e2NU0Vujg2",
+      "authorization": "2GAV4UM-m2Zk7Of8IStbAU_t1-6uE9bmBw6hZxelnYLmlNSZ7HWtF99jZAAhncjjJXh121ztfCgnYJRuGHJHzlTKokN8yQjGwZ_OYmLdeWP637MFQF7p7xYZE0kPeNpCSwpoTJvaBYIXpShhCEHLKWff1h-6uAMk7Q4rOBXbLQgW4jPjAXkNJI9RUK0DvcLl0qrgrFyd759tf4BcDpJJ6hBAMYx_wZoHFpswXaoQ0MSdpq_qaRJyYfvvZkynyI1jrpeG-M-qHTPcoJUgFfZ74kTDPGWB2rbnY-IckyJnJhUy9E0NxHDl_tAXEnEgMvnr01b1xRkYZnKgLfNNKY2nTubV-6CLw9FVm-jIiG2YNwkyRn-EHy_I9R9I_GsUO3oXsTiK1QxAQO1Tnie8DEkLg_w2sIwGFtAUZJJXIuJ3BjLbZMYK93-Jf2cu03-ljzUMnemKxdnka2m_vEcGZcYH5mEKcla45XM07p9x_YaW4Xs1",
       "accept": "application/json",
       "content-type": "application/json",
       "cache-control": "no-cache",
@@ -29,6 +29,7 @@ export default class Pools extends Component{
     var promises;
 
     this.state.pools.forEach((pool)=>{
+      if(pool.submit){
       promises.push(
         new Promise(function(resolve, reject){
           console.log(`inspection: ${pool.inspection}, checklist: ${pool.checklistId}`)
@@ -64,7 +65,8 @@ export default class Pools extends Component{
                  })
                }.bind(this))
       )
-    })
+    }
+  })
     Promise.all(promises).then((data)=>{
        debugger;
     })
@@ -84,7 +86,6 @@ export default class Pools extends Component{
         ...this.state.pools.slice(index+1)
     ]
       })
-debugger
   }
 
 
@@ -122,7 +123,7 @@ debugger
         key={index}
         itemId={index}
         submitInsp={pool["submit"]}
-        submitted={pool["Valid Results"] ? true : false }
+        submitted={""}
         manageInput={this.manageInput}
         updated={pool["Updated"]} /> })
       }
