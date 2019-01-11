@@ -29,6 +29,7 @@ export default class Login extends Component{
   render(){
     return(
       <div>
+      {this.props.user ? <div>{this.props.user}</div> :
       <form onSubmit={this.requestSubmit}>
         <label>Username</label>
         <input type='text' name='username' value={this.state.username} onChange={this.handleInput}/>
@@ -36,6 +37,7 @@ export default class Login extends Component{
         <input type='password' name='password' value={this.state.password} onChange={this.handleInput}/>
         <input type='submit' value='Login' className='button'/>
       </form>
+    }
       </div>
     )
   }

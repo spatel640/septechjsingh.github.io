@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Pool from './Pool.js'
+import Cap from './Cap.js'
 import axios from 'axios'
 
 export default class Pools extends Component{
@@ -11,12 +12,13 @@ export default class Pools extends Component{
     }
     this.handleSubmit=this.handleSubmit.bind(this)
     this.manageInput=this.manageInput.bind(this)
+    this.handleCapClick=this.handleCapClick.bind(this)
   }
 
   handleSubmit(e){
     e.preventDefault()
     const config = { "headers":{
-      "authorization": "2GAV4UM-m2Zk7Of8IStbAU_t1-6uE9bmBw6hZxelnYLmlNSZ7HWtF99jZAAhncjjJXh121ztfCgnYJRuGHJHzlTKokN8yQjGwZ_OYmLdeWP637MFQF7p7xYZE0kPeNpCSwpoTJvaBYIXpShhCEHLKWff1h-6uAMk7Q4rOBXbLQgW4jPjAXkNJI9RUK0DvcLl0qrgrFyd759tf4BcDpJJ6hBAMYx_wZoHFpswXaoQ0MSdpq_qaRJyYfvvZkynyI1jrpeG-M-qHTPcoJUgFfZ74kTDPGWB2rbnY-IckyJnJhUy9E0NxHDl_tAXEnEgMvnr01b1xRkYZnKgLfNNKY2nTubV-6CLw9FVm-jIiG2YNwkyRn-EHy_I9R9I_GsUO3oXsTiK1QxAQO1Tnie8DEkLg_w2sIwGFtAUZJJXIuJ3BjLbZMYK93-Jf2cu03-ljzUMnemKxdnka2m_vEcGZcYH5mEKcla45XM07p9x_YaW4Xs1",
+      "authorization": "cSM_FZcJy4gvO1imyhVQyNYntLYn2OT3ohdSZpVGoSvLF-LAqHZD9Ed3He_7fqomA0bdhhKUcdNbX_PcIPyZA0MWcHrT-Lq_RpEAvjRCfI7tBaSHAlnOgmSbu3Wbsx41F9oimrQLaRjBNBhalWSyRZhB-mSX2Z5RUgOuSVMkShaHzfG3Zfqtlg-_ni6dJkKJ1CA8FeVm1bFzaWPCWfTwklgZxFBYEeorB58vf97ue3R0-ypHAQHW_W2tl0jz-rKwE9YeENQPplV4f2BwIFaNJIwT12lwD-ICqhFzO2ilBxtlIsNmUWo1d4koeuPO-OIRtnrNVSu6PtP9MtCeQXIYOYq46dxPbgudgElvjS6a8ObezHwPW6ENrzH9zL_ybUpU8KB8bSQcepoH8iHo859KqsmmBk1c-s8LrtwRQu8ey16peGiZHns_Fl3o3sP8Uqo491vrVCZjQhcnOJXiRwmtC3jxwDEj7RCDVA3aFEj9Vi6lGgQl3UnwUvfYQOFqopem0",
       "accept": "application/json",
       "content-type": "application/json",
       "cache-control": "no-cache",
@@ -88,48 +90,23 @@ export default class Pools extends Component{
       })
   }
 
+  handleCapClick(capNumber){
+    this.props.getCapInspections(capNumber)
+  }
+
 
 
   render(){
     return(
       <div>
-      <table>
-      <thead>
-      <tr>
-        <th>Coliform Results</th>
-        <th>Collection Date</th>
-        <th>Valid Results</th>
-        <th>Sample ID</th>
-        <th>E. Coli Results</th>
-        <th>HPC</th>
-        <th>Comments</th>
-        <th>User</th>
-        <th>Submit Results</th>
-      </tr>
-      </thead>
-      <tbody>
-        {this.state.pools.map((pool,index)=>{
+        {this.props.caps.map((cap,index)=>{
 
-        return<Pool
-        inspection={pool["inspection"]}
-        coliformsResults={pool["Coliform Results"]}
-        collection_date={pool["Collection Date"]}
-        results={pool["Valid Results"]}
-        sampleID={pool["Sample ID"]}
-        eColiResults={pool["E. Coli Results"]}
-        hpc={pool["HPC"]}
-        comments={pool["Notes"] }
-        name={pool["Name"]}
-        key={index}
-        itemId={index}
-        submitInsp={pool["submit"]}
-        submitted={""}
-        manageInput={this.manageInput}
-        updated={pool["Updated"]} /> })
+        return<Cap
+        recordId={cap["customId"]}
+        capId={cap["id"]}
+        onCapClick={this.handleCapClick}
+        />})
       }
-      </tbody>
-      </table>
-      <input type="submit" value="submit" onClick={this.handleSubmit} />
       </div>
 
 
