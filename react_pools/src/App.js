@@ -38,6 +38,7 @@ class App extends Component {
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
     this.addPoolRow=this.addPoolRow.bind(this)
     this.updateTable=this.updateTable.bind(this)
+    this.submitResults=this.submitResults.bind(this)
   }
 
 
@@ -146,29 +147,71 @@ addPoolRow(){
       "HPC":"",
       "Notes":"",
       "Name":""},
-      
+
     }]
   })
 
 }
 
-updateTable(index, name, value){
+updateTable(index, rowInfo, id){
 var updatedPools=this.state.currentTable
-var updated=Object.assign({}, this.state.currentTable[index],{[name]: value})
-updatedPools[index]= updated
-  this.setState({
-    pools:[
-    ...this.state.currentTable.slice(0,index),
-    {
-        ...this.state.currentTable[index],
-        [name]: value,
-    },
-    ...this.state.currentTable.slice(index+1)
-]
-  })
+this.setState({
+  currentTable:[...this.state.currentTable.slice(0,index),
+  Object.assign({}, {id: id, fields:rowInfo}),
+  ...this.state.currentTable.slice(index+1)]
+})
 }
 
+submitResults(){
+  var rows= this.state.currentTable;
+  var url=`https://apis.accela.com/v4/inspections/${inspId}/checklists/${checklistId}/checklistItems/${checklistItemId}/customTables`
+   var inspId;
+   var checklistId;
+   var checklistItemId;
+   var promises=[]
+  rows.forEach((row)=>{
+    if(row.fields["SubmitResults"]){
+      promises.push(
+        new Promise (function (resolve, reject){
+          console.log(`inspection: ${this.state.currentInspection}, checklist: ${this.state.currentChecklist}`);
+          let fields={
+             "Coliform Results":row.fields["Coliform Results"],
+             "E. Coli Results":row.fields["E. Coli Results"],
+             "Collection Date":row.fields["Collection Date"],
+             "HPC":row.fields["HPC"],
+             "Name":row.fields["Name"],
+             "Notes":row.fields["Notes"],
+             "Sample ID":row.fields["Sample ID"],
+             "Valid Results":row.fields["Valid Results"]
+           }
+           axios.put(url, JSON.stringify([
+                  {
+                  "id": "POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES",
+                  "rows": [
+                  {
+                  "action": "add",
+                  "fields": fields
+                  }
+                  ]
+                  }
+                ]), this.state.header)
+                .then(data=>{
+                   resolve(data.result)
+                 })
+                 .catch(error=>{
+                   console.log(`error`)
+                 })
+        }.bind(this))
+      )
+    }
 
+  })
+  Promise.all(promises).then((data)=>{
+       debugger;
+    })
+
+
+}
 
 
   render() {
@@ -185,7 +228,9 @@ updatedPools[index]= updated
           <div className="rows">
           {this.state.currentInspection ? <Pools poolsList= {this.state.currentTable} currentInspection={this.state.currentInspection}
           addRow={this.addPoolRow}
-          updateTable={this.updateTable}/>
+          updateTable={this.updateTable}
+          handleSubmit={this.submitResults}
+          />
           : null}
           </div>
       </div>

@@ -23,19 +23,20 @@ export default class Pools extends Component{
     this.setState({ showButtons: true})
   }
 
-  handleSubmit(index, name, value){
-
+  handleSubmit(e){
+    e.preventDefault();
+    this.props.handleSubmit()
   }
 
-  handleUpdate(index, name, value){
-    debugger
-    this.props.updateTable(index, name, value)
+  handleUpdate(index, rowInfo, id){
+    this.props.updateTable(index, rowInfo, id)
   }
 
   render(){
     return(
       <div>
       <table>
+      <tbody>
       <tr>
       <th>Collection Date</th>
       <th>Sample ID</th>
@@ -65,11 +66,12 @@ export default class Pools extends Component{
           />
       }
       )}
+      </tbody>
       </table>
       {this.state.showButtons ?
       <div className="buttons">
       <button onClick={this.handleClick}>Add Pool Sample Result</button>
-      <button onSubmit={this.handleSubmit}>Submit Pool Sample Results </button>
+      <button onClick={this.handleSubmit}>Submit Pool Sample Results </button>
       </div> : null
         }
       </div>
