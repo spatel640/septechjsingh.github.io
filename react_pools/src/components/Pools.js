@@ -1,117 +1,79 @@
 import React, {Component} from 'react'
 import Pool from './Pool.js'
-import Cap from './Cap.js'
-import axios from 'axios'
+
 
 export default class Pools extends Component{
+
   constructor(props){
     super(props)
     this.state={
-      loading:true,
-      pools:this.props.pools_list
+      showButtons:false
     }
+    this.handleClick=this.handleClick.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
-    this.manageInput=this.manageInput.bind(this)
-    this.handleCapClick=this.handleCapClick.bind(this)
+    this.handleUpdate=this.handleUpdate.bind(this)
   }
 
-  handleSubmit(e){
+  handleClick(e){
     e.preventDefault()
-    const config = { "headers":{
-      "authorization": "cSM_FZcJy4gvO1imyhVQyNYntLYn2OT3ohdSZpVGoSvLF-LAqHZD9Ed3He_7fqomA0bdhhKUcdNbX_PcIPyZA0MWcHrT-Lq_RpEAvjRCfI7tBaSHAlnOgmSbu3Wbsx41F9oimrQLaRjBNBhalWSyRZhB-mSX2Z5RUgOuSVMkShaHzfG3Zfqtlg-_ni6dJkKJ1CA8FeVm1bFzaWPCWfTwklgZxFBYEeorB58vf97ue3R0-ypHAQHW_W2tl0jz-rKwE9YeENQPplV4f2BwIFaNJIwT12lwD-ICqhFzO2ilBxtlIsNmUWo1d4koeuPO-OIRtnrNVSu6PtP9MtCeQXIYOYq46dxPbgudgElvjS6a8ObezHwPW6ENrzH9zL_ybUpU8KB8bSQcepoH8iHo859KqsmmBk1c-s8LrtwRQu8ey16peGiZHns_Fl3o3sP8Uqo491vrVCZjQhcnOJXiRwmtC3jxwDEj7RCDVA3aFEj9Vi6lGgQl3UnwUvfYQOFqopem0",
-      "accept": "application/json",
-      "content-type": "application/json",
-      "cache-control": "no-cache",
-      "crossDomain": true,
- }};
-   var url=`https://apis.accela.com/v4/inspections/${inspId}/checklists/${checklistId}/checklistItems/${checklistItemId}/customTables`
-    var inspId;
-    var checklistId;
-    var checklistItemId;
-    var promises;
-
-    this.state.pools.forEach((pool)=>{
-      if(pool.submit){
-      promises.push(
-        new Promise(function(resolve, reject){
-          console.log(`inspection: ${pool.inspection}, checklist: ${pool.checklistId}`)
-           inspId=pool.inspection
-           checklistId=pool.checklistId
-           checklistItemId=pool.itemId
-           let fields={
-             "Coliform Results":pool["Coliform Results"],
-             "E. Coli Results":pool["E. Coli Results"],
-             "Collection Date":pool["Collection Date"],
-             "HPC":pool["HPC"],
-             "Name":pool["Name"],
-             "Notes":pool["Notes"],
-             "Sample ID":pool["Sample ID"],
-             "Valid Results":pool["Valid Results"]
-           }
-          axios.put(url, JSON.stringify([
-                    {
-                    "id": "POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES",
-                    "rows": [
-                    {
-                    "action": "add",
-                    "fields": fields
-                    }
-                    ]
-                    }
-                  ]), config)
-                 .then(data=>{
-                   resolve(data.result)
-                 })
-                 .catch(error=>{
-                   console.log(`error`)
-                 })
-               }.bind(this))
-      )
-    }
-  })
-    Promise.all(promises).then((data)=>{
-       debugger;
-    })
+    this.props.addRow()
   }
 
-  manageInput(index, name, value){
-    var updatedPools=this.state.pools
-    var updated=Object.assign({}, this.state.pools[index],{[name]: value})
-    updatedPools[index]= updated
-      this.setState({
-        pools:[
-        ...this.state.pools.slice(0,index),
-        {
-            ...this.state.pools[index],
-            [name]: value,
-        },
-        ...this.state.pools.slice(index+1)
-    ]
-      })
+  componentDidMount(){
+    this.setState({ showButtons: true})
   }
 
-  handleCapClick(capNumber){
-    this.props.getCapInspections(capNumber)
+  handleSubmit(index, name, value){
+
   }
 
-
+  handleUpdate(index, name, value){
+    debugger
+    this.props.updateTable(index, name, value)
+  }
 
   render(){
     return(
       <div>
-        {this.props.caps.map((cap,index)=>{
-
-        return<Cap
-        recordId={cap["customId"]}
-        capId={cap["id"]}
-        onCapClick={this.handleCapClick}
-        />})
+      <table>
+      <tr>
+      <th>Collection Date</th>
+      <th>Sample ID</th>
+      <th>Valid Sample</th>
+      <th>Ecoli</th>
+      <th>Hetero</th>
+      <th>Coliform</th>
+      <th>Comments</th>
+      <th>Submitted By</th>
+      <th>Submit</th>
+      </tr>
+      {this.props.poolsList.map((row, index)=>{
+          return <Pool
+            id={row.id}
+            key={index}
+            collection_date={row.fields["Collection Date"]}
+            sample_id={row.fields["Sample ID"]}
+            valid_sample={row.fields["Valid Results"]}
+            ecoli={row.fields["E. Coli Results"]}
+            coliform={row.fields["Coliform Results"]}
+            hetero={row.fields["HPC"]}
+            comments={row.fields["Notes"]}
+            submitted_by={row.fields["Name"]}
+            read={row.fields["Sample ID"].length>0}
+            submit=""
+            manageInput={this.handleUpdate}
+          />
       }
+      )}
+      </table>
+      {this.state.showButtons ?
+      <div className="buttons">
+      <button onClick={this.handleClick}>Add Pool Sample Result</button>
+      <button onSubmit={this.handleSubmit}>Submit Pool Sample Results </button>
+      </div> : null
+        }
       </div>
-
-
     )
   }
-
 
 }

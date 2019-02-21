@@ -7,7 +7,15 @@ export default class Pool extends Component{
     super(props)
     this.state={
       failed:false,
-
+      "Coliform Results":this.props.coliform,
+      "Collection Date":this.props.collection_date,
+      "Valid Results":this.props.valid_sample,
+      "Sample ID":this.props.sample_id,
+      "E. Coli Results":this.props.ecoli,
+      "HPC":this.props.hetero,
+      "Notes":this.props.comments,
+      "Name" :this.props.submitted_by,
+      submit: false
     }
     this.handleInput=this.handleInput.bind(this)
 
@@ -22,31 +30,34 @@ componentWillMount(){
 }
 
 
-
-
-
-
-
-
-
   handleInput(e){
+    e.preventDefault()
+    var name=e.target.name
+    var value=e.target.value
+    if(e.target.type != "checkbox"){
 
-    let value=e.target.type == "checkbox" ? e.target.checked : e.target.value
-    this.props.manageInput(this.props.itemId ,e.target.name, value)
+      this.setState({[name]: value})
+
+    } else{
+      this.setState({submit: e.target.checked})
+      debugger
+      this.props.manageInput(this.props.id-1, name, value )
+    }
+
   }
 
   render(){
     return(
       <tr>
-        <td> <input type="text" name="Coliform Results" value={this.props.coliformsResults} onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="data" name="Collection Date"  value={this.props.collection_date} onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="text" name="Valid Results" value={this.props.results} onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="text" name="Sample ID" value={this.props.sampleID} onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="text" name="E. Coli Results" value={this.props.eColiResults} onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="text" name="HPC" value={this.props.hpc} onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="textarea" name="Notes" value={this.state.comments} onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="text" name="Name" value={this.props.name}  onChange={this.handleInput} readOnly={this.props.submitted}/> </td>
-        <td> <input type="checkbox" name="submit"  checked={this.props.submit} onChange={this.handleInput}  disabled={this.props.submit ||  !this.props.collection_date || !this.props.results || !this.props.sampleID || !this.props.eColiResults || !this.props.hpc || this.props.name} /> </td>
+        <td> <input type="date" name="Collection Date"  value={this.state["Collection Date"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="text" name="Sample ID" value={this.state["Sample ID"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="text" name="Valid Results" value={this.state["Valid Results"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="text" name="E. Coli Results" value={this.state["E. Coli Results"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="text" name="HPC" value={this.state["HPC"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="text" name="Coliform Results" value={this.state["Coliform Results"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="textarea" name="Notes" value={this.state["Notes"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="text" name="Name" value={this.state["Name"]}  onChange={this.handleInput} readOnly={this.props.read}/> </td>
+        <td> <input type="checkbox" name="submit"  checked={this.props.submit} onChange={this.handleInput}  disabled={this.props.read} /> </td>
       </tr>
     )
   }
