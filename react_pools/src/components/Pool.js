@@ -6,83 +6,112 @@ export default class Pool extends Component{
   constructor(props){
     super(props)
     this.state={
-      "Coliform Results":this.props.coliform,
-      "Collection Date":this.props.collection_date,
-      "Valid Results":this.props.valid_sample,
-      "Sample ID":this.props.sample_id,
-      "E. Coli Results":this.props.ecoli,
-      "HPC":this.props.hetero,
-      "Notes":this.props.comments,
-      "Name" :this.props.submitted_by,
-      submit: false,
-      failed:false,
-      notValid:false
+      collection_date:'',
+      sample_id:'',
+      valid_results:'',
+      ecoli:'',
+      hpc:'',
+      coliform:'',
+      notes:'',
+      name:'',
+      save:'',
+      notValid:false,
     }
     this.handleInput=this.handleInput.bind(this)
     this.isReadyForSubmit=this.isReadyForSubmit.bind(this)
 }
 
 componentWillMount(){
-  if(!this.props.submitted){
-    this.setState({
-      readOnly:false
-    })
-  }
+
 }
 
 
   handleInput(e){
-
     var name=e.target.name
-    var value=e.target.value
+    var value= e.target.type == "checkbox" ? e.target.checked : e.target.value
     if(e.target.type != "checkbox"){
-      this.setState({[name]: value})
-
-    } else{
-
-      if(e.target.checked){
-        if(this.isReadyForSubmit()){    this.setState({submit: true})
+    this.setState({
+      [name]: value
+    })
+    }
+    if(e.target.checked){
+        if(this.isReadyForSubmit()){
+          this.setState({
+            [name]: true
+          })
         let fields=this.getFieldsInfo()
-        this.props.manageInput(this.props.id-1, fields, this.props.id)
+        this.props.manageInput(fields, this.props.index)
         }else{
         this.setState({notValid : true})
       }
     }
   }
-}
+
 
 isReadyForSubmit(){
-  return !Object.values(this.state).includes("")
+  var valid=true
+   Object.keys(this.state).forEach((key)=>{
+    if(key !== "notes" && key !== "save" && key !=="notValid"&& this.state[key]== ""){
+      console.log(key)
+      valid=false;
+    }
+  })
+  return valid
 }
 
 getFieldsInfo(){
   var fields={
-    "Collection Date":this.state["Collection Date"],
-    "Sample ID": this.state["Sample ID"],
-    "Valid Results": this.state["Valid Results"],
-    "E. Coli Results": this.state["E. Coli Results"],
-    "Coliform Results": this.state["Coliform Results"],
-    "HPC": this.state["HPC"],
-    "Notes": this.state["Notes"],
-    "Name": this.state["Name"],
-    "SubmitResults": true
+    "Collection Date":this.state.collection_date,
+    "Sample ID": this.state.sample_id,
+    "Valid Results": this.state.valid_results,
+    "E. Coli Results": this.state.ecoli,
+    "Coliform Results": this.state.coliform,
+    "HPC": this.state.hpc,
+    "Notes": this.state.notes,
+    "Name": this.state.name,
+    "save":true
   }
   return fields
 }
 
   render(){
     return(
-      <tr className={this.state.notValid ? "validationError": ""}>
-        <td> <input type="date" name="Collection Date"  value={this.state["Collection Date"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="text" name="Sample ID" value={this.state["Sample ID"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="text" name="Valid Results" value={this.state["Valid Results"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="text" name="E. Coli Results" value={this.state["E. Coli Results"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="text" name="HPC" value={this.state["HPC"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="text" name="Coliform Results" value={this.state["Coliform Results"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="textarea" name="Notes" value={this.state["Notes"]} onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="text" name="Name" value={this.state["Name"]}  onChange={this.handleInput} readOnly={this.props.read}/> </td>
-        <td> <input type="checkbox" name="submit"  checked={this.state["submit"]} onClick={this.handleInput}  disabled={this.props.read} /> </td>
-      </tr>
+      <form onSubmit={this.handleSubmit}>
+        <label>Collection Date:</label>
+        <input type="date" name="collection_date" required value={this.state.collection_date} onChange={this.handleInput}/>
+        <label>Sample ID: </label>
+        <input type="text" name="sample_id" value={this.state.sample_id} required onChange={this.handleInput}/>
+        <label>Valid Sample: </label>
+        <select value={this.state.valid_results} name="valid_results" required onChange={this.handleInput} >
+          <option name="Yes">Yes</option>
+          <option name="No">No</option>
+        </select>
+        <label>Ecoli: </label>
+        <select value={this.state.ecoli} name="ecoli" required onChange={this.handleInput}>
+          <option name="Absent">Absent</option>
+          <option name="Not Taken">Not Taken</option>
+          <option name="Present">Present </option>
+        </select>
+        <label>Hetero: </label>
+        <select value={this.state.hpc} name="hpc" required onChange={this.handleInput} >
+          <option name="< 200">{"< 200"}</option>
+          <option name="> 200">{"> 200"}</option>
+          <option name="TNC">TNC </option>
+        </select>
+        <label>Coliform: </label>
+        <select value={this.state.coliform} name="coliform" required onChange={this.handleInput}>
+          <option name="Absent">Absent</option>
+          <option name="Not Taken">Not Taken</option>
+          <option name="Present">Present </option>
+        </select>
+        <label>Comments: </label>
+        <textarea  name="notes"  onChange={this.handleInput} value={this.state.notes} > </textarea>
+        <label>Submitted By: </label>
+        <input type="text" name="name" value={this.state.name} required onChange={this.handleInput} />
+        <label>Save:  </label>
+        <input type="checkbox" name="save"  checked={this.state.save} onClick={this.handleInput} />
+      </form>
+
     )
   }
 

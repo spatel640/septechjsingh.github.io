@@ -16,7 +16,6 @@ class App extends Component {
     this.state={
       myCaps:[],
       myInspections:[],
-      myChecklists:[],
       token:'',
       user:'',
       currentLicense:'',
@@ -25,9 +24,11 @@ class App extends Component {
       currentInspection:'',
       currentChecklist:'',
       currentTable:[],
+      currentItemId: '',
+      blankRows:[],
       header:{
         "headers": {
-        "authorization": "QEPKyf9HKnAMCjtdzYXqx0A_GFouF31cSkVIuXhhW2GQyxhGnnJdlLHkd9y0u8_qxXpT7jGjNiFsHwroeJ9WfOLu6P4rNSiDTovupdpyB1EA7W6xWgnNoaM0vNv0OzS1hRQfEwfdS1Tz9lBUxEEfzYSB2ieQblQkzGmWgtMa9h8VoOgyU_7WMe-huhKqk8IG4gVMKFhavDSOHGa2ELrnJ9FUAuTEVmclW8SDMyAP4kJUUGqFnE4NY8uZuW8JSD8TqVlIhOFrRYUZ3MFze9ZO_EKrYevGmrdTek5YhuGCYkzLp8A4NOnF-q0AlyD6wQS78IgFXPirZUtTSoBbDmoudO-rX1yc7C_YFzqA3pdHBnGqxR1NHdYISz_eS3ewDEDXvY61alxcUa5XPYXoI2pe7PvyWv_uqk5AUpi2e5HimhZIjuwUMkFGuI2MsF6xmM2DOsyLp8xzvx5mEpkqSTsMog2",
+        "authorization": "QAPMCXf26UDu1K0ogS2HlZIjf4x3ufAhO9N6EJOUO3OhDSRvdnv8qaNTx8vx-V1hlI_CCnJG1s4mpug0gXRJb9WXDz_374zIdA1CaDJiywFVMa20PFXUkdeYg_wjBH3fwIR25A1gA8Zk-HnuPffSzHvy3ZtAaQryIPP1FFFGpSfMi-122GpvlFTRLOKcLVOPIbb_9JW3UcOvFaQL4cY2VOiifSKflWkfSuux9Wkn33pukdB7ujhi7Gv5PGVoMepDPxCGJff4yQk1mL_ihH3Lyhz8L59kgNrmewKYF7Qz8AfgkunLcnPt2pdQ_U7nJH_6sV1symCdQHNF6swIdFtIumLRjbJcYZ6nEaXZagrbsAG9zZ_d6ypwybAEXT269Qusw_mHkMby1uGDwoyuFEOv1Td0fKOWydQ67bRap1tHF9RgKyW37s_oqwCIbsksw6LkhnrEChMq7lsepBtVvetU5g2",
         "cache-control": "no-cache",
         "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"
       }}
@@ -36,9 +37,8 @@ class App extends Component {
     this.getPoolInspections=this.getPoolInspections.bind(this)
     this.getPoolTestResults=this.getPoolTestResults.bind(this)
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
-    this.addPoolRow=this.addPoolRow.bind(this)
-    this.updateTable=this.updateTable.bind(this)
     this.submitResults=this.submitResults.bind(this)
+    this.handleResponse=this.handleResponse.bind(this)
   }
 
 
@@ -73,7 +73,9 @@ class App extends Component {
     this.setState({
       currentLicense:capNumber,
       currentChecklist:null,
-      currentTable:Object.assign([], [])
+      myInspections:Object.assign([], []),
+      currentTable:Object.assign([], []),
+      response:''
     })
     axios.get(`https://apis.accela.com/v4/records/${capNumber}/inspections`, this.state.header)
     .then(function(data){
@@ -87,13 +89,16 @@ class App extends Component {
   }
 
   getPoolTestResults(inspId){
+    this.setState({
+      currentInspection:inspId,
+      currentItemId:''
+     })
     axios.get(`https://apis.accela.com/v4/inspections/${inspId}/checklists`,this.state.header)
       .then(data=>{
         return data.data.result.filter(checklist=> checklist["group"]== "Pool Test Results")
       })
         .then(poolTest=>{
           this.setState({
-            currentInspection:inspId,
             currentChecklist:poolTest[0].id
           })
           return poolTest[0]
@@ -120,6 +125,9 @@ class App extends Component {
   }
 
 getPoolTestTable(itemId){
+    this.setState({
+      currentItemId: itemId
+    })
      axios.get(`https://apis.accela.com/v4/inspections/${this.state.currentInspection}/checklists/${this.state.currentChecklist}/checklistItems/${itemId}/customTables`, this.state.header)
      .then(function(data){
        return data.data.result.filter(table=> table.id=="POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES")
@@ -135,42 +143,17 @@ getPoolTestTable(itemId){
      })
 }
 
-addPoolRow(){
-  this.setState({
-    currentTable:[...this.state.currentTable, { id:this.state.currentTable.length+1,
-      fields:{
-      "Collection Date":"",
-      "Sample ID":"",
-      "Valid Results":"",
-      "E. Coli Results":"",
-      "Coliform Results":"",
-      "HPC":"",
-      "Notes":"",
-      "Name":""},
 
-    }]
-  })
 
-}
 
-updateTable(index, rowInfo, id){
-var updatedPools=this.state.currentTable
-this.setState({
-  currentTable:[...this.state.currentTable.slice(0,index),
-  Object.assign({}, {id: id, fields:rowInfo}),
-  ...this.state.currentTable.slice(index+1)]
-})
-}
 
-submitResults(){
-  var rows= this.state.currentTable;
-  var url=`https://apis.accela.com/v4/inspections/${inspId}/checklists/${checklistId}/checklistItems/${checklistItemId}/customTables`
-   var inspId;
-   var checklistId;
-   var checklistItemId;
+submitResults(rows){
+
+  var rows= rows;
+  var url=`https://apis.accela.com/v4/inspections/${this.state.currentChecklist}/checklists/${this.state.currentChecklist}/checklistItems/${this.state.currentItemId}/customTables`
    var promises=[]
   rows.forEach((row)=>{
-    if(row.fields["SubmitResults"]){
+    if("fields" in row && row.fields["save"]){
       promises.push(
         new Promise (function (resolve, reject){
           console.log(`inspection: ${this.state.currentInspection}, checklist: ${this.state.currentChecklist}`);
@@ -195,9 +178,9 @@ submitResults(){
                   ]
                   }
                 ]), this.state.header)
-                .then(data=>{
-                   resolve(data.result)
-                 })
+                .then(function (data){
+                   resolve(data)
+                 }.bind(this))
                  .catch(error=>{
                    console.log(`error`)
                  })
@@ -206,11 +189,22 @@ submitResults(){
     }
 
   })
-  Promise.all(promises).then((data)=>{
-       debugger;
-    })
+
+  Promise.all(promises).then(function(data){
+      this.handleResponse(data)
+    }.bind(this))
 
 
+}
+
+handleResponse(data){
+  data.forEach(resp=>{
+    if(data.status!= 200){
+      this.setState({response:data.status})
+    }else{
+      this.setState({response:200})
+    }
+  })
 }
 
 
@@ -227,9 +221,7 @@ submitResults(){
         </div>
           <div className="rows">
           {this.state.currentInspection ? <Pools poolsList= {this.state.currentTable} currentInspection={this.state.currentInspection}
-          addRow={this.addPoolRow}
-          updateTable={this.updateTable}
-          handleSubmit={this.submitResults}
+          handleSubmit={this.submitResults} reponseStatus={this.state.response}
           />
           : null}
           </div>
