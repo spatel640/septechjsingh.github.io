@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 
+
+
 export default class Inspection extends Component{
 
 constructor(props){
@@ -15,7 +17,7 @@ handleClick(e){
 
 render(){
   return(
-    <button onClick={this.handleClick}>
+    <button onClick={this.handleClick} className="mediumButtons">
     Inspection {this.props.inspInfo["id"]}
     </button>
   )

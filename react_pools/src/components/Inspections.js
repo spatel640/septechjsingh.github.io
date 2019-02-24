@@ -9,7 +9,7 @@ export default class Inspections extends Component{
 
   render(){
     const inspectionsList=this.props.inspList.map((insp, index)=>{
-      
+
       return <Inspection
       inspInfo={insp}
       onInspectionClick={this.props.getPoolTestResults}
@@ -18,7 +18,7 @@ export default class Inspections extends Component{
       key={index}/>
     })
     return(
-      <div>
+      <div className="mButtonContainer">
       {inspectionsList}
       </div>
     )

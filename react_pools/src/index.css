@@ -5,10 +5,68 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.lButtonContainer{
+  width: 170px;
+  margin-top: 50px;
+  display: inline-block;
+  float: left
+}
+
+.largeButtons {
+  display: inline-block;
+  width: 130px;
+  height: 50px;
+  padding: 5px;
+  margin: 10px;
+  border-color: #ccc
+}
+
+
+button:focus{
+  background-color:rgba(183,222,237,1);
+    outline: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.mediumButtons{
+  height: 30px;
+  padding: 5px 2px;
+  width: 130px;
+  display: block;
+  margin-left: 10px;
+  border-color: #ccc
+}
+
+.mButtonContainer {
+  width: 160;
+  display: inline-block;
+  float: left;
+  margin-top: 50px;
+}
+
+
+.error{
+  color: red;
+
+}
+
+.success{
+  color: #62db8f;
+
+}
+
+.poolscontainer{
+  display:inline-block;
+  width:1000px;
+  float:left;
+  margin: 50px
 }

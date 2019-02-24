@@ -21,10 +21,6 @@ export default class Pool extends Component{
     this.isReadyForSubmit=this.isReadyForSubmit.bind(this)
 }
 
-componentWillMount(){
-
-}
-
 
   handleInput(e){
     var name=e.target.name
@@ -34,6 +30,7 @@ componentWillMount(){
       [name]: value
     })
     }
+    if(e.target.type == "checkbox")
     if(e.target.checked){
         if(this.isReadyForSubmit()){
           this.setState({
@@ -44,6 +41,8 @@ componentWillMount(){
         }else{
         this.setState({notValid : true})
       }
+    }else{
+
     }
   }
 
@@ -110,6 +109,7 @@ getFieldsInfo(){
         <input type="text" name="name" value={this.state.name} required onChange={this.handleInput} />
         <label>Save:  </label>
         <input type="checkbox" name="save"  checked={this.state.save} onClick={this.handleInput} />
+        {this.state.notValid ? <div className="error">All fields except for 'Comments' are required</div> : null}
       </form>
 
     )

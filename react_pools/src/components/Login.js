@@ -27,10 +27,12 @@ export default class Login extends Component{
   }
 
   render(){
+    const wrongLogin= this.props.failed ? <div className="error">Your username or password is incorrect. Please try again </div> : null 
     return(
       <div>
       {this.props.user ? <div>{this.props.user}</div> :
       <form onSubmit={this.requestSubmit}>
+      {wrongLogin}
         <label>Username</label>
         <input type='text' name='username' value={this.state.username} onChange={this.handleInput}/>
         <label>Password</label>

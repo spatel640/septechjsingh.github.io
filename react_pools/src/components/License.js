@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+import '../index.css';
+
 
 export default class License extends Component{
   constructor(props){
@@ -15,7 +17,7 @@ export default class License extends Component{
 
   render(){
     return(
-      <button onClick={this.handleClick}>
+      <button onClick={this.handleClick} className="largeButtons">
       {this.props.recordId}
       </button>
     )

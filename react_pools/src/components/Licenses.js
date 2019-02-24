@@ -23,7 +23,7 @@ export default class Licenses extends Component{
 
   render(){
     return(
-      <div>
+      <div className="lButtonContainer">
         {this.props.caps.map((cap,index)=>{
 
         return<License
