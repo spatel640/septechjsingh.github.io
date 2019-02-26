@@ -23,7 +23,7 @@ export default class Licenses extends Component{
 
   render(){
     return(
-      <div className="lButtonContainer">
+      <div className="licenses">
         {this.props.caps.map((cap,index)=>{
 
         return<License
@@ -31,6 +31,7 @@ export default class Licenses extends Component{
         capId={cap["id"]}
         onCapClick={this.handleCapClick}
         key={index}
+        header={this.state.header}
         />})
       }
       </div>

@@ -14,7 +14,8 @@ export default class Pools extends Component{
       failedLoad:false,
       processing:false,
       updateStatus:'',
-      showResponse:false
+      showResponse:false,
+      status:'',
     }
     this.getPoolTestTable=this.getPoolTestTable.bind(this)
     this.handleClick=this.handleClick.bind(this)
@@ -135,24 +136,34 @@ export default class Pools extends Component{
     Promise.all(promises).then(function(data){
         this.handleResponse(data)
       }.bind(this))
+      .then(function(data){
+        this.getPoolTestTable(this.props.currentItemId)
+      }.bind(this))
 
 
   }
 
   handleResponse(data){
-
+    var responseText="";
+    var status="";
     data.forEach(resp=>{
-      if(resp.status== 200){
-        this.setState({
-          updateStatus:200,
-          showResponse:true
-        })
+      status=resp.status
+      if(status== 200){
+        responseText="Sample Results Successfully Submited"
       }else{
-        this.setState({
-          updateStatus:resp.status,
-          showResponse:true
-        })
+        if(status==400){
+          responseText="There was an error submitting the requested data"
+        }else if (status==401 || status==403) {
+          responseText="Not authorized to make this request"
+        }else if (status == 500) {
+          responseText="Cannot submit request at the time due to a server error"
+        }
       }
+    })
+    this.setState({
+      status:status,
+      updateStatus:responseText,
+      showResponse:true
     })
   }
 
@@ -164,16 +175,15 @@ export default class Pools extends Component{
     return(
       <div className="poolscontainer">
 
-      {this.state.showButtons ?
-      <div className="buttons">
-      <button onClick={this.addPoolRow}>Add Pool Sample Result</button>
-      <button onClick={this.handleSubmit}>Submit Pool Sample Results </button>
-      {this.state.showResponse ? <div className={this.state.updateStatus == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
       {this.state.blankRows.map((row, index)=>{
           return <Pool manageInput={this.updateRows} sucess={true} index={index} key={index}/>
       })
     }
-
+    {this.state.showButtons ?
+    <div className="buttons-container">
+    <button className="yellow-button" onClick={this.addPoolRow}>+ ADD POOL SAMPLE</button>
+    <button className="yellow-button" onClick={this.handleSubmit}>SUBMIT SAMPLE</button>
+    {this.state.showResponse ? <div className={this.state.status == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
       </div> : null}
       <table>
       <tbody>
@@ -187,7 +197,7 @@ export default class Pools extends Component{
       <th>Comments</th>
       <th>Submitted By</th>
       </tr>
-    <tr>  {this.state.failedLoad ? <div className="error">There was an error retrieving results for this custom table </div> : null}</tr>
+    {this.state.failedLoad ? <tr> <div className="error">There was an error retrieving results for this custom table </div></tr> : null}
       {this.state.currentTable.map((row, index)=>{
           return(
               <tr>

@@ -19,6 +19,7 @@ export default class Pool extends Component{
     }
     this.handleInput=this.handleInput.bind(this)
     this.isReadyForSubmit=this.isReadyForSubmit.bind(this)
+
 }
 
 
@@ -30,27 +31,34 @@ export default class Pool extends Component{
       [name]: value
     })
     }
-    if(e.target.type == "checkbox")
-    if(e.target.checked){
-        if(this.isReadyForSubmit()){
-          this.setState({
-            [name]: true
-          })
-        let fields=this.getFieldsInfo()
+    if(e.target.type == "checkbox"){
+      if(e.target.checked){
+          if(this.isReadyForSubmit()){
+            this.setState({
+              [name]: true,
+              notValid:false
+            })
+          let fields= this.getFieldsInfo(e.target.checked)
+          this.props.manageInput(fields, this.props.index )
+          }
+          else{
+          this.setState({notValid : true})
+        }
+      }else{
+        this.setState({
+          [name]: false
+        })
+        let fields= this.getFieldsInfo(e.target.checked)
         this.props.manageInput(fields, this.props.index)
-        }else{
-        this.setState({notValid : true})
-      }
-    }else{
-
     }
   }
+}
 
 
 isReadyForSubmit(){
   var valid=true
    Object.keys(this.state).forEach((key)=>{
-    if(key !== "notes" && key !== "save" && key !=="notValid"&& this.state[key]== ""){
+    if(key !== "notes" && key !== "save" && key !=="notValid"&& this.state[key]== "" && !this.isDateValid(this.state.collection_date)) {
       console.log(key)
       valid=false;
     }
@@ -58,7 +66,13 @@ isReadyForSubmit(){
   return valid
 }
 
-getFieldsInfo(){
+isDateValid(date){
+  let inputTime = new Date(date).getTime();
+  let currentTime = Math.round((new Date).getTime() / 86400000) * 86400000;
+  return inputTime <= currentTime
+}
+
+getFieldsInfo(save){
   var fields={
     "Collection Date":this.state.collection_date,
     "Sample ID": this.state.sample_id,
@@ -68,7 +82,7 @@ getFieldsInfo(){
     "HPC": this.state.hpc,
     "Notes": this.state.notes,
     "Name": this.state.name,
-    "save":true
+    "save":save
   }
   return fields
 }
@@ -82,23 +96,27 @@ getFieldsInfo(){
         <input type="text" name="sample_id" value={this.state.sample_id} required onChange={this.handleInput}/>
         <label>Valid Sample: </label>
         <select value={this.state.valid_results} name="valid_results" required onChange={this.handleInput} >
+          <option name=""></option>
           <option name="Yes">Yes</option>
           <option name="No">No</option>
         </select>
         <label>Ecoli: </label>
         <select value={this.state.ecoli} name="ecoli" required onChange={this.handleInput}>
+          <option name=""></option>
           <option name="Absent">Absent</option>
           <option name="Not Taken">Not Taken</option>
           <option name="Present">Present </option>
         </select>
         <label>Hetero: </label>
         <select value={this.state.hpc} name="hpc" required onChange={this.handleInput} >
+          <option name=""></option>
           <option name="< 200">{"< 200"}</option>
           <option name="> 200">{"> 200"}</option>
           <option name="TNC">TNC </option>
         </select>
         <label>Coliform: </label>
         <select value={this.state.coliform} name="coliform" required onChange={this.handleInput}>
+          <option name=""></option>
           <option name="Absent">Absent</option>
           <option name="Not Taken">Not Taken</option>
           <option name="Present">Present </option>

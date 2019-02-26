@@ -173,7 +173,7 @@ class App extends Component {
           <Licenses caps={this.state.myCaps} getCapInspections={this.getPoolInspections}/>
         </div> : null}
         <div className="inspections">
-          {this.state.currentLicense ? <Inspections inspList={this.state.myInspections} currentRecord={this.state.currentLicense} getPoolTestResults={this.getPoolTestResults}/> : null}
+          {this.state.currentLicense ? <Inspections inspList={this.state.myInspections} currentRecord={this.state.currentLicense} getPoolTestResults={this.getPoolTestResults} header={this.state.header}/> : null}
         </div>
           <div className="rows">
           {this.state.currentInspection ?

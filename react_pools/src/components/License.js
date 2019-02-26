@@ -17,7 +17,7 @@ export default class License extends Component{
 
   render(){
     return(
-      <button onClick={this.handleClick} className="largeButtons">
+      <button onClick={this.handleClick} className= "largeButtons">
       {this.props.recordId}
       </button>
     )
