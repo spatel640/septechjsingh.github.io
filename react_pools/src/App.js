@@ -26,6 +26,7 @@ class App extends Component {
       currentChecklist:'',
       currentItemId: '',
       showButtons:'',
+      poolStatus:"Open",
       header:{}
     }
     this.handleSubmit=this.handleSubmit.bind(this)
@@ -33,11 +34,37 @@ class App extends Component {
     this.getPoolTestResults=this.getPoolTestResults.bind(this)
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
     this.getMyCaps=this.getMyCaps.bind(this)
+    this.getPoolStatus= this.getPoolStatus.bind(this)
+    this.handleInput=this.handleInput.bind(this)
+    this.updatePoolStatus=this.updatePoolStatus.bind(this)
   }
 
 
 
+handleInput(e){
+  var name=e.target.name
+  var value=e.target.value
+  this.setState({
+    [name]: value
+  })
+}
 
+updatePoolStatus(e){
+  e.preventDefault()
+    var url=`https://apis.accela.com/v4/records/${this.state.currentLicense}/customForms`
+             axios.put(url, JSON.stringify([
+                    {
+                    "id": "POOL_LIC-SITE.cINFORMATION",
+                    "Pool Status": this.state.poolStatus
+                    }
+                  ]), this.state.header)
+                  .then(function (data){
+                     debugger
+                   }.bind(this))
+                   .catch(error=>{
+                     console.log(`error`)
+                   })
+}
 
   handleSubmit(username, password){
     var settings = {
@@ -117,10 +144,14 @@ class App extends Component {
         myInspections:data.data.result
       })
     }.bind(this))
+    .then(function(data){
+      this.getPoolStatus()
+    }.bind(this))
     .catch((error)=>{
       console.log(`Error getting inspections for ${capNumber}`)
     })
   }
+
 
   getPoolTestResults(inspId, inspStatus){
     var scheduled= inspStatus == "Scheduled" ? true : false
@@ -165,6 +196,18 @@ class App extends Component {
     })
   }
 
+  getPoolStatus(){
+    var recordId=this.state.currentLicense;
+    axios.get(`https://apis.accela.com/v4/records/${recordId}/customForms`,this.state.header)
+    .then(function(data){
+      
+      var poolStatus=data.data.result[0]["Pool Status"] ? data.data.result[0]["Pool Status"] : "Open"
+      this.setState({
+        poolStatus:poolStatus
+      })
+    }.bind(this))
+  }
+
 
 
   render() {
@@ -181,7 +224,16 @@ class App extends Component {
           inspList={this.state.myInspections}
           getPoolTestResults={this.getPoolTestResults}/>
         </div> : null}
-
+        <div id="main">
+        {this.state.currentLicense ?
+        <form id="pool-status-container" onSubmit={this.updatePoolStatus}>
+        <label>Pool Status</label>
+        <select value={this.state.poolStatus} name="poolStatus" required onChange={this.handleInput}>
+          <option name="Open">Open</option>
+          <option name="Closed">Closed</option>
+        </select>
+        <input type="submit" value="UPDATE POOL STATUS" />
+        </form> : null}
           <div className="rows">
           {this.state.currentInspection ?
             <Pools
@@ -189,13 +241,15 @@ class App extends Component {
             currentInspection={this.state.currentInspection}
             currentChecklist={this.state.currentChecklist}
             currentItemId={this.state.currentItemId}
-          
+            poolStatus={this.state.poolStatus}
             header={this.state.header}
             isScheduled={this.state.isScheduled}
             currentUser={this.state.user}
           />
           : null}
           </div>
+          </div>
+          {this.state.user ? <div id="logout">LOGOUT </div>: null}
       </div>
     )
   }

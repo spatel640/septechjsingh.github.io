@@ -30,7 +30,7 @@ export default class Login extends Component{
     const wrongLogin= this.props.failed ? <div className="error">Your username or password is incorrect. Please try again </div> : null
     return(
       <div id={this.props.user ? "username" : "logincontainer"}>
-      {this.props.user ? <div>{this.props.user} </div>:
+      {this.props.user ? <div>{this.props.user.split('@')[0]}</div>:
       <form onSubmit={this.requestSubmit} id="login">
       {wrongLogin}
         <input type='text' name='username' placeholder="Username"value={this.state.username} onChange={this.handleInput}/>

@@ -16,13 +16,11 @@ export default class Pools extends Component{
       updateStatus:'',
       showResponse:false,
       isEditable:false,
-      status:'',
+      status:''
     }
     this.getPoolTestTable=this.getPoolTestTable.bind(this)
     this.handleClick=this.handleClick.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
-    this.addPoolRow=this.addPoolRow.bind(this)
-    this.updateRows=this.updateRows.bind(this)
     this.submitResults=this.submitResults.bind(this)
     this.isEditable=this.isEditable.bind(this)
   }
@@ -31,7 +29,7 @@ export default class Pools extends Component{
     if((this.props.currentRecord!== nextProps.currentRecord || this.props.currentInspection !== nextProps.currentInspection || this.props.currentChecklist !== nextProps.currentChecklist) || (nextProps.currentItemId == "")){
       this.setState({
         currentTable :Object.assign([], []),
-          showResponse:false
+        showResponse:false
       })
     }else if(this.props.currentItemId !== nextProps.currentItemId){
       console.log(this.props.currentRecord)
@@ -40,6 +38,8 @@ export default class Pools extends Component{
       this.getPoolTestTable(nextProps.currentItemId)
     }
   }
+
+
 
   getPoolTestTable(itemId){
        axios.get(`https://apis.accela.com/v4/inspections/${this.props.currentInspection}/checklists/${this.props.currentChecklist}/checklistItems/${itemId}/customTables`, this.props.header)
@@ -94,21 +94,6 @@ export default class Pools extends Component{
   }
 
 
-  addPoolRow(e){
-    e.preventDefault(e)
-    this.setState({
-      blankRows:[...this.state.blankRows, {}]
-    })
-
-  }
-
-  updateRows(fields, index){
-  this.setState({
-    blankRows:[...this.state.blankRows.slice(0,index),
-    Object.assign({}, {fields:fields}),
-    ...this.state.blankRows.slice(index+1)]
-  })
-  }
 
   submitResults(fields){
     var url=`https://apis.accela.com/v4/inspections/${this.props.currentChecklist}/checklists/${this.props.currentChecklist}/checklistItems/${this.props.currentItemId}/customTables`
@@ -167,6 +152,7 @@ export default class Pools extends Component{
     <div className="form-container">
     <Pool updateTable={this.submitResults} sucess={true} currentUser={this.props.currentUser}/>
       </div> : null}
+
       <table>
       <tbody>
       <tr>

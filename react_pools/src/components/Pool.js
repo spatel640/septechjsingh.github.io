@@ -64,12 +64,18 @@ getFieldsInfo(){
 
   render(){
     return(
-      <form onSubmit={this.handleSubmit}>
-        {this.state.dateValidated ? null : <div className="error">Collection date should not be in the future</div>}
-        <label>Collection Date:</label>
+      <form onSubmit={this.handleSubmit} id="sample-form">
+        <div className="column-left">
+        <label>Collection Date:</label> {this.state.dateValidated ? null : <div className="error">Collection date should not be in the future</div>}
         <input type="date" name="collection_date" required value={this.state.collection_date} onChange={this.handleInput}/>
         <label>Sample ID: </label>
         <input type="text" name="sample_id" value={this.state.sample_id} required onChange={this.handleInput}/>
+        <label>Submitted By: </label>
+        <input type="text" name="name" value={this.props.currentUser} required disabled={true}/>
+        <label>Comments: </label>
+        <textarea  name="notes"  onChange={this.handleInput} value={this.state.notes} > </textarea>
+        </div>
+        <div className="column-right">
         <label>Valid Sample: </label>
         <select value={this.state.valid_results} name="valid_results" required onChange={this.handleInput} >
           <option name=""></option>
@@ -97,12 +103,8 @@ getFieldsInfo(){
           <option name="Not Taken">Not Taken</option>
           <option name="Present">Present </option>
         </select>
-        <label>Comments: </label>
-        <textarea  name="notes"  onChange={this.handleInput} value={this.state.notes} > </textarea>
-        <label>Submitted By: </label>
-        <input type="text" name="name" value={this.props.currentUser} required disabled={true}/>
-        <input type="submit" value="Submit" className="yellow-button"/>
-        {this.state.notValid ? <div className="error">All fields except for 'Comments' are required</div> : null}
+        <input type="submit" value="SUBMIT SAMPLE" className="yellow-button"/>
+        </div>
       </form>
 
     )

@@ -17,12 +17,18 @@ body {
 }
  #login-button{
    background-color: rgb(237, 240, 242);
-   color:#232F34;
+   color:#344955;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    font-weight: bold;
    font-family : inherit;
    border-radius: 20px;
     font-size: 1em
+ }
+
+ #login input{
+    font-family: 'Rubik', sans-serif;
+     color:#344955;
+     font-size: 1em
  }
 
 input:focus{
@@ -69,6 +75,8 @@ code {
   border-bottom:2px solid rgb(237, 240, 242);
   color: #232F34;
   font-family : inherit;
+
+
 }
 
 #username{
@@ -80,7 +88,8 @@ code {
   margin-left: 2%;
   font-size: 100%;
   width: 250px;
-  overflow: auto
+  overflow: auto;
+
 }
 
 #username div{
@@ -92,8 +101,9 @@ code {
   margin: 20px 5px;
   width: 230px;
   height: 70px;
-  font-size: 1em;
+  font-size: 1.2em;
   word-wrap: break-word;
+    font-family: 'Work Sans', sans-serif;
 }
 
 
@@ -108,26 +118,28 @@ code {
   padding-top: 50%;
   background-color: #344955;
   color:white;
+  font-family: 'Work Sans', sans-serif;
   z-index:-2px
 }
 
 .largeButtons {
   display: block;
-  width: 160px;
-  height: 40px;
-  font-size: 1em;
+  width: 190px;
+  height: 50px;
+  font-size: 1.2em;
   /*font-weight:bold;*/
   margin: 10px auto;
   border:none;
   background-color: transparent;
-  color:white
+  color:white;
+  font-family: 'Work Sans', sans-serif
 }
 
 
 button:focus{
   /*background-color:rgba(183,222,237,1);*/
   color:#f9aa33;
-  font-weight: bolder;
+  font-weight: bold;
   outline: none;
   /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 
@@ -145,7 +157,17 @@ margin-left: 70px
 }
 
 .inspection{
-  display:block
+  display:block;
+  margin: 10px auto;
+  border:none;
+  background-color: transparent;
+  color:white;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1em
+}
+
+ul{
+   list-style-type: none;
 }
 
 
@@ -158,14 +180,14 @@ margin-left: 70px
 
 .success{
   color: #214238;
-
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1em
 }
 
 .poolscontainer{
   /*display:inline-block;*/
-  width:85vw;
-  float:right;
-  margin-top: 10%
+  float: left;
+  margin-top: 5px auto
   /*margin: 50px*/
 }
 
@@ -182,33 +204,173 @@ tr{
 }
 
 th{
-  color: #232F34
+  color: #344955;
+  font-size: 1.2em
 }
 
+td{
+  font-family: inherit;
+  font-size: 1em
+}
 
 
 table{
   width:75vw;
   margin:auto;
+  padding-top:10px;
   border-radius: 10%;
   color: #4a6572
 }
 
-.yellow-button{
+#sample-form input[type=submit]{
   background-color: #f9aa33;
-  border-radius: 20px;
+  border-radius: 5px;
   color: white;
   font-weight: bold;
-  width: 200px;
+  width: 90%;
   height: 50px;
   font-family : inherit;
   border:none;
-  margin: 10px 10px;
+  margin: auto;
   font-size: 1em;
-  float:left
+  margin-top: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#pool-status-container {
+  width:30%;
+  height:120px;
+  font-size: 1em;
+  background-color: white;
+  border-radius: 10px;
+
+}
+
+/*#pool-status-container label{
+  display:block;
+  font:inherit;
+  text-align:left;
+}*/
+
+#pool-status-container select{
+  height: 50px;
+  display: inline;
+  width: 30%;
+  font: inherit;
+  float:left;
+  margin-left:5%
+}
+
+#pool-status-container input[type=submit]{
+  background-color: #f9aa33;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  height: 50px;
+  width: 50%;
+  font-family : inherit;
+  border:none;
+  font-size: 1em;
+  display: inline;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .selected{
   color:#f9aa33;
   font-weight: bold
+}
+
+.rows{
+  width:100%;
+  margin: auto
+}
+
+.form-container{
+  width: 100%;
+  margin: auto;
+
+}
+
+#sample-form{
+  background-color: white;
+  width:100%;
+  margin:5px auto;
+  height:525px;
+  padding-top: 10px;
+  font-family : inherit;
+  border-radius: 10px
+}
+
+#main{
+  width:80vw;
+  margin:5px auto;
+  font-family : inherit;
+  float: right;
+}
+
+/*#sample-form label{
+  display: block;
+  float: left;
+  padding-left:30px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  margin-top: 2%;
+  font:inherit;
+  color: #aeb4b7
+}*/
+
+label{
+  display: block;
+  text-align:left;
+  padding-left:30px;
+  padding-top: 5%;
+  padding-bottom: 2px;
+  margin-top: 2%;
+  font:inherit;
+  color: #aeb4b7
+}
+
+#sample-form input, select{
+  width: 90%;
+  height: 40px;
+  display: block;
+  margin:auto;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 2px solid rgb(237, 240, 242);
+  color: #344955;
+  padding: 2px 4px;
+}
+
+
+
+.column-left{
+  float:left;
+  width:50%
+}
+
+.column-right{
+  float:right;
+  width:50%
+}
+
+#sample-form textarea{
+  display:block;
+  width: 90%;
+  height: 80px;
+  margin:auto;
+  border-radius: 5px;
+  border: 2px solid rgb(237, 240, 242);
+  font-size: 1em;
+  color: #344955;
+  font-family:inherit;
+  padding:2px 4px
+}
+
+#logout{
+  position: fixed;
+  bottom:100%;
+  left:0;
+  font-family:inherit;
+  color: white
 }

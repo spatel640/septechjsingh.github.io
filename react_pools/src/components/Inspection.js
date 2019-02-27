@@ -18,8 +18,8 @@ handleClick(e){
 
 render(){
   return(
-    <li onClick={this.handleClick} className={this.props.current ? "inspection selected" : "inspection"}>
-     {this.props.inspInfo["scheduleDate"]}
+    <li><button onClick={this.handleClick} className={this.props.current ? "inspection selected" : "inspection"}>
+     {this.props.inspInfo["scheduleDate"]}</button>
     </li>
   )
 }
