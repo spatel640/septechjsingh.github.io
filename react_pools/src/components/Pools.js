@@ -8,13 +8,14 @@ export default class Pools extends Component{
   constructor(props){
     super(props)
     this.state={
-      showButtons:false,
+      showButton:false,
       currentTable:[],
       blankRows:[],
       failedLoad:false,
       processing:false,
       updateStatus:'',
       showResponse:false,
+      isEditable:false,
       status:'',
     }
     this.getPoolTestTable=this.getPoolTestTable.bind(this)
@@ -23,12 +24,14 @@ export default class Pools extends Component{
     this.addPoolRow=this.addPoolRow.bind(this)
     this.updateRows=this.updateRows.bind(this)
     this.submitResults=this.submitResults.bind(this)
+    this.isEditable=this.isEditable.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
     if((this.props.currentRecord!== nextProps.currentRecord || this.props.currentInspection !== nextProps.currentInspection || this.props.currentChecklist !== nextProps.currentChecklist) || (nextProps.currentItemId == "")){
       this.setState({
-        currentTable :Object.assign([], [])
+        currentTable :Object.assign([], []),
+          showResponse:false
       })
     }else if(this.props.currentItemId !== nextProps.currentItemId){
       console.log(this.props.currentRecord)
@@ -45,9 +48,10 @@ export default class Pools extends Component{
        }.bind(this))
        .then(function(poolTable){
          var rows= poolTable[0].rows== undefined ? [] : poolTable[0].rows
+         var canAdd=this.isEditable(rows)
          this.setState({
            currentTable:Object.assign([], rows),
-           showButtons:true
+           isEditable : canAdd
          })
        }.bind(this))
        .catch((error)=>{
@@ -56,6 +60,21 @@ export default class Pools extends Component{
          })
          console.log(`Error getting custom tables for ${itemId}`)
        })
+  }
+
+  isEditable(rows){
+    var isEditable=false;
+    if(this.props.isScheduled){
+      if(rows.length == 0){
+        isEditable= true;
+      }else{
+        var userListed =rows.find((row)=>{
+            return row.fields["Name"]==this.props.currentUser
+          })
+          isEditable= userListed == undefined ? true : false
+      }
+    }
+    return isEditable
   }
 
   handleClick(e){
@@ -91,25 +110,8 @@ export default class Pools extends Component{
   })
   }
 
-  submitResults(){
-    var rows= this.state.blankRows;
+  submitResults(fields){
     var url=`https://apis.accela.com/v4/inspections/${this.props.currentChecklist}/checklists/${this.props.currentChecklist}/checklistItems/${this.props.currentItemId}/customTables`
-     var promises=[]
-    rows.forEach((row)=>{
-      if("fields" in row && row.fields["save"]){
-        promises.push(
-          new Promise (function (resolve, reject){
-            console.log(`inspection: ${this.props.currentInspection}, checklist: ${this.props.currentChecklist}`);
-            let fields={
-               "Coliform Results":row.fields["Coliform Results"],
-               "E. Coli Results":row.fields["E. Coli Results"],
-               "Collection Date":row.fields["Collection Date"],
-               "HPC":row.fields["HPC"],
-               "Name":row.fields["Name"],
-               "Notes":row.fields["Notes"],
-               "Sample ID":row.fields["Sample ID"],
-               "Valid Results":row.fields["Valid Results"]
-             }
              axios.put(url, JSON.stringify([
                     {
                     "id": "POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES",
@@ -122,44 +124,30 @@ export default class Pools extends Component{
                     }
                   ]), this.props.header)
                   .then(function (data){
-                     resolve(data)
+                     this.handleResponse(data)
+                   }.bind(this))
+                   .then(function(){
+                     this.getPoolTestTable(this.props.currentItemId)
                    }.bind(this))
                    .catch(error=>{
                      console.log(`error`)
                    })
-          }.bind(this))
-        )
-      }
-
-    })
-
-    Promise.all(promises).then(function(data){
-        this.handleResponse(data)
-      }.bind(this))
-      .then(function(data){
-        this.getPoolTestTable(this.props.currentItemId)
-      }.bind(this))
-
-
-  }
+                 }
 
   handleResponse(data){
     var responseText="";
-    var status="";
-    data.forEach(resp=>{
-      status=resp.status
-      if(status== 200){
+    var status=data.status;
+      if(data.status== 200){
         responseText="Sample Results Successfully Submited"
       }else{
-        if(status==400){
+        if(data.status==400){
           responseText="There was an error submitting the requested data"
-        }else if (status==401 || status==403) {
+        }else if (data.status==401 || data.status==403) {
           responseText="Not authorized to make this request"
-        }else if (status == 500) {
+        }else if (data.status == 500) {
           responseText="Cannot submit request at the time due to a server error"
         }
       }
-    })
     this.setState({
       status:status,
       updateStatus:responseText,
@@ -173,17 +161,11 @@ export default class Pools extends Component{
 
   render(){
     return(
-      <div className="poolscontainer">
-
-      {this.state.blankRows.map((row, index)=>{
-          return <Pool manageInput={this.updateRows} sucess={true} index={index} key={index}/>
-      })
-    }
-    {this.state.showButtons ?
-    <div className="buttons-container">
-    <button className="yellow-button" onClick={this.addPoolRow}>+ ADD POOL SAMPLE</button>
-    <button className="yellow-button" onClick={this.handleSubmit}>SUBMIT SAMPLE</button>
-    {this.state.showResponse ? <div className={this.state.status == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
+    <div className="poolscontainer">
+        {this.state.showResponse ? <div className={this.state.status == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
+    {this.state.isEditable ?
+    <div className="form-container">
+    <Pool updateTable={this.submitResults} sucess={true} currentUser={this.props.currentUser}/>
       </div> : null}
       <table>
       <tbody>

@@ -20,6 +20,9 @@ body {
    color:#232F34;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    font-weight: bold;
+   font-family : inherit;
+   border-radius: 20px;
+    font-size: 1em
  }
 
 input:focus{
@@ -27,6 +30,13 @@ input:focus{
 }
 input:-webkit-autofill:focus{
   border-color: none
+}
+
+input:active{
+outline: none
+}
+input:-webkit-autofill:active{
+  outline: none
 }
 /*
 code {
@@ -57,24 +67,33 @@ code {
   background-color: white;
   border:none;
   border-bottom:2px solid rgb(237, 240, 242);
-  color: #232F34
+  color: #232F34;
+  font-family : inherit;
 }
 
 #username{
-  position:absolute;
+  /*position:absolute;
   top: 5%;
-  left: 0;
+  left: 0;*/
+  float:left;
   margin-top: 2%;
   margin-left: 2%;
   font-size: 100%;
   width: 250px;
-
-
+  overflow: auto
 }
 
-.user{
-    color:white;
-
+#username div{
+  color: white;
+  position:absolute;
+  z-index:100;
+  top: 5%;
+  left: 0;
+  margin: 20px 5px;
+  width: 230px;
+  height: 70px;
+  font-size: 1em;
+  word-wrap: break-word;
 }
 
 
@@ -89,7 +108,7 @@ code {
   padding-top: 50%;
   background-color: #344955;
   color:white;
-
+  z-index:-2px
 }
 
 .largeButtons {
@@ -119,15 +138,14 @@ height: 100px;
 font-family : inherit;
 margin-left: 70px
 }
-.mButtonContainer {
+
+
+.inspections-container{
   width: 160;
-  float: left;
-  margin-top: 50px;
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+}
+
+.inspection{
+  display:block
 }
 
 
@@ -188,4 +206,9 @@ table{
   margin: 10px 10px;
   font-size: 1em;
   float:left
+}
+
+.selected{
+  color:#f9aa33;
+  font-weight: bold
 }

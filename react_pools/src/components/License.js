@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Inspections from './Inspections.js'
 
 import '../index.css';
 
@@ -6,7 +7,22 @@ import '../index.css';
 export default class License extends Component{
   constructor(props){
     super(props)
+    this.state={
+      showInspections: false
+    }
     this.handleClick=this.handleClick.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.current){
+      this.setState({
+        showInspections:true
+      })
+    }else{
+      this.setState({
+        showInspections:false
+      })
+    }
   }
 
   handleClick(e){
@@ -17,9 +33,17 @@ export default class License extends Component{
 
   render(){
     return(
-      <button onClick={this.handleClick} className= "largeButtons">
-      {this.props.recordId}
-      </button>
+      <div className="license-container">
+        <button onClick={this.handleClick} className= "largeButtons">
+        {this.props.recordId}
+        </button>
+          {this.state.showInspections ?
+            <Inspections inspList={this.props.myInspections}
+            currentRecord={this.state.currentLicense}
+            currentInspection={this.props.currentInspection}
+            getPoolTestResults={this.props.getPoolTestResults}
+            header={this.state.header}/> : null}
+      </div>
     )
   }
 

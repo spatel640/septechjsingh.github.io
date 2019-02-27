@@ -13,58 +13,34 @@ export default class Pool extends Component{
       hpc:'',
       coliform:'',
       notes:'',
-      name:'',
-      save:'',
-      notValid:false,
+      dateValidated:true
     }
     this.handleInput=this.handleInput.bind(this)
-    this.isReadyForSubmit=this.isReadyForSubmit.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
 
 }
 
 
   handleInput(e){
     var name=e.target.name
-    var value= e.target.type == "checkbox" ? e.target.checked : e.target.value
-    if(e.target.type != "checkbox"){
+    var value=e.target.value
     this.setState({
       [name]: value
     })
-    }
-    if(e.target.type == "checkbox"){
-      if(e.target.checked){
-          if(this.isReadyForSubmit()){
-            this.setState({
-              [name]: true,
-              notValid:false
-            })
-          let fields= this.getFieldsInfo(e.target.checked)
-          this.props.manageInput(fields, this.props.index )
-          }
-          else{
-          this.setState({notValid : true})
-        }
-      }else{
-        this.setState({
-          [name]: false
-        })
-        let fields= this.getFieldsInfo(e.target.checked)
-        this.props.manageInput(fields, this.props.index)
-    }
+  }
+
+handleSubmit(e){
+  e.preventDefault()
+  var dateValidated=this.isDateValid(this.state.collection_date)
+  this.setState({
+    dateValidated:dateValidated
+  })
+  if(this.state.dateValidated){
+    var fields=this.getFieldsInfo();
+    this.props.updateTable(fields)
   }
 }
 
-
-isReadyForSubmit(){
-  var valid=true
-   Object.keys(this.state).forEach((key)=>{
-    if(key !== "notes" && key !== "save" && key !=="notValid"&& this.state[key]== "" && !this.isDateValid(this.state.collection_date)) {
-      console.log(key)
-      valid=false;
-    }
-  })
-  return valid
-}
 
 isDateValid(date){
   let inputTime = new Date(date).getTime();
@@ -72,7 +48,7 @@ isDateValid(date){
   return inputTime <= currentTime
 }
 
-getFieldsInfo(save){
+getFieldsInfo(){
   var fields={
     "Collection Date":this.state.collection_date,
     "Sample ID": this.state.sample_id,
@@ -81,8 +57,7 @@ getFieldsInfo(save){
     "Coliform Results": this.state.coliform,
     "HPC": this.state.hpc,
     "Notes": this.state.notes,
-    "Name": this.state.name,
-    "save":save
+    "Name": this.props.currentUser,
   }
   return fields
 }
@@ -90,6 +65,7 @@ getFieldsInfo(save){
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
+        {this.state.dateValidated ? null : <div className="error">Collection date should not be in the future</div>}
         <label>Collection Date:</label>
         <input type="date" name="collection_date" required value={this.state.collection_date} onChange={this.handleInput}/>
         <label>Sample ID: </label>
@@ -124,9 +100,8 @@ getFieldsInfo(save){
         <label>Comments: </label>
         <textarea  name="notes"  onChange={this.handleInput} value={this.state.notes} > </textarea>
         <label>Submitted By: </label>
-        <input type="text" name="name" value={this.state.name} required onChange={this.handleInput} />
-        <label>Save:  </label>
-        <input type="checkbox" name="save"  checked={this.state.save} onClick={this.handleInput} />
+        <input type="text" name="name" value={this.props.currentUser} required disabled={true}/>
+        <input type="submit" value="Submit" className="yellow-button"/>
         {this.state.notValid ? <div className="error">All fields except for 'Comments' are required</div> : null}
       </form>
 

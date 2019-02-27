@@ -22,6 +22,7 @@ class App extends Component {
       user:'',
       loadPools:false,
       currentInspection:'',
+      isScheduled:false,
       currentChecklist:'',
       currentItemId: '',
       showButtons:'',
@@ -121,9 +122,11 @@ class App extends Component {
     })
   }
 
-  getPoolTestResults(inspId){
+  getPoolTestResults(inspId, inspStatus){
+    var scheduled= inspStatus == "Scheduled" ? true : false
     this.setState({
       currentInspection:inspId,
+      isScheduled:scheduled,
       currentChecklist:'',
       currentItemId:'',
       showButtons: false,
@@ -170,11 +173,15 @@ class App extends Component {
        <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed} />
       {this.state.loadPools ?
         <div className="licenses">
-          <Licenses caps={this.state.myCaps} getCapInspections={this.getPoolInspections}/>
+          <Licenses caps={this.state.myCaps}
+          getCapInspections={this.getPoolInspections}
+          current={this.state.currentLicense}
+          currentInspection={this.state.currentInspection}
+          poolInspections={this.state.myInspections}
+          inspList={this.state.myInspections}
+          getPoolTestResults={this.getPoolTestResults}/>
         </div> : null}
-        <div className="inspections">
-          {this.state.currentLicense ? <Inspections inspList={this.state.myInspections} currentRecord={this.state.currentLicense} getPoolTestResults={this.getPoolTestResults} header={this.state.header}/> : null}
-        </div>
+
           <div className="rows">
           {this.state.currentInspection ?
             <Pools
@@ -182,8 +189,10 @@ class App extends Component {
             currentInspection={this.state.currentInspection}
             currentChecklist={this.state.currentChecklist}
             currentItemId={this.state.currentItemId}
-            showButtons={this.state.showButtons}
+          
             header={this.state.header}
+            isScheduled={this.state.isScheduled}
+            currentUser={this.state.user}
           />
           : null}
           </div>

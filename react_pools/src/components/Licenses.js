@@ -31,7 +31,10 @@ export default class Licenses extends Component{
         capId={cap["id"]}
         onCapClick={this.handleCapClick}
         key={index}
-        header={this.state.header}
+        current={cap["id"] == this.props.current ? true : false}
+        myInspections={this.props.inspList}
+        getPoolTestResults={this.props.getPoolTestResults}
+        currentInspection={this.props.currentInspection}
         />})
       }
       </div>

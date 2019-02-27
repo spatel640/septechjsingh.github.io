@@ -9,17 +9,18 @@ constructor(props){
   this.handleClick=this.handleClick.bind(this)
 }
 
+
 handleClick(e){
   e.preventDefault()
-  this.props.onInspectionClick(this.props.inspInfo["id"])
+  this.props.onInspectionClick(this.props.inspInfo["id"], this.props.inspStatus)
 }
 
 
 render(){
   return(
-    <button onClick={this.handleClick} className="mediumButtons">
-    Inspection {this.props.inspInfo["id"]}
-    </button>
+    <li onClick={this.handleClick} className={this.props.current ? "inspection selected" : "inspection"}>
+     {this.props.inspInfo["scheduleDate"]}
+    </li>
   )
 }
 
