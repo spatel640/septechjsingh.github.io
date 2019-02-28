@@ -37,7 +37,25 @@ class App extends Component {
     this.getPoolStatus= this.getPoolStatus.bind(this)
     this.handleInput=this.handleInput.bind(this)
     this.updatePoolStatus=this.updatePoolStatus.bind(this)
+    this.logOut=this.logOut.bind(this)
+
   }
+
+  componentDidMount() {
+    var value;
+    var username
+   if (localStorage.getItem("authorization") && localStorage.getItem("user")){
+       value = localStorage.getItem("authorization");
+      username=localStorage.getItem("user");
+       this.setState({
+         header:Object.assign({}, {"headers":{"authorization":value, "cache-control": "no-cache",
+           "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
+         user:username
+       })
+
+   }
+   this.getMyCaps(value)
+}
 
 
 
@@ -55,7 +73,8 @@ updatePoolStatus(e){
              axios.put(url, JSON.stringify([
                     {
                     "id": "POOL_LIC-SITE.cINFORMATION",
-                    "Pool Status": this.state.poolStatus
+                    "<aCustomFieldName>":"Pool Status",
+                    "<aCustomFieldValue>": this.state.poolStatus
                     }
                   ]), this.state.header)
                   .then(function (data){
@@ -92,7 +111,8 @@ updatePoolStatus(e){
   }
 
   $.ajax(settings).done( function(response){
-
+    localStorage.setItem("authorization",response.access_token );
+    localStorage.setItem("user", username);
     this.setState({
       header:Object.assign({}, {"headers":{"authorization":response.access_token, "cache-control": "no-cache",
         "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
@@ -109,8 +129,9 @@ updatePoolStatus(e){
   }.bind(this))
   }
 
-  getMyCaps() {
-    axios.get("https://apis.accela.com/v4/records/mine", this.state.header)
+  getMyCaps(token) {
+    axios.get("https://apis.accela.com/v4/records/mine", {"headers":{"authorization":token, "cache-control": "no-cache",
+      "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}})
     .then(function(data){
       return data.data.result.forEach(function(cap){
         if (cap.type.type=="WQ" && cap.type.category=="License"){
@@ -200,12 +221,23 @@ updatePoolStatus(e){
     var recordId=this.state.currentLicense;
     axios.get(`https://apis.accela.com/v4/records/${recordId}/customForms`,this.state.header)
     .then(function(data){
-      
+
       var poolStatus=data.data.result[0]["Pool Status"] ? data.data.result[0]["Pool Status"] : "Open"
       this.setState({
         poolStatus:poolStatus
       })
     }.bind(this))
+  }
+
+  logOut(){
+    localStorage.removeItem("authorization")
+    localStorage.removeItem("user")
+    this.setState({
+      header:Object.assign({}, {"headers":{"authorization":'', "cache-control": "no-cache",
+        "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
+      user:''
+    })
+
   }
 
 
@@ -249,7 +281,7 @@ updatePoolStatus(e){
           : null}
           </div>
           </div>
-          {this.state.user ? <div id="logout">LOGOUT </div>: null}
+          {this.state.user ? <button id="logout" onClick={this.logOut}>LOGOUT </button>: null}
       </div>
     )
   }

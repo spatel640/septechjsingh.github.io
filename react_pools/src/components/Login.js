@@ -23,7 +23,14 @@ export default class Login extends Component{
 
   requestSubmit(e){
     e.preventDefault()
-    this.props.handleSubmit(this.state.username, this.state.password)
+    var user=this.state.username
+    var psswd=this.state.password
+    this.setState(
+      {
+        password : ''
+      }
+    )
+    this.props.handleSubmit(this.state.username, psswd)
   }
 
   render(){

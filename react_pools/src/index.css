@@ -90,6 +90,7 @@ code {
   width: 250px;
   overflow: auto;
 
+
 }
 
 #username div{
@@ -98,12 +99,16 @@ code {
   z-index:100;
   top: 5%;
   left: 0;
-  margin: 20px 5px;
-  width: 230px;
-  height: 70px;
-  font-size: 1.2em;
+  margin: 20px 2%;
+  padding: auto;
+  width: 170px;
+  height: 30px;
+  font-size: 1.5em;
   word-wrap: break-word;
-    font-family: 'Work Sans', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+  border-radius:20px;
+  border:2px solid white;
+  vertical-align: middle;
 }
 
 
