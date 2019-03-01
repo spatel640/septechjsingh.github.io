@@ -164,9 +164,11 @@ export default class Pools extends Component{
       <th>Coliform</th>
       <th>Comments</th>
       <th>Submitted By</th>
+      <th>Pool Status</th>
       </tr>
     {this.state.failedLoad ? <tr> <div className="error">There was an error retrieving results for this custom table </div></tr> : null}
       {this.state.currentTable.map((row, index)=>{
+        
           return(
               <tr>
               <td> {row.fields["Collection Date"]} </td>
@@ -177,6 +179,7 @@ export default class Pools extends Component{
               <td>{row.fields["Coliform Results"]}</td>
               <td>{row.fields["Notes"]}</td>
               <td>{row.fields["Name"]}</td>
+              <td>{row.fields["Pool Status"] ? row.fields["Pool Status"] : "Open"}</td>
               </tr>)
             }
       )}

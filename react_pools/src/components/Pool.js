@@ -13,6 +13,7 @@ export default class Pool extends Component{
       hpc:'',
       coliform:'',
       notes:'',
+      poolStatus:'',
       dateValidated:true
     }
     this.handleInput=this.handleInput.bind(this)
@@ -58,6 +59,7 @@ getFieldsInfo(){
     "HPC": this.state.hpc,
     "Notes": this.state.notes,
     "Name": this.props.currentUser,
+    "Pool Status": this.state.poolStatus
   }
   return fields
 }
@@ -72,6 +74,11 @@ getFieldsInfo(){
         <input type="text" name="sample_id" value={this.state.sample_id} required onChange={this.handleInput}/>
         <label>Submitted By: </label>
         <input type="text" name="name" value={this.props.currentUser} required disabled={true}/>
+        <label>Pool Status: </label>
+        <select value={this.state.poolStatus} name="poolStatus" onChange={this.handleInput}>
+          <option name="Open">Open</option>
+          <option name="Closed">Closed</option>
+        </select>
         <label>Comments: </label>
         <textarea  name="notes"  onChange={this.handleInput} value={this.state.notes} > </textarea>
         </div>

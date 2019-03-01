@@ -34,14 +34,11 @@ class App extends Component {
     this.getPoolTestResults=this.getPoolTestResults.bind(this)
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
     this.getMyCaps=this.getMyCaps.bind(this)
-    this.getPoolStatus= this.getPoolStatus.bind(this)
-    this.handleInput=this.handleInput.bind(this)
-    this.updatePoolStatus=this.updatePoolStatus.bind(this)
-    this.logOut=this.logOut.bind(this)
 
+    this.logOut=this.logOut.bind(this)
   }
 
-  componentDidMount() {
+  componentWillMount(){
     var value;
     var username
    if (localStorage.getItem("authorization") && localStorage.getItem("user")){
@@ -52,38 +49,15 @@ class App extends Component {
            "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
          user:username
        })
+  }
+}
 
-   }
-   this.getMyCaps(value)
+  componentDidMount(){
+
+   this.getMyCaps()
 }
 
 
-
-handleInput(e){
-  var name=e.target.name
-  var value=e.target.value
-  this.setState({
-    [name]: value
-  })
-}
-
-updatePoolStatus(e){
-  e.preventDefault()
-    var url=`https://apis.accela.com/v4/records/${this.state.currentLicense}/customForms`
-             axios.put(url, JSON.stringify([
-                    {
-                    "id": "POOL_LIC-SITE.cINFORMATION",
-                    "<aCustomFieldName>":"Pool Status",
-                    "<aCustomFieldValue>": this.state.poolStatus
-                    }
-                  ]), this.state.header)
-                  .then(function (data){
-                     debugger
-                   }.bind(this))
-                   .catch(error=>{
-                     console.log(`error`)
-                   })
-}
 
   handleSubmit(username, password){
     var settings = {
@@ -129,9 +103,9 @@ updatePoolStatus(e){
   }.bind(this))
   }
 
-  getMyCaps(token) {
-    axios.get("https://apis.accela.com/v4/records/mine", {"headers":{"authorization":token, "cache-control": "no-cache",
-      "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}})
+  getMyCaps() {
+
+    axios.get("https://apis.accela.com/v4/records/mine", this.state.header)
     .then(function(data){
       return data.data.result.forEach(function(cap){
         if (cap.type.type=="WQ" && cap.type.category=="License"){
@@ -157,16 +131,16 @@ updatePoolStatus(e){
     this.setState({
       currentLicense:capNumber,
       currentChecklist:null,
-      myInspections:Object.assign([], [])
+      myInspections:Object.assign([], []),
+      currentInspection:''
     })
     axios.get(`https://apis.accela.com/v4/records/${capNumber}/inspections`, this.state.header)
     .then(function(data){
+      if(data.data.result){
       this.setState({
         myInspections:data.data.result
       })
-    }.bind(this))
-    .then(function(data){
-      this.getPoolStatus()
+    }
     }.bind(this))
     .catch((error)=>{
       console.log(`Error getting inspections for ${capNumber}`)
@@ -208,6 +182,7 @@ updatePoolStatus(e){
       return data.data.result.filter(item=> item.checklist == "Pool Test Results")
     })
     .then((poolTestResultItem)=>{
+
       this.setState({
         currentItemId: poolTestResultItem[0].id
       })
@@ -217,16 +192,11 @@ updatePoolStatus(e){
     })
   }
 
-  getPoolStatus(){
-    var recordId=this.state.currentLicense;
-    axios.get(`https://apis.accela.com/v4/records/${recordId}/customForms`,this.state.header)
-    .then(function(data){
+  getCustomForms(itemId){
+    axios.get(`https://apis.accela.com/v4/inspections/${this.state.currentInspection}/checklists/${this.state.currentChecklist}/checklistItems/${itemId}/customForms`,this.state.header)
+    .then((data)=>{
 
-      var poolStatus=data.data.result[0]["Pool Status"] ? data.data.result[0]["Pool Status"] : "Open"
-      this.setState({
-        poolStatus:poolStatus
-      })
-    }.bind(this))
+    })
   }
 
   logOut(){
@@ -235,7 +205,13 @@ updatePoolStatus(e){
     this.setState({
       header:Object.assign({}, {"headers":{"authorization":'', "cache-control": "no-cache",
         "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
-      user:''
+      user:'',
+      myCaps:[],
+      currentLicense:'',
+      currentInspection:'',
+      currentChecklist:null,
+      myInspections:Object.assign([], []),
+      loadPools:false
     })
 
   }
@@ -245,7 +221,7 @@ updatePoolStatus(e){
   render() {
     return (
       <div className="App">
-       <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed} />
+       <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed} logOut={this.logOut}/>
       {this.state.loadPools ?
         <div className="licenses">
           <Licenses caps={this.state.myCaps}
@@ -257,15 +233,7 @@ updatePoolStatus(e){
           getPoolTestResults={this.getPoolTestResults}/>
         </div> : null}
         <div id="main">
-        {this.state.currentLicense ?
-        <form id="pool-status-container" onSubmit={this.updatePoolStatus}>
-        <label>Pool Status</label>
-        <select value={this.state.poolStatus} name="poolStatus" required onChange={this.handleInput}>
-          <option name="Open">Open</option>
-          <option name="Closed">Closed</option>
-        </select>
-        <input type="submit" value="UPDATE POOL STATUS" />
-        </form> : null}
+
           <div className="rows">
           {this.state.currentInspection ?
             <Pools
@@ -281,7 +249,7 @@ updatePoolStatus(e){
           : null}
           </div>
           </div>
-          {this.state.user ? <button id="logout" onClick={this.logOut}>LOGOUT </button>: null}
+
       </div>
     )
   }
