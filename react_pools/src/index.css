@@ -395,7 +395,7 @@ label{
   /*margin:auto;*/
   margin-left:3%;
   list-style-type: square;
-  width:45%;
+  width:100%;
   list-style-position: inside;
 }
 .instructions-main li{
@@ -461,6 +461,11 @@ table{
 
 }
 
+@media screen and (max-width: 992px) {
+  #welcome-text {
+    font-size:20px;
+  }
+}
 
 
 
