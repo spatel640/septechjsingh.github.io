@@ -34,28 +34,11 @@ class App extends Component {
     this.getPoolTestResults=this.getPoolTestResults.bind(this)
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
     this.getMyCaps=this.getMyCaps.bind(this)
-
+    this.startTimer= this.startTimer.bind(this)
     this.logOut=this.logOut.bind(this)
   }
 
-  componentWillMount(){
-    var value;
-    var username
-   if (localStorage.getItem("authorization") && localStorage.getItem("user")){
-       value = localStorage.getItem("authorization");
-      username=localStorage.getItem("user");
-       this.setState({
-         header:Object.assign({}, {"headers":{"authorization":value, "cache-control": "no-cache",
-           "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
-         user:username
-       })
-  }
-}
 
-  componentDidMount(){
-
-   this.getMyCaps()
-}
 
 
 
@@ -85,13 +68,12 @@ class App extends Component {
   }
 
   $.ajax(settings).done( function(response){
-    localStorage.setItem("authorization",response.access_token );
-    localStorage.setItem("user", username);
     this.setState({
       header:Object.assign({}, {"headers":{"authorization":response.access_token, "cache-control": "no-cache",
         "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
       user:username
     })
+    this.startTimer()
   }.bind(this))
   .then(function(data){
     this.getMyCaps()
@@ -199,9 +181,13 @@ class App extends Component {
     })
   }
 
+  startTimer(){
+    setTimeout(()=>{
+      this.logOut()
+    }, 72000000)
+  }
+
   logOut(){
-    localStorage.removeItem("authorization")
-    localStorage.removeItem("user")
     this.setState({
       header:Object.assign({}, {"headers":{"authorization":'', "cache-control": "no-cache",
         "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
@@ -221,9 +207,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed} logOut={this.logOut}/>
       {this.state.loadPools ?
-        <div className="licenses">
+      <div className="left-nav">
+       <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed} logOut={this.logOut}/>
+
           <Licenses caps={this.state.myCaps}
           getCapInspections={this.getPoolInspections}
           current={this.state.currentLicense}
@@ -231,10 +218,8 @@ class App extends Component {
           poolInspections={this.state.myInspections}
           inspList={this.state.myInspections}
           getPoolTestResults={this.getPoolTestResults}/>
-        </div> : null}
-        <div id="main">
-
-          <div className="rows">
+          <button id="logout" onClick={this.logOut} >LOGOUT </button>
+         </div>: <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed}/>}
           {this.state.currentInspection ?
             <Pools
             currentRecord={this.state.currentLicense}
@@ -247,8 +232,8 @@ class App extends Component {
             currentUser={this.state.user}
           />
           : null}
-          </div>
-          </div>
+
+
 
       </div>
     )

@@ -17,9 +17,12 @@ export default class Inspections extends Component{
       key={index}/>
     })
     return(
+      <div>
+      <p className="licenses-label-description">Click on any week ending to get/add test results</p>
       <ul className="inspections-container">
       {inspectionsList}
       </ul>
+      </div>
     )
   }
 

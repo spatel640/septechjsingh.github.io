@@ -19,7 +19,7 @@ handleClick(e){
 render(){
   return(
     <li><button onClick={this.handleClick} className={this.props.current ? "inspection selected" : "inspection"}>
-     {this.props.inspInfo["scheduleDate"]}</button>
+     Week ending {this.props.inspInfo["scheduleDate"]}</button>
     </li>
   )
 }

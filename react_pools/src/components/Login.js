@@ -8,10 +8,11 @@ export default class Login extends Component{
       username:'',
       password:'',
       failed:false,
-      
+    
     }
     this.handleInput=this.handleInput.bind(this)
     this.requestSubmit=this.requestSubmit.bind(this)
+
   }
 
   handleInput(e){
@@ -39,13 +40,20 @@ export default class Login extends Component{
     const wrongLogin= this.props.failed ? <div className="error">Your username or password is incorrect. Please try again </div> : null
     return(
       <div id={this.props.user ? "username" : "logincontainer"} onClick={this.state.handleClick}>
-      {this.props.user ? <div><div id="name">{this.props.user.split('@')[0]}</div> <button id="logout" onClick={this.props.logOut} >LOGOUT </button></div>:
+      {this.props.user ?
+        <div>
+          <div id="logo"></div>
+          <p id="name" >{this.props.user.split('@')[0]}</p>
+        </div>:
+      <div >
+      <p id="welcome-text">Welcome to the Marion Pool Self Reporting Interface</p>
       <form onSubmit={this.requestSubmit} id="login">
       {wrongLogin}
         <input type='text' name='username' placeholder="Username"value={this.state.username} onChange={this.handleInput}/>
         <input type='password' name='password' value={this.state.password} onChange={this.handleInput} placeholder="Password"/>
         <input type='submit' value='LOGIN' id='login-button'/>
       </form>
+      </div>
     }
       </div>
     )

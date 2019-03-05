@@ -148,10 +148,13 @@ export default class Pools extends Component{
     return(
     <div className="poolscontainer">
         {this.state.showResponse ? <div className={this.state.status == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
+
     {this.state.isEditable ?
-    <div className="form-container">
+
     <Pool updateTable={this.submitResults} sucess={true} currentUser={this.props.currentUser}/>
-      </div> : null}
+     : <ul className="instructions-main read">
+       <li >Test results will be read only if an entry has been submitted by the current user for the selected week. Please contact Marion for any updates to an existing entry.</li>
+     </ul>}
 
       <table>
       <tbody>
@@ -168,7 +171,7 @@ export default class Pools extends Component{
       </tr>
     {this.state.failedLoad ? <tr> <div className="error">There was an error retrieving results for this custom table </div></tr> : null}
       {this.state.currentTable.map((row, index)=>{
-        
+
           return(
               <tr>
               <td> {row.fields["Collection Date"]} </td>

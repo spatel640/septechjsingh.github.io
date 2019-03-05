@@ -23,7 +23,8 @@ export default class Licenses extends Component{
 
   render(){
     return(
-      <div className="licenses">
+      <div className="licenses"> <p className="licenses-label">AUTHORIZED POOLS</p>
+      <p className="licenses-label-description">Click on a pool license number to access submission weeks</p>
         {this.props.caps.map((cap,index)=>{
 
         return<License

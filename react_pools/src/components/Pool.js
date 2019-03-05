@@ -33,12 +33,13 @@ export default class Pool extends Component{
 handleSubmit(e){
   e.preventDefault()
   var dateValidated=this.isDateValid(this.state.collection_date)
-  this.setState({
-    dateValidated:dateValidated
-  })
-  if(this.state.dateValidated){
+  if(dateValidated){
     var fields=this.getFieldsInfo();
     this.props.updateTable(fields)
+  }else{
+    this.setState({
+      dateValidated:dateValidated
+    })
   }
 }
 
@@ -67,6 +68,11 @@ getFieldsInfo(){
   render(){
     return(
       <form onSubmit={this.handleSubmit} id="sample-form">
+      <ul className="instructions-main">
+      <li>Collection date should fall within 7 days prior to week ending date.</li>
+      <li>If a pool status needs to be updated, please refer to the Pool Status dropdown.</li>
+      <li>Once submitted, results cannot be changed. Please contact Marion for more info.</li>
+      </ul>
         <div className="column-left">
         <label>Collection Date:</label> {this.state.dateValidated ? null : <div className="error">Collection date should not be in the future</div>}
         <input type="date" name="collection_date" required value={this.state.collection_date} onChange={this.handleInput}/>
@@ -110,7 +116,7 @@ getFieldsInfo(){
           <option name="Not Taken">Not Taken</option>
           <option name="Present">Present </option>
         </select>
-        <input type="submit" value="SUBMIT SAMPLE" className="yellow-button"/>
+        <input type="submit" value="SUBMIT TEST RESULTS" className="yellow-button"/>
         </div>
       </form>
 
