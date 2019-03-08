@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import Pool from './Pool.js'
-
+import Status from './Status.js'
 
 export default class Pools extends Component{
 
@@ -23,6 +23,7 @@ export default class Pools extends Component{
     this.handleSubmit=this.handleSubmit.bind(this)
     this.submitResults=this.submitResults.bind(this)
     this.isEditable=this.isEditable.bind(this)
+    this.updateStatus=this.updateStatus.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
@@ -44,14 +45,18 @@ export default class Pools extends Component{
   getPoolTestTable(itemId){
        axios.get(`https://apis.accela.com/v4/inspections/${this.props.currentInspection}/checklists/${this.props.currentChecklist}/checklistItems/${itemId}/customTables`, this.props.header)
        .then(function(data){
-         return data.data.result.filter(table=> table.id=="POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES")
+         return data.data.result
+       }.bind(this))
+       .then(function(data){
+         return data.filter(table=> table.id=="POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES")
        }.bind(this))
        .then(function(poolTable){
          var rows= poolTable[0].rows== undefined ? [] : poolTable[0].rows
          var canAdd=this.isEditable(rows)
          this.setState({
            currentTable:Object.assign([], rows),
-           isEditable : canAdd
+           isEditable : canAdd,
+           failedLoad:false
          })
        }.bind(this))
        .catch((error)=>{
@@ -93,10 +98,12 @@ export default class Pools extends Component{
 
   }
 
-
+ updateStatus(){
+   debugger
+ }
 
   submitResults(fields){
-    var url=`https://apis.accela.com/v4/inspections/${this.props.currentChecklist}/checklists/${this.props.currentChecklist}/checklistItems/${this.props.currentItemId}/customTables`
+    var url=`https://apis.accela.com/v4/inspections/${this.props.currentInspection}/checklists/${this.props.currentChecklist}/checklistItems/${this.props.currentItemId}/customTables`
              axios.put(url, JSON.stringify([
                     {
                     "id": "POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES",
@@ -147,7 +154,7 @@ export default class Pools extends Component{
   render(){
     return(
     <div className="poolscontainer">
-        {this.state.showResponse ? <div className={this.state.status == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
+
 
     {this.state.isEditable ?
 
@@ -155,7 +162,7 @@ export default class Pools extends Component{
      : <ul className="instructions-main read">
        <li >Test results will be read only if an entry has been submitted by the current user for the selected week. Please contact Marion for any updates to an existing entry.</li>
      </ul>}
-
+     {this.state.showResponse ? <div className={this.state.status == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
       <table>
       <tbody>
       <tr>
@@ -167,7 +174,6 @@ export default class Pools extends Component{
       <th>Coliform</th>
       <th>Comments</th>
       <th>Submitted By</th>
-      <th>Pool Status</th>
       </tr>
     {this.state.failedLoad ? <tr> <div className="error">There was an error retrieving results for this custom table </div></tr> : null}
       {this.state.currentTable.map((row, index)=>{
@@ -182,7 +188,6 @@ export default class Pools extends Component{
               <td>{row.fields["Coliform Results"]}</td>
               <td>{row.fields["Notes"]}</td>
               <td>{row.fields["Name"]}</td>
-              <td>{row.fields["Pool Status"] ? row.fields["Pool Status"] : "Open"}</td>
               </tr>)
             }
       )}

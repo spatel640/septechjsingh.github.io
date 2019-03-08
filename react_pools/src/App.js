@@ -9,6 +9,7 @@ import Login from './components/Login'
 import Licenses from './components/Licenses'
 import Inspections from './components/Inspections.js'
 import Pools from './components/Pools.js'
+import Status from './components/Status.js'
 
 class App extends Component {
 
@@ -27,14 +28,21 @@ class App extends Component {
       currentItemId: '',
       showButtons:'',
       poolStatus:"Open",
-      header:{}
+      header:{},
+      status:'',
+      latestInspection:'',
+      latestChecklist:'',
+      poolStatusResponse:'',
     }
     this.handleSubmit=this.handleSubmit.bind(this)
     this.getPoolInspections=this.getPoolInspections.bind(this)
     this.getPoolTestResults=this.getPoolTestResults.bind(this)
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
     this.getMyCaps=this.getMyCaps.bind(this)
+    this.getChecklist=this.getChecklist.bind(this)
     this.startTimer= this.startTimer.bind(this)
+    this.updatePoolStatus=this.updatePoolStatus.bind(this)
+    this.getPoolStatus=this.getPoolStatus.bind(this)
     this.logOut=this.logOut.bind(this)
   }
 
@@ -114,15 +122,28 @@ class App extends Component {
       currentLicense:capNumber,
       currentChecklist:null,
       myInspections:Object.assign([], []),
-      currentInspection:''
+      currentInspection:'',
+      latestInspection:'',
+      latestChecklist:'',
+      status:'',
+      poolStatusResponse:''
     })
+
     axios.get(`https://apis.accela.com/v4/records/${capNumber}/inspections`, this.state.header)
+    .then((data)=>{
+        return data.data.result.sort(function(a,b){
+        var dateA = new Date(a.scheduleDate).getTime();
+        var dateB = new Date(b.scheduleDate).getTime();
+        return dateB > dateA ? 1 : -1;
+        })
+    })
     .then(function(data){
-      if(data.data.result){
+      if(data){
       this.setState({
-        myInspections:data.data.result
+        myInspections:data
       })
     }
+    this.getChecklist(data[0].id)
     }.bind(this))
     .catch((error)=>{
       console.log(`Error getting inspections for ${capNumber}`)
@@ -174,12 +195,66 @@ class App extends Component {
     })
   }
 
-  getCustomForms(itemId){
-    axios.get(`https://apis.accela.com/v4/inspections/${this.state.currentInspection}/checklists/${this.state.currentChecklist}/checklistItems/${itemId}/customForms`,this.state.header)
-    .then((data)=>{
+  getPoolStatus(inspId, checklist, item){
 
-    })
-  }
+     axios.get(`https://apis.accela.com/v4/inspections/${inspId}/checklists/${checklist}/checklistItems/81636/customTables`, this.state.header)
+     .then(function(data){
+       return data.data.result.filter(table=> table.id=="POOL_LIC-POOL.cSTATUS")
+     }.bind(this))
+     .then(function(data){
+       let status= data[0].rows ? data[0].rows[0].fields["Pool Status"]:'';
+       let action= data[0].rows ? 'update' : 'add'
+       this.setState({
+         status:status,
+         latestInspection:inspId,
+         latestChecklist:checklist,
+         statusAction: action
+       })
+     }.bind(this))
+}
+
+getChecklist(inspId){
+   axios.get(`https://apis.accela.com/v4/inspections/${inspId}/checklists/`, this.state.header)
+   .then(function(data){
+       return data.data.result.find(checklist=> checklist["group"]== "Pool Test Results")
+   }.bind(this))
+   .then(function(data){
+     if(data){
+       this.getPoolStatus(data.inspectionId, data.id)
+     }
+   }.bind(this))
+   .catch(error=>{
+     console.log("Error getting checklist for latest inspection")
+   })
+}
+
+updatePoolStatus(){
+  var status=this.state.status == 'Closed' ? "Open" : "Closed"
+  var rows=this.state.statusAction=="update" ? [{
+    "action": this.state.statusAction,
+    "fields": {"Pool Status": status},
+    "id": 1
+  }] : [{"action": this.state.statusAction,
+  "fields": {"Pool Status": status}}]
+  var url=`https://apis.accela.com/v4/inspections/${this.state.latestInspection}/checklists/${this.state.latestChecklist}/checklistItems/81636/customTables`
+           axios.put(url, JSON.stringify([
+                  {
+                  "id": "POOL_LIC-POOL.cSTATUS",
+                  "rows": rows
+                  }
+                ]), this.state.header)
+                .then(function (data){
+                  var newStatus= data.status == 200 ? status : this.state.status
+                  this.setState({
+                    status: newStatus,
+                    poolStatusResponse: data.status
+                  })
+                 }.bind(this))
+                 .catch(error=>{
+                   console.log(`error`)
+                 })
+}
+
 
   startTimer(){
     setTimeout(()=>{
@@ -197,7 +272,8 @@ class App extends Component {
       currentInspection:'',
       currentChecklist:null,
       myInspections:Object.assign([], []),
-      loadPools:false
+      loadPools:false,
+
     })
 
   }
@@ -220,7 +296,9 @@ class App extends Component {
           getPoolTestResults={this.getPoolTestResults}/>
           <button id="logout" onClick={this.logOut} >LOGOUT </button>
          </div>: <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed}/>}
+          {this.state.latestInspection ? <Status status={this.state.status ? this.state.status : "Open"} latestInspection={this.state.latestInspection} updatePoolStatus={this.updatePoolStatus} updateStatus={this.state.poolStatusResponse}/> : null}
           {this.state.currentInspection ?
+
             <Pools
             currentRecord={this.state.currentLicense}
             currentInspection={this.state.currentInspection}
