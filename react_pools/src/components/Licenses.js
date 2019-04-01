@@ -7,9 +7,9 @@ export default class Licenses extends Component{
     super(props)
     this.state={
       loading:true,
-      pools:this.props.pools_list
+      pools:this.props.caps
     }
-
+    this.filterList=this.filterList.bind(this)
     this.handleCapClick=this.handleCapClick.bind(this)
   }
 
@@ -19,14 +19,29 @@ export default class Licenses extends Component{
     this.props.getCapInspections(capNumber)
   }
 
+  filterList(e){
+    var updatedList= this.props.caps;
+    updatedList = updatedList.filter((item)=>{
+     return item.customId.toLowerCase().search(
+       e.target.value.toLowerCase()) !== -1;
+   });
+   this.setState({
+     pools:updatedList
+   })
+  }
+
 
 
   render(){
     return(
       <div className="licenses"> <p className="licenses-label">AUTHORIZED POOLS</p>
+      <form>
+        <fieldset className="form-group">
+        <input type="text" placeholder="Search" onChange={this.filterList}/>
+        </fieldset>
+      </form>
       <p className="licenses-label-description">Click on a pool license number to access submission weeks</p>
-        {this.props.caps.map((cap,index)=>{
-
+        {this.state.pools.map((cap,index)=>{
         return<License
         recordId={cap["customId"]}
         capId={cap["id"]}

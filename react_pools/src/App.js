@@ -39,6 +39,7 @@ class App extends Component {
     this.getPoolTestResults=this.getPoolTestResults.bind(this)
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
     this.getMyCaps=this.getMyCaps.bind(this)
+    this.getLicenseIdentifiers=this.getLicenseIdentifiers.bind(this)
     this.getChecklist=this.getChecklist.bind(this)
     this.startTimer= this.startTimer.bind(this)
     this.updatePoolStatus=this.updatePoolStatus.bind(this)
@@ -114,6 +115,23 @@ class App extends Component {
       console.log("error getting my caps")
     })
   }
+
+
+    getLicenseIdentifiers(){
+      let promises=this.state.myCaps.map(cap => {
+                return new Promise(function(resolve, reject){
+                      axios.get( `https://apis.accela.com/v4/records/customForms`, this.state.header)
+                      .then(data=>
+                        data.data.result)
+                        .then(fields=> {
+                          debugger
+
+                        }).catch(error =>{
+                  console.log("error getting inspections for cap")
+                  debugger
+                })
+          })})
+    }
 
 
 
@@ -199,6 +217,7 @@ class App extends Component {
 
      axios.get(`https://apis.accela.com/v4/inspections/${inspId}/checklists/${checklist}/checklistItems/81636/customTables`, this.state.header)
      .then(function(data){
+
        return data.data.result.filter(table=> table.id=="POOL_LIC-POOL.cSTATUS")
      }.bind(this))
      .then(function(data){
@@ -273,7 +292,7 @@ updatePoolStatus(){
       currentChecklist:null,
       myInspections:Object.assign([], []),
       loadPools:false,
-
+      latestInspection:''
     })
 
   }
