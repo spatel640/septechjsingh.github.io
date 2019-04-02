@@ -6,12 +6,16 @@ export default class Licenses extends Component{
   constructor(props){
     super(props)
     this.state={
+
       loading:true,
       pools:this.props.caps
     }
     this.filterList=this.filterList.bind(this)
     this.handleCapClick=this.handleCapClick.bind(this)
+
   }
+
+
 
 
 
@@ -23,7 +27,8 @@ export default class Licenses extends Component{
     var updatedList= this.props.caps;
     updatedList = updatedList.filter((item)=>{
      return item.customId.toLowerCase().search(
-       e.target.value.toLowerCase()) !== -1;
+       e.target.value.toLowerCase()) !== -1 || item.identifier.toLowerCase().search(
+         e.target.value.toLowerCase()) !== -1
    });
    this.setState({
      pools:updatedList
@@ -34,7 +39,8 @@ export default class Licenses extends Component{
 
   render(){
     return(
-      <div className="licenses"> <p className="licenses-label">AUTHORIZED POOLS</p>
+      <div className="licenses">
+      <p className="licenses-label">AUTHORIZED POOLS</p>
       <form>
         <fieldset className="form-group">
         <input type="text" placeholder="Search" onChange={this.filterList}/>
@@ -46,13 +52,15 @@ export default class Licenses extends Component{
         recordId={cap["customId"]}
         capId={cap["id"]}
         onCapClick={this.handleCapClick}
+        identifier={cap.identifier}
         key={index}
         current={cap["id"] == this.props.current ? true : false}
         myInspections={this.props.inspList}
         getPoolTestResults={this.props.getPoolTestResults}
         currentInspection={this.props.currentInspection}
+        header={this.props.header}
         />})
-      }
+        }
       </div>
 
 

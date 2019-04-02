@@ -10,6 +10,7 @@ import Licenses from './components/Licenses'
 import Inspections from './components/Inspections.js'
 import Pools from './components/Pools.js'
 import Status from './components/Status.js'
+import Header from './components/Header.js'
 
 class App extends Component {
 
@@ -21,12 +22,12 @@ class App extends Component {
       currentLicense:'',
       loginFailed:false,
       user:'',
-      loadPools:false,
       currentInspection:'',
       isScheduled:false,
       currentChecklist:'',
       currentItemId: '',
       showButtons:'',
+      gotCaps:false,
       poolStatus:"Open",
       header:{},
       status:'',
@@ -39,7 +40,7 @@ class App extends Component {
     this.getPoolTestResults=this.getPoolTestResults.bind(this)
     this.getPoolTestResultsChecklistItems= this.getPoolTestResultsChecklistItems.bind(this)
     this.getMyCaps=this.getMyCaps.bind(this)
-    this.getLicenseIdentifiers=this.getLicenseIdentifiers.bind(this)
+    this.getIdentifiers=this.getIdentifiers.bind(this)
     this.getChecklist=this.getChecklist.bind(this)
     this.startTimer= this.startTimer.bind(this)
     this.updatePoolStatus=this.updatePoolStatus.bind(this)
@@ -94,6 +95,7 @@ class App extends Component {
   }.bind(this))
   }
 
+
   getMyCaps() {
 
     axios.get("https://apis.accela.com/v4/records/mine", this.state.header)
@@ -107,32 +109,53 @@ class App extends Component {
       }.bind(this))
     }.bind(this))
     .then(function(){
-      this.setState({
-        loadPools:true
-      })
+      this.getIdentifiers()
     }.bind(this))
+
     .catch((error)=>{
       console.log("error getting my caps")
     })
   }
 
 
-    getLicenseIdentifiers(){
-      let promises=this.state.myCaps.map(cap => {
-                return new Promise(function(resolve, reject){
-                      axios.get( `https://apis.accela.com/v4/records/customForms`, this.state.header)
-                      .then(data=>
-                        data.data.result)
-                        .then(fields=> {
-                          debugger
 
-                        }).catch(error =>{
-                  console.log("error getting inspections for cap")
-                  debugger
-                })
-          })})
-    }
+  getIdentifiers(){
+    let promises=this.state.myCaps.map(function(cap) {
+      return new Promise(function(resolve, reject){
+            axios.get( `https://apis.accela.com/v4/records/${cap.id}/customForms`, this.state.header)
+            .then(function(data){
+            resolve(data.data.result)
+          }.bind(this))
+            .catch(error =>{
+            console.log("error getting inspections for cap")
+            })
+          }.bind(this))
+        }.bind(this))
 
+    Promise.all(promises)
+    .then(function(data){
+       data.forEach(function(cap, index){
+
+         var facilityInfo=cap.find((asi)=> asi.id == "POOL_LIC-FACILITY.cINFORMATION");
+         facilityInfo = (facilityInfo && facilityInfo["Facility Name"]) ? facilityInfo["Facility Name"] : '';
+         var siteInfo=cap.find((asi)=> asi.id == "POOL_LIC-SITE.cINFORMATION");
+         siteInfo= (siteInfo && siteInfo["Pool Type"]) ? siteInfo["Pool Type"]: '';
+         var id=facilityInfo + "- " + siteInfo
+         this.setState({
+           myCaps: [
+             ... this.state.myCaps.slice(0, index),
+             Object.assign({}, this.state.myCaps[index], {identifier: id}),
+             ...this.state.myCaps.slice(index+1)
+           ]
+         })
+      }.bind(this))
+    }.bind(this))
+  .then(function(){
+      this.setState({
+        gotCaps:true
+      })
+    }.bind(this))
+  }
 
 
   getPoolInspections(capNumber){
@@ -282,6 +305,7 @@ updatePoolStatus(){
   }
 
   logOut(){
+    localStorage.clear();
     this.setState({
       header:Object.assign({}, {"headers":{"authorization":'', "cache-control": "no-cache",
         "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
@@ -291,8 +315,8 @@ updatePoolStatus(){
       currentInspection:'',
       currentChecklist:null,
       myInspections:Object.assign([], []),
-      loadPools:false,
-      latestInspection:''
+      latestInspection:'',
+      gotCaps:false
     })
 
   }
@@ -302,7 +326,7 @@ updatePoolStatus(){
   render() {
     return (
       <div className="App">
-      {this.state.loadPools ?
+      {this.state.gotCaps ?
       <div className="left-nav">
        <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed} logOut={this.logOut}/>
 
@@ -312,12 +336,17 @@ updatePoolStatus(){
           currentInspection={this.state.currentInspection}
           poolInspections={this.state.myInspections}
           inspList={this.state.myInspections}
+          header={this.state.header}
           getPoolTestResults={this.getPoolTestResults}/>
           <button id="logout" onClick={this.logOut} >LOGOUT </button>
          </div>: <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed}/>}
-          {this.state.latestInspection ? <Status status={this.state.status ? this.state.status : "Open"} latestInspection={this.state.latestInspection} updatePoolStatus={this.updatePoolStatus} updateStatus={this.state.poolStatusResponse}/> : null}
-          {this.state.currentInspection ?
+         {this.state.currentLicense ?
+           <Header text={ this.state.myCaps.find(cap=>cap.id == this.state.currentLicense)}/> : null
+         }
+          {this.state.latestInspection ?
+            <Status status={this.state.status ? this.state.status : "Open"} latestInspection={this.state.latestInspection} updatePoolStatus={this.updatePoolStatus} updateStatus={this.state.poolStatusResponse}/> : null}
 
+          {this.state.currentInspection ?
             <Pools
             currentRecord={this.state.currentLicense}
             currentInspection={this.state.currentInspection}

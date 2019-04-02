@@ -2,16 +2,17 @@ import React, {Component} from 'react'
 import Inspections from './Inspections.js'
 
 import '../index.css';
-
+import axios from 'axios'
 
 export default class License extends Component{
   constructor(props){
     super(props)
     this.state={
-      showInspections: false
+      showInspections: false,
     }
     this.handleClick=this.handleClick.bind(this)
   }
+
 
   componentWillReceiveProps(nextProps){
     if(nextProps.current){
@@ -35,7 +36,7 @@ export default class License extends Component{
     return(
       <div className="license-container">
         <button onClick={this.handleClick} className={this.props.current ? "large-buttons current" : "large-buttons"}>
-        {this.props.recordId}
+          <p className="facName">{this.props.identifier ? this.props.identifier : this.props.recordId}</p>
         </button>
           {this.state.showInspections ?
             <Inspections inspList={this.props.myInspections}

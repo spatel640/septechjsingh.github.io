@@ -447,6 +447,14 @@ table{
 /*main section container*/
 
 
+.license-number {
+  color: white !important;
+  float: left;
+  width: 70vw;
+  margin:5% 0% 0% 5%;
+
+}
+
 
 @media screen and (min-width: 1280){
   #sample-form{
@@ -472,9 +480,6 @@ table{
 
 
 #logout {
-  /*position: fixed;*/
-  /*bottom:0;
-  left:5%;*/
   border:none;
   /*border: 1px solid white;*/
   background-color: transparent;
@@ -494,8 +499,6 @@ table{
   float: left;
   width: 30vw;
   margin:5%;
-  /*background-color:white;*/
-  /*background-color: #344955;;*/
   background-color: white;
   border-radius: 15px;
   /*color: #aeb4b7;*/
