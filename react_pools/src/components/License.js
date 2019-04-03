@@ -36,7 +36,7 @@ export default class License extends Component{
     return(
       <div className="license-container">
         <button onClick={this.handleClick} className={this.props.current ? "large-buttons current" : "large-buttons"}>
-          <p className="facName">{this.props.identifier ? this.props.identifier : this.props.recordId}</p>
+          {this.props.identifier ? this.props.identifier : this.props.recordId}
         </button>
           {this.state.showInspections ?
             <Inspections inspList={this.props.myInspections}

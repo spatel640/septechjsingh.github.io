@@ -25,10 +25,11 @@ export default class Licenses extends Component{
 
   filterList(e){
     var updatedList= this.props.caps;
+    var value=e.target.value.replace(/([()[{*+.$^\\|?])/g, '\\$1');
     updatedList = updatedList.filter((item)=>{
      return item.customId.toLowerCase().search(
-       e.target.value.toLowerCase()) !== -1 || item.identifier.toLowerCase().search(
-         e.target.value.toLowerCase()) !== -1
+       value.toLowerCase()) !== -1 || item.identifier.toLowerCase().search(
+         value.toLowerCase()) !== -1
    });
    this.setState({
      pools:updatedList
@@ -42,9 +43,7 @@ export default class Licenses extends Component{
       <div className="licenses">
       <p className="licenses-label">AUTHORIZED POOLS</p>
       <form>
-        <fieldset className="form-group">
-        <input type="text" placeholder="Search" onChange={this.filterList}/>
-        </fieldset>
+        <input type="text" id="search-lic" placeholder="Search" onChange={this.filterList}/>
       </form>
       <p className="licenses-label-description">Click on a pool license number to access submission weeks</p>
         {this.state.pools.map((cap,index)=>{

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css';
 import './App.css';
 import axios from 'axios';
 import $ from "jquery";
@@ -159,8 +160,12 @@ class App extends Component {
 
 
   getPoolInspections(capNumber){
+    var newCap='';
+    if(capNumber !== this.state.currentLicense){
+      newCap=capNumber
+    }
     this.setState({
-      currentLicense:capNumber,
+      currentLicense:newCap,
       currentChecklist:null,
       myInspections:Object.assign([], []),
       currentInspection:'',
@@ -169,7 +174,7 @@ class App extends Component {
       status:'',
       poolStatusResponse:''
     })
-
+    if(capNumber){
     axios.get(`https://apis.accela.com/v4/records/${capNumber}/inspections`, this.state.header)
     .then((data)=>{
         return data.data.result.sort(function(a,b){
@@ -189,6 +194,7 @@ class App extends Component {
     .catch((error)=>{
       console.log(`Error getting inspections for ${capNumber}`)
     })
+    }
   }
 
 
@@ -343,7 +349,7 @@ updatePoolStatus(){
          {this.state.currentLicense ?
            <Header text={ this.state.myCaps.find(cap=>cap.id == this.state.currentLicense)}/> : null
          }
-          {this.state.latestInspection ?
+          {this.state.latestInspection && this.state.currentLicense ?
             <Status status={this.state.status ? this.state.status : "Open"} latestInspection={this.state.latestInspection} updatePoolStatus={this.updatePoolStatus} updateStatus={this.state.poolStatusResponse}/> : null}
 
           {this.state.currentInspection ?
