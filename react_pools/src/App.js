@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import './App.css';
-import axios from 'axios';
-import $ from "jquery";
+
 
 
 //mycomponents
@@ -12,6 +11,8 @@ import Inspections from './components/Inspections.js'
 import Pools from './components/Pools.js'
 import Status from './components/Status.js'
 import Header from './components/Header.js'
+import axios from 'axios';
+import $ from "jquery";
 
 class App extends Component {
 
