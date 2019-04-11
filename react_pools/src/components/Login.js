@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 
 export default class Login extends Component{
   constructor(props){
@@ -8,7 +7,7 @@ export default class Login extends Component{
       username:'',
       password:'',
       failed:false,
-    
+
     }
     this.handleInput=this.handleInput.bind(this)
     this.requestSubmit=this.requestSubmit.bind(this)

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import Pool from './Pool.js'
-import Status from './Status.js'
+import Message from './Message.js'
 
 export default class Pools extends Component{
 
@@ -23,7 +23,6 @@ export default class Pools extends Component{
     this.handleSubmit=this.handleSubmit.bind(this)
     this.submitResults=this.submitResults.bind(this)
     this.isEditable=this.isEditable.bind(this)
-    this.updateStatus=this.updateStatus.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
@@ -49,7 +48,7 @@ export default class Pools extends Component{
        }.bind(this))
        .then(function(data){
          return data.filter(table=> table.id=="POOL_LIC-OUTSIDE.cLAB.cPOOL.cSAMPLES")
-       }.bind(this))
+       })
        .then(function(poolTable){
          var rows= poolTable[0].rows== undefined ? [] : poolTable[0].rows
          var canAdd=this.isEditable(rows)
@@ -90,17 +89,12 @@ export default class Pools extends Component{
 
   handleSubmit(e){
     e.preventDefault();
-    var submitResults=this.state.blankRows
     this.setState({
       processing:true
     })
     this.submitResults()
 
   }
-
- updateStatus(){
-   debugger
- }
 
   submitResults(fields){
     var url=`https://apis.accela.com/v4/inspections/${this.props.currentInspection}/checklists/${this.props.currentChecklist}/checklistItems/${this.props.currentItemId}/customTables`
@@ -154,15 +148,16 @@ export default class Pools extends Component{
   render(){
     return(
     <div className="poolscontainer">
-
+    {this.state.showResponse ?
+       <Message class={this.state.status == 200 ? "success" : "error"} message={this.state.updateStatus} />
+       : null}
 
     {this.state.isEditable ?
-
-    <Pool updateTable={this.submitResults} sucess={true} currentUser={this.props.currentUser}/>
+      <Pool updateTable={this.submitResults} sucess={true} currentUser={this.props.currentUser}/>
      : <ul className="instructions-main read">
        <li >Test results will be read only if an entry has been submitted by the current user for the selected week. Please contact Marion for any updates to an existing entry.</li>
      </ul>}
-     {this.state.showResponse ? <div className={this.state.status == 200 ? "success" : "error"}>{this.state.updateStatus} </div> : null}
+
       <table>
       <tbody>
       <tr>
@@ -179,7 +174,7 @@ export default class Pools extends Component{
       {this.state.currentTable.map((row, index)=>{
 
           return(
-              <tr>
+              <tr key={index}>
               <td> {row.fields["Collection Date"]} </td>
               <td>  {row.fields["Sample ID"]}</td>
               <td>{row.fields["Valid Results"]}</td>

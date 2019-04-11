@@ -1,0 +1,19 @@
+
+.message-container{
+    width:90%;
+    background-color: white;
+    font-size: 1.25rem;
+    margin:15px auto;
+    border-radius: 10px;
+    height: 55px;
+    padding: 15px 20px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;
+}
+
+.instructions{
+  width:70%;
+  float:right;
+  margin: 5% 10% 0 0;
+}

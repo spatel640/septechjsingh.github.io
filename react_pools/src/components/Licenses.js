@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import License from './License.js'
-import axios from 'axios'
 
 export default class Licenses extends Component{
   constructor(props){
@@ -43,9 +42,8 @@ export default class Licenses extends Component{
       <div className="licenses">
       <p className="licenses-label">AUTHORIZED POOLS</p>
       <form>
-        <input type="text" id="search-lic" placeholder="Search" onChange={this.filterList}/>
+        <input type="text" id="search-lic" placeholder="Search Pool by Facility Name" onChange={this.filterList}/>
       </form>
-      <p className="licenses-label-description">Click on a pool license number to access submission weeks</p>
         {this.state.pools.map((cap,index)=>{
         return<License
         recordId={cap["customId"]}

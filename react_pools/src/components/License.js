@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import Inspections from './Inspections.js'
 
 import '../index.css';
-import axios from 'axios'
 
 export default class License extends Component{
   constructor(props){

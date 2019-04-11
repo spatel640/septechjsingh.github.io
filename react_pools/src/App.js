@@ -7,10 +7,10 @@ import './App.css';
 //mycomponents
 import Login from './components/Login'
 import Licenses from './components/Licenses'
-import Inspections from './components/Inspections.js'
 import Pools from './components/Pools.js'
 import Status from './components/Status.js'
 import Header from './components/Header.js'
+import Message from './components/Message.js'
 import axios from 'axios';
 import $ from "jquery";
 
@@ -28,7 +28,6 @@ class App extends Component {
       isScheduled:false,
       currentChecklist:'',
       currentItemId: '',
-      showButtons:'',
       gotCaps:false,
       poolStatus:"Open",
       header:{},
@@ -36,6 +35,8 @@ class App extends Component {
       latestInspection:'',
       latestChecklist:'',
       poolStatusResponse:'',
+      showError:false,
+      errorText:''
     }
     this.handleSubmit=this.handleSubmit.bind(this)
     this.getPoolInspections=this.getPoolInspections.bind(this)
@@ -47,11 +48,28 @@ class App extends Component {
     this.startTimer= this.startTimer.bind(this)
     this.updatePoolStatus=this.updatePoolStatus.bind(this)
     this.getPoolStatus=this.getPoolStatus.bind(this)
+    this.handleErrors=this.handleErrors.bind(this)
     this.logOut=this.logOut.bind(this)
   }
 
 
+componentWillMount(){
+  var token= sessionStorage.getItem('authorization');
+  var user=sessionStorage.getItem('user')
+  if(token){
+  this.setState({
+    header: Object.assign({}, {"headers":{"authorization":token, "cache-control": "no-cache",
+      "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
+      user:user
+  })
+  }
+}
 
+componentDidMount(){
+  if(this.state.header){
+    this.getMyCaps()
+  }
+}
 
 
   handleSubmit(username, password){
@@ -80,10 +98,13 @@ class App extends Component {
   }
 
   $.ajax(settings).done( function(response){
+    sessionStorage.setItem('authorization', response.access_token);
+    sessionStorage.setItem('user', username)
     this.setState({
       header:Object.assign({}, {"headers":{"authorization":response.access_token, "cache-control": "no-cache",
         "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
-      user:username
+      user:username,
+      loginFailed:false
     })
     this.startTimer()
   }.bind(this))
@@ -113,10 +134,10 @@ class App extends Component {
     .then(function(){
       this.getIdentifiers()
     }.bind(this))
-
-    .catch((error)=>{
-      console.log("error getting my caps")
-    })
+    .catch(function(error){
+      console.log(error.message)
+      this.handleErrors(error)
+    }.bind(this))
   }
 
 
@@ -128,9 +149,10 @@ class App extends Component {
             .then(function(data){
             resolve(data.data.result)
           }.bind(this))
-            .catch(error =>{
-            console.log("error getting inspections for cap")
-            })
+            .catch(function(error){
+              console.log(error.message)
+              this.handleErrors(error)
+            }.bind(this))
           }.bind(this))
         }.bind(this))
 
@@ -192,38 +214,40 @@ class App extends Component {
     }
     this.getChecklist(data[0].id)
     }.bind(this))
-    .catch((error)=>{
+    .catch(function(error){
       console.log(`Error getting inspections for ${capNumber}`)
-    })
+      console.log(error.message)
+      this.handleErrors(error)
+    }.bind(this))
     }
   }
 
 
   getPoolTestResults(inspId, inspStatus){
-    var scheduled= inspStatus == "Scheduled" ? true : false
+    var scheduled= inspStatus === "Scheduled" ? true : false;
     this.setState({
       currentInspection:inspId,
       isScheduled:scheduled,
       currentChecklist:'',
       currentItemId:'',
-      showButtons: false,
-    })
+      showError:false
+    });
     axios.get(`https://apis.accela.com/v4/inspections/${inspId}/checklists`,this.state.header)
       .then(data=>{
-        return data.data.result.filter(checklist=> checklist["group"]== "Pool Test Results")
+        return data.data.result.filter(checklist=> checklist["group"]=== "Pool Test Results")
       })
         .then(poolTest=>{
           this.setState({
             currentChecklist:poolTest[0].id
-          })
-          return poolTest[0]
+          });
+          return poolTest[0];
         })
         .then((poolTestChecklist)=>{
-            this.getPoolTestResultsChecklistItems(poolTestChecklist.id)
+            this.getPoolTestResultsChecklistItems(poolTestChecklist.id);
         })
-      .catch((error)=>{
-        console.log(`Error getting checklists for ${inspId}`)
-      })
+      .catch(function(error){
+        this.handleErrors(error);
+      }.bind(this))
   }
 
   getPoolTestResultsChecklistItems(checklistId){
@@ -238,9 +262,11 @@ class App extends Component {
         currentItemId: poolTestResultItem[0].id
       })
     })
-    .catch((error)=>{
+    .catch(function(error){
       console.log(`Error getting checklist item for ${checklistId}`)
-    })
+      console.log(error.message)
+      this.handleErrors(error)
+    }.bind(this))
   }
 
   getPoolStatus(inspId, checklist, item){
@@ -272,9 +298,11 @@ getChecklist(inspId){
        this.getPoolStatus(data.inspectionId, data.id)
      }
    }.bind(this))
-   .catch(error=>{
+   .catch(function(error){
+     console.log(error.message)
+     this.handleErrors(error)
      console.log("Error getting checklist for latest inspection")
-   })
+   }.bind(this))
 }
 
 updatePoolStatus(){
@@ -299,11 +327,33 @@ updatePoolStatus(){
                     poolStatusResponse: data.status
                   })
                  }.bind(this))
-                 .catch(error=>{
-                   console.log(`error`)
-                 })
+                 .catch(function(error){
+                   console.log(error.message)
+                   this.handleErrors(error)
+                 }.bind(this))
 }
 
+handleErrors(error){
+  var eCode= error.response.data.code.toLowerCase();
+  var errorText='';
+  if(eCode.includes("expired") || eCode.includes("invalid_token")){
+    alert("Session expired. Please log back in. Redirecting to login page")
+    this.logOut()
+  }else {
+    if(eCode.includes("unauthorized") || eCode.includes("forbidden")){
+      errorText='User not authorized to access requested resource'
+    }else if(eCode.includes("not_found")){
+      errorText="Something went wrong with the request, please try again later"
+    }
+    else if(eCode.includes("server_error") || eCode.includes("connection")){
+      errorText="There was a problem with the server, please try again later"
+    }
+    this.setState({
+      error:errorText,
+      showError:true
+    })
+  }
+}
 
   startTimer(){
     setTimeout(()=>{
@@ -312,10 +362,9 @@ updatePoolStatus(){
   }
 
   logOut(){
-    localStorage.clear();
+    sessionStorage.clear();
     this.setState({
-      header:Object.assign({}, {"headers":{"authorization":'', "cache-control": "no-cache",
-        "postman-token": "59acabbe-f19d-c8a1-f10d-dd1b1918b660"}}),
+      header:{},
       user:'',
       myCaps:[],
       currentLicense:'',
@@ -323,7 +372,8 @@ updatePoolStatus(){
       currentChecklist:null,
       myInspections:Object.assign([], []),
       latestInspection:'',
-      gotCaps:false
+      gotCaps:false,
+      showError:false
     })
 
   }
@@ -331,6 +381,14 @@ updatePoolStatus(){
 
 
   render() {
+    var licenseHolder=null;
+    if(this.state.currentLicense && this.state.gotCaps){
+      licenseHolder=<Header text={ this.state.myCaps.find(cap=>cap.id == this.state.currentLicense)}/>
+    }else if(this.state.gotCaps && !this.state.currentLicense){
+      licenseHolder=<Message message={'Please select a Pool from the "Authorized Pools" list on the left to access submission weeks for a specific pool'} class={"instructions"}/>
+    }
+    var error=this.state.showError ? <Message message={this.state.errorText} class={"error"}/> : null;
+
     return (
       <div className="App">
       {this.state.gotCaps ?
@@ -347,12 +405,10 @@ updatePoolStatus(){
           getPoolTestResults={this.getPoolTestResults}/>
           <button id="logout" onClick={this.logOut} >LOGOUT </button>
          </div>: <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed}/>}
-         {this.state.currentLicense ?
-           <Header text={ this.state.myCaps.find(cap=>cap.id == this.state.currentLicense)}/> : null
-         }
+         {licenseHolder}
           {this.state.latestInspection && this.state.currentLicense ?
             <Status status={this.state.status ? this.state.status : "Open"} latestInspection={this.state.latestInspection} updatePoolStatus={this.updatePoolStatus} updateStatus={this.state.poolStatusResponse}/> : null}
-
+            {error}
           {this.state.currentInspection ?
             <Pools
             currentRecord={this.state.currentLicense}
