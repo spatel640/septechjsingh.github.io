@@ -350,7 +350,7 @@ handleErrors(error){
     }
     this.setState({
       error:errorText,
-      showError:true
+      showError:errorText ? true : false
     })
   }
 }
