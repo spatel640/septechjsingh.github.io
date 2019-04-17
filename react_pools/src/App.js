@@ -87,10 +87,10 @@ componentDidMount(){
     "data": {
       "username": username,
       "grant_type": "password",
-      "environment": "SUPP",
+      "environment": process.env.REACT_APP_ACCELA_ENV,
       "agency_name": "MCPHD",
-      "client_id": "636767970437851872",
-      "client_secret": "606531ea10c7492da9c22e79ddd7c2ea",
+      "client_id": process.env.REACT_APP_CLIENT_ID,
+      "client_secret": process.env.REACT_APP_CLIENT_SECRET,
       "scope": "records inspections",
       "password": password,
       "id_provider": "citizen"
@@ -166,10 +166,7 @@ componentDidMount(){
          siteInfo= (siteInfo && siteInfo["Pool Type"]) ? siteInfo["Pool Type"]: '';
          var id=facilityInfo + "- " + siteInfo
          this.setState({
-           myCaps: [
-             ... this.state.myCaps.slice(0, index),
-             Object.assign({}, this.state.myCaps[index], {identifier: id}),
-             ...this.state.myCaps.slice(index+1)
+           myCaps: [... this.state.myCaps.slice(0, index),Object.assign({}, this.state.myCaps[index], {identifier: id}),...this.state.myCaps.slice(index+1)
            ]
          })
       }.bind(this))
@@ -334,8 +331,9 @@ updatePoolStatus(){
 }
 
 handleErrors(error){
-  var eCode= error.response.data.code.toLowerCase();
   var errorText='';
+  if(error.data){
+  var eCode= error.response.data.code.toLowerCase();
   if(eCode.includes("expired") || eCode.includes("invalid_token")){
     alert("Session expired. Please log back in. Redirecting to login page")
     this.logOut()
@@ -353,6 +351,7 @@ handleErrors(error){
       showError:errorText ? true : false
     })
   }
+  }
 }
 
   startTimer(){
@@ -361,7 +360,8 @@ handleErrors(error){
     }, 72000000)
   }
 
-  logOut(){
+  logOut(e){
+    e.preventDefault()
     sessionStorage.clear();
     this.setState({
       header:{},
