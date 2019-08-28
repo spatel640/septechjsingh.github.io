@@ -37,7 +37,6 @@ input:-webkit-autofill:active{
 
 
 button:focus{
-  font-weight: bold;
   outline: none;
   /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 
@@ -73,7 +72,11 @@ button:focus{
  }
 
 
-
+#logincontainer{
+    position: absolute;
+    left: 25%;
+    width: 50vw;
+}
 
 
 #login{
@@ -169,11 +172,13 @@ outline: none
 
 .licenses{
   width: 100%;
-  height: auto;
+  min-height: 100%;
   background-color: #344955;
   z-index: 10px;
   padding-top: 10%;
   padding-bottom: 10%;
+  display:flex;
+  flex-direction: column;
   margin-top:10px;
   color:white;
   font-family: 'Work Sans', sans-serif;
@@ -192,11 +197,7 @@ outline: none
 }
 
 .licenses-label-description{
-  width:80%;
-  display: block;
-  margin:0;
-  margin-top:0px;
-  margin-bottom: 10px;
+
   font-size: .75em;
   text-align: center;
   padding:0 10%;
@@ -206,16 +207,14 @@ outline: none
 }
 
 .large-buttons {
-  display: block;
-  width: 70%;
   height: 45px;
   font-size:1.25rem;
-  margin-left:15%;
+  padding:10px;
   border:none;
   background-color: transparent;
   color:white;
   font-family: 'Work Sans', sans-serif;
-  /*stext-align: left;*/
+  margin:auto;
 }
 
 
@@ -223,21 +222,22 @@ outline: none
     color:#232f34;
     background-color: #f9aa33;
     border-radius: 25px;
-    /*margin-left: 5%;*/
-
+    width:310px;
+    height:auto;
 }
 .license-container{
   color: white;
-  width:100%;
-  margin:0;
-  margin-top:30px;
-  display: block;
+  margin:20px auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /*inspections*/
 
 .inspections-container{
   width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
 }
 
 .inspection{
@@ -274,11 +274,16 @@ li{
 
 .poolscontainer{
 
-  float: right;
-  width: 80vw;
+  /* float: right; */
+  /* width: 80vw; */
+  flex-grow: 2;
   margin:0;
   /*margin-top: 10px;*/
 
+}
+.header-form{
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 input:-webkit-autofill {
@@ -294,12 +299,16 @@ input:-webkit-autofill {
 #sample-form{
   background-color: white;
   padding-top: 10px;
+  padding-bottom: 50px;
   font-family : inherit;
   border-radius: 15px;
   overflow:auto;
-  width:90%;
   margin:auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: grid;
+  max-width: 80%;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap:20px;
 }
 
 
@@ -350,7 +359,7 @@ label{
 }
 
 
-.column-left{
+/* .column-left{
   float:left;
   width:50%;
   margin-bottom: 50px;
@@ -360,7 +369,7 @@ label{
   float:right;
   width:50%;
   margin-bottom: 50px;
-}
+} */
 
 
 #sample-form textarea{
@@ -396,7 +405,7 @@ input[type=text]{
 .instructions-main{
   margin-left:3%;
   list-style-type: square;
-  width:100%;
+  /* width:100%; */
   list-style-position: inside;
   border-radius: 10px
 }
@@ -410,10 +419,10 @@ input[type=text]{
 
 .read{
   box-sizing: border-box;
-  padding: 6px;
+  padding: 10px;
   background-color: white;
   color: #344955;
-  width:90%;
+  width:80%;
   margin:auto;
 
 }
@@ -427,7 +436,7 @@ tr{
 
 th{
   color: #344955;
-  font-size: 1.2em
+  font-size: 1.1em
 }
 
 td{
@@ -438,9 +447,9 @@ td{
 
 
 table{
-  width:90%;
+  width:80%;
   margin:auto;
-  margin-top: 10px;
+  margin-top: 20px;
   border-radius: 10px;
   color: #4a6572
 }
@@ -450,9 +459,8 @@ table{
 
 .license-number {
   color: white !important;
-  float: left;
-  width: 70vw;
-  margin:5% 0% 0% 6%;
+  margin-top:5%;
+  padding-left:10%;
 
 }
 
@@ -485,7 +493,8 @@ table{
   /*border: 1px solid white;*/
   background-color: transparent;
   color: white;
-  font-size: .9em;
+  font-size: 1.2em;
+  padding:10px 0px;
   display: block;
   width: 100%;
   /*display: none;*/
@@ -498,38 +507,41 @@ table{
 
 
 .status-container{
-  float: left;
-  width: 30vw;
-  margin:5% 6%;
+  margin:5% auto;
   background-color: white;
   border-radius: 15px;
-  /*color: #aeb4b7;*/
-
+  width: 80%;
+  /* height: 200px; */
+  display:flex;
 }
 
 .status-container p{
   font-family: 'Work Sans', sans-serif;
   color:#344955;
-  padding: 5px 10px 5px 15px;
+  padding: 5px 10px 5px 30px;
   font-size: 1.5em;
-  text-align: center
+  text-align: center;
+  order:1;
 }
 
 .status-container button{
   background-color: #f9aa33;
-  border-radius: 20px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
-  width: 80%;
+  width: 30%;
   height: 50px;
   font-family : inherit;
   border:none;
-  margin: 0 10% 5% 10%;
+  margin: auto;
   font-size: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  order:2;
 }
 
-
+div.right-nav > div > p.success{
+  order:3;
+}
 
 
 #search-lic{

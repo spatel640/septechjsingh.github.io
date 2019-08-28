@@ -13,11 +13,12 @@ export default class Pool extends Component{
       hpc:'',
       coliform:'',
       notes:'',
-      dateValidated:true
+      dateValidated:true,
+      disableButton:false
     }
     this.handleInput=this.handleInput.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
-
+    this.processSubmission=this.processSubmission.bind(this)
 }
 
 
@@ -30,16 +31,23 @@ export default class Pool extends Component{
   }
 
 handleSubmit(e){
-  e.preventDefault()
-  var dateValidated=this.isDateValid(this.state.collection_date)
+  e.stopPropagation();
+  e.preventDefault();
+  var dateValidated=this.isDateValid(this.state.collection_date);
   if(dateValidated){
-    var fields=this.getFieldsInfo();
-    this.props.updateTable(fields)
+    alert('Test results will be submitted for the current pool selection');
+      this.processSubmission();
   }else{
     this.setState({
       dateValidated:dateValidated
     })
   }
+}
+
+processSubmission(){
+    var fields=this.getFieldsInfo();
+    this.props.updateTable(fields);
+
 }
 
 
@@ -67,7 +75,7 @@ getFieldsInfo(){
   render(){
     return(
       <form onSubmit={this.handleSubmit} id="sample-form">
-      <ul className="instructions-main">
+      <ul className="instructions-main header-form">
       <li>Collection date should fall within 7 days prior to week ending date.</li>
       <li>If a pool status needs to be updated, please refer to the Pool Status dropdown.</li>
       <li>Once submitted, results cannot be changed. Please contact Marion for more info.</li>
@@ -110,7 +118,7 @@ getFieldsInfo(){
           <option name="Not Taken">Not Taken</option>
           <option name="Present">Present </option>
         </select>
-        <input type="submit" value="SUBMIT TEST RESULTS" className="yellow-button"/>
+        <input   type="submit" value="SUBMIT TEST RESULTS" className="yellow-button"  />
         </div>
       </form>
 

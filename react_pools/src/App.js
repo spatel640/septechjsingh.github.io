@@ -73,7 +73,7 @@ componentDidMount(){
 
 
   handleSubmit(username, password){
-    var settings = {
+  {   var settings = {
     "async": true,
     "crossDomain": true,
     "url": "https://apis.accela.com/oauth2/token",
@@ -116,6 +116,8 @@ componentDidMount(){
       loginFailed:true
     })
   }.bind(this))
+}
+
   }
 
 
@@ -123,6 +125,8 @@ componentDidMount(){
 
     axios.get("https://apis.accela.com/v4/records/mine", this.state.header)
     .then(function(data){
+
+      if(data.data.result !== undefined){
       return data.data.result.forEach(function(cap){
         if (cap.type.type=="WQ" && cap.type.category=="License"){
           this.setState({
@@ -130,7 +134,12 @@ componentDidMount(){
           })
         }
       }.bind(this))
-    }.bind(this))
+    }else{
+      this.setState({
+        gotCaps:true
+      })
+      this.handleErrors();
+    }}.bind(this))
     .then(function(){
       this.getIdentifiers()
     }.bind(this))
@@ -161,7 +170,7 @@ componentDidMount(){
        data.forEach(function(cap, index){
 
          var facilityInfo=cap.find((asi)=> asi.id == "POOL_LIC-FACILITY.cINFORMATION");
-         facilityInfo = (facilityInfo && facilityInfo["Facility Name"]) ? facilityInfo["Facility Name"] : '';
+         facilityInfo = (facilityInfo && facilityInfo["Facility Name"]) ? facilityInfo["Facility Name"].substring(0,16) : '';
          var siteInfo=cap.find((asi)=> asi.id == "POOL_LIC-SITE.cINFORMATION");
          siteInfo= (siteInfo && siteInfo["Pool Type"]) ? siteInfo["Pool Type"]: '';
          var id=facilityInfo + "- " + siteInfo
@@ -331,6 +340,7 @@ updatePoolStatus(){
 }
 
 handleErrors(error){
+
   var errorText='';
   if(error.data){
   var eCode= error.response.data.code.toLowerCase();
@@ -405,6 +415,7 @@ handleErrors(error){
           getPoolTestResults={this.getPoolTestResults}/>
           <button id="logout" onClick={this.logOut} >LOGOUT </button>
          </div>: <Login handleSubmit={this.handleSubmit} user={this.state.user} failed={this.state.loginFailed}/>}
+         <div className="right-nav">
          {licenseHolder}
           {this.state.latestInspection && this.state.currentLicense ?
             <Status status={this.state.status ? this.state.status : "Open"} latestInspection={this.state.latestInspection} updatePoolStatus={this.updatePoolStatus} updateStatus={this.state.poolStatusResponse}/> : null}
@@ -421,7 +432,7 @@ handleErrors(error){
             currentUser={this.state.user}
           />
           : null}
-
+          </div>
 
 
       </div>

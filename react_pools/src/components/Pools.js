@@ -97,6 +97,7 @@ export default class Pools extends Component{
   }
 
   submitResults(fields){
+    
     var url=`https://apis.accela.com/v4/inspections/${this.props.currentInspection}/checklists/${this.props.currentChecklist}/checklistItems/${this.props.currentItemId}/customTables`
              axios.put(url, JSON.stringify([
                     {
