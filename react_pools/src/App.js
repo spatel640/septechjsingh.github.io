@@ -144,7 +144,7 @@ componentDidMount(){
       this.getIdentifiers()
     }.bind(this))
     .catch(function(error){
-      console.log(error.message)
+      // console.log(error.message)
       this.handleErrors(error)
     }.bind(this))
   }
@@ -159,7 +159,7 @@ componentDidMount(){
             resolve(data.data.result)
           }.bind(this))
             .catch(function(error){
-              console.log(error.message)
+              // console.log(error.message)
               this.handleErrors(error)
             }.bind(this))
           }.bind(this))
@@ -170,7 +170,7 @@ componentDidMount(){
        data.forEach(function(cap, index){
 
          var facilityInfo=cap.find((asi)=> asi.id == "POOL_LIC-FACILITY.cINFORMATION");
-         facilityInfo = (facilityInfo && facilityInfo["Facility Name"]) ? facilityInfo["Facility Name"].substring(0,16) : '';
+         facilityInfo = (facilityInfo && facilityInfo["Facility Name"]) ? facilityInfo["Facility Name"] : '';
          var siteInfo=cap.find((asi)=> asi.id == "POOL_LIC-SITE.cINFORMATION");
          siteInfo= (siteInfo && siteInfo["Pool Type"]) ? siteInfo["Pool Type"]: '';
          var id=facilityInfo + "- " + siteInfo
@@ -217,12 +217,12 @@ componentDidMount(){
       this.setState({
         myInspections:data
       })
+      this.getChecklist(data[0].id)
     }
-    this.getChecklist(data[0].id)
-    }.bind(this))
+  }.bind(this))
     .catch(function(error){
-      console.log(`Error getting inspections for ${capNumber}`)
-      console.log(error.message)
+      // console.log(`Error getting inspections for ${capNumber}`)
+      // console.log(error.message)
       this.handleErrors(error)
     }.bind(this))
     }
@@ -269,8 +269,8 @@ componentDidMount(){
       })
     })
     .catch(function(error){
-      console.log(`Error getting checklist item for ${checklistId}`)
-      console.log(error.message)
+      // console.log(`Error getting checklist item for ${checklistId}`)
+      // console.log(error.message)
       this.handleErrors(error)
     }.bind(this))
   }
@@ -305,9 +305,9 @@ getChecklist(inspId){
      }
    }.bind(this))
    .catch(function(error){
-     console.log(error.message)
+     // console.log(error.message)
      this.handleErrors(error)
-     console.log("Error getting checklist for latest inspection")
+     // console.log("Error getting checklist for latest inspection")
    }.bind(this))
 }
 
@@ -334,7 +334,7 @@ updatePoolStatus(){
                   })
                  }.bind(this))
                  .catch(function(error){
-                   console.log(error.message)
+                   // console.log(error.message)
                    this.handleErrors(error)
                  }.bind(this))
 }
@@ -393,7 +393,7 @@ handleErrors(error){
   render() {
     var licenseHolder=null;
     if(this.state.currentLicense && this.state.gotCaps){
-      licenseHolder=<Header text={ this.state.myCaps.find(cap=>cap.id == this.state.currentLicense)}/>
+      licenseHolder=<Header text={ this.state.myCaps.find(cap=> cap.id == this.state.currentLicense)} />
     }else if(this.state.gotCaps && !this.state.currentLicense){
       licenseHolder=<Message message={'Please select a Pool from the "Authorized Pools" list on the left to access submission weeks for a specific pool'} class={"instructions"}/>
     }

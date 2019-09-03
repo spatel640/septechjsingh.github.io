@@ -32,10 +32,20 @@ export default class License extends Component{
 
 
   render(){
+    let poolName='';
+    let poolType='';
+    let dash= this.props.identifier.indexOf('-');
+    if(dash!= -1){
+        poolName = this.props.identifier.slice(0,dash);
+        poolName = poolName.substring(0, 16);
+        poolType= this.props.identifier.slice(dash);
+    }
+
     return(
       <div className="license-container">
         <button onClick={this.handleClick} className={this.props.current ? "large-buttons current" : "large-buttons"}>
-          {this.props.identifier ? this.props.identifier : this.props.recordId}
+          {poolName ? poolName : this.props.recordId}
+          {poolType ? <p>{poolType}</p> : null}
         </button>
           {this.state.showInspections ?
             <Inspections inspList={this.props.myInspections}

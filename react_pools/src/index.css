@@ -185,6 +185,7 @@ outline: none
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow-y: scroll;
 }
 
 .licenses-label{
@@ -217,6 +218,12 @@ outline: none
   margin:auto;
 }
 
+.large-buttons> p{
+  font-size:.75em;
+  margin:0px auto;
+  color:white;
+}
+
 
 .current{
     color:#232f34;
@@ -225,6 +232,11 @@ outline: none
     width:310px;
     height:auto;
 }
+.current>p{
+    color:#232f34;
+    height:auto;
+}
+
 .license-container{
   color: white;
   margin:20px auto;
@@ -455,13 +467,21 @@ table{
 }
 
 /*main section container*/
-
+.header-identifier{
+  padding-left:10%;
+}
 
 .license-number {
   color: white !important;
   margin-top:5%;
-  padding-left:10%;
+  margin-bottom:0px;
+  /* padding-left:10%; */
 
+}
+
+.pool-name{
+    color:white;
+    margin-top:0px;
 }
 
 
