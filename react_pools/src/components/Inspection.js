@@ -12,7 +12,7 @@ constructor(props){
 
 handleClick(e){
   e.preventDefault()
-  this.props.onInspectionClick(this.props.inspInfo["id"], this.props.inspStatus)
+  this.props.onInspectionClick(this.props.inspInfo["id"], this.props.inspStatus, this.props.inspInfo.scheduleDate)
 }
 
 

@@ -25,6 +25,7 @@ class App extends Component {
       loginFailed:false,
       user:'',
       currentInspection:'',
+      currentInspectionDate:'',
       isScheduled:false,
       currentChecklist:'',
       currentItemId: '',
@@ -198,6 +199,7 @@ componentDidMount(){
       currentChecklist:null,
       myInspections:Object.assign([], []),
       currentInspection:'',
+      currentInspectionDate:'',
       latestInspection:'',
       latestChecklist:'',
       status:'',
@@ -229,11 +231,12 @@ componentDidMount(){
   }
 
 
-  getPoolTestResults(inspId, inspStatus){
+  getPoolTestResults(inspId, inspStatus, inspDate){
     var scheduled= inspStatus === "Scheduled" ? true : false;
     this.setState({
       currentInspection:inspId,
       isScheduled:scheduled,
+      currentInspectionDate:inspDate,
       currentChecklist:'',
       currentItemId:'',
       showError:false
@@ -257,7 +260,6 @@ componentDidMount(){
   }
 
   getPoolTestResultsChecklistItems(checklistId){
-
     axios.get(`https://apis.accela.com/v4/inspections/${this.state.currentInspection}/checklists/${checklistId}/checklistItems`,this.state.header)
     .then((data)=>{
       return data.data.result.filter(item=> item.checklist == "Pool Test Results")
@@ -379,6 +381,7 @@ handleErrors(error){
       myCaps:[],
       currentLicense:'',
       currentInspection:'',
+      currentInspectionDate:'',
       currentChecklist:null,
       myInspections:Object.assign([], []),
       latestInspection:'',
@@ -429,6 +432,7 @@ handleErrors(error){
             poolStatus={this.state.poolStatus}
             header={this.state.header}
             isScheduled={this.state.isScheduled}
+            scheduledDate={this.state.currentInspectionDate}
             currentUser={this.state.user}
           />
           : null}

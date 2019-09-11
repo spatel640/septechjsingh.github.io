@@ -52,9 +52,11 @@ processSubmission(){
 
 
 isDateValid(date){
-  let inputTime = new Date(date).getTime();
-  let currentTime = Math.round((new Date).getTime() / 86400000) * 86400000;
-  return inputTime <= currentTime
+  let inputDatejs = new Date(date);
+  let inputTime=(inputDatejs.getTime() - inputDatejs.getTimezoneOffset() * -60000 );
+  let schedDatejs = new Date(this.props.scheduleDate);
+  let schedTime=(schedDatejs.getTime() - schedDatejs.getTimezoneOffset() * -60000 );
+  return inputTime <= schedTime
 }
 
 getFieldsInfo(){
@@ -81,7 +83,7 @@ getFieldsInfo(){
       <li>Once submitted, results cannot be changed. Please contact Marion for more info.</li>
       </ul>
         <div className="column-left">
-        <label>Collection Date:</label> {this.state.dateValidated ? null : <div className="error">Collection date should not be in the future</div>}
+        <label>Collection Date:</label> {this.state.dateValidated ? null : <div className="error">  Collection date should not be greater than the current inspection's scheduled date </div>}
         <input type="date" name="collection_date" required value={this.state.collection_date} onChange={this.handleInput}/>
         <label>Sample ID: </label>
         <input type="text" name="sample_id" value={this.state.sample_id} required onChange={this.handleInput}/>

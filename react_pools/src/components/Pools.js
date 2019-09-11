@@ -97,7 +97,7 @@ export default class Pools extends Component{
   }
 
   submitResults(fields){
-    
+
     var url=`https://apis.accela.com/v4/inspections/${this.props.currentInspection}/checklists/${this.props.currentChecklist}/checklistItems/${this.props.currentItemId}/customTables`
              axios.put(url, JSON.stringify([
                     {
@@ -154,7 +154,8 @@ export default class Pools extends Component{
        : null}
 
     {this.state.isEditable ?
-      <Pool updateTable={this.submitResults} sucess={true} currentUser={this.props.currentUser}/>
+      <Pool updateTable={this.submitResults} sucess={true} currentUser={this.props.currentUser}
+      scheduleDate={this.props.scheduledDate}/>
      : <ul className="instructions-main read">
        <li >Test results will be read only if an entry has been submitted by the current user for the selected week. Please contact Marion for any updates to an existing entry.</li>
      </ul>}
